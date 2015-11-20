@@ -1,0 +1,27 @@
+#holder {position:relative; background:transparent /*url(../images/pic1.jpg)*/ 105px 54px no-repeat; margin-bottom:40px; z-index:1;}
+#scrollbox {width:400px; height:80px; background:#f4f4f4; overflow:auto; border:1px solid #aaa; margin-left:105px; margin-bottom:20px}
+a.gallery, a.gallery:visited {display:block; color:#000; text-decoration:none; border:1px solid #000; width:75px; height:47px; margin:3px; float:left; font-size:11px;}
+a.slidea {background:url(../images/thumb17.jpg);}
+a.slideb {background:url(../images/thumb5.jpg);}
+a.slidec {background:url(../images/thumb8.jpg);}
+a.slided {background:url(../images/thumb18.jpg);}
+a.slidee {background:url(../images/thumb12.jpg);}
+a.slidef {background:url(../images/thumb14.jpg);}
+a.slideg {background:url(../images/thumb2.jpg);}
+a.slideh {background:url(../images/thumb6.jpg);}
+a.slidei {background:url(../images/thumb15.jpg);}
+a.slidej {background:url(../images/thumb19.jpg);}
+a.slidek {background:url(../images/thumb20.jpg);}
+a.slidel {background:url(../images/thumb13.jpg);}
+a.slidem {background:url(../images/thumb9.jpg);}
+a.sliden {background:url(../images/thumb21.jpg);}
+a.slideo {background:url(../images/thumb22.jpg);}
+a.gallery span {display:block; position:absolute; left:150px; top:-1px; width:1px; height:1px; overflow:hidden; background:#efedec; z-index:100; font-size:11px;}
+a.gallery:hover {white-space:normal; border:1px solid #fff;}
+a.gallery:hover img {border:1px solid #000; z-index:100;}
+a.gallery:active img, a.gallery:focus img {border:1px solid #000; z-index:50;}
+a.gallery:hover span {display:block; position:absolute; width:402px; height:280px; top/**/:/**/100px; left:100px; padding:5px; font-style:italic; color:#000; background:#fff; z-index:100; font-size:11px;}
+a.gallery:active {border:1px solid #eee;}
+a.gallery:active span, a.gallery:focus span {display:block; position:absolute; width:402px; height:280px; top/**/:/**/100px; left:100px; padding:5px; font-style:italic; color:#000; background:#fff; z-index:50;}
+#thumbs {width:1250px; height:60px;}
+#pad {height:320px; width:100px;}

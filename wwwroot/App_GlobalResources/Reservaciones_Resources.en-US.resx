@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BusquedaReservaciones_Pantalla" xml:space="preserve">
+    <value>Reservations Search</value>
+  </data>
+  <data name="Estado" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Fecha_Creado" xml:space="preserve">
+    <value>Date Created</value>
+  </data>
+  <data name="Fecha_Fin" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="Fecha_Final_Programado" xml:space="preserve">
+    <value>Programmed End Date</value>
+  </data>
+  <data name="Fecha_Inicio" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="Fecha_Inicio_Programado" xml:space="preserve">
+    <value>Programmed Start Date</value>
+  </data>
+  <data name="Hora" xml:space="preserve">
+    <value>Hour</value>
+  </data>
+  <data name="Ingresar_nueva_Reservacion" xml:space="preserve">
+    <value>Create new Reservation</value>
+  </data>
+  <data name="Items" xml:space="preserve">
+    <value>Items</value>
+  </data>
+  <data name="Items_Reservados" xml:space="preserve">
+    <value>Reserved Items</value>
+  </data>
+  <data name="Minuto" xml:space="preserve">
+    <value>Minute</value>
+  </data>
+  <data name="Modulo_Reservaciones" xml:space="preserve">
+    <value>Reservations</value>
+  </data>
+  <data name="No_hay_Reservaciones" xml:space="preserve">
+    <value>There are no reservations</value>
+  </data>
+  <data name="TipoEstadoReservacion_Pantalla" xml:space="preserve">
+    <value>Reservation State Types </value>
+  </data>
+  <data name="Reservacion" xml:space="preserve">
+    <value>Reservation</value>
+  </data>
+  <data name="Reservaciones" xml:space="preserve">
+    <value>Reservations</value>
+  </data>
+  <data name="Reservacion_Accion" xml:space="preserve">
+    <value>Reserve</value>
+  </data>
+  <data name="Reservacion_Adultos" xml:space="preserve">
+    <value>Adults</value>
+  </data>
+  <data name="Reservacion_Buscar" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Reservacion_Cliente" xml:space="preserve">
+    <value>Client</value>
+  </data>
+  <data name="Reservacion_Ninos" xml:space="preserve">
+    <value>Children</value>
+  </data>
+  <data name="Reservacion_NoResultados" xml:space="preserve">
+    <value>There are no results</value>
+  </data>
+  <data name="Reservacion_ResultadosExactos" xml:space="preserve">
+    <value>Avaliable Results</value>
+  </data>
+  <data name="Reservacion_ResultadosUbicacion" xml:space="preserve">
+    <value>Results that match ubication</value>
+  </data>
+  <data name="Reservacion_Ubicacion" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="TipoEstadoReservacion" xml:space="preserve">
+    <value>Reservation State Types</value>
+  </data>
+  <data name="TipoEstado_Actuales" xml:space="preserve">
+    <value>Current State Types</value>
+  </data>
+  <data name="TipoEstado_NoHay" xml:space="preserve">
+    <value>There are no State Types</value>
+  </data>
+  <data name="TipoEstado_Nombre" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="TipoEstado_RepresentaCancelado" xml:space="preserve">
+    <value>Represents Cancelled</value>
+  </data>
+  <data name="TipoEstado_Terminador" xml:space="preserve">
+    <value>Is Final State</value>
+  </data>
+  <data name="Ultimas_Reservaciones" xml:space="preserve">
+    <value>Last Reservations</value>
+  </data>
+  <data name="Reservacion_Detalle" xml:space="preserve">
+    <value>Reservaction Detail</value>
+  </data>
+  <data name="Reservacion_ResultadosFechas" xml:space="preserve">
+    <value>Results that match dates</value>
+  </data>
+  <data name="Temporada" xml:space="preserve">
+    <value>Season</value>
+  </data>
+  <data name="Temporada_Nombre" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Temporada_Pantalla" xml:space="preserve">
+    <value>Seasons Maintenance</value>
+  </data>
+  <data name="Temporada_RangoFechaFin" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="Temporada_RangoFechaInicio" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="Temporada_Rangos" xml:space="preserve">
+    <value>Date Intervals</value>
+  </data>
+  <data name="Temporada_RangoOrden" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="Temporada_Prioridad" xml:space="preserve">
+    <value>Priority</value>
+  </data>
+  <data name="TipoEstado_RepresentaReservado" xml:space="preserve">
+    <value>Represents Reserved</value>
+  </data>
+  <data name="TipoEstado_RepresentaInicial" xml:space="preserve">
+    <value>Initial accounts</value>
+  </data>
+  <data name="esReservacionBloqueada" xml:space="preserve">
+    <value>Is Reservation Locked</value>
+  </data>
+  <data name="TipoEstado_RepresentaBloqueado" xml:space="preserve">
+    <value>Represents Locked</value>
+  </data>
+  <data name="Reservacion_reporte" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="Administracion_Pantalla" xml:space="preserve">
+    <value>Administration</value>
+  </data>
+  <data name="AgregarItem_Pantalla" xml:space="preserve">
+    <value>Add Item</value>
+  </data>
+  <data name="CalendarioProductos_Pantalla" xml:space="preserve">
+    <value>Products Calendar</value>
+  </data>
+  <data name="Item_Pantalla" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="Reservacion_Pantalla" xml:space="preserve">
+    <value>Reservation</value>
+  </data>
+  <data name="PreciosTemporada_Pantalla" xml:space="preserve">
+    <value>Rates by Season</value>
+  </data>
+  <data name="Temporada_Precios" xml:space="preserve">
+    <value>Rates by Season</value>
+  </data>
+  <data name="PreciosTemporadaYNoches_Pantalla" xml:space="preserve">
+    <value>Rates by Season and Nights</value>
+  </data>
+  <data name="Temporada_Actuales" xml:space="preserve">
+    <value>Seasons</value>
+  </data>
+  <data name="Temporada_cantidadNoches" xml:space="preserve">
+    <value>Nights</value>
+  </data>
+  <data name="Temporada_cantidadPersonas" xml:space="preserve">
+    <value>Persons</value>
+  </data>
+  <data name="Temporada_precioNocheExtraAdulto" xml:space="preserve">
+    <value>Rate by night adults</value>
+  </data>
+  <data name="Temporada_precioNocheExtraNino" xml:space="preserve">
+    <value>Rate by night children</value>
+  </data>
+  <data name="ReservacionPorNoches_Pantalla" xml:space="preserve">
+    <value>Reservations by Nights</value>
+  </data>
+  <data name="Temporada_cantidadNochesAdicionales" xml:space="preserve">
+    <value>Additional Nights</value>
+  </data>
+  <data name="Reservacion_AdultosConNinos" xml:space="preserve">
+    <value>Adults (children include)</value>
+  </data>
+  <data name="Ano" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="dias_reservados" xml:space="preserve">
+    <value>*Days reserved</value>
+  </data>
+  <data name="Explicacion_items" xml:space="preserve">
+    <value>**Each row its a product item</value>
+  </data>
+  <data name="Mes" xml:space="preserve">
+    <value>Month</value>
+  </data>
+  <data name="precios" xml:space="preserve">
+    <value>Rates</value>
+  </data>
+  <data name="Temporada_precioProducto" xml:space="preserve">
+    <value>Product Rate</value>
+  </data>
+  <data name="Temporada_precioUnidad" xml:space="preserve">
+    <value>Unit</value>
+  </data>
+  <data name="Temporada_unidadTiempo" xml:space="preserve">
+    <value>Unit time</value>
+  </data>
+  <data name="Agregar_Producto" xml:space="preserve">
+    <value>Add Product</value>
+  </data>
+  <data name="Buscar" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Temporada_precioAdulto" xml:space="preserve">
+    <value>Adult rate</value>
+  </data>
+  <data name="Temporada_precioAdultoExtra" xml:space="preserve">
+    <value>Extra adult rate</value>
+  </data>
+  <data name="Temporada_precioNino" xml:space="preserve">
+    <value>Child rate</value>
+  </data>
+  <data name="Temporada_precioNinoExtra" xml:space="preserve">
+    <value>Extra child rate</value>
+  </data>
+</root>

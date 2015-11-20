@@ -1,0 +1,1365 @@
+﻿article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{
+	display: block;
+}
+
+body{
+	background-color: #fff;
+	margin: 0;
+}
+
+#header{
+	background-color: #FFFCF1;
+	margin: 0;
+	border-bottom: 2px solid #F2E3DA;
+	padding-top: 10px;
+}
+
+.container-980{
+	width: 980px;
+	float: none;
+	margin: 0 auto;
+	position: relative;
+}
+
+#header #logo-box{
+	width: 244px;
+	height: 124px;
+	left: 32px;
+    margin-right: 0;
+    top: 5px;
+    position: absolute;
+   /* margin-bottom: -124px;*/
+    z-index: 100;
+}
+
+#header .menu-top-box{
+	margin-top:2px;
+}
+
+#header .menu-idioma{
+	float: left;
+	margin: 0 35px 0 0;
+    width: 145px;
+	font-family:"Open Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #9B8579;
+}
+
+#header .menu-idioma ul{
+	margin: 0;
+	padding: 0;
+	font-family:"Open Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #9B8579;
+    
+}
+
+#header .menu-idioma ul li{
+	margin: 0;
+	padding: 0 5px;
+	display: inline;
+	list-style: none;
+	font-family:"Open Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #9B8579;
+}
+
+#header .menu-idioma ul li a{
+	color: #594A42;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family:"Open Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+#header .menu-idioma ul li a:hover,
+#header .menu-idioma ul li a.active{
+	font-weight: 600;
+    
+}
+
+#header .menu-top{
+	float: left;
+	text-align: right;
+    width: 275px;
+	margin: 0;
+}
+
+#header .menu-top ul{
+	margin: 0;
+	padding: 0;
+	font-family:"Open Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #9B8579;
+}
+
+#header .menu-top ul li{
+	margin: 0;
+	padding: 0 1px;
+	display: inline;
+	list-style: none;
+	font-family:"Open Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #9B8579;
+}
+
+#header .menu-top ul li a{
+	color: #9B8579;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family:"Open Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+#header .menu-top ul li a:hover{
+	font-weight: 600;
+}
+
+#header .menu-top-box{
+	float: right;
+    height: 54px;
+    width: 455px;
+}
+
+#header .contact-info{
+width: 598px;
+	clear: both;
+    color: #813400;
+    font-family: "Open Sans",sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    display: block;
+    float: right;
+    text-align: right;
+    margin-top: 5px;
+}
+
+#header .contact-info p{
+	color: #813400;
+    font-family: "Open Sans",sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin: 0;
+    
+}
+#header .contact-info p a{
+	color: #813400;
+    font-family: "Open Sans",sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+#header .menu-principal-box{
+	background-color:  #FFFFFF;
+    border-top: 10px solid #F2E3DA;
+    clear: both;
+    width: 100%;
+    height: 40px;
+}
+
+#header .menu-principal-box .menu-principal ul.mi-menu{
+	margin: 0;
+    padding: 0;
+    text-align: right;
+    height: 40px; 
+    float: right;
+    list-style-type: none;
+}
+
+#header .menu-principal-box .menu-principal ul.mi-menu li{
+	border-top: 10px solid #F2E3DA;
+    color: #594A42;
+    display: block;
+    float: left;
+    position: relative;
+    list-style: none outside none;
+    margin: -10px 0 0;
+    
+
+}
+#header .menu-principal-box .menu-principal ul.mi-menu li.active-trail,
+#header .menu-principal-box .menu-principal ul.mi-menu li:hover{
+	background: none repeat scroll 0 0 #F9F3EF;
+    border-top: 10px solid #CF9E84;
+}
+
+#header .menu-principal-box .menu-principal ul.mi-menu li a{
+	color: #594A42;
+    text-transform: uppercase;
+	font-size: 11px;
+	font-family: "Open Sans", sans-serif;
+	text-decoration: none;
+	display: block;
+    padding: 10px 18px;
+}
+
+#header .menu-principal-box .menu-principal ul.mi-menu ul
+{
+    left: 0;
+    margin: 0;
+    opacity: 0; /* no son visibles */
+    position: absolute;
+    top: 50px;
+    padding: 0;
+    background-color: #fff;
+        /* animamos su visibildiad */
+    -moz-transition: opacity .25s ease .1s;
+    -webkit-transition: opacity .25s ease .1s;
+    -o-transition: opacity .25s ease .1s;
+    -ms-transition: opacity .25s ease .1s;
+    transition: opacity .25s ease .1s;
+    }
+    
+/* son visibes al poner el cursor encima */
+#header .menu-principal-box .menu-principal ul.mi-menu li:hover > ul  
+{
+    opacity: 1; 
+    }
+
+ /* cada un ode los items de los submenús */
+#header .menu-principal-box .menu-principal ul.mi-menu ul li {
+    height: 0; /* no son visibles */
+    overflow: hidden;
+    padding: 0;
+    /* animamos su visibildiad */
+    -moz-transition: height .25s ease .1s;
+    -webkit-transition: height .25s ease .1s;
+    -o-transition: height .25s ease .1s;
+    -ms-transition: height .25s ease .1s;
+    transition: height .25s ease .1s;
+    border-top: none;
+  }
+  
+#header .menu-principal-box .menu-principal ul.mi-menu ul li:hover
+{
+    border-top: none;
+    }
+  
+#header .menu-principal-box .menu-principal ul.mi-menu li:hover > ul li {
+    height: 30px; /* los mostramos */
+    width: 200px;
+    text-align: left;
+    line-height: 15px;
+    overflow: visible;
+    padding: 10px 0;
+  }
+  
+
+  
+#header .menu-principal-box .menu-principal ul.mi-menu li:hover > ul li:hover {
+    width: 100%;
+  }
+    
+    
+#header .menu-principal-box .menu-principal ul.mi-menu li:hover > ul li a{
+    padding: 0 15px;
+   
+  }
+#header #page-head{
+	background: none repeat scroll 0 0 #FFFFFF;
+    clear: both;
+    margin: 0;
+    padding: 70px 0 0;
+}
+
+#header #page-head .page-title h1{
+	background: none repeat scroll 0 0 #F8F3EF;
+    color: #852703;
+    margin: 0;
+    padding: 7px 31px;
+    text-transform: uppercase;
+    font-size: 26px;
+    font-family: "Raleway", sans-serif;
+    font-weight: 400;
+}
+
+#header #page-head .breadcrumbs{
+	 color: #63564E;
+	 font-size: 12px;
+	 font-family: "Open Sans", sans-serif;
+	 float: right;
+    font-style: italic;
+    padding-right: 2.5em;
+    padding-top: 1.2em;
+    clear: both;
+    margin-top: -45px;
+}
+
+#header #page-head .breadcrumbs a{
+	 color: #63564E;
+	 font-size: 12px;
+	 font-family: "Open Sans", sans-serif;
+	 font-style:italic;
+	 text-decoration: none;
+}
+
+#header #page-head .breadcrumbs a:hover{
+	 font-weight: 600;
+}
+
+#footer
+{
+    background: none repeat scroll 0 0 #FFFCF1;
+    border-bottom: medium none;
+    border-top: 3px solid #F2E3DA;
+    margin: 2em auto 0;
+    min-height: 260px;
+    padding: 12px 0;
+    width: 100%;
+    color: #594A42;  
+    clear: both;
+    }
+    
+#footer .column1
+{
+    width: 230px;
+    float: left;
+    }
+    
+#footer .column2
+{
+    width: 230px;
+    float: left;
+    }
+    
+#footer .column3
+{
+    width: 230px;
+    float: left;
+    }
+    
+#footer .column4
+{
+    width: 290px;
+    float: left;
+    text-align: right;
+    }
+    
+#footer .column ul
+{
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    }
+        
+#footer .column ul li
+{
+    text-align: left;
+    margin: 10px 0;
+    padding: 0;
+    text-transform: uppercase;
+    list-style: none;
+    }
+   
+#footer .column ul li a
+{
+    text-decoration: none;
+    color: #594A42;
+    font-family: "Raleway",sans-serif;
+    font-size: 13px;
+    text-transform: uppercase;
+    }
+    
+#footer .column ul li a.active-trail,
+#footer .column ul li a:hover
+{
+    font-weight: 600;
+    }
+    
+    
+#footer .column4 p
+{
+    color: #832603;
+    text-align: right;
+    text-transform: uppercase;
+    font-family:"Open Sans", Sans-Serif;
+    font-size: 13px;
+    }
+    
+#footer .column4 p a
+{
+    text-decoration: none;
+    color: #832603;
+    }
+    
+.container-2-3
+{
+    width: 595px;
+    margin-right: 25px;
+    float: left;
+    }
+    
+
+    
+
+#main-content {
+    background-color: #fff;
+    margin: 0;
+    padding: 25px 0;
+}
+
+.sidebar
+{
+    width: 358px;
+    float: right;
+    
+    }
+    
+.sidebar p
+{   
+    color: #594A42;
+    font-family: "Open Sans",sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    }
+    
+    
+.sidebar p a
+{
+    color: #594A42;
+    font-family: "Open Sans",sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    text-decoration: none;
+    }
+    
+.sidebar h3
+{
+    background: none repeat scroll 0 0 #6DA7C0;
+    border-top: 5px solid #D4EEF9;
+    color: #FFFFFF;
+    font-family: "Raleway",sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    margin: 0 0 25px;
+    padding: 8px 20px;
+    text-transform: uppercase;
+    }
+    
+.sidebar h3.chat
+{
+    background-color: #B47051;
+    border-top: 0.35em solid #F2E3DA;
+    color: #FFFFFF;
+    font-family: "Raleway",sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    margin: 10px 0 25px;
+    padding: 8px 20px;
+    text-transform: uppercase;
+	background-image: url(../images/2014/bg-h3-chat-reservacion.png);
+	background-position: 96% center;
+	background-repeat: no-repeat;
+    }
+    
+.sidebar h3.chat a
+{
+    color: #FFFFFF;
+    text-decoration: none;
+    }
+    
+
+    
+.reservation-form #updtpanel_reservacion
+ {
+     background-color: #FAF6F2;
+    padding: 20px 20px 0;
+    margin-bottom: 40px;
+     }
+     
+.reservation-form #updtpanel_reservacion h3.lbl-paquete
+  {
+      display: none;
+      }
+      
+.reservation-form #updtpanel_reservacion .headerReservation h2
+{
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url("../images/2014/bg-h2-reservations.png");
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    color: #B57651;
+    font-family: "Raleway",sans-serif;
+    font-size: 27px;
+    margin: 0;
+    padding-bottom: 10px;
+    font-weight: 300;
+    text-transform: uppercase;
+    }
+    
+input[type="text"]
+{
+     font-family: "Open Sans",sans-seif;
+    font-size: 16px;
+    font-weight: 400;
+    height: 37px;
+    line-height: 37px;
+    -moz-box-sizing: border-box;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: medium none;
+    color: #584942;
+    padding: 5px 12px;
+    width: 100%;
+    margin-top: 15px;
+    }
+    
+select
+{
+    font-family: "Open Sans",sans-seif;
+    font-size: 16px;
+    font-weight: 400;
+    height: 37px;
+    line-height: 37px;
+    width: 120%;
+    background: url("../images/2014/bg-select-contacto.png") no-repeat scroll 80% center #FFFFFF;
+    border: none;
+    border-radius: 0;
+    border: medium none;
+    color: #584942;
+    padding: 5px 12px;
+    }
+    
+ .box-ubicacion
+ {
+     overflow: hidden;
+     margin-top: 15px;
+     width: 100%;
+     
+     }
+     
+input#txtDateEntrada,
+input#txtDateSalida
+{
+    width: 226px;  
+    margin-top: 0; 
+    float: left;
+    }
+    
+/*Chrome Hack*/	
+@media screen and (-webkit-min-device-pixel-ratio:0) {    
+	input#txtDateEntrada,
+    input#txtDateSalida{
+		width: 202px;
+		height: 28px;
+	}      
+}
+	
+	
+.reservation-form #UpdatePanel1,
+.reservation-form #UpdatePanel2
+{
+    width: 270px;
+    float: left;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    }
+    
+    
+.reservation-form #UpdatePanel1 img,
+.reservation-form #UpdatePanel2 img
+{
+    float: left;
+    margin-top: -20px;
+    
+    }
+    
+.reservation-form #UpdatePanel1
+{
+    margin-right: 15px;
+    }
+    
+    
+#traslado-box
+{
+    clear: both;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    }
+    
+#traslado-box p
+{
+    font-family: "Open Sans",sans-seif;
+    font-size: 16px;
+    font-weight: 400;  
+    color: #584942;
+    }
+    
+#traslado-box #rdbtnlist_transporte2014 tr td label,
+.reservation-form  label,
+.reservation-form span
+{
+    font-family: "Open Sans",sans-seif;
+    font-size: 16px;
+    font-weight: 400;  
+    color: #584942;
+    }
+    
+.box-select-habitaciones
+{
+    width: 95px;
+    overflow: hidden;
+    height: 37px;
+    float: left;
+    }
+    
+.box-select-habitaciones select
+{
+     background: url("../images/2014/bg-select-contacto.png") no-repeat scroll 55% center #FFFFFF;
+     width: 150%;
+    }
+    
+.habitaciones-wrapper
+{
+    width: 259px;
+    float: left;
+    }
+    
+#pnl_resultados
+{
+    float: right;
+     margin-bottom: 15px;
+    }
+    
+#lbl_nHabitaciones
+{
+    float: left;
+    line-height: 37px;
+    margin-right: 10px
+    }
+    
+.box-select-personas
+{
+    width: 95px;
+    overflow: hidden;
+    height: 37px;
+    float: left;
+    }
+    
+    
+#pnl_resultados span
+{
+    margin-right: 10px;
+    float: left;
+    line-height: 37px;
+    }
+    
+.box-select-personas select
+{
+    background: url("../images/2014/bg-select-contacto.png") no-repeat scroll 55% center #FFFFFF;
+     width: 150%;
+    }
+    
+#txt_observaciones
+{
+    border: medium none;
+    height: 100px;
+    max-height: 100px;
+    max-width: 545px;
+    min-height: 100px;
+    min-width: 545px;
+    padding: 5px;
+    width: 545px;
+    font-family: "Open Sans",sans-seif;
+    font-size: 16px;
+    font-weight: 400;  
+    color: #584942;
+    margin-bottom: 15px;
+    }
+    
+.terminosNuevo a
+{
+    text-decoration: none;
+    font-family: "Open Sans",sans-seif;
+    font-size: 16px;
+    font-weight: 400;  
+    color: #584942;
+    font-style: italic;
+    }
+    
+    
+.link-chat
+{
+    font-family: "Open Sans",sans-seif;
+    font-size: 14px;
+    font-weight: 400;  
+    color: #584942;
+    width: 335px;
+    }
+    
+.link-chat a
+{
+    text-decoration: none; 
+    color: #584942;
+    font-weight:600;
+    }
+    
+#btn_reservar{
+    background-color: #BE8462;
+    color: #FFFFFF;
+    font-family: "Raleway",sans-serif;
+    font-size: 27px;
+    height: 52px;
+    line-height: 52px;
+    padding: 0 15px;
+    text-transform: uppercase;
+    width: 176px;
+    text-decoration: none;
+    display: block;
+}
+
+.btn_reserva
+{
+    display: inline-block;
+    float: right;
+    width: auto;
+    margin-top: -80px;
+    }
+    
+#popup_code h2.principal
+{
+    color: #852703;
+    font-size: 27px;
+    font-family: "Raleway", Sans-Serif;
+    text-transform: uppercase;
+    }
+    
+#popup_code .terminosNuevo a
+{
+    font-family: "Open Sans", Sans-Serif;
+    font-size: 18px;
+    font-weight: 400;  
+    color: #584942;
+    font-style: italic;
+    text-decoration: none;
+    }
+    
+    
+#popup_codea
+{
+    font-family: "Open Sans", Sans-Serif;
+    font-size: 16px;
+    font-weight: 600;  
+    color: #584942;
+    
+    }
+    
+#popup_code h2
+{
+    color: #852703;
+    font-size: 22px;
+    font-family: "Raleway", Sans-Serif;
+    text-transform: uppercase;
+    }
+    
+#popup_code h3
+{
+    color: #852703;
+    font-size: 18px;
+    font-family: "Raleway", Sans-Serif;
+    text-transform: uppercase;
+    }
+    
+    
+#popup_code ul li,
+#popup_code p
+{
+    font-family: "Open Sans", Sans-Serif;
+    font-size: 16px;
+    font-weight: 400;  
+    color: #584942;
+    }
+    
+    
+    
+/*Descripcion de Reserva*/
+
+.displayNone
+{
+    display: none;
+    }
+    
+h2.h2ReservaNew
+{
+    font-family: "Raleway", Sans-Serif;
+    font-size:27px;
+    color: #B57651;
+    text-transform: uppercase;
+    font-weight: 300;
+    background-image: url(../images/2014/bg-h2-reservacion-detalle.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-position: bottom left;
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+    }
+    
+p.textonegro_normal
+{
+    font-family: "Open Sans", Sans-Serif;
+    font-size: 14px;
+    color: #594A42;
+    margin-bottom: 50px;
+    }
+    
+p.textonegro_normal a
+{
+    color: #594A42;
+    text-decoration: none;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 600;
+    }
+    
+#btn_cancelar_arriba,
+#btn_cancelar,
+#btn_pagar
+{
+    float: left;
+    }
+    
+#btn_pagar_arriba
+{
+    float: right;
+    }
+    
+#btn_cancelar
+{
+    margin-right: 15px;
+    } 
+    
+    
+.botones-pago-cancel-abajo {
+    float: right;
+    margin-bottom:  30px;
+}
+
+.tableShopping
+{
+    background-color: #FAF6F2; 
+    margin-bottom: 5px;
+    }
+
+
+.tableShopping tr td
+{
+    border: 1px solid #fff;
+    padding: 10px 15px;
+    }
+
+.tableShopping tr td h2
+{
+    margin: 0;
+    }
+.tableShopping tr td h2 span{
+    font-family: "Raleway", Sans-Serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    color: #594A42;
+    font-weight:300;
+}
+
+.botones-checkout-arriba
+{
+    margin-bottom: 15px;
+    height: 40px;
+    }
+    
+#dtl_shoppingCart tr td.alignLeft
+{
+    font-family: "Open Sans", Sans-Serif;
+    font-size: 14px;
+    color: #594A42;
+    font-weight:300;
+    border: 1px solid #FAF6F2;
+    padding: 10px 20px !important;
+    }
+    
+ .tableShopping2
+ {
+     background-color: #fff;
+     }
+     
+     
+     
+ .tableShopping2 tr td
+ {
+     padding: 10px 20px;
+     }
+     
+ .tableShopping2 td.total-lbl-checkout
+ {
+     background-color: #FAF6F2;
+     border: 1px solid #fff;
+     font-family: "Open Sans", Sans-Serif;
+     font-size: 24px;
+     color: #813400;
+     font-weight: 700;
+     text-transform: uppercase;
+     padding: 10px 20px;
+     }
+     
+     
+  .tableShopping2 td.total-checkout
+ {
+        background-color: #EBD9CD;  
+        border: 1px solid #fff; 
+        font-family: "Open Sans", Sans-Serif;
+     font-size: 24px;
+     color: #813400;
+     font-weight: 700;
+     padding: 10px 20px;
+     text-transform: uppercase;
+     }
+     
+#prefooter
+{
+    clear: both;
+    border-top: 3px solid #F2E3DA;
+    }
+    
+#prefooter .botones-prefooter
+{
+    float: left;
+    margin: 30px 0 300px;
+    }
+    
+#prefooter .botones-prefooter .btn-contact-us
+{
+    float: left;
+    background-color: #6DA7C0;
+    border-top: 5px solid #D4EEF9;
+    margin-right: 10px;
+    text-align: center;
+    height: 40px;
+    }
+    
+#prefooter .botones-prefooter .btn-chat
+{
+    float: left;
+    background-color: #B57651;
+    border-top: 5px solid #F5ECE5;
+    margin-right: 10px;
+    text-align: center;
+   
+    height: 40px;
+    }
+    
+#prefooter .botones-prefooter .btn-contact-us a,
+#prefooter .botones-prefooter .btn-chat a {
+    color: #FFFFFF;
+    display: block;
+    font-family: "Raleway",sans-serif;
+    font-size: 18px;
+    line-height: 41px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+     padding: 0 10px;
+}
+
+p.texto-payment-description
+{
+    font-family:"Open Sans", Sans-Serif;
+    font-size: 14px;
+    color: #594A42;
+    font-weight: 400;   
+    }
+    
+.checkout #pnl_total td.columna1
+{
+    background-color: #FAF6F2;
+    padding: 16px 30px;
+    }
+    
+.checkout #pnl_total td.columna2
+{
+    padding: 0;
+    }
+    
+.checkout #pnl_total td.columna1.last-row,
+.checkout #pnl_total td.columna2.last-row
+{
+    font-family:"Open Sans", Sans-Serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #813400;
+    padding: 10px 30px;
+    }
+    
+.checkout #pnl_total td.columna2.last-row
+{
+    background-color: #EBD9CD;
+    }
+    
+.checkout #pnl_total td
+{
+    border: 3px solid #fff;
+     font-family:"Raleway", Sans-Serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #594A42;
+    text-transform: uppercase;
+    
+    }
+
+.checkout #pnl_total td.columna2 .borde-cafe-tabla-td-interno-bg-blanco
+{
+    display: block;
+    padding: 16px 30px;
+    margin: 0;
+    border: 1px solid #FAF6F2;
+    }
+    
+.checkout #updtpanel_reservacion
+{
+    margin: 30px 0;
+    }
+ 
+ 
+  
+     
+.checkout .radio-buttom-box label
+{
+    font-family:"Open Sans", Sans-Serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #594A42;                                       
+    }
+    
+.checkout .radio-buttom-box
+{
+    clear: both;
+    margin: 30px 0;
+    }
+    
+.checkout .logos-bancos
+{
+    margin-bottom: 25px;
+    }    
+    
+.checkout .logos-bancos img.logos-bancos img,
+.checkout .logos-bancos a
+{
+    
+    margin-right: 10px;
+    }
+    
+    
+.checkout .nota-debajo-box span
+{
+    font-family:"Open Sans", Sans-Serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #594A42;
+    font-style: italic;
+    }
+    
+ .textonegro14
+ {
+     font-family:"Open Sans", Sans-Serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #594A42;
+     }
+     
+.textorojo14
+ {
+     font-family:"Open Sans", Sans-Serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #813400;
+     }
+     
+.bloque-resumen-reservacion
+{
+    background-color: #FDFDFB;
+    width: 558px;
+    float: left;
+    padding: 19px;
+    margin-top: 40px;
+    }
+    
+.bloque-resumen-reservacion h3
+{
+    margin: 0 0 10px;
+    padding-bottom: 15px;
+    font-family: "Raleway", Sans-Serif;
+    font-size: 27px;
+    color: #B57651;
+    text-transform: uppercase;
+    font-weight: 400;
+    background-image: url(../images/2014/bg-h3-confirmation-page.png);
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    background-color: transparent;
+    }
+    
+.bloque-resumen-reservacion .bloque-datos
+{
+    margin-bottom: 50px;
+    }
+    
+.bloque-resumen-reservacion .bloque-datos span
+{
+    color: #594A42;
+    font-size: 16px;
+    font-family:"Open Sans", Sans-Serif;
+    font-weight: 400;
+    line-height: 32px;
+    }
+    
+.bloque-resumen-reservacion .bloque-datos span#lbl_check_in,
+.bloque-resumen-reservacion .bloque-datos span#lbl_check_out
+{
+    float: left;
+    }
+    
+
+.bloque-resumen-reservacion .bloque-datos span#lbl_check_in
+{
+    margin-right: 45px;
+    }
+    
+.bloque-resumen-reservacion .bloque-datos #dtl_shoppingCart tr td.alignLeft
+{
+    border: none;
+    padding: 10px 0 !important;
+    }
+    
+.tabla-totales
+{
+    clear: both;
+    width: 596px;
+    float: left;
+    margin: 30px 0;
+    }
+    
+    
+.tabla-totales td.columna1
+{
+    background-color: #FAF6F2;
+    padding: 16px 30px;
+    }
+    
+.tabla-totales td.columna2
+{
+    padding: 0;
+    }
+    
+.tabla-totales td.columna1.last-row,
+.tabla-totales td.columna2.last-row
+{
+    font-family:"Open Sans", Sans-Serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #813400;
+    padding: 10px 30px;
+    }
+    
+.tabla-totales td.columna2.last-row
+{
+    background-color: #EBD9CD;
+    }
+    
+.tabla-totales td
+{
+    border: 3px solid #fff;
+     font-family:"Raleway", Sans-Serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #594A42;
+    text-transform: uppercase;
+    
+    }
+
+.tabla-totales td.columna2 .borde-cafe-tabla-td-interno-bg-blanco
+{
+    display: block;
+    padding: 16px 30px;
+    margin: 0;
+    border: 1px solid #FAF6F2;
+    }
+    
+
+.msg-imprimir-cancelation-policy
+{
+    clear: both;
+    margin-bottom: 100px;
+    width: 596px;
+    float: left;
+    }
+    
+.msg-imprimir-cancelation-policy p
+{
+    font-family:"Open Sans", Sans-Serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: #594A42;
+    }
+    
+.msg-imprimir-cancelation-policy .boton-imprimir
+{
+    height: 35px;
+    line-height: 35px;
+    
+    background-color: #DC752F;
+    float: left;
+    margin-top: 40px;
+    }
+    
+.msg-imprimir-cancelation-policy .boton-imprimir a,
+.msg-imprimir-cancelation-policy .boton-imprimir a:visited
+{
+    font-family: "Raleway", Sans-Serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    line-height: 35px;
+    padding: 0 20px;
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    }
+    
+    
+#numero_orden
+{
+    font-weight: 700;
+    }
+    
+    img {
+    border: none;
+}
+
+a img { border: none; }
+
+
+/*Para responsividad*/
+
+.mi-menu-responsivo
+{
+    display: none;
+    }
+    
+    ul.mi-menu
+{
+    display: block;
+    }
+    
+#tinynav1
+{
+    display: none;
+    }
+    
+#tinynav2,
+#tinynav3
+{
+    display: none;
+    }
+    
+#txt_observaciones
+{
+    clear: both;
+    }
+
+.footer-info-box
+{
+    display: none;
+    }
+    
+.sidebar ul.menu-sidebar
+{
+    display: none;
+    }
+    
+#dtl_shoppingCart_responsivo    
+{
+    display: none;
+    }
+    
+    
+.tableShopping2.desktop
+{
+    display: block;
+    }
+    
+.tableShopping2.movil
+{
+    display: none;
+    }
+    
+.logos-trip-advisor {
+    clear: both;
+    float: left;
+    margin-top: 48px;
+    width: 100%;
+}
+
+#TA_certificateOfExcellence600, #TA_certificateOfExcellence690 {
+    float: left;
+    margin-right: 35px;
+}
+
+#TA_tchotel599 {
+    float: left;
+}
+
+
+.footer_logos .margen_footer_logo {
+    margin: 0 35px;
+}
+.footer_logos > img {
+    float: left;
+}
+
+#TA_excellent625 {
+    float: left;
+    margin-right: 35px;
+}
+
+.widEXC, .widCOE {
+    margin: 0 !important;
+}
+
+
+.contenedor-desc-reserva .desc-paquete
+{
+	clear: both;
+	}
+	
+
+        	
+.loader
+{
+    background-color: #000;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.80;
+    z-index: 9999;
+    background-image: url(../images/ajax-loader.gif);
+    background-position: center center;
+    background-repeat: no-repeat;
+    }
+.contenedor-hab-personas
+{
+	float: left;
+	width: 100%;
+	}
+#lbl_ResultadoHabitaciones
+{
+	clear: both; 
+	}

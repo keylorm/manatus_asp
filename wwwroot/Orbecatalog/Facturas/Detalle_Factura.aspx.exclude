@@ -1,0 +1,121 @@
+<%@ Page Language="VB" MasterPageFile="~/orbecatalog/OrbeCatalog.master" AutoEventWireup="false" CodeFile="Detalle_Factura.aspx.vb" Inherits="orbecatalog_Facturas_Detalle_Factura" title="Untitled Page" %>
+<asp:Content ID="Content2" ContentPlaceHolderID="cph_Titulo" Runat="Server">
+    Detalle de Factura
+</asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="cph_Contenido" Runat="Server">
+    <table width="100%">
+        <tr>
+            <td colspan="2">
+                Detalle de Factura</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td style="width: 20%">
+                Numero de Factura</td>
+            <td>
+                <asp:Label ID="lbl_Factura" runat="server"></asp:Label></td>
+        </tr>
+        <tr>
+            <td style="width: 20%">
+                Entidad</td>
+            <td>
+                <asp:Label ID="lbl_Entidad" runat="server"></asp:Label></td>
+        </tr>
+        <tr>
+            <td style="width: 20%">
+                Fecha de Orden</td>
+            <td>
+                <asp:Label ID="lbl_FechaOrden" runat="server"></asp:Label></td>
+        </tr>
+        <tr>
+            <td style="width: 20%">
+                Fecha de Factura</td>
+            <td>
+                <asp:Label ID="lbl_FechaFactura" runat="server"></asp:Label></td>
+        </tr>
+        <tr>
+            <td style="width: 20%">
+                Fecha de Pago</td>
+            <td>
+                <asp:Label ID="lbl_FechaPago" runat="server"></asp:Label></td>
+        </tr>
+        <tr>
+            <td style="width: 20%">
+                Estado de Factura</td>
+            <td>
+                <asp:Label ID="lbl_EstadoFactura" runat="server"></asp:Label></td>
+        </tr>
+        <tr>
+            <td style="width: 20%">
+                &nbsp;</td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                Detalle de Reserva</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <asp:DataList ID="dl_Detalle" runat="server" Width="100%">
+                    <ItemTemplate>
+                        <table width="100%">
+                            <tr>
+                                <td style="width: 20%">
+                                    Tipo de Entidad</td>
+                                <td>
+                                    <asp:Label ID="lbl_TipoEntidad" runat="server" Text=""></asp:Label></td>
+                            </tr>
+                            <tr>
+                                <td style="width: 20%">
+                                    Entidad</td>
+                                <td>
+                                    <asp:Label ID="lbl_Entidad" runat="server" Text=""></asp:Label></td>
+                            </tr>
+                            <tr>
+                                <td style="width: 20%">
+                                    Cantidad</td>
+                                <td>
+                                    <asp:Label ID="lbl_Cantidad" runat="server" Text=""></asp:Label></td>
+                            </tr>
+                            <tr>
+                                <td style="width: 20%">
+                                    Precio Unitario</td>
+                                <td>
+                                    <asp:Label ID="lbl_PrecioUnitario" runat="server" Text=""></asp:Label></td>
+                            </tr>
+                            <tr>
+                                <td style="width: 20%">
+                                    Precio de Venta</td>
+                                <td>
+                                    <asp:Label ID="lbl_PrecioVenta" runat="server" Text=""></asp:Label></td>
+                            </tr>
+                            <tr>
+                                <td style="width: 20%">
+                                    Fecha de Ingreso</td>
+                                <td>
+                                    <asp:Label ID="lbl_FechaIngreso" runat="server" Text=""></asp:Label></td>
+                            </tr>
+                            <tr>
+                                <td style="width: 20%">
+                                    Fecha de Salida</td>
+                                <td>
+                                    <asp:Label ID="lbl_FechaSalida" runat="server" Text=""></asp:Label></td>
+                            </tr>
+                            <tr>
+                                <td style="width: 20%">
+                                    &nbsp;</td>
+                                <td>
+                                </td>
+                            </tr>
+                        </table>
+                    </ItemTemplate>
+                </asp:DataList></td>
+        </tr>
+    </table>
+</asp:Content>
+<asp:Content ID="Content5" ContentPlaceHolderID="cph_ColumnaDerecha" Runat="Server">
+</asp:Content>

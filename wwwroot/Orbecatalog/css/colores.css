@@ -1,0 +1,71 @@
+﻿
+/***** Generales *****/
+.secondColor
+{
+    color: #AAAAAA;
+}
+
+.secondBackColor
+{
+    background-color: #AAAAAA;
+}
+
+
+
+
+/***** Header  *****/
+#search button
+{
+    color: #AAAAAA;
+}
+
+#search button:hover, #search button.selected
+{
+    background-color: #AAAAAA;
+    color: #FFFFFF;
+}
+
+#menu a:hover, #menu a.selected
+{
+    background-color: #AAAAAA;
+}
+
+
+
+/***** ColumnaDerecha  *****/
+#ColumnaDerecha h1
+{
+    background-color: #AAAAAA;
+}
+
+
+
+/***** menuAcciones  *****/
+#menuAcciones button
+{
+    color: #AAAAAA;
+}
+
+#menuAcciones button:hover, #menuAcciones button.selected
+{
+    background-color: #AAAAAA;
+    color: #FFFFFF;
+}
+
+
+/******  ColumnaIzquierda   ******/
+
+#Contenido h1, #Busqueda h1
+{
+    border-bottom: solid 1px #AAAAAA;
+}
+    
+    
+
+/****** Submenu ******/
+
+#submenu li:hover
+{
+    background-color: #AAAAAA;
+    color: #FFFFFF;
+}

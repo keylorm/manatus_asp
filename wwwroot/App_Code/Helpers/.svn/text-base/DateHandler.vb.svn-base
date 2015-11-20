@@ -1,0 +1,525 @@
+Imports Microsoft.VisualBasic
+Imports Orbelink.DBHandler
+Imports Orbelink.Entity.Orbecatalog
+Imports System.Web.HttpContext
+
+Namespace Orbelink.DateAndTime
+
+    Public Class DateHandler
+
+        Public Structure TimeInfo
+            Dim Time As System.TimeSpan
+            Dim TimeString As String
+            Dim Forward As Boolean
+        End Structure
+
+        Dim connection As SQLServer
+        Dim queryBuilder As QueryBuilder
+
+        Sub New(ByRef theConnection As SQLServer)
+            connection = theConnection
+            queryBuilder = New QueryBuilder
+        End Sub
+
+        Public Function CalculateDateUtc(ByVal timeInHours As Integer, ByVal startDate As Date) As Date
+            Dim diaHoy As Integer = startDate.DayOfWeek
+            Dim endDate As Date = startDate
+            Dim hoursPerDay As ArrayList = HoursPerWeek()
+
+            If timeInHours > 0 Then
+                'Agrega dias completos
+                While timeInHours >= hoursPerDay(diaHoy)
+                    If Not esExcepcionUtc(endDate) Then
+                        timeInHours -= hoursPerDay(diaHoy)
+                    End If
+                    endDate = endDate.AddDays(1)
+                    If diaHoy = 6 Then
+                        diaHoy = 0
+                    Else
+                        diaHoy += 1
+                    End If
+                End While
+
+                'Averiguar a que hora
+                If timeInHours > 0 Then
+                    endDate = FindDateUtc(endDate, timeInHours)
+                End If
+            ElseIf timeInHours < 0 Then
+                'Resta dias completos
+                timeInHours *= -1
+                While timeInHours >= hoursPerDay(diaHoy)
+                    If Not esExcepcionUtc(endDate) Then
+                        timeInHours -= hoursPerDay(diaHoy)
+                    End If
+                    endDate = endDate.AddDays(-1)
+                    If diaHoy = 0 Then
+                        diaHoy = 6
+                    Else
+                        diaHoy -= 1
+                    End If
+                End While
+
+                'Averiguar a que hora
+                If timeInHours > 0 Then
+                    endDate = FindDateUtc_Backwards(endDate, timeInHours)
+                End If
+            Else
+                'nada
+            End If
+
+            Return endDate
+        End Function
+
+        Public Function esExcepcionUtc(ByVal theDate As Date) As Boolean
+            Dim dataSet As Data.DataSet
+            Dim HorarioExcepciones As New HorarioExcepciones
+            HorarioExcepciones.Fields.SelectAll()
+            HorarioExcepciones.Fecha.Where.EqualCondition(theDate.Date)
+            dataSet = connection.executeSelect(queryBuilder.SelectQuery(HorarioExcepciones))
+
+            If dataSet.Tables.Count > 0 Then
+                If dataSet.Tables(0).Rows.Count > 0 Then
+                    Return True
+                End If
+            End If
+            Return False
+        End Function
+
+        Public Function FormatTime(ByVal days As Integer, ByVal timeLeft As TimeSpan, Optional ByVal naturales As Boolean = True) As String
+            Dim elTiempo As String = ""
+            'Imprime dias
+            If days > 0 Then
+                elTiempo = days & " dia"
+                If days <> 1 Then
+                    elTiempo &= "s"
+                    If Not naturales Then
+                        elTiempo &= " habiles"
+                    End If
+                Else
+                    If Not naturales Then
+                        elTiempo &= " habil"
+                    End If
+                End If
+
+                elTiempo &= ", "
+            End If
+
+            'Imprime horas
+            elTiempo &= timeLeft.Hours & " hora"
+            If timeLeft.Hours <> 1 Then
+                elTiempo &= "s"
+            End If
+
+            'Imprime minutos
+            elTiempo &= " " & timeLeft.Minutes & " minuto"
+            If timeLeft.Minutes <> 1 Then
+                elTiempo &= "s"
+            End If
+
+            Return elTiempo
+        End Function
+
+        Public Function CalculateTimeBetweenUtc(ByVal BeginDate As Date, ByVal FinishDate As Date) As TimeInfo
+            Dim theTimeInfo As New TimeInfo
+            Dim HorarioOrdinario As New HorarioOrdinario
+
+            Dim horasExtra As TimeSpan
+            Dim horasDias As TimeSpan
+            Dim dias As Integer
+            Dim hoursPerDay As ArrayList = HoursPerWeek()
+
+            If FinishDate < BeginDate Then
+                Dim temp As Date = BeginDate
+                BeginDate = FinishDate
+                FinishDate = temp
+                theTimeInfo.Forward = False
+            Else
+                theTimeInfo.Forward = True
+            End If
+
+            horasExtra += TimeLeft(BeginDate)
+            horasExtra += TimeUpTo(FinishDate)
+            If FinishDate.Date = BeginDate.Date Then
+                horasExtra -= TimeSpan.FromHours(HoursPerWeek(FinishDate.DayOfWeek))
+            End If
+
+            BeginDate = BeginDate.AddDays(1)
+            BeginDate = BeginDate.Date
+            FinishDate = FinishDate.AddDays(-1)
+            FinishDate = FinishDate.Date
+
+            While BeginDate <= FinishDate
+                Dim horasDiaSemana As Integer = hoursPerDay(BeginDate.DayOfWeek)
+                If horasDiaSemana > 0 Then
+                    horasDias += TimeSpan.FromHours(hoursPerDay(BeginDate.DayOfWeek))
+                    dias += 1
+                End If
+                BeginDate = BeginDate.AddDays(1)
+            End While
+
+            theTimeInfo.Time = horasDias.Add(horasExtra)
+            theTimeInfo.TimeString = FormatTime(dias, horasExtra, False)
+            Return theTimeInfo
+        End Function
+
+        Public Function TimeLeft(ByVal theDate As Date) As TimeSpan
+            Dim theTime As TimeSpan
+            Dim dataSet As Data.DataSet
+            Dim HorarioOrdinario As New HorarioOrdinario
+            Dim HourOfDay As TimeSpan = theDate.TimeOfDay
+
+            HorarioOrdinario.Fields.SelectAll()
+            HorarioOrdinario.Dia.Where.EqualCondition(theDate.DayOfWeek)
+            queryBuilder.Orderby.Add(HorarioOrdinario.Dia)
+            queryBuilder.Orderby.Add(HorarioOrdinario.HoraInicio)
+            dataSet = connection.executeSelect(queryBuilder.SelectQuery(HorarioOrdinario))
+
+            If Not esExcepcionUtc(theDate) Then
+                If dataSet.Tables.Count > 0 Then
+                    If dataSet.Tables(0).Rows.Count > 0 Then
+                        Dim counter As Integer
+                        Dim resultados As ArrayList = ObjectBuilder.TransformDataTable(dataSet.Tables(0), HorarioOrdinario)
+                        For counter = 0 To dataSet.Tables(0).Rows.Count - 1
+                            Dim act_HorarioOrdinario As HorarioOrdinario = resultados(counter)
+                            Dim horaFinal As TimeSpan = TimeSpan.FromHours(act_HorarioOrdinario.HoraFinal.Value)
+                            Dim horaInicio As TimeSpan = TimeSpan.FromHours(act_HorarioOrdinario.HoraInicio.Value)
+                            If HourOfDay < horaFinal Then
+                                'Si la hora actual es mayor que la de inicio
+                                If HourOfDay > horaInicio Then
+                                    theTime += horaFinal - HourOfDay
+                                Else        'Sino, usa la de inicio
+                                    theTime += horaFinal - horaInicio
+                                End If
+                            End If
+                        Next
+                    End If
+                End If
+            Else
+                theTime = TimeSpan.Zero
+            End If
+            Return theTime
+        End Function
+
+        Public Function TimeUpTo(ByVal theDate As Date) As TimeSpan
+            Dim theTime As TimeSpan
+            Dim dataSet As Data.DataSet
+            Dim HorarioOrdinario As New HorarioOrdinario
+            Dim HourOfDay As TimeSpan = theDate.TimeOfDay
+
+            If Not esExcepcionUtc(theDate) Then
+                'Calcula horas del final
+                HorarioOrdinario.Fields.SelectAll()
+                HorarioOrdinario.Dia.Where.EqualCondition(theDate.DayOfWeek)
+                queryBuilder.Orderby.Add(HorarioOrdinario.Dia)
+                queryBuilder.Orderby.Add(HorarioOrdinario.HoraInicio)
+                dataSet = connection.executeSelect(queryBuilder.SelectQuery(HorarioOrdinario))
+                If dataSet.Tables.Count > 0 Then
+                    If dataSet.Tables(0).Rows.Count > 0 Then
+                        'Es dia habil, preguntar si excepcion
+                        Dim counter As Integer
+                        Dim resultados As ArrayList = ObjectBuilder.TransformDataTable(dataSet.Tables(0), HorarioOrdinario)
+                        For counter = 0 To dataSet.Tables(0).Rows.Count - 1
+                            Dim act_HorarioOrdinario As HorarioOrdinario = resultados(counter)
+                            Dim horaFinal As TimeSpan = TimeSpan.FromHours(act_HorarioOrdinario.HoraFinal.Value)
+                            Dim horaInicio As TimeSpan = TimeSpan.FromHours(act_HorarioOrdinario.HoraInicio.Value)
+
+                            If HourOfDay > horaFinal Then
+                                theTime += horaFinal - horaInicio
+                            Else
+                                theTime += HourOfDay - horaInicio
+                                Exit For
+                            End If
+                        Next
+                    End If
+                End If
+            Else
+                theTime = TimeSpan.Zero
+            End If
+            Return theTime
+        End Function
+
+        Private Function HoursPerWeek() As ArrayList
+            Dim dataSet As Data.DataSet
+            Dim HorarioOrdinario As New HorarioOrdinario
+            Dim theHoursPerWeek As New ArrayList(7)
+
+            Dim counter As Integer
+            For counter = 0 To theHoursPerWeek.Capacity - 1
+                theHoursPerWeek.Add(0)
+            Next
+
+            HorarioOrdinario.Fields.SelectAll()
+            queryBuilder.Orderby.Add(HorarioOrdinario.Dia)
+            dataSet = connection.executeSelect(queryBuilder.SelectQuery(HorarioOrdinario))
+
+            If dataSet.Tables.Count > 0 Then
+                If dataSet.Tables(0).Rows.Count > 0 Then
+
+                    Dim resultados As ArrayList = ObjectBuilder.TransformDataTable(dataSet.Tables(0), HorarioOrdinario)
+                    For counter = 0 To dataSet.Tables(0).Rows.Count - 1
+                        Dim act_HorarioOrdinario As HorarioOrdinario = resultados(counter)
+                        Dim hours As Integer = act_HorarioOrdinario.HoraFinal.Value - act_HorarioOrdinario.HoraInicio.Value
+                        theHoursPerWeek(act_HorarioOrdinario.Dia.Value) += hours
+                    Next
+                End If
+            End If
+            Return theHoursPerWeek
+        End Function
+
+        Private Function FindDateUtc(ByVal fechaPosible As Date, ByVal hoursLeft As Integer) As Date
+            Dim dataSet As Data.DataSet
+            Dim HorarioOrdinario As New HorarioOrdinario
+            Dim theHourOfDay As Integer = fechaPosible.Hour
+            Dim diaSemana As Integer = fechaPosible.DayOfWeek
+            Dim hoursBetween As Integer
+
+            'Pone fecha posible en cero horas
+            fechaPosible = fechaPosible.AddHours(fechaPosible.Hour * -1)
+
+            If Not esExcepcionUtc(fechaPosible) Then
+                'Consulta SQL
+                HorarioOrdinario.Fields.SelectAll()
+                HorarioOrdinario.Dia.Where.EqualCondition(diaSemana)
+                queryBuilder.Orderby.Add(HorarioOrdinario.Dia)
+                queryBuilder.Orderby.Add(HorarioOrdinario.HoraInicio)
+                dataSet = connection.executeSelect(queryBuilder.SelectQuery(HorarioOrdinario))
+
+                If dataSet.Tables.Count > 0 Then
+                    If dataSet.Tables(0).Rows.Count > 0 Then
+
+                        Dim counter As Integer
+                        Dim resultados As ArrayList = ObjectBuilder.TransformDataTable(dataSet.Tables(0), HorarioOrdinario)
+                        For counter = 0 To dataSet.Tables(0).Rows.Count - 1
+                            Dim act_HorarioOrdinario As HorarioOrdinario = resultados(counter)
+
+                            If theHourOfDay < act_HorarioOrdinario.HoraFinal.Value Then
+                                'Si la hora actual es mayor que la de inicio
+                                If theHourOfDay > act_HorarioOrdinario.HoraInicio.Value Then
+                                    hoursBetween = act_HorarioOrdinario.HoraFinal.Value - theHourOfDay
+
+                                    'Actualiza las horas restantes
+                                    If hoursLeft < hoursBetween Then
+                                        If hoursLeft > 0 Then
+                                            theHourOfDay += hoursLeft
+                                            hoursLeft = 0
+                                            'ElseIf hoursLeft = 0 And fechaPosible.Minute > 0 Then     'Revisar
+                                            'theHourOfDay += hoursLeft
+                                            'hoursLeft = 0
+                                        End If
+                                    Else
+                                        theHourOfDay = act_HorarioOrdinario.HoraFinal.Value
+                                        hoursLeft -= hoursBetween
+                                    End If
+                                Else        'Sino, usa la de inicio
+                                    hoursBetween = act_HorarioOrdinario.HoraFinal.Value - act_HorarioOrdinario.HoraInicio.Value
+                                    'Actualiza las horas restantes
+                                    If hoursLeft < hoursBetween Then
+                                        If hoursLeft > 0 Then
+                                            theHourOfDay = act_HorarioOrdinario.HoraInicio.Value + hoursLeft
+                                            hoursLeft = 0
+                                        ElseIf hoursLeft = 0 And fechaPosible.Minute > 0 Then
+                                            theHourOfDay = act_HorarioOrdinario.HoraInicio.Value
+                                        End If
+                                    Else
+                                        theHourOfDay = act_HorarioOrdinario.HoraFinal.Value
+                                        hoursLeft -= hoursBetween
+                                    End If
+                                End If
+                            Else
+                                If counter = dataSet.Tables(0).Rows.Count - 1 Then
+                                    fechaPosible = fechaPosible.Date
+                                End If
+                            End If
+                        Next
+                    End If
+                End If
+            Else
+                hoursBetween = 0
+            End If
+
+            'Si ya no quedan horas, actualiza la hora que es
+            If hoursLeft <= hoursBetween Then
+                fechaPosible = fechaPosible.AddHours(theHourOfDay)
+            Else        'Sino llamado recursivo
+                fechaPosible = fechaPosible.AddDays(1)
+                fechaPosible = FindDateUtc(fechaPosible, hoursLeft)
+            End If
+
+            Return fechaPosible
+        End Function
+
+        Private Function FindDateUtc_Backwards(ByVal fechaPosible As Date, ByVal hoursLeft As Integer) As Date
+            Dim dataSet As Data.DataSet
+            Dim HorarioOrdinario As New HorarioOrdinario
+            Dim theHourOfDay As Integer = fechaPosible.Hour
+            Dim diaSemana As Integer = fechaPosible.DayOfWeek
+            Dim hoursBetween As Integer
+
+            'Pone fecha posible en cero horas
+            fechaPosible = fechaPosible.AddHours(fechaPosible.Hour * -1)
+
+            If Not esExcepcionUtc(fechaPosible) Then
+                'Consulta SQL
+                HorarioOrdinario.Fields.SelectAll()
+                HorarioOrdinario.Dia.Where.EqualCondition(diaSemana)
+                queryBuilder.Orderby.Add(HorarioOrdinario.HoraInicio, False)
+                dataSet = connection.executeSelect(queryBuilder.SelectQuery(HorarioOrdinario))
+
+                If dataSet.Tables.Count > 0 Then
+                    If dataSet.Tables(0).Rows.Count > 0 Then
+
+                        Dim counter As Integer
+                        Dim resultados As ArrayList = ObjectBuilder.TransformDataTable(dataSet.Tables(0), HorarioOrdinario)
+                        For counter = 0 To dataSet.Tables(0).Rows.Count - 1
+                            Dim act_HorarioOrdinario As HorarioOrdinario = resultados(counter)
+
+                            If act_HorarioOrdinario.HoraInicio.Value < theHourOfDay Then
+                                'Si la hora actual es mayor que la de inicio
+                                If theHourOfDay < act_HorarioOrdinario.HoraFinal.Value Then
+                                    hoursBetween = theHourOfDay - act_HorarioOrdinario.HoraInicio.Value
+
+                                    'Actualiza las horas restantes
+                                    If hoursLeft < hoursBetween Then
+                                        If hoursLeft > 0 Then
+                                            theHourOfDay -= hoursLeft
+                                            hoursLeft = 0
+                                        End If
+                                    Else
+                                        theHourOfDay = act_HorarioOrdinario.HoraInicio.Value
+                                        hoursLeft -= hoursBetween
+                                    End If
+                                Else        'Sino, usa la de inicio
+                                    hoursBetween = act_HorarioOrdinario.HoraFinal.Value - act_HorarioOrdinario.HoraInicio.Value
+                                    'Actualiza las horas restantes
+                                    If hoursLeft < hoursBetween Then
+                                        If hoursLeft > 0 Then
+                                            theHourOfDay = act_HorarioOrdinario.HoraFinal.Value - hoursLeft
+                                            hoursLeft = 0
+                                        End If
+                                    Else
+                                        theHourOfDay = act_HorarioOrdinario.HoraInicio.Value
+                                        hoursLeft -= hoursBetween
+                                    End If
+                                End If
+                            Else
+                                If counter = dataSet.Tables(0).Rows.Count - 1 Then
+                                    fechaPosible = fechaPosible.Date
+                                End If
+                            End If
+                        Next
+                    End If
+                End If
+            Else
+                hoursBetween = 0
+            End If
+
+            'Si ya no quedan horas, actualiza la hora que es
+            If hoursLeft <= hoursBetween Then
+                fechaPosible = fechaPosible.AddHours(theHourOfDay)
+            Else        'Sino llamado recursivo
+                fechaPosible = fechaPosible.AddDays(-1)
+                fechaPosible = FindDateUtc_Backwards(fechaPosible, hoursLeft)
+            End If
+
+            Return fechaPosible
+        End Function
+
+        Public Shared Function CalculatePercent(ByVal TEstimado As TimeSpan, ByVal TTranscurrido As TimeSpan, _
+            ByRef theImage As Image, ByVal finished As Boolean, ByVal level As Integer, Optional ByVal big As Boolean = False) As String
+            Dim percent As String
+            Dim porcentaje As Double
+            If TEstimado <> TimeSpan.Zero Then
+                porcentaje = (TTranscurrido.TotalHours / TEstimado.TotalHours) * 100
+                percent = Format(porcentaje, "0.00") + " %"
+            Else
+                percent = "0.00 %"
+            End If
+
+            Dim counter As Integer
+            Dim prefijoNivel As String = ""
+            For counter = 0 To level - 1
+                prefijoNivel &= "../"
+            Next
+            theImage.ImageUrl = prefijoNivel & "orbecatalog/images/icons/"
+
+            If finished Then
+                theImage.ImageUrl &= "check_"
+            Else
+                theImage.ImageUrl &= "time_"
+            End If
+
+            If porcentaje >= 0 And porcentaje < 75 Then
+                theImage.ImageUrl &= "green"
+            Else
+                If porcentaje >= 75 And porcentaje < 90 Then
+                    theImage.ImageUrl &= "yellow"
+                Else
+                    theImage.ImageUrl &= "red"
+                End If
+            End If
+
+            If big Then
+                theImage.ImageUrl &= "_big.gif"
+            Else
+                theImage.ImageUrl &= ".gif"
+            End If
+
+            Return percent
+        End Function
+
+        'TimeZones
+        Public Shared Property CurrentTimeZone() As TimeZoneInfo
+            Get
+                If Not Current Is Nothing Then
+                    If Not Current.Session Is Nothing Then
+                        If Not Current.Session("idtimezone") Is Nothing Then
+                            Return TimeZoneInfo.FindSystemTimeZoneById(Current.Session("idtimezone"))
+                        End If
+                    End If
+                End If
+                Return TimeZoneInfo.Local
+            End Get
+            Set(ByVal value As TimeZoneInfo)
+                If Not Current Is Nothing Then
+                    If Not Current.Session Is Nothing Then
+                        Current.Session("idtimezone") = value.Id
+                    End If
+                End If
+            End Set
+        End Property
+
+        Public Shared Sub CargarTimeZones(ByVal theDDL As DropDownList)
+            Dim zonas As System.Collections.ObjectModel.ReadOnlyCollection(Of TimeZoneInfo)
+            zonas = TimeZoneInfo.GetSystemTimeZones()
+            For Each zona As TimeZoneInfo In zonas
+                Dim item As New ListItem
+                item.Text = zona.DisplayName
+                item.Value = zona.Id
+                theDDL.Items.Add(item)
+            Next
+            theDDL.SelectedValue = CurrentTimeZone.Id
+        End Sub
+
+        Public Shared Function ToLocalizedDateFromUtc(ByVal theUtcDate As Date) As Date
+            Return TimeZoneInfo.ConvertTimeFromUtc(theUtcDate, CurrentTimeZone)
+        End Function
+
+        Public Shared Function ToUtcFromLocalizedDate(ByVal theLocalizedDate As Date) As Date
+            Return TimeZoneInfo.ConvertTimeToUtc(theLocalizedDate, CurrentTimeZone)
+        End Function
+
+        Public Shared Function ToLocalizedStringFromUtc(ByVal theUtcDate As Date) As String
+            Dim elDate As Date = ToLocalizedDateFromUtc(theUtcDate)
+            Return ToStringFromDate(elDate)
+        End Function
+
+        Public Shared Function ToStringFromDate(ByVal theDate As Date) As String
+            If theDate.Hour = 0 Then
+                Return theDate.ToShortDateString
+            Else
+                Return theDate.ToShortDateString & " " & theDate.ToShortTimeString
+            End If
+        End Function
+    End Class
+
+End Namespace

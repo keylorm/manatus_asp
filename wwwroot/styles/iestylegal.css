@@ -1,0 +1,3 @@
+a.gallery:hover span { _left:-4px;}
+a.gallery:active span, a.gallery:focus span { _left:-4px;}
+

@@ -1,0 +1,76 @@
+﻿.EncuestaPregunta
+{
+	color: Black;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.EncuestaSeccion
+{
+	color: Black;
+	font-weight: bold;
+	font-style: italic;
+	font-size: medium;
+}
+
+.SeccionDescripcion
+{
+	color: Black;
+	font-style: italic;
+	font-size: 13px;
+}
+
+.subpasos
+{
+	padding-top: 10px;
+	font-weight: bold;
+	color: black;
+}
+
+.panelCrear
+{
+	border-style: none;
+	border-width: 1px;
+	border-color: Orange;
+	padding: 10px 10px 40px 10px;
+	background-color: #CCCCCC;
+	margin-bottom: 10px;
+}
+
+.panelCrear .fieldset label
+{
+	font-weight: bold;
+	color: #666666;
+}
+
+
+.panelCrear .fieldset input[type="submit"]
+{
+	border: solid 1px black;
+	color: black;
+}
+
+.panelCrear .fieldset input[type="text"]
+{
+	border: solid 1px white;
+	color: black;
+}
+
+.panelCrear .fieldset textarea
+{
+	border: solid 1px white;
+	color: black;
+}
+
+.panelCrear .fieldset hr
+{
+	border: solid 1px white;
+	width: 95%;
+}
+
+.panelCrear .fieldset button
+{	
+	color: orange;
+}
+
+

@@ -1,0 +1,196 @@
+9
+
+dir
+6
+svn://es-01/manatus/wwwroot/App_Code
+svn://es-01/manatus
+
+
+
+2009-02-05T17:21:38.875000Z
+6
+Sergio
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+dc93c61b-7fd7-bf47-b82b-4fbf1f70b9c4
+
+Publicaciones
+dir
+
+Reservacion
+dir
+
+Productos
+dir
+
+Referidos
+dir
+
+MasterBaseClass.vb
+file
+
+
+
+
+2009-02-05T17:25:42.500000Z
+1535ca73812ba83ad336788dc6bc7a98
+2009-02-05T17:21:38.875000Z
+6
+Sergio
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+663
+
+DBHandler
+dir
+
+Comentarios
+dir
+
+Bitacora
+dir
+
+Acciones
+dir
+
+Relaciones
+dir
+
+Factura
+dir
+
+OrbeEventos
+dir
+
+OrbeBot
+dir
+
+Historial
+dir
+
+Entidades
+dir
+
+Helpers
+dir
+
+Envios
+dir
+
+Reportes
+dir
+
+PageBaseClass.vb
+file
+16
+
+
+
+2009-02-10T20:07:27.906250Z
+6f3c0f4ddab21129228bb524085de0db
+2009-02-10T22:55:17.781250Z
+16
+Sergio
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3075
+
+Sistema
+dir
+
+Security
+dir
+
+Orbecatalog6
+dir
+
+Calendar
+dir
+
+Configuration.vb
+file
+16
+
+
+
+2009-02-10T22:39:22.015625Z
+e844fc1b528d9297b8139b0d8c43b809
+2009-02-10T22:55:17.781250Z
+16
+Sergio
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3915
+
+Archivos
+dir
+

@@ -1,0 +1,10 @@
+﻿body
+{
+    behavior: url("csshover.htc");
+}
+
+/******* Modal Popup **********/
+.modalBackground
+{
+    filter: alpha(opacity=70);
+}

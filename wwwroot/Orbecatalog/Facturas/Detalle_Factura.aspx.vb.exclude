@@ -1,0 +1,97 @@
+Imports Orbelink.Orbecatalog6
+Imports Orbelink.DBHandler
+Imports System.Data
+Partial Class orbecatalog_Facturas_Detalle_Factura
+    Inherits PageBaseClass
+
+    Protected Sub Page_PreInit(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.PreInit
+        Theme = securityHandler.Theme
+    End Sub
+
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If Not Request.QueryString("id_Factura") Is Nothing Then
+            cargafactura(Request.QueryString("id_Factura"))
+        End If
+    End Sub
+
+    Protected Sub cargafactura(ByVal id_Factura)
+        Dim ds, ds2 As DataSet
+        Dim fact As New Factura
+        Dim ent As New Entidad
+        Dim conf As New Configuration_FacturaOnline
+        Dim det As New DetalleFactura
+        Dim prod As New Producto
+        Dim tipoent As New TipoEntidad
+
+        ent.Id_entidad.Where.EqualCondition(fact.Id_Comprador)
+        fact.Id_Factura.Where.EqualCondition(id_Factura)
+        ent.Nombre.ToSelect = True
+        ent.Apellido.ToSelect = True
+        fact.Fields.SelectAll()
+
+        queryBuilder.From.Add(ent)
+        queryBuilder.From.Add(fact)
+
+        ds = connection.executeSelect(queryBuilder.RelationalSelectQuery())
+
+        If ds.Tables.Count > 0 Then
+            If ds.Tables(0).Rows.Count > 0 Then
+                objectBuilder.CreateObject(ds.Tables(0), 0, ent)
+                objectBuilder.CreateObject(ds.Tables(0), 0, fact)
+                lbl_Entidad.Text = ent.Nombre.Value & " " & ent.Apellido.Value
+                lbl_EstadoFactura.Text = conf.GetEstadoFactura(fact.Estado_Factura.Value).Text
+                lbl_Factura.Text = fact.Id_Factura.Value
+                lbl_FechaFactura.Text = fact.Fecha_Factura.Value
+                lbl_FechaOrden.Text = fact.Fecha_Orden.Value
+                lbl_FechaPago.Text = fact.Fecha_Pago.Value
+            End If
+        End If
+
+        det.Fields.SelectAll()
+        ent = New Entidad()
+        ent.Nombre.ToSelect = True
+        tipoent.Nombre.ToSelect = True
+        prod = New Producto()
+        prod.Id_Producto.ToSelect = True
+        prod.Id_Entidad.Where.EqualCondition(ent.Id_entidad)
+        det.Id_Producto.Where.EqualCondition(prod.Id_Producto)
+        ent.Id_tipoEntidad.Where.EqualCondition(tipoent.Id_TipoEntidad)
+        det.Id_Factura.Where.EqualCondition(id_Factura)
+
+        queryBuilder.From.Add(det)
+        queryBuilder.From.Add(ent)
+        queryBuilder.From.Add(prod)
+        queryBuilder.From.Add(tipoent)
+
+        Dim query As String = queryBuilder.RelationalSelectQuery()
+
+        ds2 = connection.executeSelect(query)
+
+        If ds2.Tables.Count > 0 Then
+            If ds2.Tables(0).Rows.Count > 0 Then
+                dl_Detalle.DataSource = ds2
+                dl_Detalle.DataKeyField = prod.Id_Producto.Name
+                dl_Detalle.DataBind()
+            End If
+        End If
+
+        For Each item As DataListItem In dl_Detalle.Items
+            objectBuilder.CreateObject(ds2.Tables(0), item.ItemIndex, prod)
+            objectBuilder.CreateObject(ds2.Tables(0), item.ItemIndex, ent)
+            objectBuilder.CreateObject(ds2.Tables(0), item.ItemIndex, det)
+            objectBuilder.CreateObject(ds2.Tables(0), item.ItemIndex, tipoent)
+            DirectCast(item.FindControl("lbl_Entidad"), Label).Text = ent.Nombre.Value
+            DirectCast(item.FindControl("lbl_TipoEntidad"), Label).Text = tipoent.Nombre.Value
+            DirectCast(item.FindControl("lbl_Cantidad"), Label).Text = det.Cantidad.Value
+            DirectCast(item.FindControl("lbl_PrecioUnitario"), Label).Text = det.Precio_Unitario.Value
+            DirectCast(item.FindControl("lbl_PrecioVenta"), Label).Text = det.Precio_Venta.Value
+            DirectCast(item.FindControl("lbl_FechaIngreso"), Label).Text = det.Fecha_Inicio.Value
+            If CDate(det.Fecha_Fin.Value) = "01/01/1900" Then
+                DirectCast(item.FindControl("lbl_FechaSalida"), Label).Text = "-"
+            Else
+                DirectCast(item.FindControl("lbl_FechaSalida"), Label).Text = det.Fecha_Fin.Value
+            End If
+
+        Next
+    End Sub
+End Class

@@ -1,0 +1,92 @@
+﻿<%@ Master Language="VB" CodeFile="popUp.master.vb" Inherits="Orbecatalog_popUp" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Orbe Catalog</title>
+    <link href="css/basics.css" rel="stylesheet" type="text/css" />
+    <link href="css/columnas.css" rel="stylesheet" type="text/css" />
+    <link href="css/contenido.css" rel="stylesheet" type="text/css" />
+    <link href="css/seccion.css" rel="stylesheet" type="text/css" />
+
+    <!--[if lte IE 6]>
+       
+            <link rel="stylesheet" type="text/css" href="ie6fix.css" />
+     
+        <![endif]-->
+    <!--[if IE 7.0]>
+       
+            <link rel="stylesheet" type="text/css" href="ie7fix.css" />
+     
+        <![endif]-->
+        <asp:ContentPlaceHolder ID="cph_Head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body style="background-color: White">
+    <form id="form1" runat="server">
+    <div>
+        <asp:ScriptManager ID="sman_AjaxManager" runat="server">
+        </asp:ScriptManager>
+        <!--  ModalUpdateProgress By Ting Huang (http://www.codeproject.com/Ajax/ModalUpdateProgress.asp) -->
+        <ajaxControls:ModalUpdateProgress ID="ModalUpdateProgress1" runat="server" DisplayAfter="0"
+            BackgroundCssClass="modalBackground">
+            <ProgressTemplate>
+                <div class="modalPopup">
+                    Procesando
+                    <asp:Image ID="img_Updating" runat="server" ImageUrl="~/orbecatalog/images/icons/loading.gif" />
+                </div>
+            </ProgressTemplate>
+        </ajaxControls:ModalUpdateProgress>
+        <div id="Seccion">
+            <div id="titulo" class="secondColor" style="width: 100%">
+                <div class="elTitulo">
+                    <asp:ContentPlaceHolder ID="cph_Titulo" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+            <div style="clear: both">
+                <br />
+            </div>
+            <div id="Contenido">
+                <asp:ContentPlaceHolder ID="cph_Contenido" runat="server">
+                </asp:ContentPlaceHolder>
+                <br />
+                <br />
+                <div class="barra secondBackColor">
+                    &nbsp;
+                </div>
+                <asp:ContentPlaceHolder ID="cph_ColumnaDerecha" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+            <asp:ContentPlaceHolder ID="cph_Acciones" runat="server" Visible="false">
+            </asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="cph_Navegacion" runat="server" Visible="false">
+            </asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="cph_BusquedaNueva" runat="server" Visible="false">
+            </asp:ContentPlaceHolder>
+            <div id="manejoMensajes">
+                <asp:HiddenField ID="HF_popUp" runat="server" />
+                <asp:Panel ID="pnl_Mensaje" CssClass="modalPopup" runat="server">
+                    <br />
+                    <asp:UpdatePanel ID="upd_Mensaje" runat="server" UpdateMode="Always">
+                        <ContentTemplate>
+                            <div id="div_Mensajes" runat="server">
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                    <asp:Button ID="btn_OK" runat="server" Text="OK" />
+                    <br />
+                </asp:Panel>
+                <ajaxToolkit:ModalPopupExtender ID="pop_Pnl_Mensaje" runat="server" OkControlID="btn_ok"
+                    PopupControlID="pnl_Mensaje" TargetControlID="HF_popUp" BackgroundCssClass="modalBackground">
+                </ajaxToolkit:ModalPopupExtender>
+            </div>
+            <br />
+            <div id="progressBar" class="progressBar" style="width: 0%; display: none;">
+                0%
+            </div>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

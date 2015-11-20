@@ -1,0 +1,33 @@
+﻿/* Rating */
+.rating
+{
+    background-color: Red;
+    height: 20px;
+}
+
+.ratingStar
+{
+    font-size: 0pt;
+    width: 15px;
+    height: 15px;
+    margin: 0px;
+    padding: 0px;
+    cursor: pointer;
+    display: inline-block;
+    background-repeat: no-repeat;
+}
+
+.filledRatingStar
+{
+    background-image: url(../images/estrella_selected.gif);
+}
+
+.emptyRatingStar
+{
+    background-image: url(../images/estrella_empty.gif);
+}
+
+.savedRatingStar
+{
+    background-image: url(../images/estrella_over.gif);
+}

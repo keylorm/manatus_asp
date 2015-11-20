@@ -1,0 +1,332 @@
+Imports Orbelink.Orbecatalog6
+Imports Orbelink.Control.Archivos
+Imports Orbelink.DBHandler
+Imports Orbelink.Entity.Entidades
+Imports Orbelink.Entity.Publicaciones
+
+Partial Class _Publicacion_View
+    Inherits PageBaseClass
+
+    Const codigo_pantalla As String = "PU-07"
+    Const level As Integer = 2
+
+    'Pagina
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        AddScripts(level)
+        securityHandler.VerifyPantalla(codigo_pantalla, level)
+        If Not Page.IsPostBack Then
+            'securityHandler.VerifyActions(hol_Salvar, hol_Modificar, hol_Eliminar)
+            SetThemeProperties()
+            Dim id_publicacion As Integer = 0
+
+            If Not Request.QueryString("id_publicacion") Is Nothing Then
+                id_publicacion = Request.QueryString("id_publicacion")
+                If loadPublicacion(id_publicacion) Then
+                    ClearInfo(Configuration.EstadoPantalla.CONSULTAR, False)
+                    'selectKeywords_Publicacion(id_publicacion)
+                    selectArchivo_Relaciones(id_publicacion)
+                    selectPublicaciones_Categoria(securityHandler.TipoEntidad, lbl_Categoria.ToolTip)
+                    'SelectComments(id_publicacion)
+
+                    LevelClearance(securityHandler.ClearanceLevel)
+                    lnk_EditarPublicacion.NavigateUrl = "Publicacion.aspx?id_Publicacion=" & id_publicacion
+                    lnk_AgregarPublicacion.NavigateUrl = "Publicacion.aspx"
+                Else
+                    Response.Redirect("Default.aspx")
+                End If
+            Else
+                Response.Redirect("Default.aspx")
+            End If
+        End If
+    End Sub
+
+    Protected Sub ClearInfo(ByVal estado As Integer, ByVal clearInfo As Boolean)
+        If clearInfo Then
+            lbl_Titulo.Text = ""
+            lbl_Corta.Text = ""
+            lbl_Texto.Text = ""
+            lbl_Link.Text = ""
+            lbl_Titulo.ToolTip = ""
+        End If
+
+        Select Case estado
+            Case Configuration.EstadoPantalla.NORMAL
+                lbl_Entidad.ToolTip = securityHandler.Entidad
+
+            Case Configuration.EstadoPantalla.CONSULTAR
+
+        End Select
+    End Sub
+
+    Protected Sub LevelClearance(ByVal theLevel As Integer)
+        'Level 4 Clearence
+        If theLevel >= 4 Then
+            pnl_Administrativo.Visible = True
+        Else
+            pnl_Administrativo.Visible = True
+        End If
+    End Sub
+
+    Protected Sub SetThemeProperties()
+        'lnk_AgregarNotas.NavigateUrl = "javascript:toggleLayer('div_Notas', this)"
+        lnk_AgregarComment.NavigateUrl = "javascript:toggleLayer('div_AgregarComment', this)"
+    End Sub
+
+    'Publicacion
+    Protected Function loadPublicacion(ByVal id_publicacion As Integer) As Boolean
+        Dim dataSet As Data.DataSet
+        Dim publicacion As New Publicacion
+        Dim Categoria As New Categorias
+        Dim entidad As New Entidad
+        Dim permisos As New Publicacion_TipoEntidad
+        Dim TipoPublicacion As New TipoPublicacion
+        Dim loaded As Boolean = False
+
+        publicacion.Fields.SelectAll()
+        publicacion.Id_Publicacion.Where.EqualCondition(id_publicacion)
+        Categoria.Nombre.ToSelect = True
+        queryBuilder.Join.EqualCondition(Categoria.Id_Categoria, publicacion.Id_Categoria)
+
+        entidad.NombreDisplay.ToSelect = True
+        entidad.Id_entidad.ToSelect = True
+        queryBuilder.Join.EqualCondition(entidad.Id_entidad, publicacion.id_Entidad)
+
+        TipoPublicacion.Nombre.ToSelect = True
+        queryBuilder.Join.EqualCondition(TipoPublicacion.Id_TipoPublicacion, publicacion.Id_tipoPublicacion)
+
+        queryBuilder.From.Add(entidad)
+        queryBuilder.From.Add(publicacion)
+        queryBuilder.From.Add(Categoria)
+        queryBuilder.From.Add(TipoPublicacion)
+        dataSet = connection.executeSelect(queryBuilder.RelationalSelectQuery)
+
+        If dataSet.Tables.Count > 0 Then
+            If dataSet.Tables(0).Rows.Count > 0 Then
+                ObjectBuilder.createObject(dataSet.Tables(0), 0, entidad)
+                ObjectBuilder.createObject(dataSet.Tables(0), 0, Categoria)
+                ObjectBuilder.createObject(dataSet.Tables(0), 0, publicacion)
+                ObjectBuilder.createObject(dataSet.Tables(0), 0, TipoPublicacion)
+
+                'Carga la informacion
+                lbl_Entidad.Text = entidad.NombreDisplay.Value
+                lbl_Entidad.ToolTip = entidad.Id_entidad.Value
+                lbl_Titulo.Text = publicacion.Titulo.Value
+                'lbl_Titulo.ToolTip = publicacion.Id_Publicacion.Value
+                lbl_Corta.Text = publicacion.Corta.Value
+                lbl_Texto.Text = publicacion.Texto.Value
+                lbl_Fecha.Text = publicacion.FechaImportante.Value
+                lbl_Link.Text = publicacion.Link.Value
+
+                lbl_TipoPublicacion.Text = TipoPublicacion.Nombre.Value
+                lbl_Categoria.Text = Categoria.Nombre.Value
+                lbl_Categoria.ToolTip = publicacion.Id_Categoria.Value
+
+                loaded = True
+            End If
+        End If
+        Return loaded
+    End Function
+
+    Protected Sub selectPublicaciones_Categoria(ByVal id_tipoEntidad As Integer, ByVal id_categoria As Integer)
+        Dim dataSet As Data.DataSet
+        Dim publicacion As New Publicacion
+        Dim permisos As New Publicacion_TipoEntidad
+        Dim counter As Integer
+
+        publicacion.Id_Publicacion.ToSelect = True
+        publicacion.Titulo.ToSelect = True
+        publicacion.Fecha.ToSelect = True
+        publicacion.Corta.ToSelect = True
+
+        publicacion.Aprobada.Where.EqualCondition(1)
+        publicacion.Visible.Where.EqualCondition(1)
+
+        If id_tipoEntidad <> 0 Then
+            queryBuilder.Join.EqualCondition(publicacion.Id_Publicacion, permisos.id_Publicacion)
+            permisos.id_TipoEntidad.Where.EqualCondition(id_tipoEntidad)
+            permisos.Leer.Where.EqualCondition(1)
+            queryBuilder.From.Add(permisos)
+        End If
+
+        If id_categoria <> 0 Then
+            publicacion.Id_Categoria.Where.EqualCondition(id_categoria)
+        End If
+
+        queryBuilder.From.Add(publicacion)
+        queryBuilder.OrderBy.Add(publicacion.Fecha, False)
+        queryBuilder.Distinct = True
+        'queryBuilder.Top = 3
+
+        dataSet = connection.executeSelect(queryBuilder.RelationalSelectQuery)
+        If dataSet.Tables.Count > 0 Then
+            If dataSet.Tables(0).Rows.Count > 0 Then
+                dtl_PublicacionesCategoria.DataSource = dataSet
+                dtl_PublicacionesCategoria.DataKeyField = publicacion.Id_Publicacion.Name
+                dtl_PublicacionesCategoria.DataBind()
+
+                'Llena el grid
+                Dim result_Publicaciones As ArrayList = ObjectBuilder.TransformDataTable(dataSet.Tables(0), publicacion)
+
+                For counter = 0 To dtl_PublicacionesCategoria.Items.Count - 1
+                    Dim act_Publicacion As Publicacion = result_Publicaciones(counter)
+
+                    Dim lnk_Titulo As HyperLink = dtl_PublicacionesCategoria.Items(counter).FindControl("lnk_Titulo")
+                    lnk_Titulo.Text = act_Publicacion.Titulo.Value
+                    lnk_Titulo.NavigateUrl = "Publicacion_View.aspx?id_Publicacion=" & act_Publicacion.Id_Publicacion.Value
+                Next
+                pnl_Relacionados.Visible = True
+            Else
+                pnl_Relacionados.Visible = False
+            End If
+        End If
+    End Sub
+
+    'Archivo_Relaciones
+    Protected Sub selectArchivo_Relaciones(ByVal id_Publicacion As Integer)
+        'Dim dataSet As Data.DataSet
+        'Dim Archivo_Publicacion As New Archivo_Publicacion
+        'Dim counter As Integer
+
+        'Archivo_Publicacion.Fields.SelectAll()
+        'Archivo_Publicacion.Id_Publicacion.Where.EqualCondition(id_Publicacion)
+
+        'queryBuilder.From.Add(Archivo_Publicacion)
+        'dataSet = connection.executeSelect(queryBuilder.RelationalSelectQuery)
+
+        'If dataSet.Tables.Count > 0 Then
+        '    If dataSet.Tables(0).Rows.Count > 0 Then
+        '        dg_Archivo.DataSource = dataSet
+        '        dg_Archivo.DataKeyField = Archivo_Publicacion.Id_Archivo.Name
+        '        dg_Archivo.DataBind()
+
+        '        'Llena el grid
+        '        Dim results_Archivo_Publicacion As ArrayList = ObjectBuilder.TransformDataTable(dataSet.Tables(0), Archivo_Publicacion)
+        '        For counter = 0 To dataSet.Tables(0).Rows.Count - 1
+        '            Dim act_Archivo_Publicacion As Archivo_Publicacion = results_Archivo_Publicacion(counter)
+        '            LoadInfoArchivo_Relaciones(dg_Archivo, act_Archivo_Publicacion, counter)
+        '        Next
+        '        'pnl_Documentos.Visible = True
+        '        lbl_NoArchivo.Visible = False
+        '    Else
+        '        'pnl_Documentos.Visible = False
+        '        lbl_NoArchivo.Visible = True
+        '    End If
+        'End If
+    End Sub
+
+    'Protected Sub LoadInfoArchivo_Relaciones(ByRef theDataGrid As DataGrid, ByRef Archivo As Archivo_Publicacion, ByVal indiceDG As Integer)
+    '    Dim lnk_NombreArchivo As LinkButton = theDataGrid.Items(indiceDG).FindControl("lnk_NombreArchivo")
+    '    Dim lbl_comentarios As Label = theDataGrid.Items(indiceDG).FindControl("lbl_comentarios")
+
+    '    lnk_NombreArchivo.Text = Archivo.Nombre.Value
+    '    lnk_NombreArchivo.Attributes.Add(Archivo.Id_Archivo.Name, Archivo.Id_Archivo.Value)
+    '    lnk_NombreArchivo.ToolTip = Archivo.Extension.Value & "(" & Archivo.Size.Value & " bytes)"
+    '    lbl_comentarios.Text = Archivo.Comentario.Value
+
+    '    'Verifica que tipo de Archivo es
+    '    'Eventualmente que carge el <object...
+    '    'Orbelink.Control.Archivos.ArchivoHandler.GetArchivoLink(Configuration.Archivo_Archivo, lnk_Archivo, Archivo.FileName.Value, Archivo.Extension.Value, level)
+    'End Sub
+
+    'Keywords
+    Protected Sub selectKeywords_Publicacion(ByVal Id_Publicacion As Integer)
+        'Dim dataset As Data.DataSet
+        'Dim Keywords_Publicacion As New Keywords_Publicacion
+        'Dim Keywords_Para_Publicaciones As New Keywords_Para_Publicaciones
+
+        'Keywords_Para_Publicaciones.Nombre.ToSelect = True
+        'Keywords_Para_Publicaciones.Descripcion.ToSelect = True
+        'queryBuilder.Join.EqualCondition(Keywords_Para_Publicaciones.Id_Keyword, Keywords_Publicacion.Id_Keyword)
+        'Keywords_Publicacion.Id_Publicacion.Where.EqualCondition(Id_Publicacion)
+
+        'queryBuilder.From.Add(Keywords_Para_Publicaciones)
+        'queryBuilder.From.Add(Keywords_Publicacion)
+        'queryBuilder.OrderBy.Add(Keywords_Para_Publicaciones.Nombre)
+        'dataset = connection.executeSelect(queryBuilder.RelationalSelectQuery)
+        'If dataset.Tables.Count > 0 Then
+        '    If dataset.Tables(0).Rows.Count > 0 Then
+        '        dtl_Keywords.datasource = dataset
+        '        dtl_Keywords.databind()
+
+        '        Dim results_Keywords_Para_Publicaciones As ArrayList = ObjectBuilder.TransformDataTable(dataset.Tables(0), Keywords_Para_Publicaciones)
+        '        For counter As Integer = 0 To dtl_Keywords.Items.Count - 1
+        '            Dim lnk_Keyword As HyperLink = dtl_Keywords.Items(counter).FindControl("lnk_Keyword")
+        '            Dim lbl_Descripcion As Label = dtl_Keywords.Items(counter).FindControl("lbl_Descripcion")
+        '            Dim div_masInfo As HtmlGenericControl = dtl_Keywords.Items(counter).FindControl("div_masInfo")
+
+        '            Dim act_Keywords_Para_Publicaciones As Keywords_Para_Publicaciones = results_Keywords_Para_Publicaciones(counter)
+
+        '            div_masInfo.Style.Add("display", "none")
+        '            lnk_Keyword.NavigateUrl = "javascript:toggleLayer('" & div_masInfo.ClientID & "', this)"
+        '            lnk_Keyword.Text = act_Keywords_Para_Publicaciones.Nombre.Value
+        '            lbl_Descripcion.Text = act_Keywords_Para_Publicaciones.Descripcion.Value
+
+        '            Dim newString As String = "<a href=""" & lnk_Keyword.NavigateUrl & """ >" & act_Keywords_Para_Publicaciones.Nombre.Value & "</a>"
+        '            lbl_Texto.Text = lbl_Texto.Text.Replace(act_Keywords_Para_Publicaciones.Nombre.Value.ToLower(), newString)
+        '            lbl_Titulo.Text = lbl_Titulo.Text.Replace(act_Keywords_Para_Publicaciones.Nombre.Value.ToLower(), newString)
+        '        Next
+        '    Else
+        '        pnl_Keywords.Visible = False
+        '    End If
+        'End If
+    End Sub
+
+    Protected Sub lnk_NombreArchivo_Click(ByVal sender As Object, ByVal e As System.EventArgs)
+        'Dim lnk_NombreArchivo As LinkButton = sender
+        'Dim dataSet As Data.DataSet
+        'Dim Archivo_Publicacion As New Archivo_Publicacion
+        'Dim id_Archivo As Integer = lnk_NombreArchivo.Attributes(Archivo_Publicacion.Id_Archivo.Name)
+
+        'Archivo_Publicacion.FileName.ToSelect = True
+        'Archivo_Publicacion.Extension.ToSelect = True
+        'Archivo_Publicacion.Id_Archivo.Where.EqualCondition(id_Archivo)
+        'queryBuilder.From.Add(Archivo_Publicacion)
+        'dataSet = connection.executeSelect(queryBuilder.RelationalSelectQuery)
+
+        'If dataSet.Tables.Count > 0 Then
+        '    If dataSet.Tables(0).Rows.Count > 0 Then
+        '        objectBuilder.CreateObject(dataSet.Tables(0), 0, Archivo_Publicacion)
+        '        If Not Orbelink.Control.Archivos.ArchivoHandler.DownloadArchivoFile(Configuration.ArchivoProperties, Configuration.publicacion_ArchivoId, Archivo_Publicacion.FileName.Value, Archivo_Publicacion.Extension.Value) Then
+        '            Dim errorss As String = "No puede descargar archivo."
+        '        End If
+        '    End If
+        '    dg_Archivo.Visible = True
+        'Else
+        '    dg_Archivo.Visible = False
+        'End If
+    End Sub
+
+    
+
+    'Eventos
+    'Protected Sub btn_AgregarComment_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btn_AgregarComment.Click
+    '    Dim id_Publicacion As Integer = Request.QueryString("id_Publicacion")
+    '    If tbx_Comment.Attributes("id_Comment") = "" Then
+    '        If insertComment(securityHandler.Entidad, id_Publicacion) Then
+    '            SelectComments(id_Publicacion)
+    '            tbx_Comment.Text = ""
+    '        End If
+    '    ElseIf tbx_Comment.Attributes("id_Comment") <> "" And tbx_Comment.Attributes("id_Entidad") <> "" Then
+    '        If updateComment(tbx_Comment.Attributes("id_Comment")) Then
+    '            SelectComments(id_Publicacion)
+    '            tbx_Comment.Attributes.Remove("id_Comment")
+    '            tbx_Comment.Attributes.Remove("id_Entidad")
+    '            tbx_Comment.Text = ""
+    '        End If
+    '    End If
+    'End Sub
+
+    'Protected Sub gv_Comments_RowCommand(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles gv_Comments.RowCommand
+    '    If e.CommandName = "Editar" Then
+    '        tbx_Comment.Attributes.Add("id_Comment", gv_Comments.DataKeys(e.CommandArgument)("id_Comment"))
+    '        tbx_Comment.Attributes.Add("id_Entidad", gv_Comments.DataKeys(e.CommandArgument)("id_Entidad"))
+    '        tbx_Comment.Text = CType(gv_Comments.Rows(e.CommandArgument).FindControl("lbl_Comment"), Label).Text
+    '        btn_AgregarComment.Text = "Editar Comment"
+    '    ElseIf e.CommandName = "Eliminar" Then
+    '        deleteComment(gv_Comments.DataKeys(e.CommandArgument)("id_Comment"))
+    '        SelectComments(Request.QueryString("id_Publicacion"))
+    '        tbx_Comment.Text = ""
+    '    End If
+    'End Sub
+End Class
+

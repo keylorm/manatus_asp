@@ -1,0 +1,290 @@
+﻿Imports Microsoft.VisualBasic
+Imports Orbelink.DBHandler
+Imports Orbelink.Entity.Acciones
+Imports Orbelink.Entity.Facturas
+Imports Orbelink.Entity.Entidades
+Imports Orbelink.Entity.Productos
+Imports Orbelink.Control.Acciones
+
+
+Namespace Orbelink.Control.Facturas
+    Public Class FacturaMailer
+
+        Dim _connString As String
+
+        Sub New(ByVal theConnectionString As String)
+            _connString = theConnectionString
+        End Sub
+ 
+        Public Function EnviarEmailSegunEstado(ByVal id_Factura As String) As Boolean
+            Dim ds As Data.DataSet
+            Dim entidad As New Entidad()
+            Dim result As Boolean = False
+            entidad.NombreDisplay.ToSelect = True
+            entidad.Email.ToSelect = True
+
+            Dim factHandler As New FacturasHandler(_connString)
+            Dim factura As Factura = factHandler.ConsultarFactura(id_Factura)
+            entidad.Id_entidad.Where.EqualCondition(factura.Id_Comprador.Value)
+
+            Dim connection As New SQLServer(_connString)
+            Dim querybuilder As New QueryBuilder()
+            ds = connection.executeSelect(querybuilder.SelectQuery(entidad))
+
+            If ds.Tables.Count > 0 Then
+                If ds.Tables(0).Rows.Count > 0 Then
+                    ObjectBuilder.CreateObject(ds.Tables(0), 0, entidad)
+                    Try
+                        Dim textoEmail As String = EmailFactura(factHandler, factura)
+                        If textoEmail.Length > 0 Then
+                            Dim body As String = ""
+                            Try
+                                body = Orbelink.Helpers.Mailer.RequestContent_ByURL(Configuration.Config_WebSite_LocalhostRoot & "emails.aspx?tipo=5")
+                            Catch ex As Exception
+
+                            End Try
+                            Dim Shippings_Address As Shippings_Address = factHandler.ConsultaShippingAddressEntidad(factura.id_ShippingAddress.Value)
+                            textoEmail += getShippings_Address(Shippings_Address, factura)
+                            body = body.Replace("Factura_Replace", textoEmail)
+                            body = body.Replace("Usuario_Replace", entidad.NombreDisplay.Value)
+                        
+                            result = Orbelink.Helpers.Mailer.SendOneMail(Configuration.Config_DefaultSenderEmail, Configuration.Config_SiteName, entidad.Email.Value, entidad.NombreDisplay.Value, "Su orden de: " & Configuration.Config_SiteName, body)
+                            result = Orbelink.Helpers.Mailer.SendOneMail(Configuration.Config_DefaultSenderEmail, entidad.NombreDisplay.Value, Configuration.Config_DefaultAdminEmail, Configuration.Config_SiteName, "Nueva orden de: " & Configuration.Config_SiteName, body)
+                        End If
+                    Catch ex As Exception
+                        result = False
+                    End Try
+                End If
+            End If
+            Return result
+        End Function
+
+        Private Function EmailFactura(ByVal factHandler As FacturasHandler, ByVal laFactura As Factura) As String
+            Dim texto As String = ""
+            Dim estado As FacturasHandler.EstadoFactura = laFactura.Estado_Factura.Value
+            If estado = FacturasHandler.EstadoFactura.Transaction_Successful Or estado = FacturasHandler.EstadoFactura.Transaction_Unsuccessful Or estado = FacturasHandler.EstadoFactura.Approved_Cart Then
+                texto = MensajeSegunEstado(laFactura.Id_Factura.Value, estado)
+                texto += itemsEmail(factHandler, laFactura)
+            End If
+            Return texto
+        End Function
+        
+        Private Function itemsEmail(ByVal factHandler As FacturasHandler, ByVal laFactura As Factura) As String
+            Dim ds As Data.DataTable = factHandler.GetItemsProductos(laFactura.Id_Factura.Value)
+    
+            Dim total As Double = laFactura.Total.Value
+
+            Dim body As New StringBuilder
+
+            If ds.Rows.Count > 0 Then
+                Dim detalle_factura As New DetalleFactura
+                Dim Producto As New Producto
+
+                body.Append("<p>Detalle de la Orden:</p>")
+                body.Append("<table border='0' width='100%'>")
+                body.Append("<tr>")
+                body.Append("<td width='15%' align='left'><strong>Cod.</strong></td>")
+                body.Append("<td width='40%' align='left'><strong>Producto</strong></td>")
+                body.Append("<td width='15%' align='center'><strong>Cantidad</strong></td>")
+                body.Append("<td width='15%' align='right'><strong>Precio</strong></td>")
+                body.Append("</tr>")
+
+                For i As Integer = 0 To ds.Rows.Count - 1
+                    ObjectBuilder.CreateObject(ds, i, detalle_factura)
+                    ObjectBuilder.CreateObject(ds, i, Producto)
+                    body.Append("<tr><td align='left'>")
+                    body.Append(Producto.SKU.Value)
+                    body.Append("</td><td align='left'>")
+                    body.Append(detalle_factura.NombreDisplay.Value)
+                    body.Append("</td><td align='center'>")
+                    body.Append(detalle_factura.Cantidad.Value)
+                    body.Append("</td><td align='right'>")
+                    body.Append(FormatCurrency(detalle_factura.MontoVenta.Value, 2))
+                    body.Append("</td> </tr>")
+                Next
+
+                body.Append("<tr>")
+                body.Append("<td></td>")
+                body.Append("<td></td>")
+                body.Append("<td></td>")
+                body.Append("<td align='right'><strong>TOTAL: ")
+                body.Append(FormatCurrency(total, 2))                'String.Format("{0:$###,###,###.##}", total)
+                body.Append("</strong></td>")
+                body.Append("</tr>")
+                body.Append("</table>")
+
+
+            End If
+            Dim Shippings_Address As Shippings_Address = factHandler.ConsultaShippingAddressEntidad(laFactura.id_ShippingAddress.Value)
+            If Shippings_Address IsNot Nothing Then
+                body.Append("")
+            End If
+            Return body.ToString
+        End Function
+
+        Private Function getShippings_Address(ByVal Shippings_Address As Shippings_Address, ByVal laFactura As Factura) As String
+            Dim body As New StringBuilder
+            If Shippings_Address IsNot Nothing Then
+                body.Append("<p><b> Detalle de Envio:</b></p>")
+                body.Append("<p> ")
+                body.Append("<b> Nombre: </b>" & Shippings_Address.Nombre.Value)
+                body.Append("<br/><b> Email: </b>" & Shippings_Address.Email.Value)
+                body.Append("<br/><b> Telefono: </b>" & Shippings_Address.Telefono.Value)
+                body.Append("<br/><b> Provincia: </b>" & Shippings_Address.Region.Value)
+                body.Append("<br/><b> Ciudad: </b>" & Shippings_Address.Ciudad.Value)
+                body.Append("<br/><b> Direccion: </b>" & Shippings_Address.Direccion.Value)
+                body.Append("<br/><b>Codigo Postal: </b>" & Shippings_Address.Codigo_Postal.Value)
+                body.Append("<br/><b>Enviar Por: </b>" & laFactura.Enviar_Por.Value)
+                body.Append("</p> ")
+            End If
+            Return body.ToString
+        End Function
+
+        Private Function MensajeSegunEstado(ByVal id_Carrito As Integer, ByVal estadoActual As Integer) As String
+            Dim mensaje As String
+            mensaje = "<p>Gracias por comprar en " & Configuration.Config_SiteName
+            If estadoActual = FacturasHandler.EstadoFactura.Transaction_Successful Then
+                mensaje += "</p><p>Felicidades su transacción fue exitosa.   Orden #" & id_Carrito & "</p>"
+            End If
+            If estadoActual = FacturasHandler.EstadoFactura.Transaction_Unsuccessful Then
+                mensaje += "</p><p>Lo sentimos.  Su transacción no fue exitosa. Puede contactarnos a: <a href='mailto:" & Configuration.Config_DefaultAdminEmail & "'>" & Configuration.Config_DefaultAdminEmail & "</a>.<br/>   Orden # " & id_Carrito & "</p>"
+            End If
+
+            If estadoActual = FacturasHandler.EstadoFactura.Approved_Cart Then
+                mensaje += "</p><p>Su transacción está pendiente por confirmar. Puede contactarnos a: <a href='mailto:" & Configuration.Config_DefaultAdminEmail & "'>" & Configuration.Config_DefaultAdminEmail & "</a>.<br/>   Orden # " & id_Carrito & "</p>"
+            End If
+            Return mensaje
+        End Function
+
+        Public Function EnviarEmailAccion(ByVal id_Factura As String, ByVal id_Accion As String) As Boolean
+            Dim result As Boolean = False
+
+            Dim factHandler As New FacturasHandler(_connString)
+            Dim factura As Factura = factHandler.ConsultarFactura(id_Factura)
+            If factura.Estado_Factura.Value = FacturasHandler.EstadoFactura.Transaction_Successful Then
+                Dim ds As Data.DataSet
+                Dim entidad As New Entidad()
+                entidad.NombreDisplay.ToSelect = True
+                entidad.Email.ToSelect = True
+                Entidad.Id_entidad.Where.EqualCondition(factura.Id_Comprador.Value)
+
+                Dim connection As New SQLServer(_connString)
+                Dim querybuilder As New QueryBuilder()
+                ds = connection.executeSelect(querybuilder.SelectQuery(entidad))
+
+                If ds.Tables.Count > 0 Then
+                    If ds.Tables(0).Rows.Count > 0 Then
+                        ObjectBuilder.CreateObject(ds.Tables(0), 0, entidad)
+                        Try
+                            Dim Shippings_Address As Shippings_Address = factHandler.ConsultaShippingAddressEntidad(factura.id_ShippingAddress.Value)
+
+                            Dim textoEmail As String = EmailAccion(entidad.NombreDisplay.Value, Shippings_Address.Nombre.Value, id_Accion, Shippings_Address.Direccion_Alterna.Value)
+                            If textoEmail.Length > 0 Then
+                                Dim body As String = ""
+                                Try
+                                    body = Orbelink.Helpers.Mailer.RequestContent_ByURL(Configuration.Config_WebSite_LocalhostRoot & "emails.aspx?tipo=5")
+                                Catch ex As Exception
+
+                                End Try
+                                body = body.Replace("Factura_Replace", textoEmail)
+                                body = body.Replace("Usuario_Replace", Shippings_Address.Nombre.Value)
+
+                                result = Orbelink.Helpers.Mailer.SendOneMail(Configuration.Config_DefaultSenderEmail, entidad.NombreDisplay.Value, Shippings_Address.Email.Value, Shippings_Address.Nombre.Value, "Su amigo le ha regalado un producto de: " & Configuration.Config_SiteName, body)
+                            End If
+                        Catch ex As Exception
+                            result = False
+                        End Try
+                    End If
+                End If
+            End If
+            Return result
+        End Function
+        Private Function EmailAccion(ByVal remitente As String, ByVal destinatario As String, ByVal id_accion As Integer, ByVal mensaje As String) As String
+            Dim body As New StringBuilder
+
+            Dim AccionesHandler As AccionesHandler = New AccionesHandler(_connString)
+            Dim accion As Accion = AccionesHandler.ConsultarAccion(id_accion)
+            body.Append("<p>Muchas Felicidades :<b> " & destinatario & "!<br/> " & remitente & "</b> le ha enviado un regalo muy original: un sobre cargado de emoción, intercambiable por experiencias inolvidables en www.regaleemociones.com.</p>")
+            If mensaje.Length > 0 Then
+                body.Append("<br/>Mensaje de " & remitente & ": " & mensaje)
+            End If
+
+            body.Append("<p>Regale Emociones es un novedoso servicio en Costa Rica, que ofrece la posibilidad de dar regalos que nos generen recuerdos… por ejemplo: Nunca olvidaras el paseo en globo que hice con mi familia y/o amigos, cuando celebre mi aniversario en aquel ""Fiesta SPA"", o cuando hicimos rafting y pasamos la noche en la montaña. Serán recuerdos para toda la vida que lo harán convivir con los seres queridos. Tenemos muchísimas experiencias a escoger, todas ellas únicas e inolvidables.</p>")
+            body.Append("<p>Puede ingresar al sitio Web www.regaleemociones.com y <a href='http://www.regaleemociones.com/contactenos.aspx'>contactarnos</a>  para reservar el día que quiere realizar su experiencia.</p>")
+            body.Append("<p>Necesitará los siguientes datos:")
+
+            body.Append("<br/><b>El regalo es intercambiable por emociones equivalentes a: </b> " & FormatCurrency(accion.Valor.Value, 2))
+            body.Append("<br/>  Nota: Puede escoger emociones de diferente precios. Los montos a favor serán almacenados en su cuenta para adquirir futuras emociones. En caso de que el valor de la emoción sea mayor al regalo, puede cancelar la diferencia utilizando tarjeta de crédito o transferencia bancaria.")
+
+            body.Append("<br/><b>Valido hasta: </b> " & FormatDateTime(accion.FechaCaducidad.ValueLocalized, DateFormat.ShortDate))
+            body.Append("<br/><b>Codigo de Accion: </b> " & accion.CodigoAccion.Value)
+            body.Append("<br/><b>Codigo de Activacion: </b> " & accion.CodigoValidacion.Value)
+            body.Append("<br/><br/>Solo piensa que quieres hacer y hazlo. ")
+
+            Return body.ToString
+        End Function
+
+        Public Function EnviarEmailRegalo(ByVal id_Factura As String, ByVal N_producto As String) As Boolean
+            Dim result As Boolean = False
+            Dim factHandler As New FacturasHandler(_connString)
+            Dim factura As Factura = factHandler.ConsultarFactura(id_Factura)
+            If factura.Estado_Factura.Value = FacturasHandler.EstadoFactura.Transaction_Successful Then
+                Dim ds As Data.DataSet
+                Dim entidad As New Entidad()
+
+                entidad.NombreDisplay.ToSelect = True
+                entidad.Email.ToSelect = True
+                Entidad.Id_entidad.Where.EqualCondition(factura.Id_Comprador.Value)
+
+                Dim connection As New SQLServer(_connString)
+                Dim querybuilder As New QueryBuilder()
+                ds = connection.executeSelect(querybuilder.SelectQuery(entidad))
+
+                If ds.Tables.Count > 0 Then
+                    If ds.Tables(0).Rows.Count > 0 Then
+                        ObjectBuilder.CreateObject(ds.Tables(0), 0, entidad)
+                        Try
+                            Dim Shippings_Address As Shippings_Address = factHandler.ConsultaShippingAddressEntidad(factura.id_ShippingAddress.Value)
+                            If Shippings_Address.Email.Value <> entidad.Email.Value Then
+                                Dim textoEmail As String = EmailRegalo(entidad.NombreDisplay.Value, Shippings_Address.Nombre.Value, Shippings_Address.Direccion_Alterna.Value, N_producto, id_Factura)
+                                If textoEmail.Length > 0 Then
+                                    Dim body As String = ""
+                                    Try
+                                        body = Orbelink.Helpers.Mailer.RequestContent_ByURL(Configuration.Config_WebSite_LocalhostRoot & "emails.aspx?tipo=5")
+                                    Catch ex As Exception
+
+                                    End Try
+                                    body = body.Replace("Factura_Replace", textoEmail)
+                                    body = body.Replace("Usuario_Replace", Shippings_Address.Nombre.Value)
+
+                                    result = Orbelink.Helpers.Mailer.SendOneMail(Configuration.Config_DefaultSenderEmail, entidad.NombreDisplay.Value, Shippings_Address.Email.Value, Shippings_Address.Nombre.Value, "Su amigo le ha regalado un producto de: " & Configuration.Config_SiteName, body)
+                                End If
+                            End If
+                        Catch ex As Exception
+                            result = False
+                        End Try
+                    End If
+                End If
+            End If
+            Return result
+        End Function
+        Private Function EmailRegalo(ByVal remitente As String, ByVal destinatario As String, ByVal mensaje As String, ByVal N_producto As String, ByVal id_factura As Integer) As String
+            Dim body As New StringBuilder
+
+            body.Append("<p>Muchas Felicidades :<b> " & destinatario & "!<br/> " & remitente & "</b> le ha enviado un regalo muy original: " & N_producto & "</p>")
+            body.Append("<b>Detalles:</b>")
+            If mensaje.Length > 0 Then
+                body.Append("<br/>Mensaje de " & remitente & ": " & mensaje)
+            End If
+            body.Append("<p>Debe reservar en www.regaleemociones.com para reservar el día que le gustaría llevar a cabo esta experiencia.</p>")
+            body.Append("<p>Regale Emociones es un novedoso servicio en Costa Rica, que ofrece la posibilidad de dar regalos que nos generen recuerdos… por ejemplo: Nunca olvidaras el paseo en globo que hice con mi familia y/o amigos, cuando celebre mi aniversario en aquel ""Fiesta SPA"", o cuando hicimos rafting y pasamos la noche en la montaña. Serán recuerdos para toda la vida que lo harán convivir con los seres queridos. Tenemos muchísimas experiencias a escoger, todas ellas únicas e inolvidables.</p>")
+            body.Append("<p>Puede ingresar al sitio Web www.regaleemociones.com y <a href='http://www.regaleemociones.com/contactenos.aspx'>contactarnos</a>  para reservar el día que quiere realizar su experiencia.</p>")
+
+            body.Append("<p>Necesitará los siguientes datos:")
+            body.Append("<br/>El regalo es: </p>" & N_producto)
+            body.Append("<br/>Número de transacción: </p>" & id_factura)
+
+            Return body.ToString
+        End Function
+    End Class
+End Namespace

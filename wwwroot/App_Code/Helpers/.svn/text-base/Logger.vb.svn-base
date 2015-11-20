@@ -1,0 +1,216 @@
+﻿Imports Microsoft.VisualBasic
+Imports System.IO
+Imports System.Xml
+Imports System.Data.SqlClient
+
+Namespace Orbelink.Helpers
+    Public Module Logger
+
+        Private Function GetRutaArchivo(ByVal tipoLog As String, ByVal extension As String) As String
+            Dim logDirectory As String = Configuration.logsPath & tipoLog & "\"
+            Directory.CreateDirectory(logDirectory)
+
+            Dim fecha As Date = Date.UtcNow
+            Dim filePath As String = logDirectory & tipoLog & "_" & fecha.Month & "-" & fecha.Day & "-" & fecha.Year & "." & extension
+            Return filePath
+        End Function
+
+        Public Sub RegistrarRequestLento(ByVal fechaInicio As Date, ByVal fechaFin As Date, ByVal milisegundos As Long, ByVal requestUrl As String)
+            Dim filePath As String = GetRutaArchivo("SlowRequests", "xml")
+
+            Dim xmldoc As New System.Xml.XmlDocument
+            Dim nodoPrincipal As System.Xml.XmlElement
+
+            If File.Exists(filePath) Then
+                xmldoc.Load(filePath)
+                nodoPrincipal = xmldoc.FirstChild.NextSibling
+            Else
+                Dim declarationNode As XmlNode = xmldoc.CreateNode(XmlNodeType.XmlDeclaration, "", "")
+                xmldoc.AppendChild(declarationNode)
+
+                'let's add the root element
+                nodoPrincipal = xmldoc.CreateElement("slowRequests")
+                xmldoc.AppendChild(nodoPrincipal)
+            End If
+
+            Dim nuevoNodo As XmlElement = xmldoc.CreateElement("request")
+            nuevoNodo.SetAttribute("request_Begin", fechaInicio.ToShortDateString & " " & fechaInicio.ToLongTimeString)
+            nuevoNodo.SetAttribute("request_End", fechaFin.ToShortDateString & " " & fechaFin.ToLongTimeString)
+            nuevoNodo.SetAttribute("miliseconds", milisegundos)
+            nuevoNodo.SetAttribute("url", requestUrl)
+            nodoPrincipal.AppendChild(nuevoNodo)
+
+            xmldoc.Save(filePath)
+        End Sub
+
+        Public Sub RegistrarAppError(ByVal ex As Exception)
+            Dim filePath As String = GetRutaArchivo("AppErrors", "txt")
+            Dim L_fichero As New StreamWriter(filePath, True)
+            L_fichero.WriteLine("******************")
+            L_fichero.WriteLine(Orbelink.DateAndTime.DateHandler.ToStringFromDate(Date.UtcNow))
+            L_fichero.WriteLine("Descripcion: " + ex.Message)
+            L_fichero.WriteLine("Origen:" + ex.Source)
+            L_fichero.WriteLine("Pila:" + ex.StackTrace)
+            L_fichero.WriteLine()
+            L_fichero.Close()
+        End Sub
+
+        Public Function RegistrarSQLError(ByVal theException As SqlException, ByVal theConnectionString As String, ByVal theQuery As String, ByVal CatchNoTableError As Boolean) As Boolean
+            Dim throwException As Boolean = True
+
+            Dim filePath As String = GetRutaArchivo("SqlErrors", "xml")
+            Dim xmldoc As New System.Xml.XmlDocument
+            Dim nodoPrincipal As System.Xml.XmlElement
+
+            If File.Exists(filePath) Then
+                xmldoc.Load(filePath)
+                nodoPrincipal = xmldoc.FirstChild.NextSibling
+            Else
+                Dim declarationNode As XmlNode = xmldoc.CreateNode(XmlNodeType.XmlDeclaration, "", "")
+                xmldoc.AppendChild(declarationNode)
+
+                'let's add the root element
+                nodoPrincipal = xmldoc.CreateElement("errors")
+                xmldoc.AppendChild(nodoPrincipal)
+            End If
+
+            Dim fecha As Date = Date.UtcNow
+            Dim nuevoNodo As XmlElement = xmldoc.CreateElement("exception")
+            nuevoNodo.SetAttribute("fecha", fecha.ToLongDateString & " " & fecha.ToLongTimeString)
+            nuevoNodo.SetAttribute("servidor", theException.Server)
+            nuevoNodo.SetAttribute("connectionString", theConnectionString)
+            nuevoNodo.SetAttribute("sqlString", theQuery)
+            nuevoNodo.SetAttribute("exceptionMessage", theException.Message)
+
+            For counter As Integer = 0 To theException.Errors.Count - 1
+                If theException.Errors(counter).Number = 208 And CatchNoTableError Then
+                    throwException = False
+                End If
+
+                Dim errorNode As XmlElement = xmldoc.CreateElement("error")
+                errorNode.SetAttribute("errorNumber", theException.Errors(counter).Number)
+                errorNode.SetAttribute("message", theException.Errors(counter).Message)
+
+                nuevoNodo.AppendChild(errorNode)
+            Next
+
+            nodoPrincipal.AppendChild(nuevoNodo)
+            xmldoc.Save(filePath)
+
+            Return throwException
+        End Function
+
+        Public Sub RegistrarNoExisteRequest(ByVal theRequest As HttpRequest)
+            If Not theRequest.CurrentExecutionFilePath.EndsWith(".axd") Then
+                Dim filePath As String = GetRutaArchivo("NotFoundRequest", "xml")
+                Dim xmldoc As New System.Xml.XmlDocument
+                Dim nodoPrincipal As System.Xml.XmlElement
+
+                If File.Exists(filePath) Then
+                    xmldoc.Load(filePath)
+                    nodoPrincipal = xmldoc.FirstChild.NextSibling
+                Else
+                    Dim declarationNode As XmlNode = xmldoc.CreateNode(XmlNodeType.XmlDeclaration, "", "")
+                    xmldoc.AppendChild(declarationNode)
+
+                    'let's add the root element
+                    nodoPrincipal = xmldoc.CreateElement("notfounds")
+                    xmldoc.AppendChild(nodoPrincipal)
+                End If
+
+
+                Dim fecha As Date = Date.UtcNow
+                Dim nuevoNodo As XmlElement = xmldoc.CreateElement("notfound")
+                nuevoNodo.SetAttribute("fecha", fecha.ToLongDateString & " " & fecha.ToLongTimeString)
+                nuevoNodo.SetAttribute("path", theRequest.PhysicalPath)
+                nuevoNodo.SetAttribute("execPath", theRequest.CurrentExecutionFilePath)
+                nuevoNodo.SetAttribute("rawurl", theRequest.RawUrl)
+                'nuevoNodo.SetAttribute("referer", theRequest.UrlReferrer.PathAndQuery)
+                nuevoNodo.SetAttribute("userAgent", theRequest.UserAgent)
+                nodoPrincipal.AppendChild(nuevoNodo)
+                xmldoc.Save(filePath)
+            End If
+        End Sub
+
+        Public Sub RegistrarRutina(ByVal app As HttpApplication)
+            Dim logDirectory As String = Configuration.logsPath & "/rutina/"
+            Directory.CreateDirectory(logDirectory)
+
+            Dim filePath As String = logDirectory & "Rutina.xml"
+
+            Dim xmldoc As New System.Xml.XmlDocument
+            Dim nodoPrincipal As System.Xml.XmlElement
+
+            If File.Exists(filePath) Then
+                xmldoc.Load(filePath)
+                nodoPrincipal = xmldoc.FirstChild.NextSibling
+            Else
+                Dim declarationNode As System.Xml.XmlNode = xmldoc.CreateNode(System.Xml.XmlNodeType.XmlDeclaration, "", "")
+                xmldoc.AppendChild(declarationNode)
+
+                'let's add the root element
+                nodoPrincipal = xmldoc.CreateElement("LogRutinas")
+                xmldoc.AppendChild(nodoPrincipal)
+            End If
+
+            Dim nuevoNodo As System.Xml.XmlElement = xmldoc.CreateElement("rutina")
+            nuevoNodo.SetAttribute("IP", app.Request.UserHostAddress.ToString)
+            nuevoNodo.SetAttribute("Date", System.DateTime.Now.ToLongDateString & " " & System.DateTime.Now.ToLongTimeString)
+            If app.Request.Params.Keys(0).Contains("AjaxManager") Then
+                Dim control As System.Xml.XmlElement = xmldoc.CreateElement("ControlInfo")
+                control.SetAttribute("Sender", app.Request.Item(app.Request.Params.Keys(0)).ToString())
+                Dim page As System.Xml.XmlElement = xmldoc.CreateElement("PageInfo")
+                page.SetAttribute("TheFile", app.Request.FilePath.ToString)
+                nuevoNodo.AppendChild(page)
+                nuevoNodo.AppendChild(control)
+            Else
+                Dim page As System.Xml.XmlElement = xmldoc.CreateElement("PageInfoEntrar")
+                page.SetAttribute("TheFile", app.Request.Path.ToString)
+                nuevoNodo.AppendChild(page)
+            End If
+            nodoPrincipal.AppendChild(nuevoNodo)
+
+            If nodoPrincipal.ChildNodes.Count > 50 Then
+                nodoPrincipal.RemoveChild(nodoPrincipal.FirstChild)
+            End If
+            xmldoc.Save(filePath)
+        End Sub
+
+        Public Sub RegistrarRutinaHistorial()
+            Dim logDirectoryRutina As String = Configuration.outPath & "/rutina/"
+            Dim filePathRutina As String = logDirectoryRutina & "Rutina.xml"
+            Dim fileDestino As String = logDirectoryRutina & "Rutina" & Date.Today.ToShortDateString.Replace("/", "-") & "_" & System.DateTime.Now.Hour & "_" & System.DateTime.Now.Minute & "_" & System.DateTime.Now.Second & ".xml"
+            If File.Exists(filePathRutina) Then
+                File.Copy(filePathRutina, fileDestino, True)
+            End If
+        End Sub
+
+        Public Sub RegistrarNoFileMapper(ByVal theFileMissing As String)
+            Dim filePath As String = GetRutaArchivo("filesMissing", "xml")
+
+            Dim xmldoc As New System.Xml.XmlDocument
+            Dim nodoPrincipal As System.Xml.XmlElement
+
+            If File.Exists(filePath) Then
+                xmldoc.Load(filePath)
+                nodoPrincipal = xmldoc.FirstChild.NextSibling
+            Else
+                Dim declarationNode As System.Xml.XmlNode = xmldoc.CreateNode(System.Xml.XmlNodeType.XmlDeclaration, "", "")
+                xmldoc.AppendChild(declarationNode)
+
+                'let's add the root element
+                nodoPrincipal = xmldoc.CreateElement("files")
+                xmldoc.AppendChild(nodoPrincipal)
+            End If
+
+            Dim nuevoNodo As System.Xml.XmlElement = xmldoc.CreateElement("fileMissing")
+            nuevoNodo.SetAttribute("file", theFileMissing)
+            nuevoNodo.SetAttribute("Date", System.DateTime.Now.ToLongDateString & " " & System.DateTime.Now.ToLongTimeString)
+            nodoPrincipal.AppendChild(nuevoNodo)
+
+            xmldoc.Save(filePath)
+        End Sub
+
+    End Module
+
+End Namespace

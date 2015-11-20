@@ -1,0 +1,33 @@
+﻿<%@ Control Language="VB" AutoEventWireup="false" CodeFile="pagError.ascx.vb" Inherits="Controls_Front_pagError500" %>
+<asp:Label ID="lbl_mensajeInicial" runat="server" Text=""></asp:Label><br />
+<br />
+<asp:Panel ID="pnl_mensaje" runat="server" Visible="false">
+    <asp:Label ID="lbl_mensaje2" runat="server" Text=""></asp:Label>
+    <br />
+</asp:Panel>
+<asp:Panel ID="pnl_formulario" runat="server">
+    <table id="tablaPrin" runat="server" cellpadding="0" cellspacing="0">
+        <tr>
+            <td valign="top" style="width: 80px; padding-top: 20px">
+                <asp:Label ID="Label1" runat="server" Text="Message:"></asp:Label>
+            </td>
+            <td colspan="2" style="padding-top: 20px">
+                <asp:TextBox ID="txb_mensaje" TextMode="MultiLine" BackColor="#CCCCCC" BorderStyle="None"
+                    Height="61px" Width="244px" runat="server"></asp:TextBox>
+            </td>
+        </tr>
+    </table>
+</asp:Panel>
+<table id="Table1" runat="server" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="tdVacion" runat="server" style="width: 80px;">
+            &nbsp
+        </td>
+        <td style="text-align: left; width: 122px">
+            <asp:HyperLink ID="hyl_regresar" NavigateUrl="~/index.aspx" runat="server">Regresar</asp:HyperLink>
+        </td>
+        <td style="text-align: right; width: 122px">
+            <asp:ImageButton ID="btn_enviar" runat="server" />
+        </td>
+    </tr>
+</table>

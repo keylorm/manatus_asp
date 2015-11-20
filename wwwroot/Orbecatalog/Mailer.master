@@ -1,0 +1,94 @@
+<%@ Master Language="VB" CodeFile="Mailer.master.vb" Inherits="_OrbeCatalog_Mailer" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<script runat="server">
+
+</script>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Orbe Catalog</title>
+    <link id="css_Sizes" runat="server" href="Orbecatalog_Sizes.css" type="text/css"
+        rel="stylesheet" />
+    <link id="css_Classic" runat="server" href="../App_Themes/Classic-Office/Orbecatalog_Classic-Office.css"
+        type="text/css" rel="stylesheet" />
+</head>
+<body>
+    <div style="text-align:center;">
+        <form id="form1" runat="server">
+            &nbsp;<div id="main">
+                <table id="tituloComponente" cellspacing="0" cellpadding="0" border="0">
+                    <tr>
+                        <td id="logoOrbeCatalog">
+                            <asp:HyperLink ID="img_Orbecatalog" NavigateUrl="http://easytrack.comerseguros.net/" runat="server"
+                                ImageUrl="~/orbecatalog/images/logo.jpg" />
+                        </td>
+                        <td id="username">
+                            &nbsp;<br />
+                            <asp:HyperLink ID="lnk_Usuario" runat="server">Invitado</asp:HyperLink><br />
+                            <asp:HyperLink ID="lnk_Logout" runat="server">Log In</asp:HyperLink>
+                        </td>
+                    </tr>
+                </table>
+                <div id="topNavigation">
+                    <div id="navigation">
+                        <asp:ContentPlaceHolder ID="cph_Navegacion" runat="server">
+                            Mailer
+                        </asp:ContentPlaceHolder>
+                    </div>
+                    <div id="menuAyuda">
+                        <asp:HyperLink ID="lnk_Panel" runat="server" NavigateUrl="Panel.aspx">Panel</asp:HyperLink>
+                        |
+                        <asp:HyperLink ID="lnk_Search" runat="server" NavigateUrl="Search/Default.aspx">Buscar</asp:HyperLink>
+                        |
+                        <asp:HyperLink ID="lnk_Ayuda" runat="server" NavigateUrl="Ayuda.aspx">Ayuda</asp:HyperLink>
+                    </div>
+                </div>
+                <table id="Seccion" cellspacing="0" cellpadding="0" border="0">
+                    <tr>
+                        <td class="Seccion_Divisor">
+                        </td>
+                        <td id="Seccion_Titulo">
+                            <asp:ContentPlaceHolder ID="cph_Titulo" runat="server">
+                                Titulo Seccion</asp:ContentPlaceHolder>
+                        </td>
+                        <td class="Seccion_Divisor">
+                        </td>
+                        <td id="Seccion_Mensaje">
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="Seccion_Divisor">
+                        </td>
+                        <td id="Seccion_Contenido">
+                            <div style="text-align:center;">
+                                <div id="Contenido">
+                                    <asp:ContentPlaceHolder ID="cph_Contenido" runat="server">
+                                        Trabajo
+                                    </asp:ContentPlaceHolder>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="Seccion_Divisor">
+                        </td>
+                        <td id="Seccion_Busqueda" rowspan="2">
+                            <asp:ContentPlaceHolder ID="cph_Busqueda" runat="server">
+                                Busqueda
+                            </asp:ContentPlaceHolder>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <asp:Image ID="img_Envio" runat="server" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="footer">
+                &copy; Orbelink 2007. Version 5.1.1 Beta
+            </div>
+        </form>
+    </div>
+</body>
+</html>

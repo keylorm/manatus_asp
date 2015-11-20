@@ -1,0 +1,151 @@
+<%@ Page Language="VB" MasterPageFile="OrbeCatalog.master" AutoEventWireup="false"
+    ValidateRequest="False" CodeFile="Temas.aspx.vb" Inherits="_Archivos" Title="Orbe Catalog - Archivos" %>
+
+<%@ Register TagPrefix="orbelink" TagName="ActionButton" Src="~/Controls/ActionButton.ascx" %>
+<asp:Content ID="ctn_Titulo" ContentPlaceHolderID="cph_Titulo" runat="Server">
+</asp:Content>
+<asp:Content ID="ctn_Contenido" ContentPlaceHolderID="cph_Contenido" runat="Server">
+    <div class="Container" style="text-align: left">
+        <table>
+            <tr>
+                <td colspan="2">
+                    <h1>
+                        Filtros</h1>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 25%">
+                    Tipo Archivos:
+                </td>
+                <td style="width: 75%">
+                    <asp:DropDownList ID="ddl_FileTypes" runat="server" AutoPostBack="true">
+                    </asp:DropDownList>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <h1>
+                        Archivo
+                    </h1>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 25%">
+                    Archivos por pagina:
+                </td>
+                <td style="width: 75%">
+                    <asp:DropDownList ID="cmb_CantiArchivo" runat="server" AutoPostBack="True">
+                        <asp:ListItem Value="5" Selected="True">5</asp:ListItem>
+                        <asp:ListItem Value="10">10</asp:ListItem>
+                        <asp:ListItem Value="15">15</asp:ListItem>
+                        <asp:ListItem Value="20">20</asp:ListItem>
+                    </asp:DropDownList>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 25%">
+                    Configuracion a usar:
+                </td>
+                <td style="width: 75%">
+                    <asp:DropDownList ID="ddl_Configuration" runat="server">
+                    </asp:DropDownList>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br />
+    <div class="Container">
+        <asp:DataGrid ID="dg_Archivo" runat="server" Width="100%" AutoGenerateColumns="False"
+            AllowPaging="True" PageSize="5" CssClass="Contenido_Table">
+            <AlternatingItemStyle CssClass="tablaResultados_Alternate" />
+            <ItemStyle CssClass="tablaResultados_Item" />
+            <HeaderStyle CssClass="tablaResultados_Header" />
+            <FooterStyle CssClass="tablaResultados_Footer" />
+            <PagerStyle Mode="NumericPages" CssClass="tablaResultados_Pager" />
+            <Columns>
+                <asp:TemplateColumn HeaderText="Archivo">
+                    <ItemTemplate>
+                        <table width="100%">
+                            <tr>
+                                <td rowspan="3" style="width: 40%">
+                                    <asp:HyperLink ID="lnk_Archivo" runat="server" ImageUrl="~/orbecatalog/images/mm.jpg"></asp:HyperLink>
+                                </td>
+                                <td style="width: 60%">
+                                    <asp:TextBox ID="tbx_NombreArchivo" runat="server"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <asp:Label ID="lbl_Info" runat="server" Text="No hay archivo"></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <asp:Button ID="btn_Descargar" runat="server" Text="Descargar" OnClick="btn_Descargar_Click" />
+                                </td>
+                            </tr>
+                        </table>
+                        <table id="tbl_MasInfo" runat="server" width="100%" style="display: none;">
+                            <tr>
+                                <td style="width: 40%">
+                                    Archivo:
+                                </td>
+                                <td>
+                                    <asp:FileUpload ID="upl_Imagen" runat="server" Width="100%" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Principal:
+                                </td>
+                                <td>
+                                    <asp:CheckBox ID="chk_Principal" runat="server"></asp:CheckBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Comentario:
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="tbx_Comentarios" runat="server" TextMode="MultiLine" Height="80px"></asp:TextBox><br />
+                                </td>
+                            </tr>
+                        </table>
+                    </ItemTemplate>
+                    <ItemStyle Width="80%" />
+                </asp:TemplateColumn>
+                <asp:TemplateColumn>
+                    <ItemTemplate>
+                        <asp:Image ID="img_MasInfo" runat="server" ImageUrl="~/Orbecatalog/images/icons/info-collapsed.gif" />
+                    </ItemTemplate>
+                    <ItemStyle Width="10%" />
+                </asp:TemplateColumn>
+                <asp:ButtonColumn HeaderImageUrl="~/Orbecatalog/images/buttons/basurero.gif" HeaderText="Eliminar"
+                    CommandName="Delete" Text="Delete">
+                    <ItemStyle Width="10%" />
+                </asp:ButtonColumn>
+            </Columns>
+        </asp:DataGrid>
+        <br />
+        <table cellspacing="0" cellpadding="0" border="0" width="100%" >
+            <tr>
+                <td style="width: 35%">
+                </td>
+                <td>
+                    <asp:Panel ID="btn_Salvar" CausesValidation="true" runat="server">
+                        <div class="botonesAcciones">
+                            <orbelink:ActionButton ID="btn_Salvar" CausesValidation="true" Text="Salvar" CausesValidation="true" CausesValidation="true" runat="server" ImageURL="~/Orbecatalog/iconos/salvar_small.png" CausesValidation="true" />
+                        </div>
+                    </asp:Panel>
+                    <asp:Panel ID="pnl_Cancelar" runat="server">
+                        <div class="botonesAcciones">
+                            <orbelink:ActionButton ID="btn_cancelar" Text="Cancelar" runat="server" ImageURL="~/Orbecatalog/iconos/cancelar_small.png" />
+                        </div>
+                    </asp:Panel>
+                </td>
+            </tr>
+        </table>
+    </div>
+</asp:Content>
+<asp:Content ID="ctn_Busqueda" ContentPlaceHolderID="cph_ColumnaDerecha" runat="Server">
+</asp:Content>

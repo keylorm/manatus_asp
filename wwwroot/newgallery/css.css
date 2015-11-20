@@ -1,0 +1,90 @@
+@charset "utf-8";
+/* CSS Document */
+#jCarouselLite .carousel {
+	padding: 10px 0 0 0;
+	margin: 0 0 20px 10px;
+	position: relative;
+}
+#jCarouselLite .digg {
+	position: absolute;
+	left: 610px;
+	top: 110px;
+}
+#jCarouselLite .main {
+	margin-left: 60px;
+}
+#jCarouselLite .demo em {
+	color: #FF3300;
+	font-weight: bold;
+	font-size: 60%;
+	font-style: normal;
+}
+#jCarouselLite .carousel button { /*Don't remove this. we still use this for individual demos. only the front pages use images as of now*/
+	float: left;
+}
+#jCarouselLite .carousel a.prev, #jCarouselLite .carousel a.next {
+	display: block;
+	float: left;
+	width: 30px;
+	height: 143px;
+	text-decoration: none;
+	background: url("images/imageNavLeft.gif") left 14px no-repeat;
+}
+#jCarouselLite .carousel a.next {
+	background: url("images/imageNavRight.gif") right 14px no-repeat;
+}
+#jCarouselLite .carousel a.next:hover {
+	background-image: url("images/imageNavRightHover.gif");
+}
+#jCarouselLite .carousel a.prev:hover {
+	background-image: url("images/imageNavLeftHover.gif");
+}
+#jCarouselLite .carousel a:hover, #jCarouselLite .carousel a:active {
+	border: none;
+	outline: none;
+}
+#jCarouselLite .carousel .jCarouselLite {
+	
+	float: left;
+	/*background-color: #dfdfdf;
+	border: 1px solid black;*/
+	/* Needed for rendering without flicker */
+        position: relative;
+	visibility: hidden;
+	left: -5000px;
+}
+#jCarouselLite .carousel ul {
+	margin: 0;
+}
+#jCarouselLite .carousel li img,  #jCarouselLite .carousel li p {
+	background-color: #fff;
+	width: 50px;
+	height: 38px;
+	margin: 5px;
+}
+#jCarouselLite .widget img {
+	cursor: pointer;
+}
+#jCarouselLite .mid {
+	margin-left: 80px;
+	width: 400px;
+	height: 300px;
+}
+#jCarouselLite .vertical {
+	margin-left: 170px;
+}
+#jCarouselLite .vertical .jCarouselLite {   /* so that in IE 6, the carousel div doesnt expand to fill the space */
+	width: 170px;
+}
+#jCarouselLite .imageSlider li img,  #jCarouselLite .imageSlider li p,  #jCarouselLite .imageSliderExt li img,  #jCarouselLite .imageSliderExt li p {
+	width: 400px;
+	height: 300px;
+}
+
+/*Galeria Panning*/
+#outer_container, #imagePan{height:467px; width:349px;}
+#outer_container{/*margin:40px auto; */
+padding:4px; border:2px solid #dadada;}
+#imagePan{position:relative; overflow:hidden; cursor:crosshair;}
+#imagePan .container{position:relative; left:0;}
+/**/

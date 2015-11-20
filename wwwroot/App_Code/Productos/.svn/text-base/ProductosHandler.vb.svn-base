@@ -1,0 +1,241 @@
+﻿Imports Microsoft.VisualBasic
+Imports Orbelink.DBHandler
+Imports Orbelink.Orbecatalog6
+Imports Orbelink.Entity.Productos
+Imports Orbelink.Control.Archivos
+
+Namespace Orbelink.Control.Productos
+
+    Public Class ProductosHandler
+
+        Dim _connString As String
+
+        Sub New(ByRef theConnectionString As String)
+            _connString = theConnectionString
+        End Sub
+
+        'Producto
+        Public Function existeProducto(ByVal id_Producto As Integer) As Boolean
+            Dim producto As New Producto
+            Dim query As New QueryBuilder
+
+            producto.Id_Producto.Where.EqualCondition(id_Producto)
+            producto.Id_Producto.ToSelect = True
+
+            query.From.Add(producto)
+            Dim connection As New SQLServer(_connString)
+            Dim dataTable As Data.DataTable = connection.executeSelect_DT(query.RelationalSelectQuery)
+            If dataTable.Rows.Count > 0 Then
+                Return True
+            End If
+            Return False
+        End Function
+
+        Public Function ConsultarProducto(ByVal id_Producto As Integer) As Producto
+            Dim dataSet As Data.DataSet
+            Dim producto As New Producto
+            Dim query As New QueryBuilder
+
+            producto.Fields.SelectAll()
+            producto.Id_Producto.Where.EqualCondition(id_Producto)
+            query.From.Add(producto)
+
+            Dim connection As New SQLServer(_connString)
+            dataSet = connection.executeSelect(query.RelationalSelectQuery)
+
+            If dataSet.Tables.Count > 0 Then
+                If dataSet.Tables(0).Rows.Count > 0 Then
+                    ObjectBuilder.CreateObject(dataSet.Tables(0), 0, producto)
+                    Return producto
+                End If
+            End If
+            Return Nothing
+        End Function
+
+        Public Function CrearProducto(ByVal elProducto As Producto) As Integer
+            elProducto.Fecha.ValueUtc = Date.UtcNow
+            elProducto.enPrinc.Value = 0
+            If insertProducto(elProducto) Then
+                Dim connection As New SQLServer(_connString)
+                Return connection.lastKey(elProducto.TableName, elProducto.id_Entidad.Name)
+            End If
+            Return -1
+        End Function
+
+        Public Function ActualizarProducto(ByVal elProducto As Producto, ByVal id_Producto As Integer) As Boolean
+            elProducto.id_Estado.ToUpdate = False
+            'producto.Precio_Unitario.Value = False
+            'producto.Id_Moneda = False
+            elProducto.enPrinc.ToUpdate = False
+            elProducto.Fecha.ToUpdate = False
+            Return updateProducto(elProducto, id_Producto)
+        End Function
+
+        Public Function EliminarProducto(ByVal id_Producto As Integer) As Boolean
+            If deleteArchivo_Producto(id_Producto) Then
+                Return deleteProducto(id_Producto)
+            End If
+            Return False
+        End Function
+
+        'Producto privadas
+        Private Function insertProducto(ByVal Producto As Producto) As Boolean
+            Try
+                Dim connection As New SQLServer(_connString)
+                Dim query As New QueryBuilder
+                If connection.executeInsert(query.InsertQuery(Producto)) = 1 Then
+                    Return True
+                End If
+            Catch exc As DBException
+            End Try
+            Return False
+        End Function
+
+        Private Function updateProducto(ByVal Producto As Producto, ByVal id_Producto As Integer) As Boolean
+            Try
+                Dim connection As New SQLServer(_connString)
+                Dim query As New QueryBuilder
+                Producto.Id_Producto.Where.EqualCondition(id_Producto)
+                If connection.executeUpdate(query.UpdateQuery(Producto)) = 1 Then
+                    Return True
+                End If
+            Catch exc As DBException
+            End Try
+            Return False
+        End Function
+
+        Private Function deleteProducto(ByVal id_Producto As Integer) As Boolean
+            Try
+                Dim connection As New SQLServer(_connString)
+                Dim query As New QueryBuilder
+                Dim Producto As New Producto
+                Producto.Id_Producto.Where.EqualCondition(id_Producto)
+                If connection.executeDelete(query.DeleteQuery(Producto)) = 1 Then
+                    Return True
+                End If
+            Catch exc As DBException
+            End Try
+            Return False
+        End Function
+
+        'Producto Select
+        Public Function selectProductos_DataGrid(ByRef theDataGrid As DataGrid, ByVal level As Integer) As Boolean
+            Dim dataSet As Data.DataSet
+            Dim Producto As New Producto
+            'Dim Archivo_Producto As New Archivo_Producto
+            Dim tipoProducto As New TipoProducto
+            Dim counter As Integer
+            Dim prefijoNivel As String = ""
+            Dim devolver As Boolean
+
+            For counter = 0 To level - 1
+                prefijoNivel &= "../"
+            Next
+
+            Dim connection As New SQLServer(_connString)
+            Dim queryBuilder As New QueryBuilder
+
+            'Archivo_Producto.FileName.ToSelect = True
+            'Archivo_Producto.Extension.ToSelect = True
+            Producto.Fields.SelectAll()
+            Try
+                Producto.Activo.Where.EqualCondition(1)
+                'Archivo_Producto.Id_Producto.Where.EqualCondition(Producto.Id_Producto)
+                'Archivo_Producto.Id_Archivo.ToSelect = True
+                'Archivo_Producto.Principal.Where.EqualCondition(1)
+                'Archivo_Producto.FileType.Where.EqualCondition(ArchivoHandler.ArchivoType.ImageType)
+                tipoProducto.Nombre.ToSelect = True
+                queryBuilder.Join.EqualCondition(tipoProducto.Id_TipoProducto, Producto.Id_tipoProducto)
+
+                'queryBuilder.From.Add(Archivo_Producto)
+                queryBuilder.From.Add(tipoProducto)
+                queryBuilder.From.Add(Producto)
+                queryBuilder.Orderby.Add(Producto.Id_Producto, False)
+                queryBuilder.Top = 4
+                dataSet = connection.executeSelect(queryBuilder.RelationalSelectQuery)
+
+                If dataSet.Tables.Count > 0 Then
+                    If dataSet.Tables(0).Rows.Count > 0 Then
+                        theDataGrid.DataSource = dataSet
+                        theDataGrid.DataKeyField = Producto.Id_Producto.Name
+                        theDataGrid.DataBind()
+
+                        'Llena el grid
+                        Dim result_Producto As ArrayList = ObjectBuilder.TransformDataTable(dataSet.Tables(0), Producto)
+                        'Dim result_Imagenes As ArrayList = ObjectBuilder.TransformDataTable(dataSet.Tables(0), Archivo_Producto)
+                        Dim result_TipoProducto As ArrayList = ObjectBuilder.TransformDataTable(dataSet.Tables(0), tipoProducto)
+
+                        For counter = 0 To theDataGrid.Items.Count - 1
+                            Dim act_Producto As Producto = result_Producto(counter)
+                            'Dim act_Imagen As Archivo_Producto = result_Imagenes(counter)
+                            Dim act_TipoProducto As TipoProducto = result_TipoProducto(counter)
+
+                            Dim lnk_Producto As HyperLink = theDataGrid.Items(counter).FindControl("lnk_Producto")
+                            Dim lnk_img_Producto As HyperLink = theDataGrid.Items(counter).FindControl("lnk_img_Producto")
+                            Dim lbl_TipoProducto As Label = theDataGrid.Items(counter).FindControl("lbl_TipoProducto")
+                            Dim lbl_DescripcionCorta As Label = theDataGrid.Items(counter).FindControl("lbl_DescripcionCorta")
+
+                            lnk_img_Producto.Visible = False
+                            'If act_Imagen.FileName.IsValid Then
+                            '    lnk_img_Producto.ImageUrl = prefijoNivel & "images/" & Configuration.prod_Images.ThumbsDirectory & "/" & act_Imagen.FileName.Value & "." & act_Imagen.Extension.Value
+                            'Else
+                            '    lnk_img_Producto.ImageUrl = prefijoNivel & "images/mm.jpg"
+                            'End If
+
+                            lbl_TipoProducto.Text = act_TipoProducto.Nombre.Value
+                            lbl_DescripcionCorta.Text = act_Producto.DescCorta_Producto.Value
+                            lnk_Producto.Text = act_Producto.Nombre.Value
+                            lnk_Producto.NavigateUrl = prefijoNivel & "orbeCatalog/Productos/Productos.aspx?id_Producto=" & act_Producto.Id_Producto.Value
+                            lnk_img_Producto.NavigateUrl = prefijoNivel & "orbeCatalog/Productos/Archivo_Producto.aspx?id_Producto=" & act_Producto.Id_Producto.Value
+                        Next
+                        theDataGrid.Visible = True
+                        devolver = True
+                    Else
+                        theDataGrid.Visible = False
+                        devolver = False
+                    End If
+                Else
+                    theDataGrid.Visible = False
+                    devolver = False
+                End If
+            Catch exc As Exception
+                devolver = False
+            End Try
+            Return devolver
+        End Function
+
+        'Archivo_Producto
+        Private Function deleteArchivo_Producto(ByVal id_Producto As Integer) As Boolean
+            Dim Archivo_Producto As New Archivo_Producto
+            Dim counter As Integer
+            Dim deleted As Boolean = True
+            Try
+                Dim connection As New SQLServer(_connString)
+                Dim query As New QueryBuilder
+                Archivo_Producto.id_Producto.Where.EqualCondition(id_Producto)
+                Archivo_Producto.id_Archivo.ToSelect = True
+
+                query.From.Add(Archivo_Producto)
+                Dim dataTable As Data.DataTable = connection.executeSelect_DT(query.RelationalSelectQuery)
+
+                Dim archivos As New ArchivoHandler(connection)
+
+                If dataTable.Rows.Count > 0 Then
+                    Dim results_Archivos As ArrayList = ObjectBuilder.TransformDataTable(dataTable, Archivo_Producto)
+                    For counter = 0 To dataTable.Rows.Count - 1
+                        Dim act_Archivos As Archivo_Producto = results_Archivos(counter)
+
+                        If archivos.deleteArchivo(act_Archivos.id_Archivo.Value) Then
+                            'Borrar registro 
+                            Archivo_Producto.id_Archivo.Where.EqualCondition(act_Archivos.id_Archivo.Value)
+                            connection.executeDelete(query.DeleteQuery(Archivo_Producto))
+                        End If
+                    Next
+                End If
+            Catch exc As Exception
+                deleted = False
+            End Try
+            Return deleted
+        End Function
+    End Class
+End Namespace

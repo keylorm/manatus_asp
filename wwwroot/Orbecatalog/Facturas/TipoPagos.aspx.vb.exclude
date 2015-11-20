@@ -1,0 +1,171 @@
+Imports Orbelink.Orbecatalog6
+Imports Orbelink.DBHandler
+
+Partial Class _TipoPagos
+    Inherits PageBaseClass
+
+    Const codigo_pantalla As String = "FC-03"
+
+    'Pagina
+    Protected Sub Page_PreInit(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.PreInit
+        Theme = securityHandler.Theme
+    End Sub
+
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        
+        securityHandler.VerifyPantalla(codigo_pantalla, 1)
+        If Not IsPostBack Then
+            securityHandler.VerifyActions(hol_Salvar, hol_Modificar, hol_Eliminar)
+            resetCampos(Configuration.EstadoPantalla.NORMAL)
+            selectTipoPagos()
+        End If
+         
+        
+    End Sub
+
+    Protected Sub resetCampos(ByVal estado As Integer)
+        vld_tbx_NombreTipoPagos.IsValid = True
+        tbx_NombreTipoPagos.Text = ""
+        tbx_NombreTipoPagos.ToolTip = ""
+        Select Case estado
+            Case Configuration.EstadoPantalla.NORMAL
+                btn_Modificar.Visible = False
+                
+                btn_Salvar.Visible = True
+                
+                btn_Eliminar.Visible = False
+                
+            Case Configuration.EstadoPantalla.CONSULTAR
+                btn_Modificar.Visible = True
+                
+                btn_Salvar.Visible = False
+                
+                btn_Eliminar.Visible = True
+                
+        End Select
+    End Sub
+
+    'TipoPagos
+    Protected Sub selectTipoPagos()
+        Dim dataSet As Data.DataSet
+        Dim TipoPagos As New TipoPagos
+        Dim result As String
+        TipoPagos.Fields.SelectAll()
+        result = queryBuilder.SelectQuery(TipoPagos)
+        dataSet = connection.executeSelect(result)
+
+        If dataSet.Tables.Count > 0 Then
+            If dataSet.Tables(0).Rows.Count > 0 Then
+                DG_TipoPagos.DataSource = dataSet
+                DG_TipoPagos.DataKeyField = TipoPagos.Id_Tipo.Name
+                DG_TipoPagos.DataBind()
+
+                'Llena el grid
+                Dim offset As Integer = DG_TipoPagos.CurrentPageIndex * DG_TipoPagos.PageSize
+                Dim counter As Integer
+                Dim resultados As ArrayList = ObjectBuilder.TransformDataTable(dataSet.Tables(0), TipoPagos)
+                For counter = 0 To DG_TipoPagos.Items.Count - 1
+                    Dim actual As TipoPagos = resultados(offset + counter)
+                    Dim lbl_Nombre As Label = DG_TipoPagos.Items(counter).FindControl("lbl_Nombre")
+                    lbl_Nombre.Text = actual.Nombre.Value
+                Next
+                DG_TipoPagos.Visible = True
+            Else
+                DG_TipoPagos.Visible = False
+            End If
+        End If
+    End Sub
+
+    Protected Sub cargarParaModificar(ByVal indice As Integer)
+        Dim dataSet As Data.DataSet
+        Dim TipoPagos As New TipoPagos
+        Dim autoCompletar As Integer = 0
+        Dim sqlQuery As String
+
+        TipoPagos.Fields.SelectAll()
+        TipoPagos.Id_Tipo.Where.EqualCondition(indice)
+        sqlQuery = queryBuilder.SelectQuery(TipoPagos)
+        dataSet = connection.executeSelect(sqlQuery)
+
+        tbx_NombreTipoPagos.Text = dataSet.Tables(0).Rows(0).Item(TipoPagos.n_Tipo.Name)
+        tbx_NombreTipoPagos.ToolTip = dataSet.Tables(0).Rows(0).Item(TipoPagos.Id_Tipo.Name)
+    End Sub
+
+    Protected Sub updateTipoPagos()
+        Dim TipoPagos As TipoPagos
+        Dim sqlQuery As String
+        Try
+            TipoPagos = New TipoPagos(tbx_NombreTipoPagos.Text, True)
+            TipoPagos.Id_Tipo.Where.EqualCondition(tbx_NombreTipoPagos.ToolTip)
+            sqlQuery = queryBuilder.UpdateQuery(TipoPagos)
+            connection.executeUpdate(sqlQuery)
+        Catch exc As Exception
+            MyMaster.mostrarMensaje(exc.Message, true)
+            
+        End Try
+    End Sub
+
+    Protected Sub insertarTipoPagos(ByVal theTextBox As TextBox)
+        Dim sqlQuery As String
+        Dim TipoPagos As TipoPagos
+        Try
+            TipoPagos = New TipoPagos(theTextBox.Text)
+            sqlQuery = queryBuilder.InsertQuery(TipoPagos)
+            connection.executeInsert(sqlQuery)
+        Catch exc As Exception
+            MyMaster.mostrarMensaje(exc.Message, true)
+            
+        End Try
+    End Sub
+
+    Protected Sub deleteTipoPagos()
+        Dim TipoPagos As New TipoPagos
+        Dim sqlQuery As String
+        Try
+            TipoPagos.Id_Tipo.Where.EqualCondition(tbx_NombreTipoPagos.ToolTip)
+            sqlQuery = queryBuilder.DeleteQuery(TipoPagos)
+            connection.executeDelete(sqlQuery)
+        Catch exc As Exception
+            MyMaster.mostrarMensaje(exc.Message, true)
+            
+        End Try
+    End Sub
+
+    'Eventos
+    Protected Sub btn_Modificar_Click(ByVal sender As Object, ByVal e As System.Web.UI.ImageClickEventArgs) Handles btn_Modificar.Click
+        If IsValid() Then
+            updateTipoPagos()
+            resetCampos(Configuration.NORMAL)
+            selectTipoPagos()
+        End If
+    End Sub
+
+    Protected Sub btn_Cancelar_Click(ByVal sender As Object, ByVal e As System.Web.UI.ImageClickEventArgs) Handles btn_Cancelar.Click
+        resetCampos(Configuration.NORMAL)
+    End Sub
+
+    Protected Sub btn_Eliminar_Click(ByVal sender As Object, ByVal e As System.Web.UI.ImageClickEventArgs) Handles btn_Eliminar.Click
+        deleteTipoPagos()
+        resetCampos(Configuration.NORMAL)
+        selectTipoPagos()
+    End Sub
+
+    Protected Sub btn_Salvar_Click(ByVal sender As Object, ByVal e As System.Web.UI.ImageClickEventArgs) Handles btn_Salvar.Click
+        If IsValid() Then
+            insertarTipoPagos(tbx_NombreTipoPagos)
+            resetCampos(Configuration.NORMAL)
+            selectTipoPagos()
+        End If
+    End Sub
+
+    Protected Sub DG_TipoPagos_EditCommand(ByVal source As Object, ByVal e As System.Web.UI.WebControls.DataGridCommandEventArgs) Handles DG_TipoPagos.EditCommand
+        Dim indiceTabla As Integer = DG_TipoPagos.DataKeys(e.Item.ItemIndex)
+        resetCampos(Configuration.MODIFICAR)
+        Me.cargarParaModificar(indiceTabla)
+    End Sub
+
+    Protected Sub DG_Entidades_PageIndexChanged(ByVal source As Object, ByVal e As System.Web.UI.WebControls.DataGridPageChangedEventArgs) Handles DG_TipoPagos.PageIndexChanged
+        DG_TipoPagos.CurrentPageIndex = e.NewPageIndex
+        selectTipoPagos()
+    End Sub
+End Class

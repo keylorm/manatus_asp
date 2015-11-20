@@ -1,0 +1,595 @@
+﻿body
+{
+	font-family: Trebuchet MS;
+	font-size: 12px;
+	color: Black;
+	margin: 0px;
+}
+
+.Main
+{
+	width: 950px;
+	text-align: left;
+}
+
+img
+{
+	border: 0px;
+}
+
+a, a:link, a:visited
+{
+	text-decoration: none;
+}
+
+a:hover
+{
+	text-decoration: underline;
+}
+
+.fondoGris
+{
+	background-color: #EAEAE8;
+}
+
+.alignRight
+{
+	text-align: right;
+}
+
+.colorGris
+{
+	color: #A6A38D;
+}
+
+.colorRojo
+{
+	color: #550A18;
+}
+
+.colorRojo a
+{
+	color: #550A18;
+}
+
+.width243
+{
+	width: 243px;
+}
+
+.menu
+{
+	background-image: url(../images/images2/Template/fondo_menu.png);
+	background-repeat: repeat-x;
+	height: 35px;
+	position: absolute;
+	width: 950px;
+}
+
+.menu a, .menu a:visited, .menu a:link
+{
+	color: White;
+}
+
+.menu a:hover
+{
+	color: #745057;
+	text-decoration: none;
+}
+
+
+.menuDiv
+{
+	padding-top: 4px;
+	padding-left: 5px;
+	font-size: 14px;
+	color: White;
+}
+
+.content
+{
+	padding: 12px;
+	padding-top: 26px;
+}
+
+.width738
+{
+	width: 738px;
+}
+
+.paddingRight7
+{
+	padding-right: 7px;
+}
+
+.submenu
+{
+	font-family: Times New Roman;
+	font-size: 18px;
+	color: #832800;
+	padding-top: 18px;
+}
+
+.submenu
+{
+	font-family: Times New Roman;
+	font-size: 18px;
+	color: #832800;
+	padding-top: 18px;
+}
+
+.submenu a
+{
+	color: #832800;
+}
+
+.submenu td
+{
+	padding-top: 7px;
+	padding-bottom: 7px;
+	border-bottom: solid 1px #D9D8D4;
+	vertical-align: middle;
+	padding-left: 3px;
+}
+
+.submenu img
+{
+	vertical-align: bottom;
+}
+
+.columnaIzq h1
+{
+	font-size: 20px;
+	color: #745057;
+	font-family: Times New Roman;
+}
+
+p
+{
+	text-align: justify;
+	margin-top: 10px;
+	padding-bottom: 10px;
+}
+
+.paddingRight20
+{
+	padding-right: 20px;
+}
+
+.letraGrande
+{
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.letraGris
+{
+	color: #333333;
+}
+
+.fondoRosado
+{
+	background-color: #FFE1BA;
+	font-family: Times New Roman;
+	padding-left: 5px;
+	color: #745057;
+	font-size: 14px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	padding-bottom: 3px;
+	padding-top: 3px;
+}
+
+.submenu2
+{
+	font-family: Trebuchet MS;
+	font-size: 14px;
+	color: #666452;
+}
+
+.submenu2 a
+{
+	color: #666452;
+}
+
+.submenu2 td
+{
+	padding-top: 7px;
+	padding-bottom: 7px;
+	border-bottom: solid 1px #D9D8D4;
+	vertical-align: middle;
+	padding-left: 3px;
+}
+
+.menuInferior, .menuInferior a
+{
+	color: #A6A38D;
+}
+
+.paddingRight20
+{
+	padding-right: 20px;
+}
+
+.paddingRight10
+{
+	padding-right: 10px;
+}
+
+.breadcrumbs
+{
+	text-align: right;
+	color: #999999;
+	padding-top: 10px;
+	font-family: Times New Roman;
+}
+
+.breadcrumbs a
+{
+	color: #999999;
+}
+
+h1
+{
+	color: #745057;
+	font-family: Times New Roman;
+	font-size: 25px;
+	font-weight: normal;
+}
+
+h2
+{
+	color: #745057;
+	font-family: Times New Roman;
+	font-size: 18px;
+	font-weight: normal;
+}
+
+h3
+{
+	color: #745057;
+	font-family: Times New Roman;
+	font-size: 14px;
+	font-weight: normal;
+	margin: 0px;
+}
+
+.autor
+{
+	color: #745057;
+	font-family: Times New Roman;
+	font-size: 14px;
+}
+
+
+
+
+.submenuInterno
+{
+	color: #A6A38D;
+	border-bottom: 1px solid #DCD3D5;
+	padding-bottom: 5px;
+}
+
+.submenuInterno a, .submenuInterno a:visited, .submenuInterno a:link
+{
+	color: #A6A38D;
+}
+
+.submenuInterno a:hover
+{
+	color: #832800;
+	text-decoration: none;
+}
+
+.linkrojo, .linkrojo a
+{
+	color: #832800;
+	font-family: Times New Roman;
+}
+
+.botonrojo
+{
+	background-color: #832800;
+	color: White;
+	font-family: Times New Roman;
+	padding: 5px;
+	border:0px;
+	font-size:14px;
+}
+
+
+.submenuInterno2
+{
+	color: #A6A38D;
+	border-top: 1px solid #DCD3D5;
+	padding-top: 5px;
+	margin-top: 5px;
+}
+
+.submenuInterno2 a, .submenuIntern2o a:visited, .submenuInterno2 a:link
+{
+	color: #A6A38D;
+}
+
+.submenuInterno2 a:hover
+{
+	color: #832800;
+	text-decoration: none;
+}
+
+.letraGrisClaro
+{
+	color: #A6A38D;
+}
+
+sup
+{
+	color: #745057;
+}
+
+
+.notes
+{
+	font-size: 10px;
+	color: #999999;
+	font-style: italic;
+}
+
+.width358
+{
+	width: 358px;
+}
+
+
+
+.width325
+{
+	width: 325px;
+}
+
+.width155
+{
+	width: 155px;
+}
+
+.width100
+{
+	width: 30px;
+}
+
+.width145
+{
+	width: 145px;
+}
+
+.width162
+{
+	width: 162px;
+}
+
+
+.width62
+{
+	width: 62px;
+	}
+
+.width158
+{
+	width: 158px;
+
+}
+
+
+.aligncenter
+{
+	text-align: center;
+}
+
+
+.headerTabla
+{
+	color: #745057;
+	font-size: 14px;
+}
+
+.width72
+{
+	width: 72px;
+}
+
+
+
+.textoTabla
+{
+	color: #808080;
+	font-size: 12px;
+}
+
+
+.headerTabla2
+{
+	color: #333333;
+	font-size: 15px;
+}
+
+
+.borde td
+{
+	border-width: 1px;
+	border-color: #745057;
+}
+
+.marginBotom4
+{
+	margin-bottom: 4px;
+}
+
+
+.paddingTop5
+{
+	padding-top: 5px;
+}
+
+
+.paddingTop8
+{
+	padding-top: 8px;
+}
+
+
+.textboxContact
+{
+	width:290px;
+}
+
+
+
+.paddingTop12
+{
+	padding-top: 12px;
+}
+
+.paddingTop18
+{
+	padding-top: 18px;
+}
+
+.botonRojo
+{
+	width: 90px;
+	height: 24px;
+	padding-top: 4px;
+	text-align: center;
+	background-color: #832800;
+	font-size: 14px;
+	color: #FFFFFF;
+}
+
+
+.botonRojo2
+{
+	width: 68px;
+	height: 20px;
+	padding-top: 2px;
+	text-align: center;
+	background-color: #832800;
+	font-size: 14px;
+	color: #FFFFFF;
+}
+
+.botonRojo2 a
+{
+	font-size: 14px;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+
+.botonRojo a
+{
+	font-size: 14px;
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+.floatRight
+{
+	float: right;
+	text-align: right;
+}
+
+.paddingRigth7
+{
+	padding-right: 7px;
+}
+
+.letraVino
+{
+	color: #832800;
+	font-size: 14px;
+}
+
+.letraVino a
+{
+	color: #832800;
+	font-size: 14px;
+	text-decoration: none;
+}
+
+.textomorado a
+{
+	color: #745057;
+	font-size: 12px;
+	text-decoration: none;
+}
+
+.texto
+{
+	color: #333333;
+	font-size: 12px;
+}
+
+.regresar a
+{
+	color: #832800;
+	font-size: 13px;
+	text-decoration: none;
+}
+
+.contactenosMorado a
+{
+	color: #745057;
+	font-size: 14px;
+	text-decoration: none;
+}
+
+.fondoMorado
+{
+	background-color: #745057;
+	height: 1px;
+}
+
+.cuadroMorado
+{
+	background-color: #745057;
+	width: 100%;
+	height: 32px;
+	text-align: center;
+	padding-top: 6px;
+}
+
+.cuadroMorado a
+{
+	color: #FFFFFF;
+	font-size: 17px;
+	text-decoration: none;
+	text-align: center;
+}
+
+.size21
+{
+	font-size: 21px;
+}
+
+.links a
+{
+	color: #745057;
+	font-size: 12px;
+	text-decoration: none;
+}
+
+.trebuchet
+{
+	font-family:Trebuchet MS;
+}
+
+.letra15
+{
+	font-size:15px;
+}
+
+hr
+{
+	color:#745057;
+}

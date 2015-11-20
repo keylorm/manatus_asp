@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Orbecatalog</title>
+    <link rel="stylesheet" type="text/css" href="css/basics.css" />
+</head>
+<body>
+    <div align="center">
+        <div id="main" style="text-align: center">
+            <br />
+            <br />
+            <br />
+            <img src="images/logo.png" border="0" alt="Orbecatalog" /><br />
+            <br />
+            <br />
+            <br />
+            <h2>
+                Error inesperado en el sistema.</h2>
+            <br />
+            <br />
+            Favor contactar a <a href="mailto:soporte@orbelink.com">soporte@orbelink.com</a>
+            para reportarlo.<br />
+            <br />
+            <br />
+            <br />
+            By <a href="http://www.orbelink.com/">Orbelink.com</a>
+            <br />
+        </div>
+        <div id="footer">
+            &copy; Orbelink 2007. Version 6.1
+        </div>
+    </div>
+</body>
+</html>

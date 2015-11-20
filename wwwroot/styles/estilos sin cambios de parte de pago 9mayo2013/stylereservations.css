@@ -1,0 +1,473 @@
+﻿
+#reservaMain a:link
+{
+    text-decoration: none;
+    font-weight: bolder;
+    color: #550A18;
+}
+#reservaMain a:visited
+{
+    text-decoration: none;
+    font-weight: bolder;
+    color: #550A18;
+}
+#reservaMain a:hover
+{
+    text-decoration: none;
+    font-weight: bolder;
+    color: #8D3B4A;
+}
+#reservaMain a:active
+{
+    text-decoration: none;
+    font-weight: bolder;
+    color: #550A18;
+}
+/*
+h1
+{
+    font: 1.2em Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #550A18;
+}
+h2
+{
+    font: 1.1em Verdana, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #8D3B4A;
+}
+h3
+{
+    font: 1.1em Georgia, "Times New Roman" , Times, serif;
+    font-weight: bold;
+    color: #000;
+}
+h3 span
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    color: #555555;
+}
+ul
+{
+    list-style-type: circle;
+}
+
+
+#tabla2 td
+{
+    background-color: #FFFFFF;
+    border: none;
+}
+#tabla2 tr
+{
+    background-color: #FFFFFF;
+    border: none;
+}
+
+.texto
+{
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    padding-bottom: 10px;
+}
+#tbl_about tr
+{
+    background-color: #FFFFFF;
+    border: #FFFFFF;
+}
+#tbl_about td
+{
+    padding: 3px;
+    border: #FFFFFF;
+}
+#tbl_about th
+{
+    padding-left: 5px;
+}
+
+
+#tablareservaciones td
+{
+    background-color: #FFFFFF;
+    border: none;
+}
+#tablareservaciones tr
+{
+    background-color: #FFFFFF;
+    border: none;
+}
+#tablareservaciones tr
+{
+    background-color: #FFFFFF;
+    border: #FFFFFF;
+}
+#tablareservaciones td
+{
+    padding: 3px;
+    border: #FFFFFF;
+}
+#tablareservaciones th
+{
+    padding-left: 5px;
+}
+
+#DIVdocument
+{
+    position: absolute;
+    width: 782px;
+    left: 50%;
+    margin-left: -391px;
+}
+#DIVlanguage
+{
+    background-image: url(../images/language.gif);
+    width: 782px;
+    height: 31px;
+    margin: 0;
+    padding: 0;
+}
+#ULlanguage
+{
+    position: absolute;
+    left: 610px;
+    margin: 0;
+    padding: 0;
+}
+#ULlanguage li
+{
+    display: inline;
+    list-style: none;
+}
+#ULlanguage a
+{
+    height: 21px;
+    width: 50px;
+    padding-left: 25px;
+    float: left;
+    margin: 3px 5px 0 5px;
+}
+#LIspanish a
+{
+    background: url(../images/spanish.gif) no-repeat left;
+    padding-top: 5px;
+}
+#LIenglish a
+{
+    background: url(../images/english.gif) no-repeat left;
+    padding-top: 5px;
+}
+#DIVheader
+{
+    background-image: url(../images/header.gif);
+    width: 782px;
+    height: 100px;
+    margin: 0;
+    padding: 0;
+}
+#ULmenuTop
+{
+    position: absolute;
+    left: 370px;
+    top: 95px;
+    padding: 0 0 20px 10px;
+}
+#ULmenuTop li
+{
+    display: inline;
+    list-style: none;
+}
+#ULmenuTop a
+{
+    float: left;
+    text-decoration: none;
+    padding: 0 0px 6px 0px;
+}
+#DIVmain
+{
+    width: 782px;
+    background-image: url(../images/main.gif);
+}
+#DIVleftCol
+{
+    float: left;
+    width: 128px;
+}
+#ULmenuLeft
+{
+    margin-left: -16px;
+}
+#ULmenuLeft li
+{
+    list-style: none;
+    padding-top: 30px;
+}
+#DIVcontent
+{
+    float: left;
+    width: 600px;
+    padding: 15px;
+    text-align: justify;
+}
+#DIVfooter
+{
+    margin: 0;
+    padding: 0;
+    background-image: url(../images/footer.gif);
+    width: 782px;
+    height: 24px;
+}
+.clearer
+{
+    clear: both;
+}
+.footer
+{
+    font-size: 1em;
+    color: #FFF;
+    text-align: center;
+    padding-top: 5px;
+}
+.centered
+{
+    text-align: center;
+}
+.redAlert
+{
+    background-color: #550A18;
+    padding: 5px;
+    color: #FFF;
+}
+.reservations
+{
+    background-color: #F1EBDA;
+    padding: 5px;
+}
+
+#DIVcontent2
+{
+    float: left;
+    width: 600px;
+    padding: 5px;
+    text-align: justify;
+}
+#DIVfooter2
+{
+    margin: 0;
+    padding: 0;
+    background-image: url(../images/footer.gif);
+    width: 782px;
+    height: 24px;
+}
+
+
+.modalBackground
+{
+    background-color: gray;
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    text-decoration: none;
+    text-align: left;
+}
+.panel
+{
+    background-color: White;
+    text-align: left;
+    color: Black;
+    text-decoration: none;
+}
+
+.modalPopup
+{
+    background-color: #ffffdd;
+    border-width: 3px;
+    border-style: solid;
+    border-color: Gray;
+    padding: 3px;
+    width: 250px;
+    color: #000000;
+    text-align: center;
+}*/
+
+.textbox
+{
+    width: 98%;
+    border: solid 1px #999999;
+}
+
+.textbox2
+{
+    width: 83%;
+    border: solid 1px #999999;
+}
+
+.combos
+{
+    width: 100%;
+    border: solid 1px #999999;
+}
+
+.combos2
+{
+    width: 100%;
+    border: solid 1px #999999;
+}
+
+.derecha
+{
+    text-align: right;
+}
+
+.tituloForm
+{
+    text-align: left; /*font-weight: bold;*/
+}
+
+.tablaReserva td
+{
+    padding-top: 5px;
+}
+
+.marginleft15
+{
+    margin-left: 15px;
+}
+
+/*
+.tableShopping span
+{
+    color: #550A18;
+}
+*/
+.tableShopping td
+{
+    text-align: center;
+}
+
+.tituloCarrito
+{
+    color: #550A18;
+    font-family: Times New Roman;
+    font-size: 25px;
+}
+
+.bordeAbajoShopping
+{
+    border-bottom: solid 1px #745057;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.marginRight15
+{
+    margin-right: 60px;
+}
+
+/*Nuevo diseño Reservations*/
+.textBoxNuevo
+{
+    width: 310px;
+    height: 22px;
+    font-size: 11px;
+    font-family: Trebuchet MS;
+    color: #A3A297;
+    border: solid 1px #E6E7E8;
+}
+
+.terminosNuevo a
+{
+    color: #666452;
+    font-size: 11px;
+    font-family: Trebuchet MS;
+    font-style: italic;
+}
+
+.fechasNuevas
+{
+    width: 80px;
+    height: 22px;
+    font-size: 11px;
+    font-family: Trebuchet MS;
+    color: #A3A297;
+    border: solid 1px #E6E7E8;
+}
+
+.dropdownsReserva
+{
+    font-size: 11px;
+    font-family: Trebuchet MS;
+    color: #A3A297;
+    border: solid 1px #E6E7E8;
+}
+
+.headerReservation
+{
+    position: absolute;
+    margin-top: -10px;
+    background-image: url(../images/header.png);
+    background-repeat: no-repeat;
+    width: 469px;
+    height: 82px;
+    color: White;
+    font-size: 21px;
+    font-weight: bold;
+    padding-top: 20px;
+}
+
+.fondoGrisReserva
+{
+    width: 428px;
+    color: #666452;
+    font-family: Trebuchet MS;
+    font-size: 11px;
+    background-color: #F8F8F8;
+}
+
+.paddingReserva
+{
+    padding-top: 80px;
+    padding-left: 15px;
+}
+
+.paddingReserva2
+{
+    padding-top: 80px;
+    padding-left: 15px;
+}
+
+.btn_reserva
+{
+    padding-right: 40px;
+    padding-top: 15px;
+}
+
+.h2Reserva
+{
+ color:#842702;
+ font-size:20px;
+ margin:0;
+}
+
+.h1ReservaNew
+{
+ color:#842702;
+ font-size:25px;
+}
+
+.liveExperience
+{
+ color:#842702;
+ font-size:13px;
+ font-style:italic;
+}
+
+.bordetd
+{
+border-right: solid 1px #DBDAD1; padding-right: 6px;
+}
+
+/*Fin Nuevo diseño Reservations*/
+

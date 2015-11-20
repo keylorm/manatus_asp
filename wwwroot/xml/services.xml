@@ -1,0 +1,11 @@
+﻿<?xml version="1.0"?>
+<itemlist>
+
+  <item id="1" archivoURL="Transicion_imagenes/Ammenities_Services/IMG_9353.jpg" nombre="Lorem Lipsum" />
+  <item id="1" archivoURL="Transicion_imagenes/Ammenities_Services/Spa Services.jpg" nombre="Lorem Lipsum" />
+  <item id="1" archivoURL="Transicion_imagenes/Ammenities_Services/Internet Room.jpg" nombre="Lorem Lipsum" />
+  <!--<item id="1" archivoURL="Transicion_imagenes/Ammenities_Services/internet.jpg" nombre="Lorem Lipsum" />-->
+  <item id="1" archivoURL="Transicion_imagenes/Ammenities_Services/Sala de Ejercicios.jpg" nombre="Lorem Lipsum" />
+  <item id="1" archivoURL="Transicion_imagenes/Ammenities_Services/spa.jpg" nombre="Lorem Lipsum" />
+  
+</itemlist>

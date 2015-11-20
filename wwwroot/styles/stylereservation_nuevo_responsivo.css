@@ -1,0 +1,579 @@
+﻿
+@media only screen and (max-width : 690px) {
+    .container-980
+{
+    width: 310px;
+    margin: 0 auto;
+    }
+
+
+     
+ /*#main-content, #header, #footer
+ {
+     width: 310px;
+     padding: 0 5px;
+     margin: 0 auto;
+     }
+ 
+#header .container-980
+{
+    width: 310px;
+    padding: 0 5px;
+    }*/
+    
+ul.mi-menu
+{
+    display: none;
+    }
+
+
+#tinynav1,
+#tinynav2,
+#tinynav3
+{
+    display: block;
+    }
+    
+    
+
+.menu-principal select,
+#footer .menu-footer-responsivo select {
+    background-color: #EAD7CA;
+    background-image: url("../images/2014/flecha-menu-responsivo-interno.jpg");
+    background-position: 82% center;
+    background-repeat: no-repeat;
+    color: #813400;
+}
+
+
+
+.menu-principal select,
+#footer .menu-footer-responsivo select{
+    border: medium none;
+    border-radius: 0;
+    font-family: "Raleway",sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    height: 38px;
+    line-height: 40px;
+    padding-left: 10px;
+    padding-top: 8px;
+    text-transform: uppercase;
+    width: 120%;
+}
+
+.container-2-3
+{
+    width: 100%;
+    margin-right: 0;
+    }
+
+#header .menu-principal-box
+{
+
+    padding-top: 105px;
+    padding-bottom: 30px;
+    }
+    
+.menu-top-box
+{
+    display: none;
+    }
+    
+    
+
+#header .menu-principal-box .menu-principal,
+#footer .menu-footer-responsivo{
+    border: 1px solid #F5ECE5;
+    height: 38px;
+    overflow: hidden;
+    width: 310px;
+    margin: 0 auto;
+}
+
+#header #logo-box
+{
+    left: 0;
+    margin: 0 auto -65px;
+    position: relative;
+    top: 0;
+    }
+    
+    
+#header #page-head
+    {
+        display: none;
+        }
+        
+.link-chat
+{
+    width: 100%;
+    }
+    
+.btn_reserva
+{
+    float: none;
+    margin: 0 auto;
+    text-align: center;
+    width: auto;
+    display: inherit;
+    }
+    
+#btn_reservar
+{
+    margin: 0 auto;
+    }
+    
+#txt_observaciones
+{
+    width: 97%;
+    min-width: 97%;
+    max-width: 97%;
+    }
+    
+.sidebar {
+    clear: both;
+    float: none;
+    margin: 30px auto;
+    width: 100%;
+}
+
+input#txtDateEntrada, input#txtDateSalida
+{
+    width: 216px;
+    float: left;
+    }
+    
+.reservation-form #UpdatePanel1 img, .reservation-form #UpdatePanel2 img
+{
+    float: none;
+    }
+    
+.reservation-form #UpdatePanel1, .reservation-form #UpdatePanel2
+{
+    width: 100%;
+    }
+    
+.reservation-form #UpdatePanel1
+{
+    margin-right: 0;
+    margin-bottom: 0;    }
+    
+.reservation-form #updtpanel_reservacion .headerReservation h2
+{
+    background-position: right bottom;
+    }
+    
+.habitaciones-wrapper
+ {
+     width: 100%;
+     margin-bottom: 30px;
+     }
+     
+.box-select-habitaciones
+{
+    float: right;
+    }
+    
+#footer .column
+{
+    display: none;
+    }
+    
+#footer .menu-top li
+{
+    color: #9B8579;
+    display: inline;
+    font-family: "Open Sans",sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0 1px;
+    }
+    
+
+#footer .menu-top  li a{
+     color: #9B8579;
+    font-family: "Open Sans",sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+#footer .menu-top ul
+{
+     color: #9B8579;
+    font-family: "Open Sans",sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    margin: 0;
+    text-align: center;
+    padding: 0;
+    }
+    
+.footer-info-box
+{
+    margin-top: 30px;
+    }
+    
+#footer .contact-info p
+{
+    color: #813400;
+    font-family: "Open Sans",sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: center;
+     margin: 5px;
+    }
+    
+#footer .contact-info p a
+{
+    color: #813400;
+    font-family: "Open Sans",sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    text-decoration: none;
+    }
+    
+.footer-info-box
+{
+    display: block;
+    }
+    
+.footer-info-box .menu-idioma ul{
+    display: block;
+    margin: 0 auto 10px;
+    padding: 0;
+    text-align: center;
+    width: 96%;
+}
+
+.footer-info-box .menu-idioma ul li
+{
+    font-family: "Open Sans";
+    font-size: 13px;
+    font-weight: 400;
+    display: inline-block;
+    list-style: none outside none;
+    margin: 0;
+     padding: 0 5px;
+    
+    }
+    
+
+.footer-info-box .menu-idioma ul li a {
+    color: #594A42;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.footer-info-box .menu-idioma ul li a.active
+{
+    font-weight: 600;
+    }
+    
+#footer-inner
+{
+    background-color: #fff;
+    }
+    
+#footer
+{
+    background-color: #fff;
+    margin: 0 auto 20px;
+    width: 96%;
+    border-top: none;
+    border-bottom: 10px solid #F2E3DA;
+    }
+    
+    
+/*#footer .container-980
+{
+    width: 100%;
+    }*/
+    
+#header .container-980
+{
+    width: 96%;
+    }
+body
+{
+    background-color: #FFFCF1;
+    }
+    
+#header
+{
+    border-bottom: none;
+    }
+
+.sidebar ul.menu-sidebar
+{
+    display: block;
+    padding: 0;
+    }
+ 
+ .sidebar ul.menu-sidebar li
+ {
+     background-image: url("../img/bg-titulo-sidebar-responsivo-flecha.png");
+    background-position: 96% center;
+    background-repeat: no-repeat;
+    color: #FFFFFF;
+    font-family: "Raleway",sans-serif;
+    font-size: 22px;
+    font-weight: 400;
+    list-style: none outside none;
+    margin: 10px 0;
+    padding: 6px 20px;
+    text-transform: uppercase;
+     }
+     
+     
+.sidebar ul.menu-sidebar li a {
+    color: #FFFFFF;
+    display: block;
+    text-decoration: none;
+}
+
+.sidebar ul.menu-sidebar li.mid-960, .sidebar ul.menu-sidebar li.mid-959 {
+    background-color: #813400;
+    border-top: 5px solid #F5ECE5;
+    line-height: 42px;
+}
+
+
+.sidebar ul.menu-sidebar li.mid-962, .sidebar ul.menu-sidebar li.mid-961 {
+    background-color: #F7C795;
+    border-top: 5px solid #F7E8D5;
+    line-height: 20px;
+}
+
+
+
+.sidebar ul.menu-sidebar li.mid-964, .sidebar ul.menu-sidebar li.mid-963 {
+    background-color: #7E9B67;
+    border-top: 5px solid #B2C3A4;
+    line-height: 42px;
+}
+
+input[type="text"]
+{
+    width: 92%;
+    height: 30px;
+    }
+
+
+.paddingReserva
+{
+    width: 100%;
+    }
+    
+    
+.box-ubicacion
+{
+    width: 100%;
+    }
+    
+    
+#txt_observaciones
+{
+    width: 93%
+    }
+
+.reservation-form #updtpanel_reservacion
+{
+    width: 290px;
+    margin: 0 auto 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    }
+
+
+#main-content
+{
+    background: #fff;
+    width: 96%;
+    margin: 0 auto;
+    padding: 5px 0 25px;
+    }
+    
+td.celda-titulo-tabla-shoppingcart 
+{
+    border: 1px solid #FFFFFF;
+    padding: 5px 7px;
+    background-color: #FAF6F2;
+    width: 40% !important;
+    }
+    
+td.celda-titulo-tabla-shoppingcart h2
+{
+    margin: 0;
+    }
+    
+td.celda-titulo-tabla-shoppingcart h2 span
+{
+    color: #594A42;
+    font-family: "Raleway",Sans-Serif;
+    font-size: 13px;
+    font-weight: 300;
+    text-transform: uppercase;
+    }
+    
+td.celda-valor-tabla-shoppingcart
+{
+    border: 1px solid #FAF6F2;
+    color: #594A42;
+    font-family: "Open Sans",Sans-Serif;
+    font-size: 12px;
+    font-weight: 300;
+    padding: 5px 10px !important;
+    width: 60% !important;
+    }
+    
+.tableShopping
+{
+    display: none;
+    }
+
+#dtl_shoppingCart
+{
+    display: none;
+    }
+    
+    
+#prefooter .botones-prefooter
+{
+    margin: 30px 0;
+    float: none;
+    }
+    
+    
+#prefooter
+{
+    background: none repeat scroll 0 0 #FFFFFF;
+    margin: 0 auto;
+    width: 96%;
+    height: 170px;
+    }
+    
+
+    
+.tableShopping2.desktop
+{
+    display: none;
+    }
+    
+.tableShopping2.movil
+{
+    display: block;
+    }
+    
+#dtl_shoppingCart_responsivo    
+{
+    display: block;
+    }
+    
+
+#btn_cancelar_arriba, #btn_cancelar, #btn_pagar, #btn_pagar_arriba
+{
+    margin-bottom: 10px;
+    float: none !important;
+    }
+    
+    
+.botones-checkout-arriba
+{
+    height: 100px;
+    margin-top: 30px;
+    text-align: center;
+    }
+    
+    
+.botones-pago-cancel-abajo
+{
+    height: 100px;
+    float: none;
+    margin-top: 30px;
+    text-align: center;
+    }
+    
+    
+#prefooter .botones-prefooter .btn-contact-us
+{
+    margin-bottom: 10px;
+    float: none;
+    margin-right: 0;
+    }
+    
+    
+#prefooter .botones-prefooter .btn-chat
+{
+    float: none;
+    margin-right: 0;
+    }
+    
+.checkout .logos-bancos
+{
+    text-align: center;
+    }
+
+#pnl_contenido
+{
+    width: 100% !important;
+    }
+#pnl_contenido table
+{
+    width: 100% !important;
+    }
+
+
+.columna1
+{
+    width: 40% !important;
+    }
+    
+.columna2
+{
+    width: 60% !important;
+    }
+    
+.bloque-resumen-reservacion
+{
+    float: none;
+    width: 90%;
+    padding: 10px 5%;
+    }
+    
+.tabla-totales {
+    clear: both;
+    float: none;
+    margin: 30px 0;
+    width: 100%;
+}
+
+
+.msg-imprimir-cancelation-policy {
+    clear: both;
+    float: none;
+    margin-bottom: 70px;
+    width: 100%;
+}
+
+.bloque-resumen-reservacion h3
+{
+    background-position: right bottom;
+    }
+    
+.msg-imprimir-cancelation-policy .boton-imprimir
+{
+    display: none;
+    }
+
+.logos-trip-advisor {
+    display: none;
+}
+
+}

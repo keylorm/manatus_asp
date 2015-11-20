@@ -1,0 +1,488 @@
+﻿<%@ Page Language="VB" MasterPageFile="~/Orbecatalog/OrbeCatalog.master" AutoEventWireup="false"
+    CodeFile="Reservacion.aspx.vb" Inherits="Orbecatalog_Reservacion_ReservacionUbicacion"
+    Title="Reservación" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="cph_Titulo" runat="Server">
+    <asp:Literal runat="server" Text="<%$ Resources:Reservaciones_Resources, Reservacion %>"></asp:Literal>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="cph_Acciones" runat="Server">
+    <asp:UpdatePanel ID="upd_BotonesAcciones" runat="server" UpdateMode="Conditional">
+        <ContentTemplate>
+            <orbelink:ActionButton ID="btn_nueva" ImageURL="~/Orbecatalog/iconos/agregar_small.png"
+                runat="server" Text="<%$ Resources:Orbecatalog_Resources, Nuevo %>">
+            </orbelink:ActionButton>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+</asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="cph_Contenido" runat="Server">
+    <asp:UpdatePanel ID="upd_PantallaContenido" runat="server" UpdateMode="Conditional">
+        <ContentTemplate>
+            <ajaxToolkit:TabContainer ID="tabs_Reservacion" runat="server">
+                <ajaxToolkit:TabPanel ID="tab_Buscar" runat="server" HeaderText="<%$ Resources:Reservaciones_Resources, Reservacion_Buscar %>">
+                    <ContentTemplate>
+                        <asp:UpdatePanel ID="upd_Busqueda" runat="server" UpdateMode="Conditional">
+                            <ContentTemplate>
+                                <table class="Container" cellspacing="0" cellpadding="0" border="0">
+                                    <tr>
+                                        <td style="width: 25%">
+                                            <asp:Literal runat="server" Text="<%$ Resources:Reservaciones_Resources, Reservacion_Cliente %>"></asp:Literal>
+                                        </td>
+                                        <td style="width: 75%">
+                                            <asp:DropDownList ID="ddl_clientes" runat="server">
+                                            </asp:DropDownList>
+                                               <asp:HyperLink ID="Hyl_AgregarEntidad" ToolTip="Ingresar nueva entidad"
+                                                ImageUrl="../iconos/agregar_small.png" runat="server"></asp:HyperLink>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <asp:Literal runat="server" Text="<%$ Resources:Reservaciones_Resources, Reservacion_Ubicacion %>"></asp:Literal>
+                                        </td>
+                                        <td>
+                                            <asp:DropDownList ID="ddl_ubicaciones" runat="server">
+                                            </asp:DropDownList>
+                                                    <asp:HyperLink ID="Hyl_AgregarUbicacion" ToolTip="Ingresar nueva ubicación"
+                                                ImageUrl="../iconos/agregar_small.png" runat="server"></asp:HyperLink>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <asp:Literal runat="server" Text="<%$ Resources:Reservaciones_Resources, Fecha_Inicio %>"></asp:Literal>
+                                        </td>
+                                        <td>
+                                            <asp:TextBox Width="130px" runat="server" ReadOnly="true" ID="bdp_FechaInicio" />
+                                            <obout:Calendar ID="CalendarInicio" runat="server" DatePickerMode="true" TextBoxId="bdp_FechaInicio"
+                                                DatePickerImagePath="../iconos/calendar.gif" />
+                                            <asp:DropDownList ID="ddl_horaInicio" runat="server" Width="45px">
+                                            </asp:DropDownList>
+                                            <asp:Literal runat="server" Text="<%$ Resources:Reservaciones_Resources, Hora %>"></asp:Literal>
+                                            <asp:DropDownList ID="ddl_minutoInicio" runat="server" Width="45px">
+                                                <asp:ListItem Value="0">00</asp:ListItem>
+                                                <asp:ListItem Value="5">05</asp:ListItem>
+                                                <asp:ListItem>10</asp:ListItem>
+                                                <asp:ListItem>15</asp:ListItem>
+                                                <asp:ListItem>20</asp:ListItem>
+                                                <asp:ListItem>25</asp:ListItem>
+                                                <asp:ListItem>30</asp:ListItem>
+                                                <asp:ListItem>35</asp:ListItem>
+                                                <asp:ListItem>40</asp:ListItem>
+                                                <asp:ListItem>45</asp:ListItem>
+                                                <asp:ListItem>50</asp:ListItem>
+                                                <asp:ListItem>55</asp:ListItem>
+                                            </asp:DropDownList>
+                                            <asp:Literal runat="server" Text="<%$ Resources:Reservaciones_Resources, Minuto %>"></asp:Literal>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <asp:Literal runat="server" Text="<%$ Resources:Reservaciones_Resources, Fecha_Fin %>"></asp:Literal>
+                                        </td>
+                                        <td>
+                                            <asp:TextBox runat="server" Width="130px" ReadOnly="true" ID="bdp_FechaFinal" />
+                                            <obout:Calendar ID="CalendarFinal" runat="server" DatePickerMode="true" TextBoxId="bdp_FechaFinal"
+                                                DatePickerImagePath="../iconos/calendar.gif" BeginDateCalendarId="CalendarInicio"/>
+                                            <asp:DropDownList ID="ddl_horaFinal" runat="server" Width="45px">
+                                            </asp:DropDownList>
+                                            <asp:Literal runat="server" Text="<%$ Resources:Reservaciones_Resources, Hora %>"></asp:Literal>
+                                            <asp:DropDownList ID="ddl_minutoFinal" runat="server" Width="45px">
+                                                <asp:ListItem Value="0">00</asp:ListItem>
+                                                <asp:ListItem Value="5">05</asp:ListItem>
+                                                <asp:ListItem>10</asp:ListItem>
+                                                <asp:ListItem>15</asp:ListItem>
+                                                <asp:ListItem>20</asp:ListItem>
+                                                <asp:ListItem>25</asp:ListItem>
+                                                <asp:ListItem>30</asp:ListItem>
+                                                <asp:ListItem>35</asp:ListItem>
+                                                <asp:ListItem>40</asp:ListItem>
+                                                <asp:ListItem>45</asp:ListItem>
+                                                <asp:ListItem>50</asp:ListItem>
+                                                <asp:ListItem>55</asp:ListItem>
+                                            </asp:DropDownList>
+                                            <asp:Literal runat="server" Text="<%$ Resources:Reservaciones_Resources, Minuto %>"></asp:Literal>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <asp:Literal runat="server" Text="<%$ Resources:Reservaciones_Resources, esReservacionBloqueada %>"></asp:Literal>
+                                        </td>
+                                        <td>
+                                            <asp:CheckBox ID="Chb_bloqueado" runat="server" />
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br />
+                                <div id="div_productos" runat="server">
+                                    <table class="Container" cellspacing="0" cellpadding="0" border="0">
+                                        <tr>
+                                            <td style="width: 25%">
+                                                <asp:Literal runat="server" Text="<%$ Resources:Productos_Resources, Producto %>"></asp:Literal>
+                                            </td>
+                                            <td style="width: 75%">
+                                                <asp:DropDownList ID="ddl_productos" runat="server" AutoPostBack="True">
+                                                </asp:DropDownList>
+                                                   <asp:HyperLink ID="Hyl_AgregarProducto" ToolTip="Ingresar nuevo producto" ImageUrl="../iconos/agregar_small.png"
+                                                runat="server"></asp:HyperLink>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <asp:Literal runat="server" Text="<%$ Resources:Productos_Resources, Producto_Descripcion %>"></asp:Literal>
+                                            </td>
+                                            <td>
+                                                <asp:Label ID="lbl_descripcion" runat="server"></asp:Label>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <table class="Container" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                    <tr>
+                                        <td style="width: 25%">
+                                        </td>
+                                        <td>
+                                            <div class="botonesAcciones" style="padding-left: 100px">
+                                                <br />
+                                                <orbelink:ActionButton ID="btn_buscar" Text="<%$ Resources:Reservaciones_Resources, Buscar %>" runat="server" />
+                                                <orbelink:ActionButton ID="btn_cancelarB" Text="<%$ Resources:Orbecatalog_Resources, Cancelar %>" runat="server" />
+                                                <asp:HyperLink ID="hyl_agregarItem" Visible="False" runat="server" Text="<%$ Resources:Reservaciones_Resources, Agregar_Producto %>"></asp:HyperLink>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div id="div_ResultadosBusqueda" visible="False" runat="server" style="padding-top: 20px">
+                                    <h1>
+                                        <asp:Literal runat="server" Text="<%$ Resources:Reservaciones_Resources, Reservacion_ResultadosExactos %>"></asp:Literal>
+                                    </h1>
+                                    <br />
+                                    <asp:Literal ID="ltl_NoResultadosDisponibles" runat="server" Visible="False" Text="<%$ Resources:Reservaciones_Resources, Reservacion_NoResultados %>"></asp:Literal>
+                                    <asp:GridView ID="gv_ResultadosDisponibles" runat="server" AutoGenerateColumns="False"
+                                        Width="100%" GridLines="None">
+                                        <AlternatingRowStyle CssClass="tablaResultados_Alternate" />
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="<%$ Resources:Productos_Resources, Producto %>">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lbl_nombre" runat="server" Text="Nombre"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="<%$ Resources:Productos_Resources, Item_Descripcion %>">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lbl_descripcion" runat="server" Text="descripcion"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="<%$ Resources:Reservaciones_Resources, Reservacion_Adultos %>">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="tbx_Adultos" runat="server"></asp:TextBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="<%$ Resources:Reservaciones_Resources, Reservacion_Ninos %>">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="tbx_Ninos" runat="server"></asp:TextBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="<%$ Resources:Reservaciones_Resources, Reservacion_Accion %>">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chk_reservar" runat="server" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
+                                    <div>
+                                        <h3>
+                                            Comentarios de la reservacion
+                                        </h3>
+                                        <asp:TextBox ID="txb_comentario_Reservar" TextMode="MultiLine" Rows="3" Width="95%"
+                                            runat="server"></asp:TextBox>
+                                    </div>
+                                    <div class="botonesAcciones" style="padding-left: 505px">
+                                        <br />
+                                        <orbelink:ActionButton ID="btn_agregar" Text="<%$ Resources:Reservaciones_Resources, Reservacion_Accion %>"
+                                            runat="server" />
+                                    </div>
+                                    <br />
+                                    <h1>
+                                        <asp:Literal runat="server" Text="<%$ Resources:Reservaciones_Resources, Reservacion_ResultadosUbicacion %>"></asp:Literal>
+                                    </h1>
+                                    <asp:Literal ID="ltl_NoResultadosEnUbicacion" runat="server" Visible="False" Text="<%$ Resources:Reservaciones_Resources, Reservacion_NoResultados %>"></asp:Literal>
+                                    <asp:GridView ID="gv_ResultadoEnUbicacion" runat="server" AutoGenerateColumns="False"
+                                        Width="100%" GridLines="None">
+                                        <AlternatingRowStyle CssClass="tablaResultados_Alternate" />
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="<%$ Resources:Productos_Resources, Producto %>">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lbl_nombre" runat="server" Text="Nombre"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="<%$ Resources:Productos_Resources, Item_Descripcion %>">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lbl_descripcion" runat="server" Text="descripcion"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <%--<asp:TemplateField HeaderText="Precio">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lbl_precio" runat="server" Text="Precio"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>--%>
+                                        </Columns>
+                                    </asp:GridView>
+                                    <br />
+                                    <h1>
+                                        <asp:Literal runat="server" Text="<%$ Resources:Reservaciones_Resources, Reservacion_ResultadosFechas %>"></asp:Literal>
+                                    </h1>
+                                    <asp:Literal ID="lbl_NoResultadoEnFechas" runat="server" Visible="False" Text="<%$ Resources:Reservaciones_Resources, Reservacion_NoResultados %>"></asp:Literal>
+                                    <asp:GridView ID="gv_ResultadoEnFechas" runat="server" AutoGenerateColumns="False"
+                                        Width="100%" GridLines="None">
+                                        <AlternatingRowStyle CssClass="tablaResultados_Alternate" />
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="<%$ Resources:Productos_Resources, Producto %>">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lbl_nombre" runat="server" Text="Nombre"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="<%$ Resources:Productos_Resources, Item_Descripcion %>">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lbl_descripcion" runat="server" Text="descripcion"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <%--<asp:TemplateField HeaderText="Precio">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lbl_precio" runat="server" Text="Precio"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>--%>
+                                        </Columns>
+                                    </asp:GridView>
+                                    <br />
+                                </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </ContentTemplate>
+                </ajaxToolkit:TabPanel>
+                <ajaxToolkit:TabPanel ID="tab_Detalle" runat="server" HeaderText="Detalle">
+                    <ContentTemplate>
+                        <asp:UpdatePanel ID="upd_DetalleReservacion" runat="server" UpdateMode="Conditional">
+                            <ContentTemplate>
+                                <h1>
+                                    <asp:Literal runat="server" Text="<%$ Resources:Reservaciones_Resources, Reservacion_Detalle %>"></asp:Literal></h1>
+                                <div class="Container fieldset">
+                                    <div>
+                                        <label>
+                                            <asp:Literal runat="server" Text="<%$ Resources:Reservaciones_Resources, Reservacion_Cliente %>"></asp:Literal>
+                                        </label>
+                                        <asp:Label ID="lbl_Cliente" runat="server"></asp:Label>
+                                    </div>
+                                    <div>
+                                        <label>
+                                            <asp:Literal runat="server" Text="<%$ Resources:Reservaciones_Resources, Reservacion_Ubicacion %>"></asp:Literal>
+                                        </label>
+                                        <asp:Label ID="lbl_Ubicacion" runat="server"></asp:Label>
+                                    </div>
+                                    <div>
+                                        <label>
+                                            <asp:Literal runat="server" Text="<%$ Resources:Reservaciones_Resources, Fecha_Creado %>"></asp:Literal>
+                                        </label>
+                                        <asp:Label ID="lbl_FechaCreado" runat="server"></asp:Label>
+                                    </div>
+                                    <div>
+                                        <label>
+                                            <asp:Literal runat="server" Text="<%$ Resources:Reservaciones_Resources, Fecha_Inicio_Programado %>"></asp:Literal>
+                                        </label>
+                                        <asp:TextBox Style="border: none;" ReadOnly="true" ID="lbl_FechaInicioProgramado"
+                                            runat="server" Width="130px"></asp:TextBox>
+                                        <ajaxToolkit:CalendarExtender Format="MM/dd/yyyy hh:mm tt" Enabled="false" TargetControlID="lbl_FechaInicioProgramado"
+                                            ID="CalendarExtender2" runat="server">
+                                        </ajaxToolkit:CalendarExtender>
+                                    </div>
+                                    <div>
+                                        <label>
+                                            <asp:Literal runat="server" Text="<%$ Resources:Reservaciones_Resources, Fecha_Final_Programado %>"></asp:Literal>
+                                        </label>
+                                        <asp:TextBox Style="border: none;" ReadOnly="true" ID="lbl_FechaFinalProgramado"
+                                            runat="server" Width="130px"></asp:TextBox>
+                                        <ajaxToolkit:CalendarExtender Format="MM/dd/yyyy hh:mm tt" Enabled="false" TargetControlID="lbl_FechaFinalProgramado"
+                                            ID="CalendarExtender1" runat="server">
+                                        </ajaxToolkit:CalendarExtender>
+                                    </div>
+                                    <div>
+                                        <label>
+                                            <asp:Literal runat="server" Text="<%$ Resources:Reservaciones_Resources, Fecha_Inicio %>"></asp:Literal>
+                                        </label>
+                                        <asp:Label ID="lbl_FechaInicio" runat="server"></asp:Label>
+                                    </div>
+                                    <div>
+                                        <label>
+                                            <asp:Literal runat="server" Text="<%$ Resources:Reservaciones_Resources, Fecha_Fin %>"></asp:Literal>
+                                        </label>
+                                        <asp:Label ID="lbl_FechaFinal" runat="server"></asp:Label>
+                                    </div>
+                                    <div>
+                                        <label>
+                                            Comentarios de la reservacion
+                                        </label>
+                                        <asp:TextBox ID="txb_comenReser" TextMode="MultiLine" Rows="2" runat="server"></asp:TextBox>
+                                    </div>
+                                    <div id="div_EstadoActual" runat="server">
+                                        <label>
+                                            <asp:Literal runat="server" Text="<%$ Resources:Reservaciones_Resources, Estado %>"></asp:Literal>
+                                        </label>
+                                        <asp:DropDownList ID="ddl_TipoEstado" AutoPostBack="true" runat="server">
+                                        </asp:DropDownList>
+                                        <br />
+                                        <br />
+                                        <asp:HyperLink ID="hyl_agregarItemC" Visible="False" runat="server">Agregar Producto</asp:HyperLink>
+                                    </div>
+                                    <br />
+                                    <h2>
+                                        <asp:Literal runat="server" Text="<%$ Resources:Reservaciones_Resources, Items_Reservados %>"></asp:Literal>
+                                    </h2>
+                                    <asp:GridView ID="gv_itemModificar" runat="server" AutoGenerateColumns="false" Width="100%"
+                                        GridLines="None">
+                                        <AlternatingRowStyle CssClass="tablaResultados_Alternate" />
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="<%$ Resources:Productos_Resources, Producto %>">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lbl_producto" runat="server"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="<%$ Resources:Productos_Resources, Item_Descripcion %>">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lbl_descripcion" runat="server"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="<%$ Resources:Reservaciones_Resources, Reservacion_Adultos %>">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lbl_Adultos" runat="server"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="<%$ Resources:Reservaciones_Resources, Reservacion_Ninos %>">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lbl_Ninos" runat="server"></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:CommandField ShowSelectButton="true" SelectText="<%$ Resources:Orbecatalog_Resources, Eliminar %>" />
+                                        </Columns>
+                                    </asp:GridView>
+                                    <asp:Panel ID="pnl_comentarios" Visible="false" runat="server">
+                                        <h3>
+                                            Comentarios
+                                        </h3>
+                                        <asp:TextBox ID="txb_ComentarioEstado" TextMode="MultiLine" Rows="4" Width="90%"
+                                            runat="server"></asp:TextBox>
+                                    </asp:Panel>
+                                    <br />
+                                    <asp:Panel ID="pnl_botones" runat="server">
+                                        <div class="botonesAcciones">
+                                            <label>
+                                                &nbsp;
+                                            </label>
+                                            <orbelink:ActionButton ID="btn_Salvar" CausesValidation="true" ImageURL="~/Orbecatalog/iconos/salvar_small.png"
+                                                runat="server" Text="<%$ Resources:Orbecatalog_Resources, Salvar %>" CssClass="positive">
+                                            </orbelink:ActionButton>
+                                            <orbelink:ActionButton ID="btn_Modificar" CausesValidation="true" ImageURL="~/Orbecatalog/iconos/modificar_small.png"
+                                                runat="server" Text="<%$ Resources:Orbecatalog_Resources, Salvar_Cambios %>"
+                                                CssClass="positive">
+                                            </orbelink:ActionButton>
+                                            <orbelink:ActionButton ID="btn_Cancelar" ImageURL="~/Orbecatalog/iconos/cancelar_small.png"
+                                                runat="server" Text="<%$ Resources:Orbecatalog_Resources, Cancelar %>">
+                                            </orbelink:ActionButton>
+                                            <orbelink:ActionButton ID="btn_Eliminar" ImageURL="~/Orbecatalog/iconos/eliminar_small.png"
+                                                runat="server" Text="<%$ Resources:Orbecatalog_Resources, Eliminar %>" CssClass="negative">
+                                            </orbelink:ActionButton>
+                                            <%--<orbelink:ActionButton ID="btn_cambiarFecha" Text="Cambiar Fecha" runat="server"
+                                            ImageURL="~/Orbecatalog/iconos/convertir_small.png" />--%>
+                                        </div>
+                                    </asp:Panel>
+                                </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </ContentTemplate>
+                </ajaxToolkit:TabPanel>
+                <ajaxToolkit:TabPanel ID="tab_facturasReservacion" runat="server" HeaderText="Facturas">
+                    <ContentTemplate>
+                        <asp:UpdatePanel ID="Upd_factura" runat="server" UpdateMode="Conditional">
+                            <ContentTemplate>
+                                <iframe style="border: solid 1px white; width: 100%; height: 975px" frameborder="0"
+                                    scrolling="auto" id="if_Facturas" runat="server"></iframe>
+                                <br />
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </ContentTemplate>
+                </ajaxToolkit:TabPanel>
+                <ajaxToolkit:TabPanel ID="tab_EstadosReservacion" runat="server" HeaderText="Historial de Estados">
+                    <ContentTemplate>
+                        <h1>
+                            <asp:Literal runat="server" Text="<%$ Resources:HistorialEstados_Resources, HistorialEstados %>"></asp:Literal>
+                        </h1>
+                        <asp:UpdatePanel ID="upd_Estados" runat="server" UpdateMode="Conditional">
+                            <ContentTemplate>
+                                <div class="listViewer">
+                                    <asp:GridView ID="gv_Estados" runat="server" CssClass="tableClean" ShowFooter="false"
+                                        ShowHeader="true" Width="100%">
+                                        <RowStyle CssClass="tablaResultados_Item" />
+                                        <AlternatingRowStyle CssClass="tablaResultados_Item" />
+                                    </asp:GridView>
+                                </div>
+                                <br />
+                                <asp:Label ID="lbl_NoEstados" runat="server" Text="<%$ Resources:HistorialEstados_Resources, NoHay %>"></asp:Label>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </ContentTemplate>
+                </ajaxToolkit:TabPanel>
+            </ajaxToolkit:TabContainer>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+</asp:Content>
+<asp:Content ID="Content6" ContentPlaceHolderID="cph_ColumnaDerecha" runat="Server">
+    <asp:UpdatePanel ID="udp_columnaDere" runat="server">
+        <ContentTemplate>
+            <asp:Panel ID="pnl_derecha" runat="server">
+                <div style="width: 100%">
+                    <h1>
+                        <asp:Literal runat="server" Text="<%$ Resources:Reservaciones_Resources, Reservaciones %>"></asp:Literal>
+                    </h1>
+                    <table class="Container" cellspacing="0" width="100%" cellpadding="0" border="0">
+                        <tr>
+                            <td style="width: 100px">
+                                <asp:Literal runat="server" Text="<%$ Resources:Reservaciones_Resources, Reservacion_Cliente %>"></asp:Literal>
+                            </td>
+                            <td style="width: 150px">
+                                <asp:DropDownList ID="ddl_clienteDer" runat="server" AutoPostBack="True">
+                                </asp:DropDownList>
+                                <br />
+                                <br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <asp:Label ID="lbl_noPoseeDer" runat="server" Text="<%$ Resources:Reservaciones_Resources, No_hay_Reservaciones %>"></asp:Label>
+                                <asp:GridView ID="gv_buscarReserva" runat="server" AutoGenerateColumns="false" Width="100%"
+                                    GridLines="None">
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                    <EditRowStyle HorizontalAlign="Center" />
+                                    <AlternatingRowStyle CssClass="tablaResultados_Alternate" />
+                                    <Columns>
+                                        <asp:CommandField ShowSelectButton="true" SelectText="<%$ Resources:Orbecatalog_Resources, Consultar %>" />
+                                        <asp:TemplateField HeaderText="<%$ Resources:Reservaciones_Resources, Fecha_Inicio %>"
+                                            ItemStyle-HorizontalAlign="Center">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lbl_fechaInicio" runat="server" Text="Inicio"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="<%$ Resources:Reservaciones_Resources, Fecha_Fin %>"
+                                            ItemStyle-HorizontalAlign="Center">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lbl_fechaFin" runat="server" Text="fin"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="<%$ Resources:Reservaciones_Resources, Items %>" ItemStyle-HorizontalAlign="Center">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lbl_cantidad" runat="server" Text="Cantidad"></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                </asp:GridView>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </asp:Panel>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+</asp:Content>

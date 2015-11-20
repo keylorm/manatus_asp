@@ -1,0 +1,273 @@
+﻿<%@ Page Language="VB" MasterPageFile="~/Orbecatalog/OrbeCatalog.master" AutoEventWireup="false"
+    CodeFile="Reservacion.aspx.vb" Inherits="Orbecatalog_Reservacion_Reservacion"
+    Title="Reservación" %>
+
+<%@ Register TagPrefix="orbelink" TagName="ActionButton" Src="~/Controls/ActionButton.ascx" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="cph_Titulo" runat="Server">
+    Reservaciones
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="cph_Acciones" runat="Server">
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
+        <ContentTemplate>
+            <orbelink:ActionButton ID="btn_nueva" ImageURL="~/Orbecatalog/iconos/agregar_small.png"
+                runat="server" Text="Nueva"></orbelink:ActionButton>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+</asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="cph_Contenido" runat="Server">
+    <asp:UpdatePanel ID="upd_reservacion" runat="server" UpdateMode="Conditional">
+        <ContentTemplate>
+            <table class="Container" cellspacing="0" cellpadding="0" border="0">
+                <tr>
+                    <td style="width: 25%">
+                        <asp:Label ID="Label4" runat="server" Text="Cliente:"></asp:Label>
+                    </td>
+                    <td style="width: 75%">
+                        <asp:DropDownList ID="ddl_clientes" runat="server">
+                        </asp:DropDownList>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="lbl_ubicacion" runat="server" Text="Ubicacion:"></asp:Label>
+                    </td>
+                    <td>
+                        <asp:DropDownList ID="ddl_ubicaciones" runat="server">
+                        </asp:DropDownList>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="Label6" runat="server" Text="Fecha Inicio:"></asp:Label>
+                    </td>
+                    <td>
+                        <BDP:BDPLite ID="bdp_FechaInicio" runat="server" />
+                        <asp:DropDownList ID="ddl_horaInicio" runat="server" Width="45px">
+                        </asp:DropDownList>
+                        <asp:Label ID="lbl_Hora" runat="server" Text="Hora"></asp:Label>
+                        <asp:DropDownList ID="ddl_minutoInicio" runat="server" Width="45px">
+                            <asp:ListItem Value="0">00</asp:ListItem>
+                            <asp:ListItem Value="5">05</asp:ListItem>
+                            <asp:ListItem>10</asp:ListItem>
+                            <asp:ListItem>15</asp:ListItem>
+                            <asp:ListItem>20</asp:ListItem>
+                            <asp:ListItem>25</asp:ListItem>
+                            <asp:ListItem>30</asp:ListItem>
+                            <asp:ListItem>35</asp:ListItem>
+                            <asp:ListItem>40</asp:ListItem>
+                            <asp:ListItem>45</asp:ListItem>
+                            <asp:ListItem>50</asp:ListItem>
+                            <asp:ListItem>55</asp:ListItem>
+                        </asp:DropDownList>
+                        Minuto
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <asp:Label ID="Label8" runat="server" Text="Fecha Fin:"></asp:Label>
+                    </td>
+                    <td>
+                        <BDP:BDPLite ID="bdp_FechaFinal" runat="server" />
+                        <asp:DropDownList ID="ddl_horaFinal" runat="server" Width="45px">
+                        </asp:DropDownList>
+                        <asp:Label ID="Label2" runat="server" Text="Hora"></asp:Label>
+                        <asp:DropDownList ID="ddl_minutoFinal" runat="server" Width="45px">
+                            <asp:ListItem Value="0">00</asp:ListItem>
+                            <asp:ListItem Value="5">05</asp:ListItem>
+                            <asp:ListItem>10</asp:ListItem>
+                            <asp:ListItem>15</asp:ListItem>
+                            <asp:ListItem>20</asp:ListItem>
+                            <asp:ListItem>25</asp:ListItem>
+                            <asp:ListItem>30</asp:ListItem>
+                            <asp:ListItem>35</asp:ListItem>
+                            <asp:ListItem>40</asp:ListItem>
+                            <asp:ListItem>45</asp:ListItem>
+                            <asp:ListItem>50</asp:ListItem>
+                            <asp:ListItem>55</asp:ListItem>
+                        </asp:DropDownList>
+                        Minuto
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <div id="div_productos" runat="server" visible="true">
+                <table class="Container" cellspacing="0" cellpadding="0" border="0">
+                    <tr>
+                        <td style="width: 25%">
+                            <asp:Label ID="Label1" runat="server" Text="Producto"></asp:Label>
+                        </td>
+                        <td style="width: 75%">
+                            <asp:DropDownList ID="ddl_productos" runat="server" AutoPostBack="True">
+                            </asp:DropDownList>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:Label ID="Label5" runat="server" Text="Descripcion:"></asp:Label>
+                        </td>
+                        <td>
+                            <asp:Label ID="lbl_descripcion" runat="server" Text=""></asp:Label>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <table class="Container" cellspacing="0" cellpadding="0" border="0" width="100%">
+                <tr>
+                    <td style="width: 25%">
+                    </td>
+                    <td>
+                        <div class="botonesAcciones" style="padding-left: 100px">
+                            <br />
+                            <orbelink:ActionButton ID="btn_buscar" Text="Buscar" runat="server" />
+                            <orbelink:ActionButton ID="btn_cancelarB" Text="Cancelar" runat="server" />
+                            <asp:HyperLink ID="hyl_agregarItem" Visible="false" runat="server">Agregar Producto</asp:HyperLink>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <div id="div_ResultadosBusqueda" visible="false" runat="server" style="padding-top: 20px">
+                <h1>
+                    <asp:Literal ID="lbl_ResultadosDisponibles" runat="server" Text="Resultados Disponibles y Exactos"></asp:Literal></h1>
+                <br />
+                <asp:Label ID="lbl_NoResultadosDisponibles" runat="server" Visible="false" Text="NO hay Disponibles"></asp:Label>
+                <asp:GridView ID="gv_ResultadosDisponibles" runat="server" AutoGenerateColumns="false" Width="100%"
+                    GridLines="None">
+                    <AlternatingRowStyle CssClass="tablaResultados_Alternate" />
+                    <Columns>
+                        <asp:TemplateField HeaderText="Producto">
+                            <ItemTemplate>
+                                <asp:Label ID="lbl_nombre" runat="server" Text="Nombre"></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Descripcion">
+                            <ItemTemplate>
+                                <asp:Label ID="lbl_descripcion" runat="server" Text="descripcion"></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Precio">
+                            <ItemTemplate>
+                                <asp:Label ID="lbl_precio" runat="server" Text="precio"></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Reservar">
+                            <ItemTemplate>
+                                <asp:CheckBox ID="chk_reservar" runat="server" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+                <div class="botonesAcciones" style="padding-left: 505px">
+                    <br />
+                    <orbelink:ActionButton ID="btn_agregar" Text="Reservar" runat="server" />
+                </div>
+           
+                <br />
+            </div>
+            <br />
+            <div id="verItem" visible="false" runat="server">
+                <h1>
+                    <asp:Literal ID="lbl_ProductosReservados" runat="server" Text="Productos Reservados"></asp:Literal>
+                </h1>
+                <asp:GridView ID="gv_itemModificar" runat="server" AutoGenerateColumns="false" Width="100%"
+                    GridLines="None">
+                    <AlternatingRowStyle CssClass="tablaResultados_Alternate" />
+                    <Columns>
+                        <asp:TemplateField HeaderText="Producto">
+                            <ItemTemplate>
+                                <asp:Label ID="lbl_producto" runat="server" Text="Producto"></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Descripcion">
+                            <ItemTemplate>
+                                <asp:Label ID="lbl_descripcion" runat="server" Text="descripcion"></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Precio">
+                            <ItemTemplate>
+                                <asp:Label ID="lbl_precio" runat="server" Text="precio"></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:CommandField ShowSelectButton="true" SelectText="Elimar" />
+                    </Columns>
+                </asp:GridView>
+            </div>
+            <br />
+            <div id="botones" runat="server">
+                <asp:Panel ID="pnl_botones" Visible="false" runat="server">
+                    <asp:Panel ID="btn_Modificar" CausesValidation="true" runat="server">
+                        <div class="botonesAcciones" style="padding-left: 150px">
+                            <br />
+                            <orbelink:ActionButton ID="btn_finalizar" Text="Finalizar" runat="server" ImageURL="~/Orbecatalog/iconos/salvar_small.png" CausesValidation="true" />
+                            <orbelink:ActionButton ID="btn_Eliminar" Text="Eliminar" runat="server" ImageURL="~/Orbecatalog/iconos/eliminar_small.png" />
+                            <orbelink:ActionButton ID="btn_cambiarFecha" Text="Cambiar Fecha" runat="server"
+                                ImageURL="~/Orbecatalog/iconos/convertir_small.png" />
+                        </div>
+                    </asp:Panel>
+                </asp:Panel>
+            </div>
+            <div id="div_fecha" class="botonesAcciones" runat="server" style="padding-left: 240px"
+                visible="false">
+                <br />
+                <orbelink:ActionButton ID="btn_verificarFecha" Text="Modificar" runat="server" ImageURL="~/Orbecatalog/iconos/salvar_small.png" CausesValidation="true" />
+                <orbelink:ActionButton ID="btn_cancelarVerFecha" Text="Cancelar" runat="server" ImageURL="~/Orbecatalog/iconos/cancelar_small.png" />
+            </div>
+            <br />
+            <br />
+        </ContentTemplate>
+    </asp:UpdatePanel>
+</asp:Content>
+<asp:Content ID="Content5" ContentPlaceHolderID="cph_BusquedaNueva" runat="Server">
+</asp:Content>
+<asp:Content ID="Content6" ContentPlaceHolderID="cph_ColumnaDerecha" runat="Server">
+    <asp:UpdatePanel ID="udp_columnaDere" runat="server">
+        <ContentTemplate>
+            <div style="width: 100%">
+                <h1>
+                    Reservaciones Actuales
+                </h1>
+                <table class="Container" cellspacing="0" width="100%" cellpadding="0" border="0">
+                    <tr>
+                        <td>
+                            Cliente:
+                        </td>
+                        <td>
+                            <asp:DropDownList ID="ddl_clienteDer" runat="server" AutoPostBack="True">
+                            </asp:DropDownList>
+                            <br />
+                            <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <asp:Label ID="lbl_noPoseeDer" runat="server" Text="No posee Reservaciones"></asp:Label>
+                            <asp:GridView ID="gv_buscarReserva" runat="server" AutoGenerateColumns="false" Width="100%"
+                                GridLines="None">
+                                <HeaderStyle HorizontalAlign="Center" />
+                                <EditRowStyle HorizontalAlign="Center" />
+                                <AlternatingRowStyle CssClass="tablaResultados_Alternate" />
+                                <Columns>
+                                    <asp:CommandField ShowSelectButton="true" SelectText="Ver" />
+                                    <asp:TemplateField HeaderText="Fecha Inicio" ItemStyle-HorizontalAlign="Center">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbl_fechaInicio" runat="server" Text="Inicio"></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Fecha Fin" ItemStyle-HorizontalAlign="Center">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbl_fechaFin" runat="server" Text="fin"></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Cantidad" ItemStyle-HorizontalAlign="Center">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lbl_cantidad" runat="server" Text="Cantidad"></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                            </asp:GridView>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+</asp:Content>

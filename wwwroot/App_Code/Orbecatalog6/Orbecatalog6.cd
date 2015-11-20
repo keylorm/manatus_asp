@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Orbelink.Orbecatalog6.MasterPageBaseClass">
+    <Position X="5" Y="2" Width="2" />
+    <NestedTypes>
+      <Delegate Name="Orbelink.Orbecatalog6.MasterPageBaseClass.PopUpOKButton" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>App_Code\Orbecatalog6\MasterPageBaseClass.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAACgAAAAgAAAAACQAABAgAAACQAAFEAAAAAAAAgAAg=</HashCode>
+      <FileName>App_Code\Orbecatalog6\MasterPageBaseClass.vb</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="config" />
+      <Field Name="connection" />
+      <Field Name="queryBuilder" />
+      <Field Name="securityHandler" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Orbelink.Orbecatalog6.PageBaseClass">
+    <Position X="1" Y="2" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="Orbelink.Orbecatalog6.PageBaseClass.tabsInformation" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>App_Code\Orbecatalog6\PageBaseClass.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+      <Enum Name="Orbelink.Orbecatalog6.PageBaseClass.ButtonsTheme" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>App_Code\Orbecatalog6\PageBaseClass.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AQQEAIIEAgAQAAAAUAABAIAAAAAgkAEgAAgAEAoAAIA=</HashCode>
+      <FileName>App_Code\Orbecatalog6\PageBaseClass.vb</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Config" />
+      <Field Name="connection" />
+      <Field Name="MyMaster" />
+      <Field Name="queryBuilder" />
+      <Field Name="securityHandler" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Orbelink.Control.Security.SecurityHandler">
+    <Position X="7.5" Y="7.25" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Delegate Name="Orbelink.Control.Security.SecurityHandler.SaveSessionDelegate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>App_Code\Orbecatalog6\SecurityHandler.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+      <Struct Name="Orbelink.Control.Security.SecurityHandler.Pantalla" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>App_Code\Orbecatalog6\SecurityHandler.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ACUkAIQAFAQAAAIQAwABAAAAAAhAAREAAAAJIAIIAAI=</HashCode>
+      <FileName>App_Code\Orbecatalog6\SecurityHandler.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbelink.Orbecatalog6.WebServiceBaseClass">
+    <Position X="4" Y="9" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAQAABAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Code\Orbecatalog6\WebServiceBaseClass.vb</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Config" />
+      <Field Name="connection" />
+      <Field Name="queryBuilder" />
+      <Field Name="securityHandler" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Configuration" Collapsed="true">
+    <Position X="4.25" Y="7.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Configuration.EstadoPantalla" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>App_Code\Configuration.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>QAAAQAABQAACAAACQAgDAgAAAAgAACEBgABCAAQAIQA=</HashCode>
+      <FileName>App_Code\Configuration.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbelink.DBHandler.SQLServer" Collapsed="true">
+    <Position X="1.25" Y="9.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AICAAACCAQAAAAgAACAYAAAAEBAAEAAAAAAAAACIAAI=</HashCode>
+      <FileName>App_Code\DBHandler\SQLServer.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbelink.DBHandler.QueryBuilder" Collapsed="true">
+    <Position X="8.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IpAIAAABQIASCCoAAgAoAQQgAABIIIgYmJWICgBBMDQ=</HashCode>
+      <FileName>App_Code\DBHandler\QueryBuilder.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Web.UI.MasterPage" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Web.UI.Page" Collapsed="true">
+    <Position X="1.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,185 @@
+<%@ Page Language="VB" MasterPageFile="../OrbeCatalog.master" AutoEventWireup="false"
+    CodeFile="Publicacion_View.aspx.vb" Inherits="_Publicacion_View" Title="OrbeCatalog - Detalle Publicacion" %>
+
+<asp:Content ID="ctn_Titulo" ContentPlaceHolderID="cph_Titulo" runat="Server">
+    <%--<asp:Image ID="img_Preguntas" runat="server" ImageUrl="../images/icons/publicacion_small.gif" />--%>
+    <asp:Label ID="lbl_Titulo" runat="server"></asp:Label>
+</asp:Content>
+<asp:Content ID="Publicacion" ContentPlaceHolderID="cph_Contenido" runat="Server">
+    <br />
+    <asp:Label ID="lbl_Texto" runat="server" Text="Label"></asp:Label>
+    <br />
+    <br />
+    <h2>
+        <a href="javascript:void(0)" onclick="toggleLayer('div_Detalle')">Detalle de Información</a>
+    </h2>
+    <div id="div_Detalle" style="display: none">
+        <table class="Container" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+                <td>
+                    Descripcion Corta</td>
+                <td>
+                    <asp:Label ID="lbl_Corta" runat="server"></asp:Label></td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 25%;">
+                    Tipo Información</td>
+                <td style="width: 70%;">
+                    <asp:Label ID="lbl_TipoPublicacion" runat="server" Text="TipoPublicacion"></asp:Label></td>
+                <td style="width: 5%">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Autor</td>
+                <td>
+                    <asp:Label ID="lbl_Entidad" runat="server" Text="Autor"></asp:Label>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Link</td>
+                <td>
+                    <asp:Label ID="lbl_Link" runat="server"></asp:Label></td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Fecha Importante</td>
+                <td>
+                    <asp:Label ID="lbl_Fecha" runat="server" Text="Label"></asp:Label></td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Tema
+                </td>
+                <td>
+                    <asp:Label ID="lbl_Categoria" runat="server" Text="Categoria"></asp:Label><br />
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;</td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br />
+    <asp:Panel ID="pnl_Documentos" runat="server">
+        <h1>
+            <asp:Image ID="img_Archivo2" runat="server" ImageUrl="../images/icons/Archivo_tiny.gif" />
+            Documentos Relacionados a esta Publicacion</h1>
+        <div class="Container">
+            <asp:DataGrid ID="dg_Archivo" CssClass="tablaResultados" runat="server" Width="100%"
+                AutoGenerateColumns="False" ShowHeader="false">
+                <AlternatingItemStyle CssClass="tablaResultados_Alternate" />
+                <ItemStyle CssClass="tablaResultados_Item" />
+                <HeaderStyle CssClass="tablaResultados_Header" />
+                <FooterStyle CssClass="tablaResultados_Footer" />
+                <Columns>
+                    <asp:TemplateColumn HeaderText="Archivo">
+                        <ItemTemplate>
+                            <asp:LinkButton ID="lnk_NombreArchivo" runat="server" OnClick="lnk_NombreArchivo_Click">NombreArchivo</asp:LinkButton>
+                        </ItemTemplate>
+                        <HeaderStyle Width="30%" />
+                    </asp:TemplateColumn>
+                    <asp:TemplateColumn HeaderText="Comentarios">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_comentarios" runat="server" Text="Comentarios"></asp:Label>
+                        </ItemTemplate>
+                        <HeaderStyle Width="70%" />
+                    </asp:TemplateColumn>
+                </Columns>
+            </asp:DataGrid>
+            <asp:Label ID="lbl_NoArchivo" runat="server" Text="No hay documentos."></asp:Label>
+            <br />
+        </div>
+        <br />
+        <h1>
+            <asp:Image ID="img_Discusiones" runat="server" ImageUrl="../images/icons/entidad_tiny.gif" />
+            Discusiones Relacionados a esta Publicacion
+        </h1>
+        <div class="Container">
+            <asp:GridView ID="gv_Comments" runat="server" AutoGenerateColumns="False" CellPadding="0"
+                GridLines="None" Width="100%" DataKeyNames="id_Entidad,id_Comment">
+                <Columns>
+                    <asp:TemplateField ShowHeader="False">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_Entidad" runat="server"></asp:Label>
+                        </ItemTemplate>
+                        <ItemStyle VerticalAlign="Top" Width="25%" />
+                    </asp:TemplateField>
+                    <asp:TemplateField ShowHeader="False">
+                        <ItemTemplate>
+                            <asp:Label ID="lbl_Comment" runat="server"></asp:Label><br />
+                            <div style="text-align: right;">
+                                <asp:LinkButton ID="lnk_Editar" runat="server" CommandName="Editar">Editar</asp:LinkButton>&nbsp;
+                                <asp:LinkButton ID="lnk_Eliminar" runat="server" CommandName="Eliminar" ToolTip="Esto eliminará este Comment completamente. Esta acción no se puede deshacer.">Eliminar</asp:LinkButton>&nbsp;
+                            </div>
+                        </ItemTemplate>
+                        <ItemStyle VerticalAlign="Top" Width="75%" />
+                    </asp:TemplateField>
+                </Columns>
+            </asp:GridView>
+            <asp:Label ID="lbl_NoComments" runat="server" Text="No hay discusiones"></asp:Label><br />
+            <asp:HyperLink ID="lnk_AgregarComment" runat="server">Agregar nueva discusion</asp:HyperLink>
+            <div id="div_AgregarComment" style="display: none">
+                <asp:TextBox ID="tbx_Comment" runat="server" TextMode="MultiLine" Width="98%" Height="71px">
+                </asp:TextBox>
+                <br />
+                <asp:Button ID="btn_AgregarComment" runat="server" Text="Agregar Discusion" />
+            </div>
+        </div>
+    </asp:Panel>
+</asp:Content>
+<asp:Content ID="ctn_Busqueda" ContentPlaceHolderID="cph_ColumnaDerecha" runat="Server">
+    <asp:Panel ID="pnl_Administrativo" runat="server">
+        <h1>
+            Panel Administrativo</h1>
+        <div class="Container">
+            <asp:HyperLink ID="lnk_EditarPublicacion" runat="server">Editar esta informacion</asp:HyperLink><br />
+            <asp:HyperLink ID="lnk_AgregarPublicacion" runat="server">Agregar una nueva informacion</asp:HyperLink>
+        </div>
+    </asp:Panel>
+    <asp:Panel ID="pnl_Relacionados" runat="server">
+        <h1>
+            Otra informaci&oacute;n del mismo tema</h1>
+        <div class="Container">
+            <asp:DataList ID="dtl_PublicacionesCategoria" runat="server" Width="100%" CellPadding="0"
+                GridLines="None">
+                <ItemTemplate>
+                    <li>
+                        <asp:HyperLink ID="lnk_Titulo" runat="server">Titulo</asp:HyperLink></li>
+                    <br />
+                </ItemTemplate>
+            </asp:DataList>
+        </div>
+    </asp:Panel>
+    <%--<asp:Panel ID="pnl_Keywords" runat="server">
+        <h1>
+            Palabras claves</h1>
+        <div class="Container">
+            <asp:DataList ID="dtl_Keywords" runat="server" Width="100%">
+                <ItemTemplate>
+                    <asp:HyperLink ID="lnk_Keyword" runat="server" Text="Keyword"></asp:HyperLink>
+                    <div id="div_masInfo" runat="server">
+                        <asp:Label ID="lbl_Descripcion" runat="server" Text="Descripcion"></asp:Label>
+                    </div>
+                </ItemTemplate>
+            </asp:DataList>
+        </div>
+    </asp:Panel>--%>
+</asp:Content>
+

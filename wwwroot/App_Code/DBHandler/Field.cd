@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Orbelink.DBHandler.Field">
+    <Position X="1" Y="2" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Orbelink.DBHandler.Field.FieldType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>App_Code\DBHandler\Field.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="Orbelink.DBHandler.Field.AggregateFunctionList" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>App_Code\DBHandler\Field.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AIFgJAAEgIACAkUQgCgAAAQUBAAAAjAYA0AAhABaEBA=</HashCode>
+      <FileName>App_Code\DBHandler\Field.vb</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="WherePrivate" />
+      <Property Name="Having" />
+      <Property Name="ConcatenatedField" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Orbelink.DBHandler.Having">
+    <Position X="7.25" Y="2.25" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Orbelink.DBHandler.Having.FieldRelations" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>App_Code\DBHandler\Having.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Struct Name="Orbelink.DBHandler.Having.Condition" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>App_Code\DBHandler\Having.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>YAEAAAAAAAAAACAAAAAAAgQEAChAAACAgAAAEABAgAA=</HashCode>
+      <FileName>App_Code\DBHandler\Having.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Collections.Generic.List(Of T)" Collapsed="true">
+    <Position X="7.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Orbelink.DBHandler.Where">
+    <Position X="3.5" Y="0.5" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Orbelink.DBHandler.Where.FieldRelations" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>App_Code\DBHandler\Where.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>QAgAAAFAAAAAAGAAABAAAAAEAAggAAAAAAAEAABIgAA=</HashCode>
+      <FileName>App_Code\DBHandler\Where.vb</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Conditions" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Orbelink.DBHandler.FieldDateTime" Collapsed="true">
+    <Position X="0.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAEAgAQACBAAAAAABFAACAQAAAgAABAAAA=</HashCode>
+      <FileName>App_Code\DBHandler\Fields\FieldDateTime.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbelink.DBHandler.FieldInt" Collapsed="true">
+    <Position X="4" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAEAgAQACAAAAAAABFAACAQAAAgAABAAAA=</HashCode>
+      <FileName>App_Code\DBHandler\Fields\FieldInt.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbelink.DBHandler.FieldString" Collapsed="true">
+    <Position X="7.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAEAgAQACAAASBAABFAACAQBAAgAABAAAA=</HashCode>
+      <FileName>App_Code\DBHandler\Fields\FieldString.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbelink.DBHandler.FieldText" Collapsed="true">
+    <Position X="2.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAgAQACAAAAAAABEAACAQAAAgAABAAAA=</HashCode>
+      <FileName>App_Code\DBHandler\Fields\FieldText.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbelink.DBHandler.FieldTinyInt" Collapsed="true">
+    <Position X="5.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAEAgAQACAAAAAAABFAACAQAAAgAABAAAA=</HashCode>
+      <FileName>App_Code\DBHandler\Fields\FieldTinyInt.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

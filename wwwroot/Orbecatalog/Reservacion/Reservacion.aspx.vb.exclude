@@ -1,0 +1,843 @@
+﻿Imports Orbelink.Orbecatalog6
+Imports Orbelink.DBHandler
+Imports Orbelink.Entity.Reservacion
+Imports Orbelink.Entity.Productos
+Imports Orbelink.Control
+
+Partial Class Orbecatalog_Reservacion_Reservacion
+    Inherits PageBaseClass
+
+    Const codigo_pantalla As String = "Rs-02"
+    Const level As Integer = 2
+
+
+    Protected Sub Page_PreInit1(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.PreInit
+        Theme = securityHandler.Theme
+    End Sub
+
+    Protected Sub Page_Load1(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        AddScripts(level)
+        
+        If Not IsPostBack Then
+            informacionGeneral()
+            securityHandler.VerifyPantalla(codigo_pantalla, level)
+            If Request.QueryString("id_reserva") IsNot Nothing Then
+                Session("sessReserva") = Request.QueryString("id_reserva")
+                cargarItemsReservados(Session("sessReserva"))
+                desabilitarFechas(True)
+            End If
+        End If
+    End Sub
+
+    Protected Sub ClearInfo(ByVal estado As Configuration.EstadoPantalla, ByVal clearInfo As Boolean)
+        If clearInfo Then
+            Me.bdp_FechaInicio.SelectedDate = Date.UtcNow
+            Me.bdp_FechaFinal.SelectedDate = Date.UtcNow
+            Me.ddl_horaFinal.SelectedIndex = 0
+            Me.ddl_horaInicio.SelectedIndex = 0
+            Me.ddl_minutoInicio.SelectedIndex = 0
+            Me.ddl_minutoFinal.SelectedIndex = 0
+        End If
+
+        Select Case estado
+            Case Configuration.EstadoPantalla.NORMAL
+                btn_Modificar.Visible = False
+                div_ResultadosBusqueda.Visible = False
+                verItem.Visible = False
+                btn_buscar.Visible = True
+                btn_cancelarB.Visible = True
+                pnl_botones.Visible = False
+                ddl_clientes.Enabled = True
+                ddl_ubicaciones.Enabled = True
+                div_productos.Visible = True
+                hyl_agregarItem.Visible = False
+                div_fecha.Visible = False
+
+
+            Case Configuration.EstadoPantalla.CONSULTAR
+                btn_Modificar.Visible = True
+                div_ResultadosBusqueda.Visible = False
+                btn_buscar.Visible = False
+                btn_cancelarB.Visible = False
+                pnl_botones.Visible = True
+                ddl_clientes.Enabled = False
+                ddl_ubicaciones.Enabled = False
+
+        End Select
+    End Sub
+
+    Protected Sub informacionGeneral()
+        cargarProductos()
+        cargarUbicacion()
+        cargarEntidades()
+        cargarDescripcion()
+        cargarReservaciones()
+        cargarHoras()
+        bdp_FechaFinal.SelectedDate = Date.UtcNow
+        bdp_FechaInicio.SelectedDate = Date.UtcNow
+    End Sub
+
+    'Cargar Informacion
+    Protected Sub cargarHoras()
+        For counter As Integer = 0 To 23
+            ddl_horaInicio.Items.Add(counter)
+            ddl_horaFinal.Items.Add(counter)
+        Next
+    End Sub
+
+    Protected Sub cargarDescripcion()
+        Dim item As New Item
+        Dim dataSet As New Data.DataSet
+        item.descripcion.ToSelect = True
+        item.Id_producto.Where.EqualCondition(ddl_productos.SelectedValue)
+
+        Dim consulta As String = queryBuilder.SelectQuery(item)
+        dataSet = connection.executeSelect(consulta)
+        If dataSet.Tables.Count > 0 Then
+            If dataSet.Tables(0).Rows.Count > 0 Then
+                ObjectBuilder.CreateObject(dataSet.Tables(0), 0, item)
+                lbl_descripcion.Text = item.descripcion.Value
+            Else
+                lbl_descripcion.Text = ""
+            End If
+        Else
+            lbl_descripcion.Text = ""
+        End If
+    End Sub
+
+    Protected Sub cargarProductos()
+        Dim dataSet As New Data.DataSet
+        Dim Producto As New Producto
+        Producto.Nombre.ToSelect = True
+        Producto.Id_Producto.ToSelect = True
+        Producto.Activo.Where.EqualCondition(1)
+        Dim consulta As String = queryBuilder.SelectQuery(Producto)
+        dataSet = connection.executeSelect(consulta)
+        If dataSet.Tables.Count > 0 Then
+            If dataSet.Tables(0).Rows.Count > 0 Then
+                ddl_productos.DataSource = dataSet
+                ddl_productos.DataTextField = Producto.Nombre.Name
+                ddl_productos.DataValueField = Producto.Id_Producto.Name
+                ddl_productos.DataBind()
+            End If
+        End If
+    End Sub
+
+    Protected Sub cargarEntidades()
+        Dim dataSet As New Data.DataSet
+        Dim Entidad As New Entidad
+        Entidad.Nombre.ToSelect = True
+        Entidad.Apellido.ToSelect = True
+        Entidad.Id_entidad.ToSelect = True
+        Dim consulta As String = queryBuilder.SelectQuery(Entidad)
+        dataSet = connection.executeSelect(consulta)
+
+        If dataSet.Tables.Count > 0 Then
+            If dataSet.Tables(0).Rows.Count > 0 Then
+                ddl_clientes.DataSource = dataSet
+                ddl_clienteDer.DataSource = dataSet
+                ddl_clientes.DataTextField = Entidad.Nombre.Name
+                ddl_clienteDer.DataTextField = Entidad.Nombre.Name
+                ddl_clientes.DataValueField = Entidad.Id_entidad.Name
+                ddl_clienteDer.DataValueField = Entidad.Id_entidad.Name
+                ddl_clientes.DataBind()
+                ddl_clienteDer.DataBind()
+            End If
+        End If
+    End Sub
+
+    Protected Sub cargarUbicacion()
+        Dim dataSet As New Data.DataSet
+        Dim ubicacion As New Ubicacion
+        ubicacion.Nombre.ToSelect = True
+        ubicacion.Id_ubicacion.ToSelect = True
+        Dim consulta As String = queryBuilder.SelectQuery(ubicacion)
+        dataSet = connection.executeSelect(consulta)
+
+        If dataSet.Tables.Count > 0 Then
+            If dataSet.Tables(0).Rows.Count > 0 Then
+                ddl_ubicaciones.DataSource = dataSet
+                ddl_ubicaciones.DataTextField = ubicacion.Nombre.Name
+                ddl_ubicaciones.DataValueField = ubicacion.Id_ubicacion.Name
+                ddl_ubicaciones.DataBind()
+            End If
+        End If
+    End Sub
+
+    Protected Sub cargarItemsReservados(ByVal id_reserva As Integer)
+        div_productos.Visible = False
+        Dim dataSet As New Data.DataSet
+        Dim detalle As New detalle_reservacion
+        Dim reserva As New Reservacion
+        Dim item As New Item
+        Dim producto As New Producto
+        Dim unidad As New Moneda
+
+        reserva.Fields.SelectAll()
+        item.Fields.SelectAll()
+        unidad.Simbolo.ToSelect = True
+        producto.Nombre.ToSelect = True
+
+        queryBuilder.Join.EqualCondition(reserva.Id_Reservacion, detalle.id_reservacion)
+        queryBuilder.Join.EqualCondition(detalle.ordinal, item.ordinal)
+        queryBuilder.Join.EqualCondition(detalle.Id_producto, item.Id_producto)
+        queryBuilder.Join.EqualCondition(producto.Id_Producto, item.Id_producto)
+        queryBuilder.Join.EqualCondition(item.Id_Moneda, unidad.Id_Moneda)
+        detalle.id_reservacion.Where.EqualCondition(id_reserva)
+
+        queryBuilder.From.Add(item)
+        queryBuilder.From.Add(detalle)
+        queryBuilder.From.Add(producto)
+        queryBuilder.From.Add(reserva)
+        queryBuilder.From.Add(unidad)
+        Dim consulta As String = queryBuilder.RelationalSelectQuery
+        dataSet = connection.executeSelect(consulta)
+        If dataSet.Tables.Count > 0 Then
+            If dataSet.Tables(0).Rows.Count > 0 Then
+
+                Dim list_item As ArrayList = ObjectBuilder.TransformDataTable(dataSet.Tables(0), item)
+                Dim list_producto As ArrayList = ObjectBuilder.TransformDataTable(dataSet.Tables(0), producto)
+                Dim list_reserva As ArrayList = ObjectBuilder.TransformDataTable(dataSet.Tables(0), reserva)
+                Dim list_unidad As ArrayList = ObjectBuilder.TransformDataTable(dataSet.Tables(0), unidad)
+
+                gv_itemModificar.DataSource = dataSet
+                gv_itemModificar.DataBind()
+
+                Dim unItem As GridViewRow
+
+                For counter As Integer = 0 To dataSet.Tables(0).Rows.Count - 1
+                    unItem = gv_itemModificar.Rows(counter)
+                    producto = list_producto(counter)
+                    item = list_item(counter)
+                    reserva = list_reserva(counter)
+                    unidad = list_unidad(counter)
+
+                    Dim lbl_nombre As Label = unItem.FindControl("lbl_producto")
+                    Dim lbl_descripcion As Label = unItem.FindControl("lbl_descripcion")
+                    Dim lbl_precio As Label = unItem.FindControl("lbl_precio")
+
+                    lbl_nombre.Text = producto.Nombre.Value
+                    lbl_descripcion.Text = item.descripcion.Value
+                    lbl_precio.Text = unidad.Simbolo.Value & item.precio.Value
+                    lbl_precio.Attributes.Add("ordinal", item.ordinal.Value)
+                    lbl_precio.Attributes.Add("producto", item.Id_producto.Value)
+                    lbl_precio.Attributes.Add("id_reservacion", reserva.Id_Reservacion.Value)
+                Next
+
+                Me.ddl_clientes.SelectedValue = reserva.id_Cliente.Value
+                Dim fechaInicio As Date = reserva.fecha_inicioProgramado.Value
+                Dim fechaFin As Date = reserva.fecha_finalProgramado.Value
+                Me.bdp_FechaInicio.SelectedDate = fechaInicio
+                Me.bdp_FechaFinal.SelectedDate = fechaFin
+                Me.ddl_horaInicio.SelectedValue = fechaInicio.Hour
+                Me.ddl_minutoInicio.SelectedValue = fechaInicio.Minute
+                Me.ddl_horaFinal.SelectedValue = fechaFin.Hour
+                Me.ddl_minutoFinal.SelectedValue = fechaFin.Minute
+                Me.ddl_ubicaciones.SelectedValue = reserva.Id_Ubicacion.Value
+
+                ClearInfo(Configuration.EstadoPantalla.CONSULTAR, False)
+                Dim fecha As New Date(Date.UtcNow.Year, Date.UtcNow.Month, Date.UtcNow.Day)
+                If reserva.estado.Value <> ControladorReservaciones.Estado.reservado Or fechaInicio < fecha Then
+                    botones.Visible = False
+                    btn_agregar.Visible = False
+                Else
+                    botones.Visible = True
+                    hyl_agregarItem.Visible = True
+                    hyl_agregarItem.NavigateUrl = MyMaster.obtenerIframeString("agregarItem.aspx?id_reserva=" & id_reserva & "&fechaInicio=" & fechaInicio & "&fechaFinal=" & fechaFin)
+                End If
+                verItem.Visible = True
+                Me.upd_reservacion.Update()
+            End If
+        End If
+
+
+    End Sub
+
+    Protected Sub cargarReservaciones()
+        Dim reserva As New Reservacion
+        Dim dataSet As New Data.DataSet
+
+        reserva.fecha_inicioProgramado.ToSelect = True
+        reserva.fecha_finalProgramado.ToSelect = True
+        reserva.Id_Reservacion.ToSelect = True
+        reserva.id_Cliente.Where.EqualCondition(ddl_clienteDer.SelectedValue)
+        reserva.estado.Where.EqualCondition(ControladorReservaciones.Estado.reservado)
+        Dim fecha As New Date(Date.UtcNow.Year, Date.UtcNow.Month, Date.UtcNow.Day)
+        reserva.fecha_finalProgramado.Where.GreaterThanOrEqualCondition(fecha)
+        queryBuilder.From.Add(reserva)
+
+        Dim consulta As String = queryBuilder.RelationalSelectQuery
+        dataSet = connection.executeSelect(consulta)
+        If dataSet.Tables.Count > 0 Then
+            If dataSet.Tables(0).Rows.Count > 0 Then
+
+                gv_buscarReserva.DataSource = dataSet
+                gv_buscarReserva.DataBind()
+                Dim resul_Reserva As ArrayList = TransformDataTable(dataSet.Tables(0), reserva)
+
+                Dim counter As Integer = 0
+                For Each unItem As GridViewRow In gv_buscarReserva.Rows
+                    reserva = resul_Reserva(counter)
+                    Dim cantidad As Label = unItem.FindControl("lbl_cantidad")
+                    Dim fechaInicio As Label = unItem.FindControl("lbl_fechaInicio")
+                    fechaInicio.Attributes.Add("id_reserva", reserva.Id_Reservacion.Value)
+                    Dim fechaFinal As Label = unItem.FindControl("lbl_fechaFin")
+
+                    cantidad.Text = cantidadItems(reserva.Id_Reservacion.Value)
+                    Dim fechaA As Date = reserva.fecha_inicioProgramado.Value
+                    fechaInicio.Text = fechaA.ToShortDateString & " " & fechaA.ToLongTimeString
+                    fechaA = reserva.fecha_finalProgramado.Value
+                    fechaFinal.Text = fechaA.ToShortDateString & " " & fechaA.ToLongTimeString
+                    counter += 1
+                Next
+                gv_buscarReserva.Visible = True
+                lbl_noPoseeDer.Visible = False
+            Else
+                gv_buscarReserva.Visible = False
+                lbl_noPoseeDer.Visible = True
+            End If
+        Else
+            gv_buscarReserva.Visible = False
+            lbl_noPoseeDer.Visible = True
+        End If
+    End Sub
+
+    Protected Sub cargarItemsDisponibles()
+        Dim id_producto As Integer = ddl_productos.SelectedValue
+        Dim horaInicio As New Date(bdp_FechaInicio.SelectedDate.Year, bdp_FechaInicio.SelectedDate.Month, bdp_FechaInicio.SelectedDate.Day, ddl_horaInicio.SelectedValue, ddl_minutoInicio.SelectedValue, 0)
+        Dim horaFin As New Date(bdp_FechaFinal.SelectedDate.Year, bdp_FechaFinal.SelectedDate.Month, bdp_FechaFinal.SelectedDate.Day, ddl_horaFinal.SelectedValue, ddl_minutoFinal.SelectedValue, 0)
+        Dim fechaInicio As Date = horaInicio
+        Dim fechaFin As Date = horaFin
+        Dim item As New Item
+        Dim producto As New Producto
+        Dim unidad As New Moneda
+        Dim dataSet As New Data.DataSet
+
+        Dim reservacion As New Reservacion
+        Dim detalle2 As New detalle_reservacion
+        Dim query As New QueryBuilder()
+        detalle2.ordinal.ToSelect = True
+
+        Dim condicion1 As Condition = reservacion.fecha_inicioProgramado.Where.GreaterThanOrEqualCondition(fechaInicio)
+        Dim condicion2 As Condition = reservacion.fecha_inicioProgramado.Where.LessThanOrEqualCondition(fechaFin)
+        Dim condicion3 As Condition = query.GroupConditions(condicion1, condicion2, Where.FieldRelations.OR_)
+
+        Dim condicion4 As Condition = reservacion.fecha_finalProgramado.Where.GreaterThanOrEqualCondition(fechaInicio)
+        Dim condicion5 As Condition = reservacion.fecha_finalProgramado.Where.LessThanOrEqualCondition(fechaFin)
+        Dim condicion6 As Condition = query.GroupConditions(condicion4, condicion5, Where.FieldRelations.OR_)
+
+        Dim condicion7 As Condition = reservacion.fecha_inicioProgramado.Where.LessThanCondition(fechaInicio)
+        Dim condicion8 As Condition = reservacion.fecha_finalProgramado.Where.GreaterThanCondition(fechaFin)
+        Dim condicion9 As Condition = query.GroupConditions(condicion7, condicion8, Where.FieldRelations.OR_)
+
+        Dim condicion10 As Condition = query.GroupConditions(condicion6, condicion3, Where.FieldRelations.OR_)
+        query.GroupConditions(condicion9, condicion10)
+
+        reservacion.estado.Where.EqualCondition(ControladorReservaciones.Estado.consumido)
+        reservacion.estado.Where.EqualCondition(ControladorReservaciones.Estado.reservado, Where.FieldRelations.OR_)
+        query.Join.EqualCondition(detalle2.id_reservacion, reservacion.Id_Reservacion)
+        detalle2.Id_producto.Where.EqualCondition(id_producto)
+        query.From.Add(reservacion)
+        query.From.Add(detalle2)
+        Dim consultaInterna2 As String = query.RelationalSelectQuery
+
+        item.descripcion.ToSelect = True
+        item.Id_Moneda.ToSelect = True
+        item.precio.ToSelect = True
+        item.ordinal.ToSelect = True
+        producto.Nombre.ToSelect = True
+        producto.Id_Producto.ToSelect = True
+        unidad.Simbolo.ToSelect = True
+
+        queryBuilder.Join.EqualCondition(item.Id_producto, producto.Id_Producto)
+        queryBuilder.Join.EqualCondition(unidad.Id_Moneda, item.Id_Moneda)
+        item.Id_producto.Where.EqualCondition(id_producto)
+        item.ordinal.Where.NotInCondition(consultaInterna2, Where.FieldRelations.AND_)
+
+        queryBuilder.From.Add(item)
+        queryBuilder.From.Add(producto)
+        queryBuilder.From.Add(unidad)
+
+        Dim consulta As String = queryBuilder.RelationalSelectQuery
+        dataSet = connection.executeSelect(consulta)
+        If dataSet.Tables.Count > 0 Then
+            If dataSet.Tables(0).Rows.Count > 0 Then
+                asignarInformacion(dataSet)
+            Else
+                noHayDisponibles(True)
+            End If
+        Else
+            noHayDisponibles(True)
+        End If
+    End Sub
+
+    Protected Sub asignarInformacion(ByVal dataSet As Data.DataSet)
+        gv_ResultadosDisponibles.DataSource = dataSet
+        gv_ResultadosDisponibles.DataBind()
+
+        Dim resul_producto As ArrayList = TransformDataTable(dataSet.Tables(0), New Producto)
+        Dim resul_Item As ArrayList = TransformDataTable(dataSet.Tables(0), New Item)
+        Dim resul_Unidad As ArrayList = TransformDataTable(dataSet.Tables(0), New Moneda)
+
+        Dim unItem As GridViewRow
+        Dim producto As Producto
+        Dim item As Item
+        Dim unidad As Moneda
+
+        For counter As Integer = 0 To dataSet.Tables(0).Rows.Count - 1
+            unItem = gv_ResultadosDisponibles.Rows(counter)
+            producto = resul_producto(counter)
+            item = resul_Item(counter)
+            unidad = resul_Unidad(counter)
+
+            Dim lbl_nombre As Label = unItem.FindControl("lbl_nombre")
+            Dim lbl_descripcion As Label = unItem.FindControl("lbl_descripcion")
+            Dim lbl_precio As Label = unItem.FindControl("lbl_precio")
+
+            lbl_nombre.Text = producto.Nombre.Value
+            lbl_descripcion.Text = item.descripcion.Value
+            lbl_precio.Text = unidad.Simbolo.Value & item.precio.Value
+            lbl_precio.Attributes.Add("ordinal", item.ordinal.Value)
+            lbl_precio.Attributes.Add("producto", producto.Id_Producto.Value)
+        Next
+        noHayDisponibles(False)
+
+    End Sub
+
+    'Eventos
+    Public Overrides Sub PopUpOkEventHandler(ByVal param As String)
+        'Cargar relacionados
+        Dim id_reserva As Integer
+        Dim loadSession As Boolean = False
+        If Not Session("sessReserva") Is Nothing Then
+            id_reserva = Session("sessReserva")
+
+            Select Case param
+                Case "Rs-05"
+                    cargarItemsReservados(id_reserva)
+                    cargarReservaciones()
+            End Select
+        End If
+    End Sub
+
+    Protected Sub ddl_productos_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ddl_productos.SelectedIndexChanged
+        cargarDescripcion()
+        upd_reservacion.Update()
+    End Sub
+
+    Protected Sub btn_buscar_Click(ByVal Sender As Object, ByVal E As System.EventArgs) Handles btn_buscar.Click
+        If fechaPermitida() Then
+            cargarItemsDisponibles()
+            desabilitarFechas(True)
+        End If
+    End Sub
+
+    Protected Sub ddl_clienteDer_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ddl_clienteDer.SelectedIndexChanged
+        cargarReservaciones()
+    End Sub
+
+    Protected Sub gv_buscarReserva_RowCommand(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles gv_buscarReserva.RowCommand
+
+        Dim elItem As GridViewRow = gv_buscarReserva.Rows(e.CommandArgument)
+        Dim fechaInicio As Label = elItem.FindControl("lbl_fechaInicio")
+        Dim id_reserva As Integer = fechaInicio.Attributes("id_reserva")
+        div_fecha.Visible = False
+        ViewState.Add("id_reserva", id_reserva)
+        Session("sessReserva") = id_reserva
+        cargarItemsReservados(id_reserva)
+        desabilitarFechas(True)
+
+    End Sub
+
+    Protected Sub btn_Eliminar_Click(ByVal Sender As Object, ByVal E As System.EventArgs) Handles btn_Eliminar.Click
+        Dim id_reservacion As Integer = Session("sessReserva")
+        Dim controladora As New ControladorReservaciones(connection, Resources.Reservaciones_Resources.ResourceManager)
+        controladora.eliminarReservacion(id_reservacion)
+        ClearInfo(Configuration.EstadoPantalla.NORMAL, True)
+        desabilitarFechas(False)
+        cargarReservaciones()
+        Session("sessReserva") = Nothing
+        Me.upd_reservacion.Update()
+    End Sub
+
+    Protected Sub btn_agregar_Click(ByVal Sender As Object, ByVal E As System.EventArgs) Handles btn_agregar.Click
+
+        For counter As Integer = 0 To gv_ResultadosDisponibles.Rows.Count - 1
+            Dim item As GridViewRow = gv_ResultadosDisponibles.Rows(counter)
+            Dim precio As Label = item.FindControl("lbl_precio")
+            Dim check As CheckBox = item.FindControl("chk_reservar")
+            Dim ordinal As Integer = precio.Attributes("ordinal")
+            Dim id_producto As Integer = precio.Attributes("producto")
+
+            If check.Checked Then
+                If Session("sessReserva") Is Nothing Then
+                    crearReservacion()
+                End If
+                crearDetalle(id_producto, ordinal)
+            End If
+        Next
+        'cargarItemsDisponibles()
+        cargarReservaciones()
+        cargarItemsReservados(Session("sessReserva"))
+        MyMaster.mostrarError("Reservacion realizada", False)
+    End Sub
+
+    Protected Sub gv_itemModificar_RowCommand(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles gv_itemModificar.RowCommand
+        Dim elItem As GridViewRow = gv_itemModificar.Rows(e.CommandArgument)
+        eliminarDetalle(elItem)
+    End Sub
+
+    Protected Sub btn_cancelarB_Click(ByVal Sender As Object, ByVal E As System.EventArgs) Handles btn_cancelarB.Click
+        ClearInfo(Configuration.EstadoPantalla.NORMAL, False)
+        desabilitarFechas(False)
+    End Sub
+
+    Protected Sub btn_nueva_Click(ByVal Sender As Object, ByVal E As System.EventArgs) Handles btn_nueva.Click
+        ClearInfo(Configuration.EstadoPantalla.NORMAL, True)
+        desabilitarFechas(False)
+        Session("sessReserva") = Nothing
+        Me.upd_reservacion.Update()
+    End Sub
+
+    Protected Sub btn_finalizar_Click(ByVal Sender As Object, ByVal E As System.EventArgs) Handles btn_finalizar.Click
+        MyMaster.mostrarError("Reservacion Finalizada", False)
+        ClearInfo(Configuration.EstadoPantalla.NORMAL, True)
+        desabilitarFechas(False)
+        Session("sessReserva") = Nothing
+    End Sub
+
+    Protected Sub btn_cambiarFecha_Click(ByVal Sender As Object, ByVal E As System.EventArgs) Handles btn_cambiarFecha.Click
+        MyMaster.mostrarError("Al cambiar la fecha todos los productos deben verificarse para comfirmar su disponibilidad", False)
+        botones.Visible = False
+        div_fecha.Visible = True
+        div_ResultadosBusqueda.Visible = False
+        hyl_agregarItem.Visible = False
+
+        desabilitarFechas(False)
+        ddl_clientes.Enabled = False
+        ddl_ubicaciones.Enabled = False
+
+        upd_reservacion.Update()
+    End Sub
+
+    Protected Sub btn_cancelarVerFecha_Click(ByVal Sender As Object, ByVal E As System.EventArgs) Handles btn_cancelarVerFecha.Click
+        botones.Visible = True
+        div_fecha.Visible = False
+        div_ResultadosBusqueda.Visible = True
+        cargarItemsReservados(Session("sessReserva"))
+        'cargarItemsDisponibles()
+        desabilitarFechas(True)
+        upd_reservacion.Update()
+    End Sub
+
+    Protected Sub btn_verificarFecha_Click(ByVal Sender As Object, ByVal E As System.EventArgs) Handles btn_verificarFecha.Click
+        Dim id_reservacion As Integer = Session("sessReserva")
+        If fechaPermitida() Then
+            If verificarDisponibilidad(id_reservacion) Then
+                modificarFecha(id_reservacion)
+                botones.Visible = True
+                div_fecha.Visible = False
+                desabilitarFechas(True)
+                hyl_agregarItem.Visible = True
+                Dim fechaInicio As Date = bdp_FechaInicio.SelectedDate
+                Dim fechaFin As Date = bdp_FechaFinal.SelectedDate
+                hyl_agregarItem.NavigateUrl = MyMaster.obtenerIframeString("agregarItem.aspx?id_reserva=" & id_reservacion & "&fechaInicio=" & fechaInicio & "&fechaFinal=" & fechaFin)
+            End If
+        Else
+            MyMaster.mostrarError("Fecha Inicio debe ser menor que la fecha final", True)
+        End If
+    End Sub
+
+
+    'Crear, Modificar y Eliminar 
+
+    Protected Sub modificarFecha(ByVal id_reservacion As Integer)
+        Dim reserva As New Reservacion
+        Try
+            reserva.fecha_inicioProgramado.Value = bdp_FechaInicio.SelectedDate
+            reserva.fecha_finalProgramado.Value = bdp_FechaFinal.SelectedDate
+            reserva.Id_Reservacion.Where.EqualCondition(id_reservacion)
+            Dim consulta As String = queryBuilder.UpdateQuery(reserva)
+            connection.executeUpdate(consulta)
+            MyMaster.mostrarError("Fecha modificada satisfactoriamente", False)
+        Catch ex As Exception
+            MyMaster.mostrarError("Error al cambiar la fecha", True)
+        End Try
+    End Sub
+
+    Protected Function crearDetalle(ByVal id_producto As Integer, ByVal ordinal As Integer) As Boolean
+        Dim detalle As New detalle_reservacion
+        Dim insertado As Boolean = False
+        Dim reserva As New Reservacion
+        Dim id_reserva As Integer = 0
+        Try
+            detalle.Id_producto.Value = id_producto
+            detalle.ordinal.Value = ordinal
+            id_reserva = Session("sessReserva")
+            detalle.id_reservacion.Value = id_reserva
+            Dim consulta As String = queryBuilder.InsertQuery(detalle)
+            connection.executeInsert(consulta)
+            Dim numFactura As Integer = obtenerFactura(id_reserva)
+            Dim monto As Integer = obtenerMonto(id_producto, ordinal)
+            actualizarMontoFactura(numFactura, monto)
+            insertado = True
+        Catch ex As Exception
+
+        End Try
+        Return insertado
+    End Function
+
+    Protected Function obtenerMonto(ByVal id_producto As Integer, ByVal ordinal As Integer) As Integer
+        Dim monto As Integer = 0
+        Dim item As New Item
+        Dim dataSet As New Data.DataSet
+        item.precio.ToSelect = True
+        item.Id_producto.Where.EqualCondition(id_producto)
+        item.ordinal.Where.EqualCondition(ordinal)
+
+        Try
+            Dim consulta As String = queryBuilder.SelectQuery(item)
+            dataSet = connection.executeSelect(consulta)
+            If dataSet.Tables.Count > 0 Then
+                If dataSet.Tables(0).Rows.Count > 0 Then
+                    ObjectBuilder.CreateObject(dataSet.Tables(0), 0, item)
+                    monto = item.precio.Value
+                End If
+            End If
+        Catch ex As Exception
+            MyMaster.mostrarError(ex.Message, True)
+        End Try
+        Return monto
+    End Function
+
+    Protected Sub actualizarMontoFactura(ByVal id_factura As Integer, ByVal monto As Integer)
+        Dim factura As New Factura
+        Dim total As Integer = 0
+        Dim dataSet As New Data.DataSet
+        factura.Monto_Total.ToSelect = True
+        factura.Id_Factura.Where.EqualCondition(id_factura)
+        Try
+            Dim consulta As String = queryBuilder.SelectQuery(factura)
+            dataSet = connection.executeSelect(consulta)
+            If dataSet.Tables.Count > 0 Then
+                If dataSet.Tables(0).Rows.Count > 0 Then
+                    'Monto anterior
+                    ObjectBuilder.CreateObject(dataSet.Tables(0), 0, factura)
+                    total = factura.Monto_Total.Value
+                    'actualizar monto
+                    total = total + monto
+                    Dim factura2 As New Factura
+                    factura2.Monto_Total.Value = total
+                    factura2.Id_Factura.Where.EqualCondition(id_factura)
+                    consulta = queryBuilder.UpdateQuery(factura2)
+                    connection.executeUpdate(consulta)
+                End If
+            End If
+
+        Catch ex As Exception
+            MyMaster.mostrarError(ex.Message, True)
+        End Try
+    End Sub
+
+    Protected Function crearReservacion() As Boolean
+        Dim insertado As Boolean = False
+        Dim id_reserva As Integer = 0
+        Dim factura As New Factura
+
+        Try
+            Dim reservacion As New Reservacion
+            If crearFactura() Then
+                reservacion.fechaRegistro.ValueUtc = Date.UtcNow
+                Dim fechaInicio As New Date(bdp_FechaInicio.SelectedDate.Year, bdp_FechaInicio.SelectedDate.Month, bdp_FechaInicio.SelectedDate.Day, ddl_horaInicio.SelectedValue, ddl_minutoInicio.SelectedValue, 0)
+                Dim fechaFinal As New Date(bdp_FechaFinal.SelectedDate.Year, bdp_FechaFinal.SelectedDate.Month, bdp_FechaFinal.SelectedDate.Day, ddl_horaFinal.SelectedValue, ddl_minutoFinal.SelectedValue, 0)
+                reservacion.fecha_inicioProgramado.Value = fechaInicio
+                reservacion.fecha_finalProgramado.Value = fechaFinal
+                reservacion.id_Cliente.Value = ddl_clientes.SelectedValue
+                reservacion.Id_Ubicacion.Value = 1 'revisar Esto
+                reservacion.Id_factura.Value = connection.lastKey(factura.TableName, factura.Id_Factura.Name)
+                reservacion.estado.Value = ControladorReservaciones.Estado.reservado
+                reservacion.descripcion.Value = " "
+
+                Dim consulta As String = queryBuilder.InsertQuery(reservacion)
+                connection.executeInsert(consulta)
+                insertado = True
+
+                id_reserva = connection.lastKey(reservacion.TableName, reservacion.Id_Reservacion.Name)
+                Session("sessReserva") = id_reserva
+            End If
+        Catch ex As Exception
+            MyMaster.mostrarError(ex.Message, True)
+        End Try
+        Return insertado
+    End Function
+
+    'Protected Function crearFactura() As Boolean
+    '    Dim factura As New Factura
+    '    Dim insertado As Boolean = False
+
+    '    Try
+    '        factura.Id_Comprador.Value = ddl_clientes.SelectedValue
+    '        factura.id_Vendedor.Value = ControladorReservaciones.vendedorDefault
+    '        factura.id_TipoFactura.Value = ControladorReservaciones.tipoFacturaReservacion
+    '        factura.Num_Factura.Value = ControladorReservaciones.numFacturaReservacion
+    '        factura.Fecha_Factura.ValueUtc = Date.UtcNow
+    '        factura.Fecha_Orden.ValueUtc = Date.UtcNow
+    '        factura.Numero_Orden.Value = ControladorReservaciones.numOrdenReservacion
+    '        factura.Dias_Credito.Value = 0
+    '        factura.Tipo_Venta.Value = ControladorReservaciones.tipoVentaReservacion
+    '        factura.Enviar_Por.Value = " "
+    '        factura.Estado_Factura.Value = Configuration_FacturaOnline.EstadoFactura.Unapproved_Cart
+    '        factura.Descuento_Factura.Value = 0
+    '        factura.Monto_Total.Value = 0
+    '        Dim consInsertar As String = queryBuilder.InsertQuery(factura)
+    '        connection.executeInsert(consInsertar)
+    '        insertado = True
+
+    '    Catch ex As Exception
+    '        MyMaster.mostrarError(ex.Message, True)
+    '    End Try
+    '    Return insertado
+    'End Function
+
+    'Protected Sub eliminarReservacion(ByVal id_reservacion As Integer)
+    '    Dim reserva As New Reservacion
+    '    Dim factura As New Factura
+    '    Try
+    '        reserva.estado.Value = ControladorReservaciones.Estado.cancelado
+    '        reserva.Id_Reservacion.Where.EqualCondition(id_reservacion)
+
+    '        Dim consulta As String = queryBuilder.UpdateQuery(reserva)
+    '        connection.executeUpdate(consulta)
+    '        Dim numFactura As Integer = obtenerFactura(id_reservacion)
+    '        eliminarFactura(numFactura)
+    '        MyMaster.mostrarError("Reservacion Eliminada", False)
+    '    Catch ex As Exception
+
+    '    End Try
+    'End Sub
+
+    'Protected Sub eliminarFactura(ByVal id_factura As Integer)
+    '    Dim factura As New Factura
+    '    Try
+    '        factura.Estado_Factura.Value = ControladorReservaciones.Estado.cancelado
+    '        factura.Id_Factura.Where.EqualCondition(id_factura)
+    '        Dim consulta As String = queryBuilder.UpdateQuery(factura)
+    '        connection.executeUpdate(consulta)
+    '        MyMaster.mostrarError("LA reservacion fue cancelada", False)
+    '    Catch ex As Exception
+
+    '    End Try
+    'End Sub
+
+    Protected Sub eliminarDetalle(ByVal elItem As GridViewRow)
+        Dim etiqueta As Label = elItem.FindControl("lbl_precio")
+        Dim id_producto As Integer = etiqueta.Attributes("producto")
+        Dim id_reservacion As Integer = etiqueta.Attributes("id_reservacion")
+        Dim ordinal As Integer = etiqueta.Attributes("ordinal")
+        Try
+
+            If cantidadItems(id_reservacion) > 1 Then
+                Dim detalle As New detalle_reservacion
+                detalle.Id_producto.Where.EqualCondition(id_producto)
+                detalle.ordinal.Where.EqualCondition(ordinal)
+                detalle.id_reservacion.Where.EqualCondition(id_reservacion)
+                Dim consulta As String = queryBuilder.DeleteQuery(detalle)
+                connection.executeDelete(consulta)
+                Dim id_reserva As Integer = Session("sessReserva")
+                cargarItemsReservados(id_reserva)
+                MyMaster.mostrarError("Item borrado exitosamaente", False)
+            Else
+                eliminarReservacion(id_reservacion)
+                ClearInfo(Configuration.EstadoPantalla.NORMAL, True)
+                MyMaster.mostrarError("Reservacion borrada exitosamaente", False)
+            End If
+            cargarReservaciones()
+        Catch ex As Exception
+            MyMaster.mostrarError(ex.Message, True)
+        End Try
+    End Sub
+
+    'Accesibilidad
+    Protected Function verificarDisponibilidad(ByVal id_reservacion As Integer) As Boolean
+        Dim disponibles As Boolean = True
+        Dim producto As New Producto
+        Dim dataSet As New Data.DataSet
+        Dim reserva As New Reservacion
+        Dim detalle As New detalle_reservacion
+        Dim item As New Item
+        Dim productosReservados As String = ""
+
+        item.Fields.SelectAll()
+        producto.Nombre.ToSelect = True
+        queryBuilder.Join.EqualCondition(reserva.Id_Reservacion, detalle.id_reservacion)
+        queryBuilder.Join.EqualCondition(detalle.Id_producto, item.Id_producto)
+        queryBuilder.Join.EqualCondition(detalle.ordinal, item.ordinal)
+        queryBuilder.Join.EqualCondition(item.Id_producto, producto.Id_Producto)
+        reserva.Id_Reservacion.Where.EqualCondition(id_reservacion)
+
+        queryBuilder.From.Add(reserva)
+        queryBuilder.From.Add(producto)
+        queryBuilder.From.Add(detalle)
+        queryBuilder.From.Add(item)
+
+        Dim consulta As String = queryBuilder.RelationalSelectQuery
+        dataSet = connection.executeSelect(consulta)
+        If dataSet.Tables.Count > 0 Then
+            If dataSet.Tables(0).Rows.Count > 0 Then
+                Dim resul_item As ArrayList = ObjectBuilder.TransformDataTable(dataSet.Tables(0), item)
+                Dim resul_producto As ArrayList = ObjectBuilder.TransformDataTable(dataSet.Tables(0), producto)
+                For counter As Integer = 0 To dataSet.Tables(0).Rows.Count - 1
+                    item = resul_item(counter)
+                    producto = resul_producto(counter)
+                    If Not itemDisponible(item.Id_producto.Value, item.ordinal.Value, id_reservacion) Then
+                        disponibles = False
+                        productosReservados &= producto.Nombre.Value & "<br />"
+                        'Exit For
+                    End If
+                Next
+            End If
+        End If
+        If Not disponibles Then
+            MyMaster.mostrarError("NO es posible cambiar la fecha ya que los siguientes productos se encuntran reservados: <br />" & productosReservados, True)
+        End If
+        Return disponibles
+    End Function
+
+    'Interfaz 
+    Protected Function fechaPermitida() As Boolean
+        Dim permitida As Boolean = False
+        If bdp_FechaInicio.SelectedDate <= bdp_FechaFinal.SelectedDate Then
+            If bdp_FechaInicio.SelectedDate = bdp_FechaFinal.SelectedDate Then
+                If (ddl_horaInicio.SelectedValue < ddl_horaFinal.SelectedValue) Or (ddl_minutoInicio.SelectedValue < ddl_minutoFinal.SelectedValue) Then
+                    permitida = True
+                Else
+                    MyMaster.mostrarError("Hora Final debe ser mayor que la hora de Inicio", True)
+                End If
+            Else
+                permitida = True
+            End If
+        Else
+            MyMaster.mostrarError("Fecha Inicio debe ser menor que la fecha final", True)
+        End If
+        Return permitida
+    End Function
+
+    Protected Sub desabilitarFechas(ByVal desabilitar As Boolean)
+        bdp_FechaFinal.Enabled = Not desabilitar
+        bdp_FechaInicio.Enabled = Not desabilitar
+        ddl_horaInicio.Enabled = Not desabilitar
+        ddl_minutoInicio.Enabled = Not desabilitar
+        ddl_horaFinal.Enabled = Not desabilitar
+        ddl_minutoFinal.Enabled = Not desabilitar
+        ddl_clientes.Enabled = Not desabilitar
+        ddl_ubicaciones.Enabled = Not desabilitar
+    End Sub
+
+    Protected Sub noHayDisponibles(ByVal disponibles As Boolean)
+        lbl_NoResultadosDisponibles.Visible = disponibles
+        btn_agregar.Visible = Not disponibles
+        gv_ResultadosDisponibles.Visible = Not disponibles
+        div_ResultadosBusqueda.Visible = True
+    End Sub
+
+End Class

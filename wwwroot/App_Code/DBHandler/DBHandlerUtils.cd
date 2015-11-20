@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Orbelink.DBHandler.ScriptBuilder">
+    <Position X="4.25" Y="3.25" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAACBAAABAAAAAAAAAABAJAAAAgABIEAA=</HashCode>
+      <FileName>App_Code\DBHandler\ScriptBuilder.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbelink.DBHandler.SQLServer">
+    <Position X="7" Y="0.75" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AICAAACCAQAAAAgAACAYAAAAEBAAEAAAAAAAAACIAAI=</HashCode>
+      <FileName>App_Code\DBHandler\SQLServer.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Module Name="Orbelink.DBHandler.LanguageHandler">
+    <Position X="1.25" Y="0.75" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Orbelink.DBHandler.LanguageHandler.Language" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>App_Code\DBHandler\LanguageHandler.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>gEAAEAAQAADAAAAAACQAAAABAAQAGAAAAkAAAgAoAAA=</HashCode>
+      <FileName>App_Code\DBHandler\LanguageHandler.vb</FileName>
+    </TypeIdentifier>
+  </Module>
+  <Module Name="Orbelink.DBHandler.ObjectBuilder">
+    <Position X="4" Y="0.5" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAQDAAAAEAAEAgAAAQAAAAAAAAA=</HashCode>
+      <FileName>App_Code\DBHandler\ObjectBuilder.vb</FileName>
+    </TypeIdentifier>
+  </Module>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

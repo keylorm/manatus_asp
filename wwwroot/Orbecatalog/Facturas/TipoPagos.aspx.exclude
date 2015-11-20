@@ -1,0 +1,79 @@
+<%@ Page Language="VB" MasterPageFile="../OrbeCatalog.master" AutoEventWireup="false"
+    CodeFile="TipoPagos.aspx.vb" Inherits="_TipoPagos" Title="Orbe Catalog - Tipo Pagos" %>
+
+<asp:Content ID="ctn_Trabajo" ContentPlaceHolderID="cph_Trabajo" runat="Server">
+    <h1>
+        Tipo de Pago</h1>
+    <table id="Seccion_Trabajo_Tabla" class="Seccion_Trabajo_Container" cellspacing="0"
+        cellpadding="0" border="0">
+        <tr>
+            <td>
+                Nombre</td>
+            <td>
+                <asp:TextBox ID="tbx_NombreTipoPagos" runat="server"></asp:TextBox></td>
+            <td>
+                <asp:RequiredFieldValidator ID="vld_tbx_NombreTipoPagos" runat="server" ControlToValidate="tbx_NombreTipoPagos"
+                    Display="Dynamic" EnableClientScript="False" ErrorMessage="<%$ Resources:Orbecatalog_Resources, Campo_Requerido %>"></asp:RequiredFieldValidator></td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td>
+                <table id="tablaBotones" class="botonesAcciones" cellspacing="0" cellpadding="0" border="0">
+                    <tr>
+                        <td>
+                            <asp:PlaceHolder ID="hol_Salvar" runat="server">
+                                <asp:ImageButton ID="btn_Salvar" CausesValidation="true" runat="server" ToolTip="Salvar" ImageUrl="../images/buttons/guardar.gif">
+                                </asp:ImageButton><br />
+                                <asp:Label ID="lbl_Salvar" runat="server" Text="Salvar"></asp:Label></asp:PlaceHolder>
+                        </td>
+                        <td>
+                            <asp:PlaceHolder ID="hol_Modificar" runat="server">
+                                <asp:ImageButton ID="btn_Modificar" CausesValidation="true" runat="server" ToolTip="Editar" ImageUrl="../images/buttons/editar.gif">
+                                </asp:ImageButton><br />
+                                <asp:Label ID="lbl_Modificar" runat="server" Text="Modificar"></asp:Label></asp:PlaceHolder>
+                        </td>
+                        <td>
+                            <asp:PlaceHolder ID="hol_Cancelar" runat="server">
+                                <asp:ImageButton ID="btn_Cancelar" runat="server" ToolTip="Cancelar" ImageUrl="../images/buttons/stop.gif">
+                                </asp:ImageButton><br />
+                                <asp:Label ID="lbl_Cancelar" runat="server" Text="Cancelar"></asp:Label></asp:PlaceHolder>
+                        </td>
+                        <td>
+                            <asp:PlaceHolder ID="hol_Eliminar" runat="server">
+                                <asp:ImageButton ID="btn_Eliminar" runat="server" ToolTip="Borrar" ImageUrl="../images/buttons/basurero.gif">
+                                </asp:ImageButton><br />
+                                <asp:Label ID="lbl_Eliminar" runat="server" Text="Eliminar"></asp:Label></asp:PlaceHolder>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td>
+            </td>
+        </tr>
+    </table>
+</asp:Content>
+<asp:Content ID="ctn_TituloSeccion" ContentPlaceHolderID="cph_tituloSeccion" runat="Server">
+    Manejo de Tipos de Pagos
+</asp:Content>
+<asp:Content ID="cph_Busqueda" ContentPlaceHolderID="cph_ColumnaDerecha" runat="Server">
+    <h1>
+        Tipos de Pagos Actuales</h1>
+    <div class="Seccion_Busqueda_Container">
+        <asp:DataGrid ID="DG_TipoPagos" runat="server" AutoGenerateColumns="False" AllowPaging="true"
+            CssClass="tablaResultados" PageSize="5">
+            <AlternatingItemStyle CssClass="tablaResultados_Alternate" />
+            <ItemStyle CssClass="tablaResultados_Item" />
+            <HeaderStyle CssClass="tablaResultados_Header" />
+            <FooterStyle CssClass="tablaResultados_Footer" />
+            <PagerStyle Mode="NumericPages" CssClass="tablaResultados_Pager" />
+            <Columns>
+                <asp:EditCommandColumn CancelText="Cancel" EditText="Edit" UpdateText="Update"></asp:EditCommandColumn>
+                <asp:TemplateColumn HeaderText="Tipo Pago">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_Nombre" runat="server" Text="Label"></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateColumn>
+            </Columns>
+        </asp:DataGrid></div>
+</asp:Content>

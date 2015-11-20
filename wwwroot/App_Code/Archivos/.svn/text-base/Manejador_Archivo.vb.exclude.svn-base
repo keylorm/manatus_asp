@@ -1,0 +1,18 @@
+﻿Imports Orbelink.DBHandler
+
+Imports Orbelink.Helpers
+
+Namespace Orbelink.Control.Archivos
+
+    Public Class Manejador_Archivo
+
+        
+
+       
+
+        
+
+   
+    End Class
+
+End Namespace

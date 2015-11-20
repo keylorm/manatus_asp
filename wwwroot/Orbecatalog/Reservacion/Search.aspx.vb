@@ -1,0 +1,241 @@
+﻿Imports Orbelink.DBHandler
+Imports Orbelink.Entity.Reservaciones
+Imports Orbelink.Control.Reservaciones
+Imports Orbelink.Entity.Entidades
+Imports Orbelink.DateAndTime
+
+Partial Class Orbecatalog_Reservacion_Search
+    Inherits PageBaseClass
+
+    Const codigo_pantalla As String = "RS-SR"
+    Const level As Integer = 2
+
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        AddScripts(level)
+
+        securityHandler.VerifyPantalla(codigo_pantalla, level)
+
+        If Not IsPostBack Then
+            Me.Title = Resources.Orbecatalog_Resources.Orbecatalog & " - " & Resources.Reservaciones_Resources.BusquedaReservaciones_Pantalla
+            'bdp_FechaInicio.SelectedDate = DateHandler.ToLocalizedDateFromUtc(Date.UtcNow).Date
+            'bdp_FechaFinal.SelectedDate = DateHandler.ToLocalizedDateFromUtc(Date.UtcNow).Date.AddDays(7)
+            'cln_FechaInicio.SelectedDate = DateHandler.ToLocalizedDateFromUtc(Date.UtcNow).Date
+            'cln_FechaFin.SelectedDate = DateHandler.ToLocalizedDateFromUtc(Date.UtcNow).Date.AddDays(7)
+            cargarEntidades()
+            cargarEstados()
+            cargarUbicacion()
+
+            DesarmarQueryString()
+        End If
+    End Sub
+
+    Function ArmarQueryString(ByVal pageNumber As Integer) As String
+        Dim queryString As New StringBuilder
+        queryString.Append("Search.aspx?search=true")
+
+        If Not ddl_clientes.SelectedIndex = ddl_clientes.Items.Count - 1 Then
+            queryString.Append("&cliente=")
+            queryString.Append(ddl_clientes.SelectedValue)
+        End If
+        If Not ddl_ubicaciones.SelectedIndex = ddl_ubicaciones.Items.Count - 1 Then
+            queryString.Append("&ubicacion=")
+            queryString.Append(ddl_ubicaciones.SelectedValue)
+        End If
+        If Not ddl_TipoEstado.SelectedIndex = ddl_TipoEstado.Items.Count - 1 Then
+            queryString.Append("&estado=")
+            queryString.Append(ddl_TipoEstado.SelectedIndex)
+        End If
+
+        'If bdp_FechaInicio.SelectedValue IsNot Nothing And bdp_FechaFinal.SelectedValue IsNot Nothing Then
+        '    queryString.Append("&fechas=")
+        '    queryString.Append(System.Web.HttpUtility.UrlEncode(bdp_FechaInicio.SelectedDate.ToShortDateString))
+        '    queryString.Append("-")
+        '    queryString.Append(System.Web.HttpUtility.UrlEncode(bdp_FechaFinal.SelectedDate.ToShortDateString))
+        'End If
+        Try
+            If cln_FechaInicio.SelectedDate > Date.MinValue And cln_FechaFin.SelectedDate > Date.MinValue Then
+                queryString.Append("&fechas=")
+                queryString.Append(System.Web.HttpUtility.UrlEncode(cln_FechaInicio.SelectedDate.ToShortDateString))
+                queryString.Append("-")
+                queryString.Append(System.Web.HttpUtility.UrlEncode(cln_FechaFin.SelectedDate.ToShortDateString))
+            End If
+        Catch ex As Exception
+
+        End Try
+
+
+        queryString.Append("&pageNumber=")
+        queryString.Append(pageNumber)
+        queryString.Append("&pageSize=")
+        queryString.Append(ddl_PageSize.SelectedValue)
+        Return queryString.ToString
+    End Function
+
+    Sub DesarmarQueryString()
+        If Not Request.QueryString("search") Is Nothing Then
+            Dim thePage As Integer = 0
+
+            If Not Request.QueryString("cliente") Is Nothing Then
+                ddl_clientes.SelectedValue = Request.QueryString("cliente")
+            End If
+
+            If Not Request.QueryString("ubicacion") Is Nothing Then
+                ddl_ubicaciones.SelectedValue = Request.QueryString("ubicacion")
+            End If
+
+            If Not Request.QueryString("estado") Is Nothing Then
+                ddl_TipoEstado.SelectedIndex = Request.QueryString("estado")
+            End If
+
+            If Not Request.QueryString("pageSize") Is Nothing Then
+                'gv_Reservacions.PageSize = Request.QueryString("pageSize")
+                ddl_PageSize.SelectedValue = Request.QueryString("pageSize")
+            End If
+
+            If Not Request.QueryString("pageNumber") Is Nothing Then
+                thePage = Request.QueryString("pageNumber")
+            End If
+
+            If Request.Params("fechas") IsNot Nothing Then
+                Try
+
+                    Dim fechas As String = System.Web.HttpUtility.UrlDecode(Request.Params("fechas"))
+                    Dim fechasArray() As String = fechas.Split("-")
+                    If fechasArray.Length = 2 Then
+                        'bdp_FechaInicio.SelectedDate = fechasArray(0)
+                        'bdp_FechaFinal.SelectedDate = fechasArray(1)
+                        cln_FechaInicio.SelectedDate = fechasArray(0)
+                        cln_FechaFin.SelectedDate = fechasArray(1)
+                    End If
+                Catch ex As Exception
+                
+                End Try
+            End If
+
+            selectReservaciones(thePage)
+        End If
+    End Sub
+
+    'Reservacions 
+    Protected Sub selectReservaciones(ByVal thePage As Integer)
+        Dim controladora As New ControladorReservaciones(connection, Resources.Reservaciones_Resources.ResourceManager)
+        Dim Reservacion As New Reservacion
+
+        Dim consultarText As String = Resources.Orbecatalog_Resources.Consultar
+
+        Dim id_Cliente As Integer = 0
+        If ddl_clientes.SelectedIndex < ddl_clientes.Items.Count - 1 Then
+            id_Cliente = ddl_clientes.SelectedValue
+        End If
+
+        Dim id_Ubicacion As Integer = 0
+        If ddl_ubicaciones.SelectedIndex < ddl_ubicaciones.Items.Count - 1 Then
+            id_Ubicacion = ddl_ubicaciones.SelectedValue
+        End If
+
+        Dim id_TipoEstado As Integer = 0
+        If ddl_TipoEstado.SelectedIndex < ddl_TipoEstado.Items.Count - 1 Then
+            id_TipoEstado = ddl_TipoEstado.SelectedValue
+        End If
+        Dim fechaInicio As Date = Date.MinValue
+        If cln_FechaInicio.SelectedDate > Date.MinValue Then
+            fechaInicio = Orbelink.DateAndTime.DateHandler.ToUtcFromLocalizedDate(cln_FechaInicio.SelectedDate)
+        End If
+        Dim fechaFin As Date = Date.MinValue
+        If cln_FechaFin.SelectedDate > Date.MinValue Then
+            fechaFin = Orbelink.DateAndTime.DateHandler.ToUtcFromLocalizedDate(cln_FechaFin.SelectedDate)
+        End If
+
+        Dim resultado As Data.DataTable = controladora.SearchReservaciones(id_Cliente, id_Ubicacion, id_TipoEstado, fechaInicio, fechaFin)
+
+        If resultado IsNot Nothing Then
+            gv_Reservacions.AutoGenerateColumns = False
+
+            Dim linkField As New BoundField
+            linkField.DataField = Reservacion.Id_Reservacion.Name
+            linkField.DataFormatString = "<a href=""Reservacion.aspx?id_Reservacion={0}"" >" & consultarText & "</a>"
+            linkField.HtmlEncodeFormatString = False
+            linkField.HeaderText = consultarText
+            gv_Reservacions.Columns.Add(linkField)
+
+            For Each columna As Data.DataColumn In resultado.Columns
+                If columna.ColumnMapping <> Data.MappingType.Hidden Then
+                    Dim fieldTemp As New BoundField
+                    fieldTemp.DataField = columna.ColumnName
+                    fieldTemp.HeaderText = CType(GetGlobalResourceObject("Reservaciones_Resources", columna.ColumnName), String)
+                    If columna.DataType.Equals(Date.UtcNow.GetType) Then
+                        fieldTemp.DataFormatString = "{0:" & CurrentCulture.DateTimeFormat.ShortDatePattern & "}"
+                    End If
+                    gv_Reservacions.Columns.Add(fieldTemp)
+                End If
+            Next
+
+            gv_Reservacions.DataSource = resultado
+            gv_Reservacions.PageSize = ddl_PageSize.SelectedValue
+            gv_Reservacions.PageIndex = thePage
+
+            gv_Reservacions.DataBind()
+            gv_Reservacions.Visible = True
+            lbl_NoReservacions.Visible = False
+        Else
+            gv_Reservacions.Visible = False
+            lbl_NoReservacions.Visible = True
+        End If
+    End Sub
+
+    'Clientes
+    Protected Sub cargarEntidades()
+
+        Dim Entidad As New Entidad
+
+        Entidad.NombreDisplay.ToSelect = True
+        Entidad.Id_entidad.ToSelect = True
+        queryBuilder.Orderby.Add(Entidad.NombreDisplay)
+        Dim consulta As String = queryBuilder.SelectQuery(Entidad)
+        Dim dataTable As Data.DataTable = connection.executeSelect_DT(consulta)
+
+        If dataTable.Rows.Count > 0 Then
+            ddl_clientes.DataSource = dataTable
+            ddl_clientes.DataTextField = Entidad.NombreDisplay.Name
+            ddl_clientes.DataValueField = Entidad.Id_entidad.Name
+            ddl_clientes.DataBind()
+        End If
+        ddl_clientes.Items.Add(Resources.Orbecatalog_Resources.Opcion_Todos)
+        ddl_clientes.SelectedIndex = ddl_clientes.Items.Count - 1
+    End Sub
+
+    'Ubicacion
+    Protected Sub cargarUbicacion()
+
+        Dim ubicacion As New Ubicacion
+        ubicacion.Nombre.ToSelect = True
+        ubicacion.Id_ubicacion.ToSelect = True
+        Dim consulta As String = queryBuilder.SelectQuery(ubicacion)
+        Dim dataTable As Data.DataTable = connection.executeSelect_DT(consulta)
+
+        If dataTable.Rows.Count > 0 Then
+            ddl_ubicaciones.DataSource = dataTable
+            ddl_ubicaciones.DataTextField = ubicacion.Nombre.Name
+            ddl_ubicaciones.DataValueField = ubicacion.Id_ubicacion.Name
+            ddl_ubicaciones.DataBind()
+        End If
+        ddl_ubicaciones.Items.Add(Resources.Orbecatalog_Resources.Opcion_Todos)
+        ddl_ubicaciones.SelectedIndex = ddl_ubicaciones.Items.Count - 1
+    End Sub
+
+    'Estados
+    Sub cargarEstados()
+        Dim controladora As New ControladorReservaciones(connection, Resources.Reservaciones_Resources.ResourceManager)
+        controladora.selectTipoEstadoReservacion_BindListCollection(Me.ddl_TipoEstado.Items)
+        ddl_TipoEstado.Items.Add(Resources.Orbecatalog_Resources.Opcion_Todos)
+        ddl_TipoEstado.SelectedIndex = ddl_TipoEstado.Items.Count - 1
+    End Sub
+
+    Protected Sub btn_Buscar_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btn_Buscar.Click
+        Response.Redirect(ArmarQueryString(0))
+    End Sub
+
+    Protected Sub gv_Reservacions_PageIndexChanging(ByVal sender As Object, ByVal e As System.Web.UI.WebControls.GridViewPageEventArgs) Handles gv_Reservacions.PageIndexChanging
+        Response.Redirect(ArmarQueryString(e.NewPageIndex))
+    End Sub
+End Class

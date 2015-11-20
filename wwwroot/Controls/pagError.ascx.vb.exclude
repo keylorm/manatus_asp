@@ -1,0 +1,153 @@
+Imports Orbelink.Helpers.Mailer
+
+Partial Class Controls_Front_pagError500
+    Inherits System.Web.UI.UserControl
+
+    Private _modo As elModo = elModo.Modo400
+    Private _cssClassRegresar As String = "errorRegresar"
+    Private _cssClassEnviar As String = "errorEnviar"
+    Private _cssClassMensajeIncial As String = ""
+    Private _cssClassMensaje As String = ""
+
+    Enum elModo As Integer
+        Modo400
+        Modo500
+    End Enum
+
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If Not IsPostBack Then
+            Dim origenError As String = ""
+            origenError = Request.QueryString("aspxerrorpath")
+            If origenError IsNot Nothing Then
+                enviarEmailDefaultSoporteTecnico(origenError)
+            End If
+        End If
+
+        If Modo = elModo.Modo400 Then
+            pnl_formulario.Visible = False
+            sinOpcionEnviar()
+        Else
+            hyl_regresar.CssClass = CssClassRegresar
+            btn_enviar.CssClass = CssClassEnviar
+        End If
+    End Sub
+
+    Public Sub sinOpcionEnviar()
+        btn_enviar.Visible = False
+        tdVacion.Visible = False
+        hyl_regresar.Style("position") = "relative"
+        hyl_regresar.Style("top") = "10px"
+        hyl_regresar.Style("left") = "-5px"
+    End Sub
+
+    Public Property Modo() As elModo
+        Get
+            Return _modo
+        End Get
+        Set(ByVal value As elModo)
+            _modo = value
+        End Set
+    End Property
+
+
+    Public Property EnviarImagePath() As String
+        Get
+            Return btn_enviar.ImageUrl
+        End Get
+        Set(ByVal value As String)
+            btn_enviar.ImageUrl = value
+        End Set
+    End Property
+
+    Public Property RegresarImagePath() As String
+        Get
+            Return hyl_regresar.ImageUrl
+        End Get
+        Set(ByVal value As String)
+            hyl_regresar.ImageUrl = value
+        End Set
+    End Property
+
+    Public Property MensajeInicial() As String
+        Get
+            Return lbl_mensajeInicial.Text
+        End Get
+        Set(ByVal value As String)
+            lbl_mensajeInicial.Text = value
+        End Set
+    End Property
+
+    Sub enviarEmailDefaultSoporteTecnico(ByVal origenError As String) 'enviar correo de notificacion a soporte tecnico
+        Dim ultimoLogError As String = Orbelink.Helpers.Logger.LastRutinaHistorial(HttpContext.Current)
+        Dim securityHandler As New Orbelink.Control.Security.SecurityHandler(Configuration.Config_DefaultConnectionString)
+        Dim exito As Boolean = False
+        If securityHandler.IsLogged Then
+            Dim usuario As Orbelink.Entity.Security.Usuario = securityHandler.ConsultarUsuario(securityHandler.Usuario)
+            exito = Orbelink.Helpers.Mailer.SendErrorMail(usuario.Email.Value, usuario.NombreDisplay.Value, "soporte@orbelink.com", "Soporte Orbelink", "", txb_mensaje.Text, Configuration.Config_SiteName, Date.UtcNow, Configuration.Config_WebsiteRoot, New String() {ultimoLogError})
+        Else
+            exito = Orbelink.Helpers.Mailer.SendErrorMail(Configuration.Config_DefaultAdminEmail, Configuration.Config_DefaultAdminEmail, "soporte@orbelink.com", "Soporte Orbelink", "", txb_mensaje.Text, Configuration.Config_SiteName, Date.UtcNow, Configuration.Config_WebsiteRoot, New String() {ultimoLogError})
+        End If
+    End Sub
+
+    Protected Sub btn_enviar_Click(ByVal sender As Object, ByVal e As System.Web.UI.ImageClickEventArgs) Handles btn_enviar.Click
+        Dim ultimoLogError As String = Orbelink.Helpers.Logger.LastRutinaHistorial(HttpContext.Current)
+        Dim securityHandler As New Orbelink.Control.Security.SecurityHandler(Configuration.Config_DefaultConnectionString)
+        Dim exito As Boolean = False
+        If securityHandler.IsLogged Then
+            Dim usuario As Orbelink.Entity.Security.Usuario = securityHandler.ConsultarUsuario(securityHandler.Usuario)
+            exito = Orbelink.Helpers.Mailer.SendErrorMail(usuario.Email.Value, usuario.NombreDisplay.Value, "soporte@orbelink.com", "Soporte Orbelink", "", txb_mensaje.Text, Configuration.Config_SiteName, Date.UtcNow, Configuration.Config_WebsiteRoot, New String() {ultimoLogError})
+        Else
+            exito = Orbelink.Helpers.Mailer.SendErrorMail(Configuration.Config_DefaultAdminEmail, Configuration.Config_DefaultAdminEmail, "soporte@orbelink.com", "Soporte Orbelink", "", txb_mensaje.Text, Configuration.Config_SiteName, Date.UtcNow, Configuration.Config_WebsiteRoot, New String() {ultimoLogError})
+        End If
+        pnl_formulario.Visible = False
+        sinOpcionEnviar()
+        lbl_mensajeInicial.Visible = False
+        pnl_mensaje.Visible = True
+        If exito = True Then
+            lbl_mensaje2.Text = Resources.Controles_Resources.mensajeEnviado
+            txb_mensaje.Text = ""
+        Else
+            lbl_mensaje2.Text = Resources.Controles_Resources.mensajeNoEnviado
+        End If
+    End Sub
+
+    Public Property CssClassRegresar() As String
+        Get
+            Return _cssClassRegresar
+        End Get
+        Set(ByVal value As String)
+            _cssClassRegresar = value
+        End Set
+    End Property
+
+    Public Property CssClassEnviar() As String
+        Get
+            Return _cssClassEnviar
+        End Get
+        Set(ByVal value As String)
+            _cssClassEnviar = value
+        End Set
+    End Property
+
+    Public Property CssClasMensajeInicial() As String
+        Get
+            Return _cssClassMensajeIncial
+        End Get
+        Set(ByVal value As String)
+            _cssClassMensajeIncial = value
+        End Set
+    End Property
+
+    Public Property CssClassMensaje() As String
+        Get
+            Return _cssClassMensaje
+        End Get
+        Set(ByVal value As String)
+            _cssClassMensaje = value
+        End Set
+    End Property
+
+
+
+
+End Class

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Orbelink.DBHandler.DBTable">
+    <Position X="1" Y="1.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="ForeingKeys" Type="System.Collections.ObjectModel.Collection(Of T)" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2.5" Y="2.635" />
+        <Point X="4.469" Y="2.635" />
+        <Point X="4.469" Y="1.812" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.17" Y="1.019" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAQFAMEEAAAAAAAAACAAAAAAAAwAAAAAAAAAQAAmAA=</HashCode>
+      <FileName>App_Code\DBHandler\DBTable.vb</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Fields" />
+      <Property Name="ForeingKeys" />
+      <Property Name="PrimaryKey" />
+      <Property Name="UniqueKeys" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Orbelink.DBHandler.FieldCollection">
+    <Position X="4.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAABAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Code\DBHandler\FieldCollection.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Collections.ObjectModel.Collection(Of T)" Collapsed="true">
+    <Position X="4.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Orbelink.DBHandler.PrimaryKey" Collapsed="true">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACgAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>App_Code\DBHandler\Keys\PrimaryKey.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

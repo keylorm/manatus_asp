@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" enableLocalization="true" >
+    <siteMapNode url="orbecatalog/Default.aspx" title="Inicio" >
+
+        <!-- Entidades -->
+        <siteMapNode url="orbecatalog/contactos/Default.aspx" title="$resources:Entidades_Resources, Modulo_Pantalla">
+            <siteMapNode url="orbecatalog/contactos/Entidad.aspx" title="$resources:Entidades_Resources, Entidad_Pantalla" >
+                <siteMapNode url="orbecatalog/contactos/TipoEntidad.aspx" title="$resources:Entidades_Resources, TipoEntidad_Pantalla"  />
+                <siteMapNode url="orbecatalog/contactos/Atributos.aspx" title="$resources:Entidades_Resources, Atributos_Pantalla"  />
+                <siteMapNode url="orbecatalog/contactos/AtribTipoEntidad.aspx" title="$resources:Entidades_Resources, AtributosTipoEntidad_Pantalla"  />
+                <siteMapNode url="orbecatalog/contactos/Ubicacion.aspx" title="$resources:Entidades_Resources, Ubicacion_Pantalla" />
+            </siteMapNode>
+            <siteMapNode url="orbecatalog/contactos/Relaciones_Entidades.aspx" title="$resources:Entidades_Resources, Relaciones_Pantalla"  >
+                <siteMapNode url="orbecatalog/contactos/TipoRelacion.aspx" title="$resources:Entidades_Resources, TipoRelacion_Pantalla"   />
+            </siteMapNode>
+            <siteMapNode url="orbecatalog/contactos/UploadEntidad.aspx" title="$resources:Entidades_Resources, Upload_Pantalla"  />
+            <siteMapNode url="orbecatalog/contactos/Grupo.aspx" title="$resources:Entidades_Resources, Grupos_Pantalla"  >
+                <siteMapNode url="orbecatalog/contactos/TipoRelacion_Grupos.aspx" title="$resources:Entidades_Resources, Grupo_TipoRelacion_Pantalla" />
+                <siteMapNode url="orbecatalog/contactos/Grupo_List.aspx" title="$resources:Entidades_Resources, GrupoLista_Pantalla"  />
+            </siteMapNode>
+            <siteMapNode url="orbecatalog/Search/Entidades.aspx" title="$resources:Entidades_Resources, Search_Pantalla" />
+            <!-- EntidadQuick_Pantalla -->
+        </siteMapNode>
+
+        <!-- Productos -->
+        <siteMapNode url="orbecatalog/productos/Default.aspx" title="$resources:Productos_Resources, ProductoModulo_Pantalla"  description="" >
+            <siteMapNode title="MA">
+                <siteMapNode url="orbecatalog/productos/TipoProducto.aspx" title="$resources:Productos_Resources, TipoProducto_Pantalla"  description="" />
+                <siteMapNode url="orbecatalog/productos/Atributos.aspx" title="$resources:Productos_Resources, Atributos_Pantalla"  description="" />
+                <siteMapNode url="orbecatalog/productos/Estados_Productos.aspx" title="$resources:Productos_Resources, Estados_Pantalla"  description="" />
+                <siteMapNode url="orbecatalog/productos/Origenes.aspx" title="$resources:Productos_Resources, Origenes_Pantalla"  description="" />
+                <siteMapNode url="orbecatalog/productos/Atributos_TipoProducto.aspx" title="$resources:Productos_Resources, AtributosTipoProducto_Pantalla"  description="" />
+                <siteMapNode url="orbecatalog/productos/Keywords.aspx" title="$resources:Productos_Resources, Keywords_Pantalla"  description="" />
+                <siteMapNode url="orbecatalog/productos/Relaciones_Productos.aspx" title="$resources:Productos_Resources, Relaciones_Pantalla"  description="" />
+                <siteMapNode url="orbecatalog/productos/TipoRelacion.aspx" title="$resources:Productos_Resources, TiposRelacion_Pantalla"  description="" />
+            </siteMapNode>
+            <siteMapNode url="orbecatalog/productos/Productos.aspx" title="$resources:Productos_Resources, Producto_Pantalla"  description="" >
+                <siteMapNode url="orbecatalog/productos/GoogleMaps.aspx" title="$resources:Productos_Resources, Mapa_Pantalla"  description="" />
+            </siteMapNode>
+            <siteMapNode url="orbecatalog/productos/Productos_Principal.aspx" title="$resources:Productos_Resources, PaginaPrincipal_Pantalla"  description="" />
+            <siteMapNode url="orbecatalog/Search/Productos.aspx" title="$resources:Productos_Resources, Busqueda_Pantalla"/>
+            <!-- Grupos_Pantalla , Paquetes_Pantalla, TipoRelacionGrupos_Pantalla-->
+        </siteMapNode>
+
+        <!-- Facturas -->
+        <siteMapNode url="orbecatalog/Facturas/Default.aspx" title="$resources:Facturas_Resources, ModuloFacturas_Pantalla"  description="" >
+            <siteMapNode url="orbecatalog/Facturas/Factura.aspx" title="$resources:Facturas_Resources, Facturas_Pantalla"  description="" />
+            <siteMapNode url="orbecatalog/Facturas/TipoFacturas.aspx" title="$resources:Facturas_Resources, TipoFacturas"  description="" />
+            <siteMapNode url="orbecatalog/Facturas/TipoPagos.aspx" title="$resources:Facturas_Resources, TipoPagos"  description="" />
+            <siteMapNode url="orbeCatalog/Search/Facturas.aspx" title="$resources:Facturas_Resources, BusquedaFacturas_Pantalla"  description="" />
+        </siteMapNode>
+
+        <!-- Proyectos -->
+        <siteMapNode url="orbecatalog/Proyectos/Default.aspx" title="$resources:Proyectos_Resources, Proyectos_Pantalla"  description="" >
+            <siteMapNode url="orbecatalog/Proyectos/Proyecto.aspx" title="$resources:Proyectos_Resources, Proyecto_Pantalla"  description="" >
+                <siteMapNode url="orbecatalog/Proyectos/Orden_Proyecto.aspx" title="$resources:Proyectos_Resources, AAA"  description="" />
+            </siteMapNode>
+            <siteMapNode url="orbecatalog/Proyectos/Tareas_Proyecto.aspx" title="$resources:Proyectos_Resources, DetalleProyecto_Pantalla"  description="" >
+                <siteMapNode url="orbecatalog/Proyectos/Seguir_Tarea.aspx" title="$resources:Proyectos_Resources, DetalleTareaProyecto_Pantalla"  description="" />
+                <siteMapNode url="orbecatalog/Proyectos/Tarea_Proyecto.aspx" title="$resources:Proyectos_Resources, EditarTareaProyecto_Pantalla"  description="" />
+            </siteMapNode>
+
+
+            <siteMapNode url="orbecatalog/Proyectos/HorarioOrdinario.aspx" title="$resources:Proyectos_Resources, AAA"  description="" />
+            <siteMapNode url="orbecatalog/Proyectos/HorarioExcepciones.aspx" title="$resources:Proyectos_Resources, AAA"  description="" />
+            <siteMapNode url="orbecatalog/Proyectos/Bitacora.aspx" title="$resources:Proyectos_Resources, AAA"  description="" />
+            <siteMapNode url="orbecatalog/Proyectos/Pendiente.aspx" title="$resources:Proyectos_Resources, AAA"  description="" />
+            <siteMapNode url="orbecatalog/Proyectos/Informe_Pendiente.aspx" title="$resources:Proyectos_Resources, AAA"  description="" />
+            <siteMapNode url="orbecatalog/Proyectos/Tareas_Grupo.aspx" title="$resources:Proyectos_Resources, AAA"  description="" />
+            <siteMapNode url="orbecatalog/Proyectos/MisTareas.aspx" title="$resources:Proyectos_Resources, MisTareas_Pantalla"  description="" />
+            <siteMapNode url="orbecatalog/Proyectos/MisProyectos.aspx" title="$resources:Proyectos_Resources, MisProyectos_Pantalla"  description="" />
+            
+            <siteMapNode url="orbecatalog/Search/Proyectos.aspx" title="$resources:Proyectos_Resources, BusquedaProyectos_Pantalla"/>
+            <!-- EstadosProyecto_Pantalla -->
+        </siteMapNode>
+
+        <!-- Procesos -->
+        <siteMapNode url="orbecatalog/Procesos/Default.aspx" title="Procesos"  description="" >
+            <siteMapNode url="orbecatalog/Procesos/Proceso.aspx" title="Proceso"  description="" />
+            <siteMapNode url="orbecatalog/Procesos/Tareas_Proceso.aspx" title="Tareas por Proceso"  description="" >
+                <siteMapNode url="orbecatalog/Procesos/Relaciones_Tareas.aspx" title="Relaciones Tareas"  description="" />
+            </siteMapNode>
+            <siteMapNode url="orbecatalog/Procesos/Checks_Tarea.aspx" title="Checks por Tareas"  description="" />
+            <siteMapNode url="orbecatalog/Procesos/Checks.aspx" title="Checks"  description="" >
+                <siteMapNode url="orbecatalog/Procesos/TipoCheck.aspx" title="Tipos de Check"  description="" />
+            </siteMapNode>
+            <siteMapNode url="orbecatalog/Procesos/Tareas.aspx" title="Tareas"  description="" >
+                <siteMapNode url="orbecatalog/Procesos/TipoTarea.aspx" title="Tipos de Tarea"  description="" />
+            </siteMapNode>
+            <siteMapNode url="orbecatalog/Procesos/Keywords.aspx" title="Keywords"  description="" />
+            <siteMapNode url="orbecatalog/Procesos/Atributos.aspx" title="Atributos"  description="" />
+            <siteMapNode url="orbecatalog/Search/Procesos.aspx" title="Busqueda de Procesos"/>
+        </siteMapNode>
+
+        <!-- Publicacion -->
+        <siteMapNode url="orbecatalog/publicacion/Default.aspx" title="Publicaciones"  description="" >
+            <siteMapNode url="orbecatalog/publicacion/Publicacion.aspx" title="Publicacion"  description="" >
+                <siteMapNode url="orbecatalog/publicacion/TipoPublicacion.aspx" title="Tipo Publicacion"  description="" />
+                <siteMapNode url="orbecatalog/publicacion/Categorias.aspx" title="Categorias"  description="" />
+            </siteMapNode>
+            <siteMapNode url="orbecatalog/publicacion/Publicacion_View.aspx" title="Detalle Publicacion"  description="" />
+            <siteMapNode url="orbecatalog/publicacion/Aprobacion_Publicacion.aspx" title="Aprobacion por Publicacion"  description="" />
+            <siteMapNode url="orbecatalog/publicacion/Aprobacion_TipoPublicacion.aspx" title="Aprobaciones para Tipo de Publicacion"  description=""/>
+            <siteMapNode url="orbecatalog/publicacion/Publicacion_RSS.aspx" title="Publicacion RSS"  description="" />
+            <siteMapNode url="orbecatalog/publicacion/Archivo_Publicacion.aspx" title="Archivo Publicacion"  description="" />
+            <siteMapNode url="orbecatalog/Search/Publicaciones.aspx" title="Busqueda de Publicaciones"/>
+        </siteMapNode>
+
+        <!-- Busqueda -->
+        <siteMapNode url="orbecatalog/Search/Default.aspx" title="Busquedas"  description="" >
+        </siteMapNode>
+
+        <!-- Reportes -->
+        <siteMapNode url="orbecatalog/Reports/Default.aspx" title="Reportes" description="" >
+            <siteMapNode url="orbecatalog/Reports/Entidad.aspx" title="Reporte de Entidad" description="" />
+            <siteMapNode url="orbecatalog/Reports/Factura.aspx" title="Reporte de Factura" description="" />
+            <siteMapNode url="orbecatalog/Reports/Producto.aspx" title="Reporte de Producto" description="" />
+        </siteMapNode>
+
+        <!-- Envios -->
+        <siteMapNode url="orbecatalog/Envios/Default.aspx" title="Envios" resourceKey="EV-01" >
+            <siteMapNode url="orbecatalog/Envios/Envios.aspx" title="Envios" resourceKey="EV-02" />
+            <siteMapNode url="orbecatalog/Envios/Envio_Rapido.aspx" title="Envio Rapido" resourceKey="EV-04" />
+            <siteMapNode url="orbecatalog/Envios/Envio_Imagen.aspx" title="Envio Imagen" resourceKey="EV-05" />
+            <siteMapNode url="orbecatalog/Envios/ReporteEnvio.aspx" title="Reporte Envio" resourceKey="EV-06" />
+        </siteMapNode>
+
+        <!-- Encuestas -->
+        <siteMapNode url="orbecatalog/Encuestas/Default.aspx" title="Encuestas"  description="" >
+            <siteMapNode url="orbecatalog/Encuestas/Pregunta.aspx" title="Preguntas"  description="" />
+            <siteMapNode url="orbecatalog/Encuestas/Respuestas.aspx" title="Respuestas"  description="" />
+        </siteMapNode>
+
+        <!-- Laboral -->
+        <siteMapNode url="orbecatalog/Laboral/Default.aspx" title="Laboral"  description="" >
+            <siteMapNode url="orbecatalog/Laboral/Idioma.aspx" title="Idioma"  description="" />
+            <siteMapNode url="orbecatalog/Laboral/Industria.aspx" title="Industria"  description="" />
+            <siteMapNode url="orbecatalog/Laboral/Institucion.aspx" title="Institucion"  description="" />
+            <siteMapNode url="orbecatalog/Laboral/Nivel_Estudios.aspx" title="Nivel Estudios"  description="" />
+            <siteMapNode url="orbecatalog/Laboral/Ocupacion.aspx" title="Ocupacion"  description="" />
+            <siteMapNode url="orbecatalog/Laboral/Perfil.aspx" title="Perfil"  description="" />
+            <siteMapNode url="orbecatalog/Laboral/Titulos.aspx" title="Titulos"  description="" />
+            <siteMapNode url="orbecatalog/Laboral/Keywords_Para_Perfiles.aspx" title="Keywords Para Perfiles"  description="" />
+        </siteMapNode>
+
+        <!-- CRM -->
+        <siteMapNode url="orbecatalog/CRM/Default.aspx" title="CRM"  description="" >
+            <siteMapNode url="orbecatalog/CRM/Cuenta.aspx" title="Cuenta"  description="" />
+            <siteMapNode url="orbecatalog/CRM/Contacto.aspx" title="Contacto"  description="" />
+            <siteMapNode url="orbecatalog/CRM/Lead.aspx" title="Lead"  description="" />
+            <siteMapNode url="orbecatalog/CRM/Fuente.aspx" title="Fuente"  description="" />
+            <siteMapNode url="orbecatalog/CRM/Campana.aspx" title="Campana"  description="" />
+        </siteMapNode>
+
+        <!-- Reservacion -->
+        <siteMapNode url="orbecatalog/Reservacion/Default.aspx" title="Reservaciones"  description="" >
+            <siteMapNode url="orbecatalog/Reservacion/Reservacion.aspx" title="Reservacion"  description="" />
+        </siteMapNode>
+
+        <!-- Acciones -->
+        <siteMapNode url="orbecatalog/Acciones/Default.aspx" title="$resources:Acciones_Resources,ModuloAcciones_Pantalla"  description="" >
+            <siteMapNode url="orbecatalog/Acciones/MachoteAccion.aspx" title="$resources:Acciones_Resources,MachoteAcciones_Pantalla"  description="" />
+        </siteMapNode>
+
+
+        <!-- Utilidades -->
+        <siteMapNode url="orbecatalog/Login.aspx" title="Login" resourceKey="OR-06" />
+        <siteMapNode url="orbecatalog/Pantallas.aspx" title="Seguridad de Pantallas" resourceKey="OR-03" />
+        <siteMapNode url="orbecatalog/Pendiente.aspx" title="Pendiente" resourceKey="OR-04" />
+        <siteMapNode url="orbecatalog/Informe_Pendiente.aspx" title="Informde de Pendiente" resourceKey="OR-07" />
+        <siteMapNode url="orbecatalog/Panel.aspx" title="Panel de Control" resourceKey="OR-02" />
+        <siteMapNode url="orbecatalog/Ayuda.aspx" title="Ayuda" resourceKey="OR-08" />
+        <siteMapNode url="orbecatalog/Archivo_Configuration.aspx" title="Archivo Configuration" resourceKey="OR-05" />
+    </siteMapNode>
+</siteMap>

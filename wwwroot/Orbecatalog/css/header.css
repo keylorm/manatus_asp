@@ -1,0 +1,108 @@
+﻿/********    Header    ********/
+/******************************/
+#header
+{
+    /*height: 120px;*/
+    /*width: 98%;*/
+    /*padding: 0 1% 0 1%;*/
+    /*background-color: Blue;*/
+}
+
+#header .leftside
+{
+    text-align: left;
+    float: left;
+    width: 20%;
+    font-weight: normal; /*height: 120px;     line-height: 120px;*/
+}
+
+#header .leftside img
+{
+    vertical-align: middle;
+}
+
+#header .rightside
+{
+    text-align: right;
+    float: right;
+    width: 80%;
+    font-weight: normal;
+}
+
+#header #username, #header #menu
+{
+    vertical-align: text-bottom; /*    padding-top: 15px;     height: 20px;     line-height: 20px;     margin-bottom: 5px;*/
+}
+
+
+
+
+/***** search *****/
+#search
+{
+    padding-top: 15px;
+    height: 17px;
+    line-height: 17px;
+    vertical-align: middle;
+}
+
+#search img
+{
+    vertical-align: middle;
+}
+
+#search input
+{
+    border: solid 0px #CCCCCC;
+    width: 150px;
+    vertical-align: middle;
+    line-height: 17px;
+    height: 17px;
+    padding: 0px;
+}
+
+#search button, #search a
+{
+    border: solid 1px #CCCCCC;
+    background-color: #FFFFFF;
+    line-height: 19px;
+    height: 19px;
+    vertical-align: middle;
+    font-size: 90%;
+}
+
+#search button:hover, #search button.selected, #search a:hover, #search a.selected
+{
+    cursor: pointer;
+    background-color: #FAD77A;
+    text-decoration: none;
+}
+
+#searchList
+{
+    text-align: left;
+    z-index: 100;
+    position: absolute;
+    background-color: white;
+    color: Black;
+    border-style: solid;
+    border-color: black;
+    width: 180px;
+}
+
+#searchList img, #searchList span
+{
+    cursor: pointer;
+}
+
+/*******     Footer     *******/
+/******************************/
+#footer
+{
+    text-align: center;
+    vertical-align: middle;
+    height: 15px;
+    padding: 15px 0 15px 0;
+}
+
+

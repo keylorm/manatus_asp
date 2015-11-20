@@ -1,0 +1,124 @@
+﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="paypal.aspx.vb" Inherits="paypal" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <link href="../styles/stylereservations.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
+    <center>
+        <asp:Panel ID="pnl_checkout" runat="server" Style="vertical-align: top; width: 900px">
+            <table cellpadding="0" cellspacing="0">
+                <asp:Label ID="lbl_term" runat="server" Text="Label" Visible="false"></asp:Label>
+                <tr>
+                    <td style="vertical-align: top;  background-color: White; text-align: left;
+                        padding: 25px">
+                        <asp:Panel ID="pnl_principal" Width="100%" runat="server">
+                            <div style="text-align: left">
+                                <asp:Label ID="lbl_titulo" runat="server" CssClass="tituloAmarillo" Font-Size="20px">
+Pasos Para Pagar Por Medio De Paypal
+                                </asp:Label>
+                                <br />
+                                <br />
+                                <asp:Label ID="lbl_paso1" runat="server" Text="1. INSERTE SUS DATOS" CssClass="subtitulo"></asp:Label>
+                                <br />
+                                <br />
+                                <asp:Label ID="lbl_texto1" runat="server">
+      
+Usted será redirigido a una página de pago seguro con PAYPAL, donde podrá cancelar con su tarjeta de crédito o con su cuenta de PAYPAL.  (PAYPAL es la compañía líder en el mundo para el procesamiento seguro de pagos electrónicos. )
+Si usted no tiene cuenta con PAYPAL no se preocupe, no debe hacer ningún proceso adicional para crearla, simplemente debe llenar el formulario donde se pedirá su nombre, tarjeta de crédito y algunos otros datos.
+<ul>
+<li>
+Si le aparece una pantalla como la siguiente, haga click en “continuar el pago” para pagar directamente con su tarjeta de crédito.
+
+</li>
+<li>
+Si usted tiene cuenta y desea pagar con PAYPAL simplemente llene el espacio de la derecha con su correo electrónico y contraseña.
+
+
+
+</li> 
+</ul>
+
+
+                                </asp:Label>
+                                <br />
+                                <br />
+                                <center>
+                                    <asp:Image ID="img_paso1" runat="server" ImageUrl="~/images/Otros/paypal/1-nueva.jpg" />
+                                </center>
+                                <br />
+                                <br />
+                                <asp:Label ID="lbl_texto1_1" runat="server">
+        Si usted va a cancelar con su tarjeta de crédito, cuando llegue a una pantalla como esta simplemente llene el formulario que dice “Crear una cuenta de PAYPAL”.  Con esa opción usted cancelará directamente con su tarjeta de crédito, y automáticamente quedará con una cuenta de PAYPAL que podrá utilizar para pagar en línea en futuras compras.
+
+                                </asp:Label>
+                                <br />
+                                <br />
+                                <center>
+                                    <asp:Image ID="img_paso1_1" runat="server" ImageUrl="~/images/Otros/paypal/1.1.jpg" />
+                                </center>
+                                <br />
+                                <br />
+                                <asp:Label ID="lbl_paso2" runat="server" Text="2. VERIFICAR EL MONTO Y PAGAR" CssClass="subtitulo"></asp:Label>
+                                <br />
+                                <br />
+                                <asp:Label ID="lbl_texto2" runat="server">
+     Una vez realizado el paso anterior, verá una pantalla como esta, donde podrá verificar el monto a pagar y haga click en el botón PAGAR AHORA.
+                                </asp:Label>
+                                <br />
+                                <br />
+                                <center>
+                                    <asp:Image ID="img_paso2" runat="server" ImageUrl="~/images/Otros/paypal/2-nueva.jpg" />
+                                </center>
+                                <br />
+                                <br />
+                                <asp:Label ID="lbl_paso3" runat="server" Text="3. VOLVER AL SITIO WEB" CssClass="subtitulo"></asp:Label>
+                                <br />
+                                <br />
+                                <asp:Label ID="lbl_texto3" runat="server">
+     Una vez cancelado, es muy importante que haga click en el botón “Volver a PAYGO Shopping Cart”. De esa manera su transacción será terminada exitosamente y será aprobada inmediatamente. 
+Nota: Si usted no hace click en el botón indicado, la aprobación de la transacción no será instantánea y podría tardar en que la administración realice la verificación manual.
+
+                                </asp:Label>
+                                <br />
+                                <br />
+                                <center>
+                                    <asp:Image ID="img_paso3" runat="server" ImageUrl="~/images/Otros/paypal/3-nueva.jpg" />
+                                </center>
+                                <%--      <center>
+                                    <table cellpadding="0" cellspacing="0" width="550px" style="padding-top: 20px">
+                                        <tr>
+                                            <td style="text-align: left">
+                                                <asp:HyperLink ID="lnk_regresar" runat="server" NavigateUrl="javascript:history.go(-1)"
+                                                    Visible="false" ImageUrl="~/images/Botones/salir.gif"></asp:HyperLink>
+                                            </td>
+                                            <td style="text-align: right">
+                                                <asp:ImageButton ID="imgbtn_siguiente" runat="server" ImageUrl="~/images/Botones/checkout.gif"
+                                                    ValidationGroup="otro" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </center>--%>
+                                <br />
+                            </div>
+                        </asp:Panel>
+                          <br />
+            <br />
+            <div style="text-align: right">
+                <asp:Button ID="btn_comprar" runat="server"  Text ="CHECKOUT" />
+            </div>
+                    </td>
+                </tr>
+                
+            </table>
+          
+        </asp:Panel>
+    </center>
+    </form>
+</body>
+</html>

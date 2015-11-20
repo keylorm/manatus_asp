@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Orbelink.Helpers.CommonTasks">
+    <Position X="0.5" Y="0.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAABAAAAAAAAAAEAAAAAAAAEAAA=</HashCode>
+      <FileName>App_Code\Helpers\CommonTasks.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbelink.Orbecatalog6.DateHandler">
+    <Position X="7.5" Y="0.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="Orbelink.Orbecatalog6.DateHandler.TimeInfo" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>App_Code\Helpers\DateHandler.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAgAgAAAAAAAAVAAACAACABAEAAAAAgBAAAAA=</HashCode>
+      <FileName>App_Code\Helpers\DateHandler.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbelink.Helpers.JavaScript">
+    <Position X="3" Y="0.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAUABAAAAAQgiACAAAAAACAAAAAAQAAAAAEAAEAA=</HashCode>
+      <FileName>App_Code\Helpers\JavaScript.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Orbelink.Helpers.RSSPublisher">
+    <Position X="5.25" Y="0.5" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAABEAAAAAAAAIAIAAAGABgAAAAAAQEAQACAAAAA=</HashCode>
+      <FileName>App_Code\Helpers\RSSPublisher.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Module Name="Orbelink.Helpers.Cookies">
+    <Position X="3.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAARAAABAAAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Code\Helpers\Cookies.vb</FileName>
+    </TypeIdentifier>
+  </Module>
+  <Module Name="Orbelink.Helpers.Crypter">
+    <Position X="5.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>App_Code\Helpers\Crypter.vb</FileName>
+    </TypeIdentifier>
+  </Module>
+  <Module Name="Orbelink.Helpers.Mailer">
+    <Position X="0.5" Y="2.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Orbelink.Helpers.Mailer.StatusEnvio" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>App_Code\Helpers\Mailer.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="Orbelink.Helpers.Mailer.TipoEnvio" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>App_Code\Helpers\Mailer.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAFAAAAAAAAAAAQABAEAAAAAAAAACAACAAAA=</HashCode>
+      <FileName>App_Code\Helpers\Mailer.vb</FileName>
+    </TypeIdentifier>
+  </Module>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,200 @@
+﻿// JScript File
+
+
+
+/***********************************************
+* Form Field Progress Bar- By Ron Jonk- http://www.euronet.nl/~jonkr/
+* Modified by Dynamic Drive for minor changes
+* Script featured/ available at Dynamic Drive- http://www.dynamicdrive.com
+* Please keep this notice intact
+***********************************************/
+
+function textCounter(field, counter, maxlimit, linecounter) {
+	// text width//
+	var fieldWidth =  parseInt(field.offsetWidth);
+	var charcnt = field.value.length;        
+
+	// trim the extra text
+	if (charcnt > maxlimit) { 
+		field.value = field.value.substring(0, maxlimit);
+	}
+
+	else { 
+	    // progress bar percentage
+	    var percentage = parseInt(100 - (( maxlimit - charcnt) * 100)/maxlimit) ;
+	    document.getElementById(counter).style.width =  parseInt((fieldWidth*percentage)/100)+"px";
+	    document.getElementById(counter).innerHTML="Limit: "+percentage+"%"
+	    // color correction on style from CCFFF -> CC0000
+	    setcolor(document.getElementById(counter),percentage,"background-color");
+	}
+}
+
+function setcolor(obj,percentage,prop){
+	obj.style[prop] = "rgb(80%,"+(100-percentage)+"%,"+(100-percentage)+"%)";
+}
+
+
+/**
+onKeyDown="textCounter(this,'progressbar1',20)" 
+onKeyUp="textCounter(this,'progressbar1',20)" 
+onFocus="textCounter(this,'progressbar1',20)"
+<div id="progressbar1" class="progress"></div>
+*/
+
+
+
+
+
+
+
+
+
+var colordelim = "000|003|006|009|00C|00F|030|033|036|039|03C|03F|060|063|066|069|06C|06F|090|093|096|099|09C|09F|0C0|0C3|0C6|0C9|0CC|0CF|0F0|0F3|0F6|0F9|0FC|0FF|300|303|306|309|30C|30F|330|333|336|339|33C|33F|360|363|366|369|36C|36F|390|393|396|399|39C|39F|3C0|3C3|3C6|3C9|3CC|3CF|3F0|3F3|3F6|3F9|3FC|3FF|600|603|606|609|60C|60F|630|633|636|639|63C|63F|660|663|666|669|66C|66F|690|693|696|699|69C|69F|6C0|6C3|6C6|6C9|6CC|6CF|6F0|6F3|6F6|6F9|6FC|6FF|900|903|906|909|90C|90F|930|933|936|939|93C|93F|960|963|966|969|96C|96F|990|993|996|999|99C|99F|9C0|9C3|9C6|9C9|9CC|9CF|9F0|9F3|9F6|9F9|9FC|9FF|C00|C03|C06|C09|C0C|C0F|C30|C33|C36|C39|C3C|C3F|C60|C63|C66|C69|C6C|C6F|C90|C93|C96|C99|C9C|C9F|CC0|CC3|CC6|CC9|CCC|CCF|CF0|CF3|CF6|CF9|CFC|CFF|F00|F03|F06|F09|F0C|F0F|F30|F33|F36|F39|F3C|F3F|F60|F63|F66|F69|F6C|F6F|F90|F93|F96|F99|F9C|F9F|FC0|FC3|FC6|FC9|FCC|FCF|FF0|FF3|FF6|FF9|FFC|FFF" ;
+var colors = colordelim.split( "|" ) ;
+
+function WriteColorTable( document, ncols ) {
+    document.writeln( '<table cellspacing="0" cellpadding="0" border="0">' ) ;
+
+    for( var i = 0 ; i < colors.length ; i++ ) {
+	    if( (i % ncols) == 0 ) {
+	        document.write( "\n<tr>" ) ;
+	    }
+	    var rgb = colors[i].split( "" ) ;
+	    var bgcol = rgb[0]+rgb[0]+rgb[1]+rgb[1]+rgb[2]+rgb[2] ;
+	    document.write( '<td bgcolor="#' + bgcol + '">' +
+		    '<a href="javascript:SetColor2(\'' + textBox + '\', \'' + bgcol + '\');" >&nbsp;&nbsp;&nbsp;</a></td>' ) ;
+    }
+    document.writeln( "</table>" ) ;
+}
+
+// int.toString(radix) is not reliable:
+// var x = 160 ; x.toString(16) ; produces ":0"??
+var hexvals = new Array( "0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F" ) ;
+
+function WriteGrayTable( document, ncols ) {
+    document.writeln( '<table cellspacing="0" cellpadding="0" border="0" ><TR>' ) ;
+
+    // Include 0 and 255 in the range.
+    var grayincr = 255.0 / (ncols-1) ;
+    var grayval = 0.0 ;
+    for( var i = 0 ; i < ncols ; i++ ) {
+	    var igray = Math.round( grayval ) ;
+	    var graystr = (igray < 16) ? "0"+hexvals[igray] :
+		hexvals[Math.floor(igray/16)]+hexvals[igray%16] ;
+	    var bgcol = graystr + graystr + graystr;
+	    	    
+	    document.write( '<td bgcolor="#' + bgcol + '">' +
+		    '<a href="javascript:SetColor2(\'' + textBox + '\', \'' + bgcol + '\');" >&nbsp;&nbsp;&nbsp;</a></td>' ) ;
+    	grayval += grayincr;
+    }
+    document.writeln( "</table>" ) ;
+}
+
+function SetColor2(theTextBoxID, color) {
+    var theTextBox = null;
+    if (document.getElementById){
+		theTextBox = document.getElementById(theTextBoxID);
+    }
+    
+    if (theTextBox != null){
+        if (theTextBox.value != null){
+            theTextBox.value = color;
+        }
+        
+        if (theTextBox.style != null){
+            theTextBox.style.backgroundColor = '#' + color;
+        }
+    }
+}
+
+
+/** 
+<SCRIPT language="JavaScript">
+    WriteColorTable( document, 36 ) ;
+    WriteGrayTable( document, 36 ) ;
+</SCRIPT> 
+<INPUT type="text2 name=hex value="&{document.bgColor};" size="8" > 
+*/
+
+
+
+function handleEnter (field, event) {
+    var keyCode = event.keyCode ? event.keyCode : event.which ? event.which : event.charCode;
+	if (keyCode == 13) {
+	    var i;
+		for (i = 0; i < field.form.elements.length; i++){
+		    if (field == field.form.elements[i]){
+		        break;
+		    }
+			i = (i + 1) % field.form.elements.length;
+			field.form.elements[i].focus();
+			return false;
+		}
+	} 
+	else
+	return true;
+}      
+
+function checkAll(sender, primerCheck_ClientID, primerCheck_ID, cantidad)
+{
+    var numeroInicio = 0;
+    var check
+	if (primerCheck_ClientID != null){
+	    var prefijoID = sender.src.substring(0, sender.src.lastIndexOf(primerCheck_ID));
+	    numeroInicio = prefijoID.src.substring(prefijoID.src.lastIndexOf('_') + 1 , prefijoID.src.length);
+	}
+	
+	var contador = 0;
+	for (contador = 0; contador < cantidad; contador++){
+	    var elCheck = null;
+	    var elID = 'ct_' + numeroInico + contador;
+	    if (document.getElementById){
+	       // elCheck = document.getElementById(elID).style;
+	    }else if (document.all){
+		   // elCheck = document.all[elID].style;
+	    }else if (document.layers){
+		   // elCheck = document.layers[elID].style;
+	    }
+	}
+	
+	/*checked="checked"
+	disabled="disabled"*/
+}
+
+function cssMenu(obj){
+    if(obj.style.display=='block'){
+        obj.style.display='none';
+    } else  {
+        obj.style.display='block';
+    }
+}
+
+function checkAll2(sender){
+
+    var toCheck = true;
+    if (sender.checked != null){
+        if (sender.checked){
+            sender.checked = (!sender.checked)
+            toCheck = sender.checked;
+        }
+    }
+    
+    //Get the parent.
+    var laTabla = sender.parentNode;
+    while (laTabla.tagName != 'table'){
+        laTabla = laTabla.parentNode;
+    }
+    
+    //var filas = laTabla.rows;
+    //filas = laTabla.length;
+    
+    var inputs = laTabla.getElementsByTagName("input");
+    var cantidad = inputs.length;
+    
+    for (i=0; i < cantidad; i++){
+        if (inputs[i].checked != null){
+            inputs[i].checked = toCheck;
+        }
+    }
+    
+}

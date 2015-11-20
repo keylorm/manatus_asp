@@ -1,0 +1,109 @@
+Imports System.IO
+Imports Orbelink.DBHandler
+
+'Revision: 5.0
+'07/23/2007
+
+Partial Class _Archivos
+    Inherits PageBaseClass
+
+    Const codigo_pantalla As String = "CO-15"
+    Const level As Integer = 1
+    Dim id_dueno As Integer
+    Dim controladora As IControladorArchivos
+
+
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        AddScripts(level)
+
+        'securityHandler.VerifyPantalla(codigo_pantalla, level)
+       
+
+    End Sub
+
+
+
+    Protected Function insertArchivo(ByVal id_dueno As Integer, ByVal indiceDG As Integer, ByVal fileName As String, _
+        ByVal extension As String, ByVal sizeInBytes As Integer, ByVal theFileType As Integer) As Boolean
+        Dim tbx_NombreArchivo As TextBox = dg_Archivo.Items(indiceDG).FindControl("tbx_NombreArchivo")
+        Dim lbl_Info As Label = dg_Archivo.Items(indiceDG).FindControl("lbl_Info")
+        Dim chk_Principal As CheckBox = dg_Archivo.Items(indiceDG).FindControl("chk_Principal")
+        Dim tbx_Comentarios As TextBox = dg_Archivo.Items(indiceDG).FindControl("tbx_Comentarios")
+
+        Dim resultado As Boolean = False
+
+        Dim controlador As New Manejador_Archivo(connection)
+        resultado = controlador.insertarArchivo(tbx_NombreArchivo.Text, fileName, tbx_Comentarios.Text, extension, sizeInBytes, theFileType, ddl_Configuration.SelectedValue)
+
+        'Insertar Archivo_Intermedio
+        Dim checkValue As Integer = 0
+        If chk_Principal.Checked Then
+            checkValue = 1
+        End If
+        resultado = controladora.insertarArchivoIntermedio(id_dueno, checkValue, 1)
+
+        Return resultado
+    End Function
+
+
+    'Archivo
+    Protected Sub salvarArchivoFile(ByVal id_dueno As Integer, ByVal id_Configuration As Integer)
+        Dim counter As Integer
+        Dim Archivo_Configuration As New Archivo_Configuration
+        Dim dataset As Data.DataSet
+
+        'Hacer consulta para tamanos
+
+        Archivo_Configuration.Id_Configuration.Where.EqualCondition(id_Configuration)
+        Archivo_Configuration.Fields.SelectAll()
+
+        queryBuilder.From.Add(Archivo_Configuration)
+        dataset = connection.executeSelect(queryBuilder.RelationalSelectQuery)
+
+        If dataset.Tables.Count > 0 Then
+            If dataset.Tables(0).Rows.Count > 0 Then
+                ObjectBuilder.CreateObject(dataset.Tables(0), 0, Archivo_Configuration)
+
+                'Definir tamaños
+                Dim imagenes As New Orbelink.Control.Archivos.ImagesHandler.Size
+                imagenes.Width = Archivo_Configuration.ImgWidth.Value
+                imagenes.Height = Archivo_Configuration.ImgHeight.Value
+                imagenes.Compression = Archivo_Configuration.Compresion.Value
+
+                Dim thumbs As New Orbelink.Control.Archivos.ImagesHandler.Size
+                thumbs.Width = Archivo_Configuration.ThumWidth.Value
+                thumbs.Height = Archivo_Configuration.ThumHeight.Value
+                thumbs.Compression = Archivo_Configuration.Compresion.Value
+
+                Dim ArchivoInfo As Orbelink.Control.Archivos.ArchivoInfo
+                For counter = 0 To dg_Archivo.Items.Count - 1
+                    Dim upl_Imagen As FileUpload = dg_Archivo.Items(counter).FindControl("upl_Imagen")
+                    Dim tbx_NombreArchivo As TextBox = dg_Archivo.Items(counter).FindControl("tbx_NombreArchivo")
+
+                    'Si ya existia
+                    If tbx_NombreArchivo.ToolTip.Length > 0 Then
+
+
+                        'No, entonces insertar
+                    Else
+                        If upl_Imagen.HasFile Then
+                            'lbl_ResultadoAccion.Visible = True
+                            ArchivoInfo = Orbelink.Control.Archivos.ArchivoHandler.SaveArchivoFile(Configuration.ArchivoProperties, imagenes, thumbs, upl_Imagen, tbx_NombreArchivo.Text, Orbelink.Control.Archivos.ArchivoHandler.whatToDo.ForceIt)
+                            If Not ArchivoInfo Is Nothing Then
+                                If insertArchivo(id_dueno, counter, ArchivoInfo.Name, ArchivoInfo.Extension, ArchivoInfo.FileSize, ArchivoInfo.FileType) Then
+                                    MyMaster.MostrarResultadoAccion(MasterPageBaseClass.Acciones.Salvar, "Archivo", False)
+                                Else
+                                    MyMaster.MostrarResultadoAccion(MasterPageBaseClass.Acciones.Salvar, "Archivo", True)
+                                    Orbelink.Control.Archivos.ArchivoHandler.DeleteArchivoFile(Configuration.ArchivoProperties, ArchivoInfo.Name, ArchivoInfo.Extension)
+                                End If
+                            Else
+                                MyMaster.mostrarMensaje("Extension del archivo invalida.", False)
+                            End If
+                        End If
+                    End If
+                Next
+            End If
+        End If
+    End Sub
+
+End Class

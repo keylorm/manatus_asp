@@ -1,0 +1,201 @@
+<%@ Master Language="VB" CodeFile="OrbeCatalog.master.vb" Inherits="_Orbecatalog_OrbeCatalog" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<script runat="server">
+
+</script>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+<head runat="server">
+    <title>Orbe Catalog</title>
+    <link href="css/basics.css" rel="stylesheet" type="text/css" />
+    <link href="css/columnas.css" rel="stylesheet" type="text/css" />
+    <link href="css/contenido.css" rel="stylesheet" type="text/css" />
+    <link href="css/header.css" rel="stylesheet" type="text/css" />
+    <link href="css/seccion.css" rel="stylesheet" type="text/css" />
+    <link href="css/Menu.css" rel="stylesheet" type="text/css" />
+    <link href="css/Encuestas.css" rel="stylesheet" type="text/css" />
+    <!--[if lte IE 6]>
+       
+            <link rel="stylesheet" type="text/css" href="ie6fix.css" />
+     
+        <![endif]-->
+    <!--[if IE 7.0]>
+       
+            <link rel="stylesheet" type="text/css" href="ie7fix.css" />
+     
+        <![endif]-->
+    <asp:ContentPlaceHolder ID="cph_Head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:ScriptManager ID="sman_AjaxManager" runat="server">
+        </asp:ScriptManager>
+        <!--  ModalUpdateProgress By Ting Huang (http://www.codeproject.com/Ajax/ModalUpdateProgress.asp) -->
+        <ajaxControls:ModalUpdateProgress ID="ModalUpdateProgress1" runat="server" DisplayAfter="0"
+            BackgroundCssClass="modalBackground">
+            <ProgressTemplate>
+                <div class="modalPopup">
+                    Procesando
+                    <asp:Image ID="img_Updating" runat="server" ImageUrl="~/orbecatalog/images/icons/loading.gif"
+                        AlternateText="Procesando" />
+                </div>
+            </ProgressTemplate>
+        </ajaxControls:ModalUpdateProgress>
+        <div id="header">
+            <div class="realWidth">
+                <div class="leftside">
+                    <asp:Image ID="img_Logo" ImageUrl="~/orbecatalog/images/logo.png" runat="server"
+                        AlternateText="Orbecatalog" />
+                </div>
+                <div class="rightside">
+                    <div id="username">
+                        <asp:HyperLink ID="lnk_Usuario" runat="server">Invitado</asp:HyperLink>
+                        -
+                        <asp:HyperLink ID="lnk_Logout" runat="server">Log In</asp:HyperLink><br />
+                        (<asp:Label ID="lbl_Language" runat="server">Language</asp:Label>)
+                        <br />
+                        <asp:Label ID="lbl_DiaHora" runat="server"></asp:Label>
+                    </div>
+                    <div id="search">
+                        <asp:Panel ID="pnl_busqueda" runat="server" DefaultButton="btn_Buscar">
+                            <div style="float: right; width: 28%; margin: 0; height: 17px">
+                                <asp:TextBox ID="tbx_Search" runat="server"></asp:TextBox>&nbsp;
+                                <orbelink:ActionButton ID="btn_buscar" Text="Buscar" runat="server" />
+                            </div>
+                            <div style="float: right; width: 36px; margin: 0; background-color: White">
+                                <asp:HiddenField ID="hf_codigo" runat="server" />
+                                <asp:Image ID="img_modulo" BackColor="White" ImageUrl="~/orbecatalog/iconos/Modulos/a_small.png"
+                                    runat="server" AlternateText="Busqueda" />
+                                <asp:Image ID="img_flecha" ImageUrl="~/orbecatalog/images/buttons/flechaAbajo.png"
+                                    runat="server" AlternateText="Busqueda" />
+                            </div>
+                            <div id="searchList" style="display: none; clear: both">
+                                <asp:DataList ID="dl_search" runat="server">
+                                    <ItemTemplate>
+                                        <asp:Image ID="search_img" runat="server" />
+                                        <asp:Label ID="search_text" runat="server" Text="Label"></asp:Label>
+                                    </ItemTemplate>
+                                </asp:DataList>
+                            </div>
+                        </asp:Panel>
+                    </div>
+                </div>
+                <div style="padding: 0; margin: 0; border: 0;">
+                    <div id="mainMenu" class="menu" runat="server" style="height: 23px">
+                    </div>
+                    <div id="submenu" class="submenu" style="height: 15px" runat="server">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="barraArriba secondBackColor">
+            &nbsp;
+        </div>
+        <div id="Seccion">
+            <div class="realWidth">
+                <div id="titulo" class="secondColor">
+                    <div class="elTitulo">
+                        <asp:ContentPlaceHolder ID="cph_Titulo" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                    <div id="navegacion">
+                        <asp:ContentPlaceHolder ID="cph_Navegacion" runat="server">
+                            <asp:SiteMapPath ID="smp_Navegacion" runat="server" PathSeparator=" / " SiteMapProvider="OrbeCatalog">
+                            </asp:SiteMapPath>
+                        </asp:ContentPlaceHolder>
+                    </div>
+                    <div id="menuAcciones">
+                        <asp:ContentPlaceHolder ID="cph_Acciones" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </div>
+                <div id="iconoSeccion">
+                    <asp:Image ID="img_moduloGrande" ImageUrl="~/orbecatalog/iconos/entidad_big.png"
+                        runat="server" AlternateText="Orbecatalog" />
+                    <br />
+                    <%--<a onclick="toggleColumnaDerecha(this);">Ocultar Columna Derecha</a>--%>
+                </div>
+                <div style="clear: both;">
+                </div>
+                <div id="ColumnaIzquierda">
+                    <div id="Contenido">
+                        <asp:ContentPlaceHolder ID="cph_Contenido" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                    <div id="Busqueda">
+                        <asp:ContentPlaceHolder ID="cph_BusquedaNueva" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                    <br />
+                    <br />
+                </div>
+                <div id="ColumnaDerecha">
+                    <asp:ContentPlaceHolder ID="cph_ColumnaDerecha" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <div style="clear: both">
+                </div>
+            </div>
+        </div>
+        <div class="barra secondBackColor">
+        </div>
+        <div id="footer">
+            <div class="realWidth">
+                <div style="float: left; text-align: left;">
+                    &copy; Copyright 2008</div>
+                <div style="float: right; text-align: right;">
+                    <asp:HyperLink NavigateUrl="~/orbecatalog/Ayuda.aspx" ID="hyl_ayuda" runat="server"> Ayuda </asp:HyperLink>|
+                    <asp:HyperLink NavigateUrl="~/orbecatalog/Ayuda.aspx" ID="hyl_soporte" runat="server"> Soporte </asp:HyperLink>|
+                    <asp:HyperLink NavigateUrl="~/orbecatalog/Ayuda.aspx" ID="hyl_comments" runat="server"> Comentarios </asp:HyperLink>
+                </div>
+                <div style="clear: none; text-align: center">
+                    Orbecatalog v6.1 by <a href="http://orbelink.com">Orbelink</a>
+                </div>
+            </div>
+        </div>
+        <div id="manejoMensajes">
+            <%--<asp:Button ID="btn_MostrarMensaje" runat="server" Text="Button" />--%>
+            <asp:HiddenField ID="HF_popUp" runat="server" />
+            <asp:Panel ID="pnl_Mensaje" CssClass="modalPopup" runat="server">
+                <br />
+                <asp:UpdatePanel ID="upd_Mensaje" runat="server" UpdateMode="Always">
+                    <ContentTemplate>
+                        <div id="div_Mensajes" runat="server">
+                        </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+                <asp:Button ID="btn_OK" runat="server" Text="OK" />
+                <br />
+            </asp:Panel>
+            <ajaxToolkit:ModalPopupExtender ID="pop_Pnl_Mensaje" runat="server" OkControlID="btn_ok"
+                PopupControlID="pnl_Mensaje" TargetControlID="HF_popUp" BackgroundCssClass="modalBackground">
+            </ajaxToolkit:ModalPopupExtender>
+        </div>
+        <div id="manejoPopUps">
+            <asp:HiddenField ID="HF_popUpAcciones" runat="server" />
+            <asp:Panel ID="pnl_popUpAcciones" CssClass="modalPopup popupWin" runat="server">
+                <asp:UpdatePanel ID="upd_popAcciones" runat="server" UpdateMode="Always">
+                    <ContentTemplate>
+                        <iframe id="if_popAcciones" runat="server"></iframe>
+                        <%--<cc1:HTMLObject ID="obj_PopAccion" runat="server"   />--%>
+                    </ContentTemplate>
+                    <Triggers>
+                        <asp:AsyncPostBackTrigger ControlID="btn_if_OK" EventName="Click" />
+                    </Triggers>
+                </asp:UpdatePanel>
+                <asp:Button ID="btn_if_OK" runat="server" Text="OK" />
+                <asp:Button ID="btn_Cancel" runat="server" Text="Cancel" Style="display: none" />
+            </asp:Panel>
+            <ajaxToolkit:ModalPopupExtender ID="pop_Pnl_Acciones" runat="server" PopupControlID="pnl_popUpAcciones"
+                TargetControlID="HF_popUpAcciones" BackgroundCssClass="modalBackground" CancelControlID="btn_Cancel">
+            </ajaxToolkit:ModalPopupExtender>
+        </div>
+    </div>
+    </form>
+    <asp:Literal ID="literalMenu" runat="server"></asp:Literal>
+</body>
+</html>

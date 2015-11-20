@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Orbelink.DBHandler.QueryBuilder">
+    <Position X="3.25" Y="0.5" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="Orbelink.DBHandler.QueryBuilder.GroupedFields" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>App_Code\DBHandler\QueryBuilder.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>IpAIAAABQIASCCoAAgAoAQQgAABIIIgYmJWICgBBMDQ=</HashCode>
+      <FileName>App_Code\DBHandler\QueryBuilder.vb</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="Orderby" />
+      <Property Name="From" />
+      <Property Name="Join" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="System.Collections.Generic.List(Of T)" Collapsed="true">
+    <Position X="7.75" Y="1.25" Width="1.5" />
+    <NestedTypes>
+      <Struct Name="System.Collections.Generic.List(Of T).Enumerator" Collapsed="true">
+        <TypeIdentifier />
+        <Lollipop Position="0.2" />
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Orbelink.DBHandler.Join">
+    <Position X="7.5" Y="2.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Orbelink.DBHandler.Join.JoinTypes" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>App_Code\DBHandler\Join.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Struct Name="Orbelink.DBHandler.Join.JoinCapsule" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>App_Code\DBHandler\Join.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>IAEAAAAAAAIAACAAAAAABAAAACBAAAAAgAAAEAAACAA=</HashCode>
+      <FileName>App_Code\DBHandler\Join.vb</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Capsules" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Orbelink.DBHandler.OrderByCollection">
+    <Position X="7.5" Y="6" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="Orbelink.DBHandler.OrderByCollection.OrderByStructure" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>App_Code\DBHandler\OrderByCollection.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App_Code\DBHandler\OrderByCollection.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,133 @@
+9
+
+dir
+12
+svn://es-01/manatus/wwwroot/obout/styles
+svn://es-01/manatus
+
+
+
+2009-02-10T22:54:34.031250Z
+12
+Sergio
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0
+
+expedia
+dir
+
+dark
+dir
+
+style10
+dir
+
+graphite
+dir
+
+default
+dir
+
+flag_usa.gif
+file
+
+
+
+
+2009-01-27T17:27:22.453125Z
+7c103e38202f55551bb91d3cb2fb24b1
+2009-02-10T22:54:34.031250Z
+12
+Sergio
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1021
+
+desert
+dir
+
+blue
+dir
+
+orbitz
+dir
+
+simple
+dir
+
+blocky_revert
+dir
+
+icon2.gif
+file
+
+
+
+
+2009-01-27T17:27:22.453125Z
+3286b592f24a8e3264ad503c1a9bb409
+2009-02-10T22:54:34.031250Z
+12
+Sergio
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+310
+

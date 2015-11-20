@@ -1,0 +1,96 @@
+/*******    Secciones    ******/
+/******************************/
+#Seccion
+{
+    /*width: 98%;
+    padding: 0 1% 0 1%;*/
+    background-color: #FFFFFF;
+    color: #000000;
+    text-align: left;
+}
+
+#Seccion .tablaResultados
+{
+    width: 100%;
+}
+
+#Seccion .tablaResultados td
+{
+   border:solid 1px #FFFFFF;
+}
+
+#titulo
+{
+    padding-top: 15px;
+    width: 68%;
+    float: left;
+    text-align: left;
+}
+
+#titulo .elTitulo
+{
+    font-weight: bolder;
+    font-size: 180%;
+}
+
+#titulo h1
+{
+    display: inline;
+}
+
+#titulo h2
+{
+    font-size: 150%;
+    display: inline;
+    color: #000000;
+}
+
+
+/***** menuAcciones *****/
+#menuAcciones
+{
+    text-align: right;
+}
+
+
+#menuAcciones button, #menuAcciones a
+{
+    border: solid 1px #CCCCCC; /*background-color: Transparent;*/
+    font-size: 90%;
+    margin: 0 5px 0 0;
+    line-height: 130%;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 2px 1px 3px 1px;
+}
+
+
+#menuAcciones button img, #menuAcciones a img
+{
+    vertical-align: middle;
+    margin: 0 3px 0 0 !important;
+    padding: 0;
+    border: none;
+}
+
+#menuAcciones button:hover, #menuAcciones button.selected
+{
+    background-color: #FAD77A;
+    text-decoration: none;
+}
+
+
+#navegacion a, #navegacion
+{
+    color: #666666;
+}
+
+
+/***** iconoSeccion *****/
+
+#iconoSeccion
+{
+    float: right;
+    width: 24%;
+    text-align: right;
+}
