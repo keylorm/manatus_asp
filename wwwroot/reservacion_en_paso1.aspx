@@ -337,7 +337,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                         <Columns>
                                                             <asp:TemplateField>
                                                                 <ItemTemplate>
-                                                                    <asp:ImageButton runat="server">
+                                                                    <asp:ImageButton runat="server" ImageUrl="~/images/bg-borrar-habitacion.jpg" ID="borrar_habitacion">
                                                                     </asp:ImageButton>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>

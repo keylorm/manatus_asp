@@ -193,6 +193,83 @@ Partial Class reservacion_es_paso1
         Return result
     End Function
 
+    Protected Function agregaItemTemporalIndividual(ByVal id_producto As Integer, ByVal noches As Integer, ByVal nochesadicionales As Integer, ByVal habitacionesDisponibles As Data.DataTable, ByVal theGridViewRow As GridViewRow, ByVal counter As Integer, ByVal usarPrecioTransporte As Boolean, Optional ByVal descuento As String = "") As Double
+        Dim result As Double = 0
+
+
+        Dim unItem As GridViewRow = theGridViewRow
+        Dim adultos As DropDownList = unItem.FindControl("ddl_personas")
+
+        Dim paquete As Integer = Request.QueryString("paquete")
+
+        Dim numeroadultos As Integer
+
+        'If paquete <> 0 And paquete <> 4 And paquete <> 6 Then
+        '    numeroadultos = 2
+        'Else
+        numeroadultos = adultos.SelectedValue
+        'End If
+
+        Dim item As New Item
+        ObjectBuilder.CreateObject(habitacionesDisponibles, counter, item)
+        Try
+            Dim resultado As Orbelink.Control.Reservaciones.ControladorReservaciones.Resultado_Code
+            Dim controladora As New ControladorReservaciones(connection, Resources.Reservaciones_Resources.ResourceManager)
+            Dim temporadaVieja As Integer = Session("id_temporadaNueva")
+            'paquete = 0
+            If paquete = 2 Then
+                Session("id_temporadaNueva") = 14 'Upgrades Package 2015
+            Else
+                Session("id_temporadaNueva") = Nothing
+            End If
+
+            Dim precio_transporte As Integer = 0
+
+            Dim entrada As Date = calendarEntrada.SelectedDate
+            Dim salida As Date = calendarSalida.SelectedDate
+
+            Dim fechaInicio As New Date(entrada.Year, entrada.Month, entrada.Day, 12, 0, 0)
+            Dim fechaFin As New Date(salida.Year, salida.Month, salida.Day, 11, 0, 0)
+
+            If rdbtnlist_transporte2014.Visible = True Then
+
+                Dim preciotransporte As Integer = 0
+
+                If entrada.Year = 2014 Then
+                    preciotransporte = 70
+
+                ElseIf entrada.Year = 2015 Then
+                    preciotransporte = 75
+
+                End If
+
+                Select Case rdbtnlist_transporte2014.SelectedValue
+                    Case 1
+                        precio_transporte = preciotransporte ' Compra de ida
+                    Case 2
+                        precio_transporte = preciotransporte ' Compra de vuelta
+                    Case 3
+                        precio_transporte = preciotransporte * 2 ' Compra ida y vuelta
+                    Case 4
+                        precio_transporte = 0
+                End Select
+            End If
+
+            If usarPrecioTransporte = True Then
+                result = controladora.AgregarItemTemporal(id_producto, item.ordinal.Value, numeroadultos, 0, True, fechaInicio, fechaFin, 1, noches, nochesadicionales, descuento, Session("id_temporadaNueva"), precio_transporte, 1)
+            Else
+                result = controladora.AgregarItemTemporal(id_producto, item.ordinal.Value, numeroadultos, 0, True, fechaInicio, fechaFin, 1, noches, nochesadicionales, descuento, Session("id_temporadaNueva"), 0, 1)
+            End If
+
+
+        Catch ex As Exception
+            result = result + 0
+        End Try
+
+        Return result
+    End Function
+
+
     Protected Sub selectHabitaciones(ByVal id_producto As Integer, ByVal maximoAReservar As Integer)
         Dim dataset As Data.DataSet
         Dim Item As New Item
@@ -239,13 +316,16 @@ Partial Class reservacion_es_paso1
             Dim unItem As GridViewRow = gv_ResultadosDisponibles.Rows(counter)
             Dim lbl_nombre As Label = unItem.FindControl("lbl_nombre")
             Dim lbl_personas As Label = unItem.FindControl("lbl_personas")
+            'Dim borrar_habitacion As ImageButton = unItem.FindControl("borrar_habitacion")
             If Orbelink.DBHandler.LanguageHandler.CurrentLanguage = Orbelink.DBHandler.LanguageHandler.Language.INGLES Then
                 lbl_nombre.Text = "Room " & counter + 1
 
             Else
                 lbl_nombre.Text = "Habitación " & counter + 1
 
+
             End If
+            'borrar_habitacion.Attributes("data-row-id") = counter
         Next
     End Sub
     
@@ -323,12 +403,7 @@ Partial Class reservacion_es_paso1
                 Dim noches As Integer = controladora.NochesSegunTarifas(id_temporada, id_producto, 0, total_de_noches)
                 Dim nochesAdicionales As Integer = total_de_noches - noches
 
-                'Para cambiar el radio Button del paquete
-                If ((noches = 1) And (nochesAdicionales = 0)) Then
-                    rdbtnlist_paquete.SelectedItem.Text = "2 days 1 night"
-                ElseIf ((noches = 2) And (nochesAdicionales = 0)) Then
-                    rdbtnlist_paquete.SelectedItem.Text = "3 days 2 nights"
-                End If
+               
 
 
                 If validarPrecios(id_temporada, id_producto, noches, gv_ResultadosDisponibles) Then
@@ -336,19 +411,36 @@ Partial Class reservacion_es_paso1
                     Dim habitacionesDisponibles As Data.DataTable = cargarItemsDisponibles(id_producto, fechaInicio, fechaFin)
                     If habitacionesDisponibles.Rows.Count >= habitacionesDeseadas Then
 
-                        Dim DateEntrada As Date = calendarEntrada.SelectedDate
-                        Dim DateSalida As Date = calendarSalida.SelectedDate
+                      
+                        For counter As Integer = 0 To gv_ResultadosDisponibles.Rows.Count - 1
+                            Dim unItem As GridViewRow = gv_ResultadosDisponibles.Rows(counter)
+                            Dim lbl_tipo_paquete As Label = unItem.FindControl("lbl_tipo_paquete")
+                            'Para cambiar el radio Button del paquete
+                            If ((noches = 1) And (nochesAdicionales = 0)) Then
 
-                        If ((agregaItemTemporal(id_producto, noches, nochesAdicionales, habitacionesDisponibles, gv_ResultadosDisponibles, False) <> 0)) Then
-                            lbl_precioSinTransporte.Text = agregaItemTemporal(id_producto, noches, nochesAdicionales, habitacionesDisponibles, gv_ResultadosDisponibles, False)
+                                lbl_tipo_paquete.Text = "2 days 1 night"
+                            ElseIf ((noches = 2) And (nochesAdicionales = 0)) Then
+                                lbl_tipo_paquete.Text = "3 days 2 nights"
+                            End If
+                            Dim lbl_precio_habitacion As Label = unItem.FindControl("lbl_precio_habitacion")
+                            lbl_precio_habitacion.Text = "$ " + Convert.ToString(agregaItemTemporalIndividual(id_producto, noches, nochesAdicionales, habitacionesDisponibles, unItem, counter, False))
+
+                        Next
+
+
+                        Dim precioSintrasporte As Double = agregaItemTemporal(id_producto, noches, nochesAdicionales, habitacionesDisponibles, gv_ResultadosDisponibles, False)
+                        Dim precioContranporte As Double = agregaItemTemporal(id_producto, noches, nochesAdicionales, habitacionesDisponibles, gv_ResultadosDisponibles, True)
+
+                        If ((precioSintrasporte <> 0)) Then
+                            lbl_precioSinTransporte.Text = precioSintrasporte
 
                             'exito(ReservacionActual)
                         Else
                             mensajeErrorReservacion()
 
                         End If
-                        If ((agregaItemTemporal(id_producto, noches, nochesAdicionales, habitacionesDisponibles, gv_ResultadosDisponibles, True) <> 0)) Then
-                            lbl_precioConTransporte.Text = agregaItemTemporal(id_producto, noches, nochesAdicionales, habitacionesDisponibles, gv_ResultadosDisponibles, True)
+                        If ((precioContranporte <> 0)) Then
+                            lbl_precioConTransporte.Text = precioContranporte
 
                             'exito(ReservacionActual)
                         Else
@@ -400,12 +492,7 @@ Partial Class reservacion_es_paso1
                 Dim noches As Integer = controladora.NochesSegunTarifas(id_temporada, id_producto, 0, total_de_noches)
                 Dim nochesAdicionales As Integer = total_de_noches - noches
 
-                'Para cambiar el radio Button del paquete
-                If ((noches = 1) And (nochesAdicionales = 0)) Then
-                    rdbtnlist_paquete.SelectedItem.Text = "2 days 1 night"
-                ElseIf ((noches = 2) And (nochesAdicionales = 0)) Then
-                    rdbtnlist_paquete.SelectedItem.Text = "3 days 2 nights"
-                End If
+
 
 
                 If validarPrecios(id_temporada, id_producto, noches, gv_ResultadosDisponibles) Then
@@ -413,12 +500,12 @@ Partial Class reservacion_es_paso1
                     Dim habitacionesDisponibles As Data.DataTable = cargarItemsDisponibles(id_producto, fechaInicio, fechaFin)
                     If habitacionesDisponibles.Rows.Count >= habitacionesDeseadas Then
 
-                        Dim DateEntrada As Date = calendarEntrada.SelectedDate
-                        Dim DateSalida As Date = calendarSalida.SelectedDate
 
 
-                        If ((agregaItemTemporal(id_producto, noches, nochesAdicionales, habitacionesDisponibles, gv_ResultadosDisponibles, True) <> 0)) Then
-                            lbl_precioConTransporte.Text = agregaItemTemporal(id_producto, noches, nochesAdicionales, habitacionesDisponibles, gv_ResultadosDisponibles, True)
+                        Dim precioContransporte As Double = agregaItemTemporal(id_producto, noches, nochesAdicionales, habitacionesDisponibles, gv_ResultadosDisponibles, True)
+
+                        If ((precioContransporte <> 0)) Then
+                            lbl_precioConTransporte.Text = precioContransporte
 
                             'exito(ReservacionActual)
                         Else
@@ -534,5 +621,47 @@ Partial Class reservacion_es_paso1
     End Sub
 
 
-    
+    Protected Sub gv_ResultadosDisponibles_RowDeleted(sender As Object, e As System.Web.UI.WebControls.GridViewDeletedEventArgs) Handles gv_ResultadosDisponibles.RowDeleted
+        gv_ResultadosDisponibles.DeleteRow(sender)
+    End Sub
+
+    'Protected Sub gv_ResultadosDisponibles_RowCommand(sender As Object, e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles gv_ResultadosDisponibles.RowCommand
+    '    If (e.CommandName = "borrarHabitacion") Then
+    '        ' Retrieve the row index stored in the CommandArgument property.
+    '        Dim index As Integer = Convert.ToInt32(e.CommandArgument)
+
+    '        ' Retrieve the row that contains the button 
+    '        ' from the Rows collection.
+    '        Dim row As GridViewRow = gv_ResultadosDisponibles.Rows(index)
+    '        MsgBox(index)
+
+    '        gv_ResultadosDisponibles.DeleteRow(index)
+    '        'gv_ResultadosDisponibles.de()
+    '        'Dim total_rows As Integer = gv_ResultadosDisponibles.Rows.Count
+    '        'Dim nuevoGridView As GridView
+
+    '        'If ((total_rows - 2) >= 0) Then
+    '        '    For counter As Integer = 0 To total_rows
+    '        '        Dim gridViewRow As GridViewRow = gv_ResultadosDisponibles.Rows(counter)
+
+    '        '    Next
+    '        '<asp:ImageButton ID="borrarHabitacion" runat="server" ImageUrl="~/images/bg-borrar-habitacion.jpg" CommandName="borrarHabitacion" CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>" />
+
+    '        'End If
+
+
+
+
+
+    '        ' Add code here to add the item to the shopping cart.
+
+    '    End If
+    'End Sub
+
+    Protected Sub gv_ResultadosDisponibles_RowUpdating(sender As Object, e As GridViewUpdateEventArgs)
+    End Sub
+
+    Protected Sub gv_ResultadosDisponibles_RowDeleting(sender As Object, e As GridViewDeleteEventArgs)
+        MsgBox("Andrey Gay")
+    End Sub
 End Class
