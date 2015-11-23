@@ -360,16 +360,19 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                 </div>
 
                                             </div>
-                                            <div class="contenedor-hab-personas">
-                                                <h3>Package for your vacations in Costa Rica</h3>
-                                                <div class="hab-field">
-                                                    <div class="habitaciones-wrapper">
-
-                                                        <asp:Label ID="lbl_nHabitaciones" runat="server" Text="Rooms"></asp:Label>
-                                                        <div class="box-select-habitaciones">
-                                                            <asp:DropDownList ID="ddl_habitaciones" runat="server" AutoPostBack="true" CssClass="dropdownsReserva">
-                                                            </asp:DropDownList>
-                                                        </div>
+                                            
+                                        </div>
+                                        <hr />
+                                        <div class="contenedor-hab-personas">
+                                            <h3>Package for your vacations in Costa Rica</h3>
+                                            <hr />
+                                            <div class="hab-field">
+                                                <div class="habitaciones-wrapper">
+                                                    
+                                                    <asp:Label ID="lbl_nHabitaciones" runat="server" Text="Rooms"></asp:Label>
+                                                    <div class="box-select-habitaciones">
+                                                        <asp:DropDownList ID="ddl_habitaciones" runat="server" AutoPostBack="true" CssClass="dropdownsReserva">
+                                                        </asp:DropDownList>
                                                     </div>
                                                 </div>
                                                 <asp:Panel ID="pnl_resultados" runat="server">
@@ -425,61 +428,55 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                     </asp:GridView>
                                                     <asp:HyperLink ID="add_room" runat="server" Visible="true" Text="+ Add room" class="add-room"></asp:HyperLink>
                                                 </asp:Panel>
+                                                
+                                        </div>
+                                        <asp:Label ID="lbl_ResultadoHabitaciones" runat="server" Text=""></asp:Label>
 
-                                            </div>
-                                            <asp:Label ID="lbl_ResultadoHabitaciones" runat="server" Text=""></asp:Label>
-
-                                            <div class="desc-paquete">
-                                                <div class="desc-paquete-inner">
-
-                                                    <div class="box-precio-sin-transporte">
-                                                        <asp:LinkButton ID="btn_reservar1" runat="server" ToolTip="Reservar" ValidationGroup="registrese"
-                                                            ForeColor="#FFFFFF" Visible="false">BOOK NOW »</asp:LinkButton>
-                                                        <div class="precio-sin-transporte">
-                                                            <div class="precio-sin-transporte-value">
-                                                                <p class="precio">$
-                                                                    <asp:Label ID="lbl_precioSinTransporte" runat="server" Text="0"></asp:Label></p>
-                                                            </div>
-                                                            <div class="precio-sin-transporte-letra-pequena">
-                                                                <p>* Includes: taxes, footd and tours on Tortuguero Channels </p>
-                                                            </div>
+                                        <div class="desc-paquete">
+                                            <div class="desc-paquete-inner">
+                                                
+                                                <div class="box-precio-sin-transporte">
+                                                    <asp:LinkButton ID="btn_reservar1" runat="server" ToolTip="Reservar" ValidationGroup="registrese"
+                                ForeColor="#FFFFFF" Visible="false">BOOK NOW »</asp:LinkButton>
+                                                    <div class="precio-sin-transporte">
+                                                        <div class="precio-sin-transporte-value">
+                                                            $ <asp:Label ID="lbl_precioSinTransporte" runat="server" Text="0"></asp:Label>
+                                                        </div>
+                                                        <div class="precio-sin-transporte-letra-pequena">
+                                                            <p>* Includes: taxes, footd and tours on Tortuguero Channels </p>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="desc-paquete-labels-errores">
-                                                    <asp:Label ID="lbl_erroFechas" runat="server" Text="" ForeColor="red"></asp:Label>
-                                                    <asp:Label ID="lbl_ResultadoReservacion" runat="server" Text=""></asp:Label>
-                                                </div>
-
                                             </div>
-                                            <div id="traslado-box">
-                                                <h3>Do  you need <strong>transport</strong> from and to Manatus?</h3>
-                                                <div class="traslado-box-inner">
-
-
-                                                    <p>
-                                                        Select the transfer options that you require and add it to your package:
-                                                    </p>
-                                                    <div class="bdbtnlist_transporte_box">
-                                                        <asp:RadioButtonList ID="rdbtnlist_transporte2014" runat="server" AutoPostBack="true">
-                                                            <asp:ListItem Value="1">Transfer to Manatus</asp:ListItem>
-                                                            <asp:ListItem Value="2">Transfer back to San Jose</asp:ListItem>
-                                                            <asp:ListItem Value="3">Round Trip</asp:ListItem>
-                                                            <asp:ListItem Value="4" Selected="True">None</asp:ListItem>
-                                                        </asp:RadioButtonList>
-                                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="rdbtnlist_transporte2014"
-                                                            Display="Dynamic" ErrorMessage="Campo Requerido" ValidationGroup="registrese"></asp:RequiredFieldValidator>
-                                                    </div>
-
-                                                    <div class="box-precio-con-transporte">
-                                                        <div class="precio-con-transporte">
-                                                            <div class="precio-con-transporte-value">
-                                                                <p><span>Total Cost of<br />
-                                                                    hosting and transport</span></p>
-                                                                <p class="precio">$
-                                                                    <asp:Label ID="lbl_precioConTransporte" runat="server" Text="0"></asp:Label></p>
-                                                            </div>
-
+                                            <div class="desc-paquete-labels-errores">
+                                                <asp:Label ID="lbl_erroFechas" runat="server" Text="" ForeColor="red"></asp:Label>
+                                                <asp:Label ID="lbl_ResultadoReservacion" runat="server" Text=""></asp:Label>
+                                            </div>
+                                        
+                                        </div>
+                                        <hr />
+                                        <div id="traslado-box">
+                                            <h3>Do  you need <strong>transport</strong> from and to Manatus?</h3>
+                                            <div class="traslado-box-inner">
+                                            
+                                                
+                                                <p>
+                                                    Select the transfer options that you require and add it to your package:</p>
+                                                <div class="bdbtnlist_transporte_box">
+                                                    <asp:RadioButtonList ID="rdbtnlist_transporte2014" runat="server" AutoPostBack="true">
+                                                        <asp:ListItem Value="1">Transfer to Manatus</asp:ListItem>
+                                                        <asp:ListItem Value="2">Transfer back to San Jose</asp:ListItem>
+                                                        <asp:ListItem Value="3">Round Trip</asp:ListItem>
+                                                        <asp:ListItem Value="4" Selected=True >None</asp:ListItem>
+                                                    </asp:RadioButtonList>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="rdbtnlist_transporte2014"
+                                                        Display="Dynamic" ErrorMessage="Campo Requerido" ValidationGroup="registrese"></asp:RequiredFieldValidator>
+                                                </div>
+                                                <hr />
+                                                <div class="box-precio-con-transporte">
+                                                    <div class="precio-con-transporte">
+                                                        <div class="precio-con-transporte-value">
+                                                            <span>Total Cost of<br /> hosting and transport</span> $ <asp:Label ID="lbl_precioConTransporte" runat="server" Text="0"></asp:Label>
                                                         </div>
                                                     </div>
 

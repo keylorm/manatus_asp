@@ -341,9 +341,11 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                 </asp:UpdatePanel>
                                             </div>
                                         </div>
+                                        <hr />
                                         <div class="contenedor-hab-personas">
                                             <h3>
                                                 Paquete para sus vacaciones en Costa Rica</h3>
+                                                <hr />
                                             <div class="hab-field">
                                                 <div class="habitaciones-wrapper">
                                                     <asp:Label ID="lbl_nHabitaciones" runat="server" Text="Habitaciones"></asp:Label>
@@ -413,6 +415,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             </asp:UpdatePanel>
                                         </div>
                                         <asp:Label ID="lbl_ResultadoHabitaciones" runat="server" Text=""></asp:Label>
+                                        
                                         <div class="desc-paquete">
                                             <div class="desc-paquete-inner">
                                                 <div class="box-precio-sin-transporte">
@@ -420,9 +423,9 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                         ForeColor="#FFFFFF" Visible="false">RESERVAR »</asp:LinkButton>
                                                     <div class="precio-sin-transporte">
                                                         <div class="precio-sin-transporte-value">
-                                                            <p class="precio">
+                                                            
                                                                 $
-                                                                <asp:Label ID="lbl_precioSinTransporte" runat="server" Text="0"></asp:Label></p>
+                                                                <asp:Label ID="lbl_precioSinTransporte" runat="server" Text="0"></asp:Label>
                                                         </div>
                                                         <div class="precio-sin-transporte-letra-pequena">
                                                             <p>
@@ -436,6 +439,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                 <asp:Label ID="lbl_ResultadoReservacion" runat="server" Text=""></asp:Label>
                                             </div>
                                         </div>
+                                        <hr />
                                         <div id="traslado-box">
                                             <h3>
                                                 ¿Necesita transporte hacia y desde Manatus?</h3>
@@ -452,18 +456,20 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="rdbtnlist_transporte2014"
                                                         Display="Dynamic" ErrorMessage="Campo Requerido" ValidationGroup="registrese"></asp:RequiredFieldValidator>
                                                 </div>
+                                                <hr />
                                                 <div class="box-precio-con-transporte">
                                                     <div class="precio-con-transporte">
                                                         <div class="precio-con-transporte-value">
-                                                            <p>
+                                                            
                                                                 <span>Total Cost of<br />
-                                                                    hosting and transport</span></p>
-                                                            <p class="precio">
+                                                                    hosting and transport</span> 
+                                                            
                                                                 $
-                                                                <asp:Label ID="lbl_precioConTransporte" runat="server" Text="0"></asp:Label></p>
+                                                                <asp:Label ID="lbl_precioConTransporte" runat="server" Text="0"></asp:Label>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                
                                                 <div style="display: none;">
                                                     <p>
                                                         Pick up place</p>
