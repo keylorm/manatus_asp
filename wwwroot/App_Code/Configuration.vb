@@ -6,14 +6,16 @@ Imports Orbelink.Helpers
 Public Class Configuration
     Public Shared ReadOnly Property Config_WebsiteRoot() As String
         Get
-            Return "http://booking.manatuscostarica.com/"
+            'Return "http://booking.manatuscostarica.com/"
+            Return "http://localhost:8608/wwwroot/"
         End Get
     End Property
 
     Public Shared ReadOnly Property Config_WebSite_LocalhostRoot() As String
         Get
                 
-Return "http://www.orbelinksafeserver.com/manatusHotel/"
+            'Return "http://www.orbelinksafeserver.com/manatusHotel/"
+            Return "http://localhost:8608/wwwroot/"
         End Get
     End Property
 

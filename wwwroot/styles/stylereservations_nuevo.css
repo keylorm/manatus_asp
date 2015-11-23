@@ -474,7 +474,7 @@ width: 598px;
     
 .reservation-form #updtpanel_reservacion
  {
-     border: 1px solid #594A42;
+    background-color: #FAF6F2;
     padding: 20px 20px 0;
     margin-bottom: 40px;
      }
