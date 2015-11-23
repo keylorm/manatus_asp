@@ -621,47 +621,45 @@ Partial Class reservacion_es_paso1
     End Sub
 
 
-    Protected Sub gv_ResultadosDisponibles_RowDeleted(sender As Object, e As System.Web.UI.WebControls.GridViewDeletedEventArgs) Handles gv_ResultadosDisponibles.RowDeleted
-        gv_ResultadosDisponibles.DeleteRow(sender)
+   
+
+    Protected Sub gv_ResultadosDisponibles_RowCommand(sender As Object, e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles gv_ResultadosDisponibles.RowCommand
+        If (e.CommandName = "borrarHabitacion") Then
+            ' Retrieve the row index stored in the CommandArgument property.
+            Dim index As Integer = Convert.ToInt32(e.CommandArgument)
+
+            ' Retrieve the row that contains the button 
+            ' from the Rows collection.
+            Dim row As GridViewRow = gv_ResultadosDisponibles.Rows(index)
+            MsgBox(index)
+
+
+            'gv_ResultadosDisponibles.de()
+            'Dim total_rows As Integer = gv_ResultadosDisponibles.Rows.Count
+            'Dim nuevoGridView As GridView
+
+            'If ((total_rows - 2) >= 0) Then
+            '    For counter As Integer = 0 To total_rows
+            '        Dim gridViewRow As GridViewRow = gv_ResultadosDisponibles.Rows(counter)
+
+            '    Next
+            '<asp:ImageButton ID="borrarHabitacion" runat="server" ImageUrl="~/images/bg-borrar-habitacion.jpg" CommandName="borrarHabitacion" CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>" />
+
+            'End If
+
+
+
+
+
+            ' Add code here to add the item to the shopping cart.
+
+        End If
     End Sub
-
-    'Protected Sub gv_ResultadosDisponibles_RowCommand(sender As Object, e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles gv_ResultadosDisponibles.RowCommand
-    '    If (e.CommandName = "borrarHabitacion") Then
-    '        ' Retrieve the row index stored in the CommandArgument property.
-    '        Dim index As Integer = Convert.ToInt32(e.CommandArgument)
-
-    '        ' Retrieve the row that contains the button 
-    '        ' from the Rows collection.
-    '        Dim row As GridViewRow = gv_ResultadosDisponibles.Rows(index)
-    '        MsgBox(index)
-
-    '        gv_ResultadosDisponibles.DeleteRow(index)
-    '        'gv_ResultadosDisponibles.de()
-    '        'Dim total_rows As Integer = gv_ResultadosDisponibles.Rows.Count
-    '        'Dim nuevoGridView As GridView
-
-    '        'If ((total_rows - 2) >= 0) Then
-    '        '    For counter As Integer = 0 To total_rows
-    '        '        Dim gridViewRow As GridViewRow = gv_ResultadosDisponibles.Rows(counter)
-
-    '        '    Next
-    '        '<asp:ImageButton ID="borrarHabitacion" runat="server" ImageUrl="~/images/bg-borrar-habitacion.jpg" CommandName="borrarHabitacion" CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>" />
-
-    '        'End If
-
-
-
-
-
-    '        ' Add code here to add the item to the shopping cart.
-
-    '    End If
-    'End Sub
 
     Protected Sub gv_ResultadosDisponibles_RowUpdating(sender As Object, e As GridViewUpdateEventArgs)
     End Sub
 
     Protected Sub gv_ResultadosDisponibles_RowDeleting(sender As Object, e As GridViewDeleteEventArgs)
-        MsgBox("Andrey Gay")
+
     End Sub
 End Class
