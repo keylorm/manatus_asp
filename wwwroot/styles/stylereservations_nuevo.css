@@ -597,8 +597,8 @@ input#txtDateSalida
     }
     
 #traslado-box #rdbtnlist_transporte2014 tr td label,
-.reservation-form  label,
-.reservation-form span
+.reservation-form  label
+/*.reservation-form span*/
 {
     font-family: "Open Sans",sans-seif;
     font-size: 16px;
@@ -1324,7 +1324,7 @@ a img { border: none; }
 }
 
 #TA_excellent625 {
-    float: left;
+    float: right;
     margin-right: 35px;
 }
 
@@ -1368,7 +1368,7 @@ a img { border: none; }
 .step-process-box{
     float:left;
     width:100%;
-    margin: 45px; 0px;
+    margin: 45px 0px; margin-bottom: 65px;
 }
 
 .step-process-box .inner > div {
@@ -1383,16 +1383,19 @@ a img { border: none; }
 }
 
 .step-process-box .inner{
-    width: 65%;
+    width: 60%;
     margin: 0 auto;
-    height: 100px;
+    height: 110px;
+    background-image: url('../images/linea_res.png');
+    background-repeat: no-repeat;
+    background-position: 50% 77%;    
 }
 
 .step-process-box .inner > div a{
     text-decoration: none;
     color: #594A42;
     line-height: 14px;
-    font-size: 14px;
+    font-size: 13px;
     font-family: "Open Sans",sans-seif;
 }
 
@@ -1411,8 +1414,21 @@ a img { border: none; }
 }
 
 .step-process-box .inner > div.active .step-title a {
-    background-color: #ddd;
+    background-color: #E5EBE1;
+    color: #3F4E34;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 10px 0px;  
+    
 }
+
+.step-process-box .inner > div.active .step-title p{
+    background-image: url('../images/arrow_res.png');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    padding-bottom: 8px;
+}
+
 
 .step-process-box .inner > div .step-point {
     height: 25px;
@@ -1420,27 +1436,30 @@ a img { border: none; }
     border: 2px solid #589442;
     border-radius: 15px;
     margin: 0 auto;
-    margin-top: 30px;
+    margin-top: 38px;
+    background-color: #FFF;
 }
 
 .step-process-box .inner > div.active .step-point {
     background-color:#589442;
-    height: 40px;
-    width: 40px;
-    border-radius: 22px;
-    margin-top: 20px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    margin-top: 25px;    
 }
 
 .step-process-box .inner > div.active .step-point a{
     color: #fff;
     padding: 11px 16px;
-    line-height:40px;
+    line-height: 50px;
+    font-family: "Raleway", Sans-Serif;
+    font-size: 19px;      
 }
 
 .step-process-box .inner > div .step-point a{
     padding: 5px 9px;
     line-height: 25px;
-    color: #fff;
+    color: #fff;    
 }
 
 .titulo-logos {
@@ -1492,6 +1511,140 @@ input#TxtCheckinCheckout {
     border-bottom: none;
 }
 
-.contenedor-desc-reserva > div {
+.contenedor-desc-reserva > div.contenedor-fechas-hab {
     border-bottom: 1px solid #594A42;
+}
+
+.hidden {display: none;}
+#widgetCalendar {
+    position: absolute;
+    height: 478px;
+    width: 346px;
+    background-color: #E0C2AD;
+    z-index: 1;
+}
+
+tr.ayuda {
+    margin-top: 10px;
+}
+
+tr.ayuda td {
+    font-size: 11px;
+    color: #86543C;
+    font-weight: 500;
+    padding: 30px 2px !important;
+}
+
+.disponibles, .no-disponibles, .seleccionados {
+    padding: 5px 10px;
+    margin-right: 8px;
+}
+
+.disponibles {
+    background-color: #fff;
+}
+
+.no-disponibles {
+    background-color: #EBD9CD;
+    margin-left: 10px;
+}
+
+.seleccionados {
+    background-color: #813400;
+    margin-left: 10px;
+}
+
+#widgetField {
+    height: 50px;
+}
+
+h2.h2Celeste{
+    color: #6DA7C0;
+    font-family: "Raleway", sans-serif;
+    font-weight: bold;
+    font-size: 26px;
+    text-transform: uppercase;    
+}
+.reservation-form #updtpanel_reservacion{
+    background: none;
+    border: 1px solid #594A42;
+}
+
+.reservation-form #updtpanel_reservacion h3{
+    color: #594A42;
+    font-family: "Raleway", sans-serif;
+    font-weight: normal;
+    font-size: 17px;
+    text-transform: uppercase;    
+}
+
+.desc-paquete{
+    width: 250px;
+    float: right;
+}
+.desc-paquete .precio-sin-transporte-value
+{
+    float: right;
+    border: 1px solid #7E9B67; 
+    color: #7E9B67;
+    font-family: "Raleway", sans-serif;
+    font-weight: normal;
+    font-size: 24px; line-height: 24px; font-weight: bold;    
+    border-radius: 10px; 
+}
+.desc-paquete .precio-sin-transporte-value span{
+    color: #7E9B67;
+    font-family: "Raleway", sans-serif;
+    font-weight: normal;
+    font-size: 24px;  line-height: 24px; font-weight: bold;
+}
+.precio-sin-transporte-letra-pequena{
+    float: right;
+}
+.precio-sin-transporte-letra-pequena p{
+    color: #594A42;
+    font-size: 13px;
+    font-family: "Open Sans",sans-seif;
+    font-style: italic; 
+    line-height: 14px;   
+}
+
+
+#traslado-box .traslado-box-inner > p{
+   /* color: #594A42;*/
+    font-size: 12px;
+    font-weight: normal;
+    /*font-family: "Open Sans",sans-seif; 
+    line-height: 14px;*/
+}
+
+
+
+.reservation-form #updtpanel_reservacion #pnl_resultados{
+    float: none;
+    overflow: hidden;
+    clear: both;    
+}
+.reservation-form #updtpanel_reservacion #pnl_resultados #gv_ResultadosDisponibles{
+    width: 100% !important;
+    float: left;
+    clear: both;
+    overflow: hidden;
+}
+.reservation-form #updtpanel_reservacion #pnl_resultados #gv_ResultadosDisponibles td span,
+.reservation-form #updtpanel_reservacion #pnl_resultados #gv_ResultadosDisponibles td select{
+    color: #594A42;
+    font-size: 12px;
+}
+
+.reservation-form #updtpanel_reservacion #pnl_resultados #add_room{
+    display: block;
+    clear: both;
+    overflow: hidden;
+    float: left;
+
+    color: #7E9B67;
+    font-size: 11px;
+    font-weight: normal;
+    font-family: "Open Sans",sans-seif;    
 }
