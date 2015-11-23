@@ -633,7 +633,7 @@ Partial Class reservacion_es_paso1
             Dim row As GridViewRow = gv_ResultadosDisponibles.Rows(index)
             MsgBox(index)
 
-            gv_ResultadosDisponibles.DeleteRow(index)
+
             'gv_ResultadosDisponibles.de()
             'Dim total_rows As Integer = gv_ResultadosDisponibles.Rows.Count
             'Dim nuevoGridView As GridView
