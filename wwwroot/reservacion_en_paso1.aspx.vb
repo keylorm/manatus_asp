@@ -53,13 +53,16 @@ Partial Class reservacion_en_paso1
 
             selectHabitaciones(id_producto, 6)
 
-            If Request.QueryString("rooms") IsNot Nothing Then
-                ddl_habitaciones.SelectedValue = Request.QueryString("rooms")
-            End If
+            Dim habitacionesDisponibles As Integer = selectHabitaciones(id_producto, 6)
 
+            If ((Request.QueryString("rooms") IsNot Nothing) And (Request.QueryString("rooms") > 0)) Then
+                If (habitacionesDisponibles >= Request.QueryString("rooms")) Then
+                    cargarHabitacionesDeseadas(Request.QueryString("rooms"))
+                Else
+                    cargarHabitacionesDeseadas(habitacionesDisponibles)
 
-            If ddl_habitaciones.SelectedValue.Length > 0 Then
-                cargarHabitacionesDeseadas(ddl_habitaciones.SelectedValue)
+                End If
+
             End If
 
             If ((Request.QueryString("people") IsNot Nothing) And (Request.QueryString("rooms") IsNot Nothing)) Then
@@ -276,11 +279,11 @@ Partial Class reservacion_en_paso1
     End Function
 
 
-    Protected Sub selectHabitaciones(ByVal id_producto As Integer, ByVal maximoAReservar As Integer)
+    Protected Function selectHabitaciones(ByVal id_producto As Integer, ByVal maximoAReservar As Integer) As Integer
         Dim dataset As Data.DataSet
         Dim Item As New Item
         Dim res As String
-
+        Dim hasta As Integer = 0
         Item.ordinal.ToSelect = True
         Item.Id_producto.Where.EqualCondition(id_producto)
 
@@ -292,20 +295,20 @@ Partial Class reservacion_en_paso1
         If dataset.Tables.Count > 0 Then
             If dataset.Tables(0).Rows.Count > 0 Then
 
-                Dim hasta As Integer
+
                 If dataset.Tables(0).Rows.Count - 1 > maximoAReservar Then
                     hasta = maximoAReservar
+                Else
+                    hasta = dataset.Tables(0).Rows.Count - 1
                 End If
 
 
 
-                For i As Integer = 0 To hasta - 1
 
-                    ddl_habitaciones.Items.Add(i + 1)
-                Next
             End If
         End If
-    End Sub
+        Return hasta
+    End Function
 
     Protected Sub cargarHabitacionesDeseadas(ByVal habitaciones As Integer)
         Dim dataTable As New Data.DataTable
@@ -319,18 +322,7 @@ Partial Class reservacion_en_paso1
         Dim resul_producto As ArrayList = TransformDataTable(dataTable, New Producto)
         Dim resul_Item As ArrayList = TransformDataTable(dataTable, New Item)
 
-        For counter As Integer = 0 To dataTable.Rows.Count - 1
-            Dim unItem As GridViewRow = gv_ResultadosDisponibles.Rows(counter)
-            Dim lbl_nombre As Label = unItem.FindControl("lbl_nombre")
-            Dim lbl_personas As Label = unItem.FindControl("lbl_personas")
-            If Orbelink.DBHandler.LanguageHandler.CurrentLanguage = Orbelink.DBHandler.LanguageHandler.Language.INGLES Then
-                lbl_nombre.Text = "Room " & counter + 1
-
-            Else
-                lbl_nombre.Text = "Habitación " & counter + 1
-
-            End If
-        Next
+       
     End Sub
 
 
@@ -404,7 +396,7 @@ Partial Class reservacion_en_paso1
             If total_de_noches > 0 Then
                 Dim id_temporada As Integer = controladora.buscarTemporada(fechaInicio, fechaInicio.AddDays(1)).id_Temporada
 
-                Dim habitacionesDeseadas As Integer = ddl_habitaciones.SelectedValue
+                Dim habitacionesDeseadas As Integer = gv_ResultadosDisponibles.Rows.Count
 
                 Dim noches As Integer = controladora.NochesSegunTarifas(id_temporada, id_producto, 0, total_de_noches)
                 Dim nochesAdicionales As Integer = total_de_noches - noches
@@ -492,7 +484,8 @@ Partial Class reservacion_en_paso1
             If total_de_noches > 0 Then
                 Dim id_temporada As Integer = controladora.buscarTemporada(fechaInicio, fechaInicio.AddDays(1)).id_Temporada
 
-                Dim habitacionesDeseadas As Integer = ddl_habitaciones.SelectedValue
+
+                Dim habitacionesDeseadas As Integer = gv_ResultadosDisponibles.Rows.Count
 
                 Dim noches As Integer = controladora.NochesSegunTarifas(id_temporada, id_producto, 0, total_de_noches)
                 Dim nochesAdicionales As Integer = total_de_noches - noches
@@ -605,15 +598,6 @@ Partial Class reservacion_en_paso1
         End If
     End Sub
 
-    Protected Sub ddl_habitaciones_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ddl_habitaciones.SelectedIndexChanged
-        loader.Visible = True
-        If ddl_habitaciones.SelectedValue.Length > 0 Then
-            cargarHabitacionesDeseadas(ddl_habitaciones.SelectedValue)
-            CalculoPrecio()
-        End If
-        loader.Visible = False
-    End Sub
-
     
 
 
@@ -630,7 +614,116 @@ Partial Class reservacion_en_paso1
         End If
     End Sub
 
+    Protected Sub gv_ResultadosDisponibles_RowCommand(sender As Object, e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles gv_ResultadosDisponibles.RowCommand
+        If (e.CommandName = "borrarHabitacion") Then
+            ' Retrieve the row index stored in the CommandArgument property.
+            Dim index As Integer = Convert.ToInt32(e.CommandArgument)
 
 
+            Dim contador As Integer = 0
+            Dim arrayPrecio(gv_ResultadosDisponibles.Rows.Count - 1) As Integer
+            Dim arrayPaquete(gv_ResultadosDisponibles.Rows.Count - 1) As String
+
+
+            For Each m_row As GridViewRow In gv_ResultadosDisponibles.Rows
+                If m_row.RowIndex <> index Then
+                    Dim ddlpersonas As DropDownList = gv_ResultadosDisponibles.Rows(m_row.RowIndex).FindControl("ddl_personas")
+                    Dim Lblpaquete As Label = gv_ResultadosDisponibles.Rows(m_row.RowIndex).FindControl("lbl_tipo_paquete")
+                    Dim paquete As String = Lblpaquete.Text
+                    arrayPrecio(contador) = ddlpersonas.SelectedValue
+                    arrayPaquete(contador) = paquete
+                    contador = contador + 1
+                End If
+
+
+            Next
+
+            cargarHabitacionesDeseadas(contador)
+
+            Dim contador2 As Integer = 0
+
+            For Each m_row As GridViewRow In gv_ResultadosDisponibles.Rows
+                Dim ddlPersonas As DropDownList = gv_ResultadosDisponibles.Rows(m_row.RowIndex).FindControl("ddl_personas")
+                Dim Lblpaquete As Label = gv_ResultadosDisponibles.Rows(m_row.RowIndex).FindControl("lbl_tipo_paquete")
+                ddlPersonas.SelectedValue = arrayPrecio(contador2)
+                Lblpaquete.Text = arrayPaquete(contador2)
+                contador2 = contador2 + 1
+            Next
+
+            CalculoPrecio()
+
+            'Metodo alterno
+
+            'Dim index As Integer = Convert.ToInt32(e.CommandArgument)
+
+            '' Retrieve the row that contains the button 
+            '' from the Rows collection.
+
+
+            'Dim dataTable As New Data.DataTable
+            'dataTable.Columns.Add("delete")
+            'dataTable.Columns.Add("descripcion")
+            'dataTable.Columns.Add("tipo_paquete")
+            'dataTable.Columns.Add("personas")
+            'dataTable.Columns.Add("precio")
+
+
+
+
+            'For Each m_row As GridViewRow In gv_ResultadosDisponibles.Rows
+            '    If m_row.RowIndex <> index Then
+
+            '        dataTable.Rows.Add(m_row)
+            '    End If
+
+            'Next
+
+            'gv_ResultadosDisponibles.DataSource = dataTable
+            'gv_ResultadosDisponibles.DataBind()
+
+
+
+        End If
+    End Sub
+
+
+    Protected Sub add_room_Click(sender As Object, e As System.EventArgs) Handles add_room.Click
+
+
+
+        Dim contador As Integer = 0
+        Dim arrayPrecio(gv_ResultadosDisponibles.Rows.Count - 1) As Integer
+        Dim arrayPaquete(gv_ResultadosDisponibles.Rows.Count - 1) As String
+
+
+        For Each m_row As GridViewRow In gv_ResultadosDisponibles.Rows
+
+            Dim ddlpersonas As DropDownList = gv_ResultadosDisponibles.Rows(m_row.RowIndex).FindControl("ddl_personas")
+            Dim Lblpaquete As Label = gv_ResultadosDisponibles.Rows(m_row.RowIndex).FindControl("lbl_tipo_paquete")
+            Dim paquete As String = Lblpaquete.Text
+            arrayPrecio(contador) = ddlpersonas.SelectedValue
+            arrayPaquete(contador) = paquete
+            contador = contador + 1
+
+
+        Next
+
+        cargarHabitacionesDeseadas(contador + 1)
+
+        Dim contador2 As Integer = 0
+
+        For Each m_row As GridViewRow In gv_ResultadosDisponibles.Rows
+            If (contador2 < arrayPaquete.Length) Then
+                Dim ddlPersonas As DropDownList = gv_ResultadosDisponibles.Rows(m_row.RowIndex).FindControl("ddl_personas")
+                Dim Lblpaquete As Label = gv_ResultadosDisponibles.Rows(m_row.RowIndex).FindControl("lbl_tipo_paquete")
+                ddlPersonas.SelectedValue = arrayPrecio(contador2)
+                Lblpaquete.Text = arrayPaquete(contador2)
+                contador2 = contador2 + 1
+            End If
+
+        Next
+
+        CalculoPrecio()
+    End Sub
 
 End Class

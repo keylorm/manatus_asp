@@ -320,20 +320,12 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             <h3>
                                                 Paquete para sus vacaciones en Costa Rica</h3>
                                                 <hr />
-                                            <div class="hab-field">
-                                                <div class="habitaciones-wrapper">
-                                                    <asp:Label ID="lbl_nHabitaciones" runat="server" Text="Habitaciones"></asp:Label>
-                                                    <div class="box-select-habitaciones">
-                                                        <asp:DropDownList ID="ddl_habitaciones" runat="server" AutoPostBack="true" CssClass="dropdownsReserva">
-                                                        </asp:DropDownList>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            
                                             <asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Always">
                                                 <ContentTemplate>
                                                     <asp:Panel ID="pnl_resultados" runat="server">
                                                         <asp:GridView ID="gv_ResultadosDisponibles" runat="server" ShowHeader="false" AutoGenerateColumns="false"
-                                                            GridLines="None" Width="246px" OnRowCommand="gv_ResultadosDisponibles_RowCommand" >
+                                                            GridLines="None" Width="246px" >
                                                             <RowStyle HorizontalAlign="Left" />
                                                             <HeaderStyle Font-Bold="false" HorizontalAlign="Left" />
                                                             <Columns>
@@ -347,7 +339,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                                 <asp:TemplateField HeaderText="" HeaderStyle-HorizontalAlign="Left">
                                                                     <ItemTemplate>
                                                                         <asp:Label ID="lbl_nombre" CssClass="marginleft15" runat="server" Font-Bold="false"
-                                                                            Font-Italic="true" ForeColor="#999999" Text="Nombre"></asp:Label>
+                                                                            Font-Italic="true" ForeColor="#999999" Text="1 Habitación"></asp:Label>
                                                                     </ItemTemplate>
                                                                     <HeaderStyle HorizontalAlign="Left" />
                                                                     <ItemStyle HorizontalAlign="Right" />
@@ -383,7 +375,8 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                             </Columns>
                                                             <RowStyle Font-Bold="true" />
                                                         </asp:GridView>
-                                                        <asp:HyperLink ID="add_room" runat="server" Visible="true" Text="+ Add room" class="add-room"></asp:HyperLink>
+
+                                                        <asp:LinkButton ID="add_room" runat="server">+ Añadir habitaciones</asp:LinkButton>
                                                     </asp:Panel>
                                                 </ContentTemplate>
                                             </asp:UpdatePanel>

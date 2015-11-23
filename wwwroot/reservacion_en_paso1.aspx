@@ -350,16 +350,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                         <div class="contenedor-hab-personas">
                                             <h3>Package for your vacations in Costa Rica</h3>
                                             <hr />
-                                            <div class="hab-field">
-                                                <div class="habitaciones-wrapper">
-                                                    
-                                                    <asp:Label ID="lbl_nHabitaciones" runat="server" Text="Rooms"></asp:Label>
-                                                    <div class="box-select-habitaciones">
-                                                        <asp:DropDownList ID="ddl_habitaciones" runat="server" AutoPostBack="true" CssClass="dropdownsReserva">
-                                                        </asp:DropDownList>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            
                                             <asp:Panel ID="pnl_resultados" runat="server">
                                                     <asp:GridView ID="gv_ResultadosDisponibles" runat="server" ShowHeader="False" AutoGenerateColumns="False"
                                                         GridLines="None" Width="246px" EnableModelValidation="True">
@@ -368,15 +359,15 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                         <Columns>
                                                             <asp:TemplateField>
                                                                 <ItemTemplate>
-                                                                    <asp:ImageButton runat="server" ImageUrl="~/images/bg-borrar-habitacion.jpg" ID="borrar_habitacion">
-                                                                    </asp:ImageButton>
+                                                                    <asp:ImageButton ID="borrarHabitacion" runat="server" ImageUrl="~/images/bg-borrar-habitacion.jpg"
+                                                                        CommandName="borrarHabitacion" CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>" />
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             
                                                             <asp:TemplateField HeaderText="" HeaderStyle-HorizontalAlign="Left">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lbl_nombre" CssClass="marginleft15" runat="server" Font-Bold="false"
-                                                                        Font-Italic="true" ForeColor="#999999" Text="Nombre"></asp:Label>
+                                                                        Font-Italic="true" ForeColor="#999999" Text="1 room"></asp:Label>
                                                                 </ItemTemplate>
                                                                 <HeaderStyle HorizontalAlign="Left" />
                                                                 <ItemStyle HorizontalAlign="Right" />
@@ -412,7 +403,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                         </Columns>
                                                         <RowStyle Font-Bold="true" />
                                                     </asp:GridView>
-                                                    <asp:HyperLink ID="add_room" runat="server" Visible="true" Text="+ Add room" class="add-room"></asp:HyperLink>
+                                                    <asp:LinkButton ID="add_room" runat="server">+ Add Room</asp:LinkButton>
                                                 </asp:Panel>
                                                 
                                         </div>
