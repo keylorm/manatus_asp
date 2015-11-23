@@ -76,7 +76,7 @@
 		now.setHours(0,0,0,0); // todas las fechas a evaluar deben de estar establecidas en hora=0, min=0, seg=0, mil=0 para que la evaluacion tenga efecto
 		futureDay.setHours(0,0,0,0); // todas las fechas a evaluar deben de estar establecidas en hora=0, min=0, seg=0, mil=0 para que la evaluacion tenga efecto
 
-		var datesDisabled = [];
+		/*var datesDisabled = [];
 		$.ajax({
 		  url: "json-dates",
 		}).done(function(data) {
@@ -85,9 +85,8 @@
 				var split = data[i].split("-");
 				var disabledDate = new Date(split[2], split[1]-1, split[0], 0, 0, 0, 0)
 		 		datesDisabled [i] = disabledDate;
-		 	}
-
-
+		 	}*/
+        
 		 	$('#widgetCalendar').DatePicker({
 				flat: true,
 				format: 'd/m/Y',
@@ -97,7 +96,7 @@
 				starts: 1,
 				onRender: function(date) {
 					return {
-						disabled: (compareDates(datesDisabled, date)), //utilizamos una funcion para comparar la fecha actual con un arreglo de las fechas a deshabilitar
+						//disabled: (compareDates(datesDisabled, date)), //utilizamos una funcion para comparar la fecha actual con un arreglo de las fechas a deshabilitar
 						//className: date.valueOf() == now2.valueOf() ? 'datepickerSpecial' : false
 					}
 				},
@@ -105,12 +104,12 @@
 					//verificador del grupo de fechas seleccionado y los dias deshabilitados para determinar si estan en mi seleccion
 					//habilitar boton booking
 					$(".reservation-form input[type='submit'").removeAttr('disabled');				
-					if (validarFechasDisponibles(datesDisabled, dates)){
+					/*if (validarFechasDisponibles(datesDisabled, dates)){
 						//mostrar mensaje de alerta
 						alert("Within days of his/her selection are 'not available', the values will be reseted");
 						//deshabilitar boton
 						$(".reservation-form input[type='submit'").attr("disabled","disabled");
-					}
+					}*/
 					//obtener el ingreso (checkin)
 					$("span.checkin").html(formated[0]);
 					$('#widgetField input[id="TxtCheckinCheckout"]').val(formated.join(' - '));
@@ -125,12 +124,7 @@
 			}
 			$('#widgetCalendar div.datepicker').css(styles);
 
-			//ocultar DatePicker
-			/*$('#aplicar-seleccion').on('click', function(){
-				$("#widgetCalendar").hide("slow");
-			});*/
-
-		});
+		/*});*/
 	
 		var state = false;
 		$('#widgetField>input[id="TxtCheckinCheckout"]').bind('click', function () {

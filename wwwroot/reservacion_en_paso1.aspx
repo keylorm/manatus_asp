@@ -21,12 +21,12 @@
     <!--[if gte IE 9]><!-->
     <link rel="stylesheet" href="styles/stylereservation_nuevo_responsivo.css" type="text/css" />
     <!--<![endif]-->
+    
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+    <%--<script type="text/javascript" src="http://booking.manatuscostarica.com/js/myJS.js"></script>--%>
 
-    <script type="text/javascript" src="http://booking.manatuscostarica.com/js/myJS.js"></script>
-
-    <script type="text/javascript" src="http://booking.manatuscostarica.com/js/tinynav.min.js"></script>
+    <%--<script type="text/javascript" src="http://booking.manatuscostarica.com/js/tinynav.min.js"></script>--%>
     
     <!-- scripts range datepicker -->
     <script type="text/javascript" src="datepicker/js/datepicker.js"></script>
@@ -39,7 +39,7 @@
 
     <!-- style range datepicker -->
     <link type="text/css" rel="stylesheet" href="datepicker/css/datepicker.css" />
-    <!--<link type="text/css" rel="stylesheet" href="datepicker/css/layout.css" />-->
+    <link type="text/css" rel="stylesheet" href="datepicker/css/layout.css" />
     <!-- end style range datepicker -->
 
     <style type="text/css">
