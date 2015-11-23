@@ -430,6 +430,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="rdbtnlist_transporte2014"
                                                         Display="Dynamic" ErrorMessage="Campo Requerido" ValidationGroup="registrese"></asp:RequiredFieldValidator>
                                                 </div>
+                                                <hr />
                                                 <div class="box-precio-con-transporte">
                                                     <div class="precio-con-transporte">
                                                         <div class="precio-con-transporte-value">
@@ -442,6 +443,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                         </div>
                                                     </div>
                                                 </div>
+                                                
                                                 <div style="display: none;">
                                                     <p>
                                                         Pick up place</p>
