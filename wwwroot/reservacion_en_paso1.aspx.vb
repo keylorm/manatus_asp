@@ -5,6 +5,7 @@ Imports Orbelink.DBHandler
 Imports Orbelink.Control.Reservaciones
 Imports Orbelink.DateAndTime.DateHandler
 Imports Orbelink.DateAndTime
+Imports System.Globalization
 
 
 Partial Class reservacion_en_paso1
@@ -14,7 +15,7 @@ Partial Class reservacion_en_paso1
     Private Const id_producto As Integer = 3 'Habitacion Sencilla
     Private Const horaEntrada As Integer = 12
     Private Const horaSalida As Integer = 11
-    
+
 
 
     Protected Sub Page_Init(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Init
@@ -123,7 +124,7 @@ Partial Class reservacion_en_paso1
         Return dataTable
     End Function
 
-    Protected Function agregaItemTemporal(ByVal id_producto As Integer, ByVal noches As Integer, ByVal nochesadicionales As Integer, ByVal habitacionesDisponibles As Data.DataTable, ByVal theGridView As GridView, ByVal usarPrecioTransporte As Boolean, Optional ByVal descuento As String = "") As Double
+    Protected Function agregaItemTemporal(ByVal id_producto As Integer, ByVal noches As Integer, ByVal nochesadicionales As Integer, ByVal habitacionesDisponibles As Data.DataTable, ByVal theGridView As GridView, ByVal usarPrecioTransporte As Boolean, ByVal fechaInicio As Date, ByVal fechaFin As Date, Optional ByVal descuento As String = "") As Double
         Dim result As Double = 0
 
         For counter As Integer = 0 To theGridView.Rows.Count - 1
@@ -155,20 +156,20 @@ Partial Class reservacion_en_paso1
 
                 Dim precio_transporte As Integer = 0
 
-                Dim entrada As Date = calendarEntrada.SelectedDate
-                Dim salida As Date = calendarSalida.SelectedDate
+                'Dim entrada As Date = calendarEntrada.SelectedDate
+                'Dim salida As Date = calendarSalida.SelectedDate
 
-                Dim fechaInicio As New Date(entrada.Year, entrada.Month, entrada.Day, 12, 0, 0)
-                Dim fechaFin As New Date(salida.Year, salida.Month, salida.Day, 11, 0, 0)
+                'Dim fechaInicio As New Date(entrada.Year, entrada.Month, entrada.Day, 12, 0, 0)
+                'Dim fechaFin As New Date(salida.Year, salida.Month, salida.Day, 11, 0, 0)
 
                 If rdbtnlist_transporte2014.Visible = True Then
 
                     Dim preciotransporte As Integer = 0
 
-                    If entrada.Year = 2014 Then
+                    If fechaInicio.Year = 2014 Then
                         preciotransporte = 70
 
-                    ElseIf entrada.Year = 2015 Then
+                    ElseIf fechaInicio.Year = 2015 Then
                         preciotransporte = 75
 
                     End If
@@ -191,7 +192,7 @@ Partial Class reservacion_en_paso1
                     result = result + controladora.AgregarItemTemporal(id_producto, item.ordinal.Value, numeroadultos, 0, True, fechaInicio, fechaFin, 1, noches, nochesadicionales, descuento, Session("id_temporadaNueva"), 0, 1)
                 End If
 
-                
+
             Catch ex As Exception
                 result = result + 0
             End Try
@@ -394,8 +395,61 @@ Partial Class reservacion_en_paso1
 
             Dim controladora As New ControladorReservaciones(connection, Resources.Reservaciones_Resources.ResourceManager)
 
-            Dim entrada As Date = calendarEntrada.SelectedDate
-            Dim salida As Date = calendarSalida.SelectedDate
+            Dim entrada As Date
+            Dim salida As Date
+
+            'separador para el rango de fecha
+            Dim rango = TxtCheckinCheckout.Text
+            Dim delimiter As Char = " - "
+            Dim substrings() As String = rango.Split(delimiter)
+            Dim counter1 = 0
+
+            For Each substring In substrings
+                If (substring <> "-") Then
+                    'separador para el checkin
+                    Dim delimiter2 As Char = "/"
+                    Dim substrings2() As String = substring.Split(delimiter2)
+                    Dim counter2 = 0
+                    Dim d = 0
+                    Dim m = 0
+                    Dim y = 0
+                    If counter1 = 0 Then
+                        For Each substring2 In substrings2
+                            If (substring2 <> "/") Then
+                                If counter2 = 0 Then
+                                    m = substring2
+                                ElseIf counter2 = 1 Then
+                                    d = substring2
+                                Else
+                                    y = substring2
+                                End If
+                            End If
+                            counter2 = counter2 + 1
+                        Next
+                        Dim date1 As New Date(y, m, d, 12, 0, 0)
+                        entrada = date1
+                    Else
+                        For Each substring2 In substrings2
+                            If (substring2 <> "/") Then
+                                If counter2 = 0 Then
+                                    m = substring2
+                                ElseIf counter2 = 1 Then
+                                    d = substring2
+                                Else
+                                    y = substring2
+                                End If
+                            End If
+                            counter2 = counter2 + 1
+                        Next
+                        Dim date1 As New Date(y, m, d, 11, 0, 0)
+                        salida = date1
+                    End If
+                End If
+                counter1 = counter1 + 1
+            Next
+
+            'Dim entrada As Date = calendarEntrada.SelectedDate
+            'Dim salida As Date = calendarSalida.SelectedDate
 
             Dim fechaInicio As New Date(entrada.Year, entrada.Month, entrada.Day, 12, 0, 0)
             Dim fechaFin As New Date(salida.Year, salida.Month, salida.Day, 11, 0, 0)
@@ -409,8 +463,8 @@ Partial Class reservacion_en_paso1
                 Dim noches As Integer = controladora.NochesSegunTarifas(id_temporada, id_producto, 0, total_de_noches)
                 Dim nochesAdicionales As Integer = total_de_noches - noches
 
-                
-                
+
+
 
 
                 If validarPrecios(id_temporada, id_producto, noches, gv_ResultadosDisponibles) Then
@@ -482,8 +536,22 @@ Partial Class reservacion_en_paso1
 
             Dim controladora As New ControladorReservaciones(connection, Resources.Reservaciones_Resources.ResourceManager)
 
-            Dim entrada As Date = calendarEntrada.SelectedDate
-            Dim salida As Date = calendarSalida.SelectedDate
+            Dim entrada As Date
+            Dim salida As Date
+
+            Dim rango = TxtCheckinCheckout.Text
+            Dim delimiter As Char = " - "
+            Dim substrings() As String = rango.Split(delimiter)
+            Dim counter1 = 0
+            For Each substring In substrings
+                If counter1 = 0 Then
+                    entrada = substring
+                Else
+                    salida = substring
+                End If
+                counter1 = counter1 + 1
+            Next
+
 
             Dim fechaInicio As New Date(entrada.Year, entrada.Month, entrada.Day, 12, 0, 0)
             Dim fechaFin As New Date(salida.Year, salida.Month, salida.Day, 11, 0, 0)
@@ -498,7 +566,7 @@ Partial Class reservacion_en_paso1
                 Dim nochesAdicionales As Integer = total_de_noches - noches
 
                 'Para cambiar el radio Button del paquete
-                
+
 
 
                 If validarPrecios(id_temporada, id_producto, noches, gv_ResultadosDisponibles) Then
@@ -508,7 +576,7 @@ Partial Class reservacion_en_paso1
 
 
                         Dim precioContransporte As Double = agregaItemTemporal(id_producto, noches, nochesAdicionales, habitacionesDisponibles, gv_ResultadosDisponibles, True)
-                        
+
                         If ((precioContransporte <> 0)) Then
                             lbl_precioConTransporte.Text = precioContransporte
 
@@ -528,10 +596,10 @@ Partial Class reservacion_en_paso1
         End If
 
     End Sub
-    
-   
 
-    
+
+
+
 
 
     Protected Sub mensajeErrorCantPersonasXHabitacion(ByVal codigo_error As Integer)
@@ -548,7 +616,7 @@ Partial Class reservacion_en_paso1
                 lbl_ResultadoHabitaciones.Text = "Las habitaciones solicitadas no son suficientes para hospedar a la cantidad de personas deseadas. Cada habitación puede hospedar un máximo de 4 personas."
             End If
         End If
-        
+
     End Sub
 
     Protected Sub mensajePrecios(ByVal capacidadMax As Integer)
@@ -614,7 +682,7 @@ Partial Class reservacion_en_paso1
         loader.Visible = False
     End Sub
 
-    
+
 
 
     Protected Sub txtDateEntrada_TextChanged(sender As Object, e As System.EventArgs) Handles txtDateEntrada.TextChanged
@@ -630,7 +698,22 @@ Partial Class reservacion_en_paso1
         End If
     End Sub
 
-
-
-
+    Protected Sub AplicarSeleccion_Click(sender As Object, e As EventArgs) Handles AplicarSeleccion.Click
+        If TxtCheckinCheckout.Text.Length > 0 Then
+            'Separar la fecha por checkin - checkout
+            'Dim rango = TxtCheckinCheckout.Text
+            'Dim delimiter As Char = " - "
+            'Dim substrings() As String = rango.Split(delimiter)
+            'Dim counter = 0
+            'For Each substring In substrings
+            '    If counter = 0 Then
+            '        txtDateEntrada.Text = substring
+            '    Else
+            '        txtDateSalida.Text = substring
+            '    End If
+            '    counter = counter + 1
+            'Next
+            CalculoPrecio()
+        End If
+    End Sub
 End Class
