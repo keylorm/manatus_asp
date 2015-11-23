@@ -24,9 +24,22 @@
     <!--[if gte IE 9]><!-->
     <link rel="Stylesheet" href="styles/stylereservation_nuevo_responsivo.css" type="text/css" />
     <!--<![endif]-->
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://booking.manatuscostarica.com/js/myJS.js"></script>
     <script type="text/javascript" src="http://booking.manatuscostarica.com/js/tinynav.min.js"></script>
+
+    <!-- scripts range datepicker -->
+    <script type="text/javascript" src="datepicker/js/datepicker-es.js"></script>
+    <script type="text/javascript" src="datepicker/js/eye.js"></script>
+    <script type="text/javascript" src="datepicker/js/utils.js"></script>
+    <script type="text/javascript" src="datepicker/js/layout-es.js"></script>    
+    <!-- end scripts range datepicker -->
+
+    <!-- style range datepicker -->
+    <link type="text/css" rel="stylesheet" href="datepicker/css/datepicker.css" />
+    <link type="text/css" rel="stylesheet" href="datepicker/css/layout.css" />
+    <!-- end style range datepicker -->
+
     <style type="text/css">
         /*Codigo de css para el pop up*/#fade
         {
@@ -290,6 +303,19 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                 <asp:Panel ID="pnl_contenido" runat="server" Visible="true">
                                     <div class="contenedor-desc-reserva">
                                         <div class="contenedor-fechas-hab">
+
+                                            <!-- rango de fecha -->
+                                                <div id="widget">
+                                                    <div id="widgetField">
+                                                        <asp:Label ID="lblIngresoSalida" runat="server" Text="Ingreso y Salida"></asp:Label>
+                                                        <asp:TextBox runat="server" ID="TxtCheckinCheckout" AutoPostBack="true" name="checkin-checkout" value='Seleccionar rango de fechas'></asp:TextBox>
+                                                        <a class="btn" id="btn-reservar" href="javascript:void(0)">Reservar</a>
+                                                    </div>
+                                                    <div id="widgetCalendar" class="hidden">
+                                                    </div>
+                                                </div>
+                                            <!-- fin rango de fecha -->
+
                                             <div class="fecha-field">
                                                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                                     <ContentTemplate>
@@ -320,20 +346,12 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             <h3>
                                                 Paquete para sus vacaciones en Costa Rica</h3>
                                                 <hr />
-                                            <div class="hab-field">
-                                                <div class="habitaciones-wrapper">
-                                                    <asp:Label ID="lbl_nHabitaciones" runat="server" Text="Habitaciones"></asp:Label>
-                                                    <div class="box-select-habitaciones">
-                                                        <asp:DropDownList ID="ddl_habitaciones" runat="server" AutoPostBack="true" CssClass="dropdownsReserva">
-                                                        </asp:DropDownList>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            
                                             <asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Always">
                                                 <ContentTemplate>
                                                     <asp:Panel ID="pnl_resultados" runat="server">
                                                         <asp:GridView ID="gv_ResultadosDisponibles" runat="server" ShowHeader="false" AutoGenerateColumns="false"
-                                                            GridLines="None" Width="246px" OnRowCommand="gv_ResultadosDisponibles_RowCommand" >
+                                                            GridLines="None" Width="246px" >
                                                             <RowStyle HorizontalAlign="Left" />
                                                             <HeaderStyle Font-Bold="false" HorizontalAlign="Left" />
                                                             <Columns>
@@ -347,7 +365,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                                 <asp:TemplateField HeaderText="" HeaderStyle-HorizontalAlign="Left">
                                                                     <ItemTemplate>
                                                                         <asp:Label ID="lbl_nombre" CssClass="marginleft15" runat="server" Font-Bold="false"
-                                                                            Font-Italic="true" ForeColor="#999999" Text="Nombre"></asp:Label>
+                                                                            Font-Italic="true" ForeColor="#999999" Text="1 Habitación"></asp:Label>
                                                                     </ItemTemplate>
                                                                     <HeaderStyle HorizontalAlign="Left" />
                                                                     <ItemStyle HorizontalAlign="Right" />
@@ -383,7 +401,8 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                             </Columns>
                                                             <RowStyle Font-Bold="true" />
                                                         </asp:GridView>
-                                                        <asp:HyperLink ID="add_room" runat="server" Visible="true" Text="+ Add room" class="add-room"></asp:HyperLink>
+
+                                                        <asp:LinkButton ID="add_room" runat="server">+ Añadir habitaciones</asp:LinkButton>
                                                     </asp:Panel>
                                                 </ContentTemplate>
                                             </asp:UpdatePanel>

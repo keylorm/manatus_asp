@@ -599,8 +599,8 @@ input#txtDateSalida
     }
     
 #traslado-box #rdbtnlist_transporte2014 tr td label,
-.reservation-form  label,
-.reservation-form span
+.reservation-form  label
+/*.reservation-form span*/
 {
     font-family: "Open Sans",sans-seif;
     font-size: 16px;
@@ -1522,6 +1522,51 @@ input#TxtCheckinCheckout {
     overflow: hidden;
 }
 
+<<<<<<< HEAD
+=======
+.hidden {display: none;}
+#widgetCalendar {
+    position: absolute;
+    height: 478px;
+    width: 346px;
+    background-color: #E0C2AD;
+    z-index: 1;
+}
+
+tr.ayuda {
+    margin-top: 10px;
+}
+
+tr.ayuda td {
+    font-size: 11px;
+    color: #86543C;
+    font-weight: 500;
+    padding: 30px 2px !important;
+}
+
+.disponibles, .no-disponibles, .seleccionados {
+    padding: 5px 10px;
+    margin-right: 8px;
+}
+
+.disponibles {
+    background-color: #fff;
+}
+
+.no-disponibles {
+    background-color: #EBD9CD;
+    margin-left: 10px;
+}
+
+.seleccionados {
+    background-color: #813400;
+    margin-left: 10px;
+}
+
+#widgetField {
+    height: 50px;
+}
+>>>>>>> origin/master
 
 h2.h2Celeste{
     color: #6DA7C0;
@@ -1651,7 +1696,6 @@ h2.h2Celeste{
     font-weight: normal;
     font-family: "Open Sans",sans-seif;    
 }
-
 
 /* sidebar paso 1 */
 
