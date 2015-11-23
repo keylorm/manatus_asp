@@ -628,30 +628,86 @@ Partial Class reservacion_es_paso1
             ' Retrieve the row index stored in the CommandArgument property.
             Dim index As Integer = Convert.ToInt32(e.CommandArgument)
 
-            ' Retrieve the row that contains the button 
-            ' from the Rows collection.
-            Dim row As GridViewRow = gv_ResultadosDisponibles.Rows(index)
-            MsgBox(index)
+            Dim rowindex As Integer = 0
 
+            Dim dataTable As New Data.DataTable
+            dataTable.Columns.Add("delete")
+            dataTable.Columns.Add("descripcion")
+            dataTable.Columns.Add("tipo_paquete")
+            dataTable.Columns.Add("personas")
+            dataTable.Columns.Add("precio")
 
-            'gv_ResultadosDisponibles.de()
-            'Dim total_rows As Integer = gv_ResultadosDisponibles.Rows.Count
-            'Dim nuevoGridView As GridView
-
-            'If ((total_rows - 2) >= 0) Then
-            '    For counter As Integer = 0 To total_rows
-            '        Dim gridViewRow As GridViewRow = gv_ResultadosDisponibles.Rows(counter)
-
-            '    Next
-            '<asp:ImageButton ID="borrarHabitacion" runat="server" ImageUrl="~/images/bg-borrar-habitacion.jpg" CommandName="borrarHabitacion" CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>" />
-
-            'End If
+            Dim newGridView As GridView = gv_ResultadosDisponibles
 
 
 
+            For Each m_row As GridViewRow In gv_ResultadosDisponibles.Rows
+                If m_row.RowIndex <> index Then
+
+                    
+                    dataTable.Rows.Add(m_row)
 
 
-            ' Add code here to add the item to the shopping cart.
+                End If
+
+
+            Next
+            gv_ResultadosDisponibles.DataSource = dataTable
+            gv_ResultadosDisponibles.DataBind()
+
+            For Each m_row As GridViewRow In gv_ResultadosDisponibles.Rows
+                If m_row.RowIndex <> index Then
+                    Dim imageButtomDeleteOld As ImageButton = newGridView.Rows(m_row.RowIndex).FindControl("borrarHabitacion")
+                    Dim lblNombreOld As Label = newGridView.Rows(m_row.RowIndex).FindControl("lbl_nombre")
+                    Dim lblTipoPaqueteOld As Label = newGridView.Rows(m_row.RowIndex).FindControl("lbl_tipo_paquete")
+                    Dim ddlPersonasOld As DropDownList = newGridView.Rows(m_row.RowIndex).FindControl("ddl_personas")
+                    Dim lblPrecioHabOld As Label = newGridView.Rows(m_row.RowIndex).FindControl("lbl_precio_habitacion")
+
+                    Dim imageButtomDelete As ImageButton = gv_ResultadosDisponibles.Rows(m_row.RowIndex).FindControl("borrarHabitacion")
+                    Dim lblNombre As Label = gv_ResultadosDisponibles.Rows(m_row.RowIndex).FindControl("lbl_nombre")
+                    Dim lblTipoPaquete As Label = gv_ResultadosDisponibles.Rows(m_row.RowIndex).FindControl("lbl_tipo_paquete")
+                    Dim ddlPersonas As DropDownList = gv_ResultadosDisponibles.Rows(m_row.RowIndex).FindControl("ddl_personas")
+                    Dim lblPrecioHab As Label = gv_ResultadosDisponibles.Rows(m_row.RowIndex).FindControl("lbl_precio_habitacion")
+
+                    imageButtomDelete = imageButtomDeleteOld
+                    lblNombre = lblNombreOld
+                    lblTipoPaquete = lblTipoPaqueteOld
+                    ddlPersonas = ddlPersonasOld
+                    lblPrecioHab = lblPrecioHabOld
+
+                End If
+
+
+            Next
+
+            'Dim index As Integer = Convert.ToInt32(e.CommandArgument)
+
+            '' Retrieve the row that contains the button 
+            '' from the Rows collection.
+
+
+            'Dim dataTable As New Data.DataTable
+            'dataTable.Columns.Add("delete")
+            'dataTable.Columns.Add("descripcion")
+            'dataTable.Columns.Add("tipo_paquete")
+            'dataTable.Columns.Add("personas")
+            'dataTable.Columns.Add("precio")
+
+
+
+
+            'For Each m_row As GridViewRow In gv_ResultadosDisponibles.Rows
+            '    If m_row.RowIndex <> index Then
+
+            '        dataTable.Rows.Add(m_row)
+            '    End If
+
+            'Next
+
+            'gv_ResultadosDisponibles.DataSource = dataTable
+            'gv_ResultadosDisponibles.DataBind()
+
+           
 
         End If
     End Sub

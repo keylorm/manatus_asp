@@ -346,8 +346,10 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             </div>
                                             
                                         </div>
+                                        <hr />
                                         <div class="contenedor-hab-personas">
                                             <h3>Package for your vacations in Costa Rica</h3>
+                                            <hr />
                                             <div class="hab-field">
                                                 <div class="habitaciones-wrapper">
                                                     
@@ -424,7 +426,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                 ForeColor="#FFFFFF" Visible="false">BOOK NOW »</asp:LinkButton>
                                                     <div class="precio-sin-transporte">
                                                         <div class="precio-sin-transporte-value">
-                                                            <p class="precio"> $ <asp:Label ID="lbl_precioSinTransporte" runat="server" Text="0"></asp:Label></p>
+                                                            $ <asp:Label ID="lbl_precioSinTransporte" runat="server" Text="0"></asp:Label>
                                                         </div>
                                                         <div class="precio-sin-transporte-letra-pequena">
                                                             <p>* Includes: taxes, footd and tours on Tortuguero Channels </p>
@@ -438,6 +440,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             </div>
                                         
                                         </div>
+                                        <hr />
                                         <div id="traslado-box">
                                             <h3>Do  you need <strong>transport</strong> from and to Manatus?</h3>
                                             <div class="traslado-box-inner">
@@ -459,7 +462,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                 <div class="box-precio-con-transporte">
                                                     <div class="precio-con-transporte">
                                                         <div class="precio-con-transporte-value">
-                                                            <p><span>Total Cost of<br /> hosting and transport</span></p><p class="precio"> $ <asp:Label ID="lbl_precioConTransporte" runat="server" Text="0"></asp:Label></p>
+                                                            <span>Total Cost of<br /> hosting and transport</span> $ <asp:Label ID="lbl_precioConTransporte" runat="server" Text="0"></asp:Label>
                                                         </div>
                                                         
                                                     </div>
