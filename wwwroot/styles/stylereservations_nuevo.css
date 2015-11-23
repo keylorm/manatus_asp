@@ -474,7 +474,7 @@ width: 598px;
     
 .reservation-form #updtpanel_reservacion
  {
-     background-color: #FAF6F2;
+     border: 1px solid #594A42;
     padding: 20px 20px 0;
     margin-bottom: 40px;
      }
@@ -1363,3 +1363,135 @@ a img { border: none; }
 {
 	clear: both; 
 	}
+
+/*Added by Juan: Style reservation - steps*/
+.step-process-box{
+    float:left;
+    width:100%;
+    margin: 45px; 0px;
+}
+
+.step-process-box .inner > div {
+    float: left;
+    width:27%;
+    text-align:center;
+}
+
+.step-process-box .inner > div.step-1,
+.step-process-box .inner > div.step-2 {
+    margin-right: 50px;
+}
+
+.step-process-box .inner{
+    width: 65%;
+    margin: 0 auto;
+    height: 100px;
+}
+
+.step-process-box .inner > div a{
+    text-decoration: none;
+    color: #594A42;
+    line-height: 14px;
+    font-size: 14px;
+    font-family: "Open Sans",sans-seif;
+}
+
+.step-process-box .inner > div .step-title{
+    height: 30px;
+}
+
+.step-process-box .inner > div .step-title p {
+    margin: 0px;
+}
+
+.step-process-box .inner > div .step-title a {
+    display: block;
+    padding: 8px 11px;
+    border-radius: 13px;
+}
+
+.step-process-box .inner > div.active .step-title a {
+    background-color: #ddd;
+}
+
+.step-process-box .inner > div .step-point {
+    height: 25px;
+    width: 25px;
+    border: 2px solid #589442;
+    border-radius: 15px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.step-process-box .inner > div.active .step-point {
+    background-color:#589442;
+    height: 40px;
+    width: 40px;
+    border-radius: 22px;
+    margin-top: 20px;
+}
+
+.step-process-box .inner > div.active .step-point a{
+    color: #fff;
+    padding: 11px 16px;
+    line-height:40px;
+}
+
+.step-process-box .inner > div .step-point a{
+    padding: 5px 9px;
+    line-height: 25px;
+    color: #fff;
+}
+
+.titulo-logos {
+    width: 97.5%;
+    padding: 13px;
+    height: 118px;
+    background-color: #fAfAFA;
+}
+
+.titulo-logos > div {
+    float: left;
+}
+
+.titulo-logos div.nombre-hotel {
+    width: 47%;
+    padding: 44px 0px 44px 20px;
+}
+
+.titulo-logos div.nombre-hotel h2 {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 26px;
+    font-family: "Raleway", sans-serif;
+    font-weight: 400;
+}
+
+.titulo-logos div.logos-premios {
+    width: 50%;
+}
+
+span#lblIngresoSalida{
+    float: left;
+    padding: 13px 0px;
+    font-size: 13px;
+}
+
+input#TxtCheckinCheckout {
+    float: left;
+    width: 50%;
+    padding-left: 25px;
+    margin-top: 0px;
+}
+
+.contenedor-desc-reserva > div.contenedor-fechas-hab {
+    height: 50px;
+}
+
+.contenedor-desc-reserva > div#traslado-box {
+    border-bottom: none;
+}
+
+.contenedor-desc-reserva > div {
+    border-bottom: 1px solid #594A42;
+}

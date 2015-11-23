@@ -22,11 +22,25 @@
     <link rel="stylesheet" href="styles/stylereservation_nuevo_responsivo.css" type="text/css" />
     <!--<![endif]-->
 
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 
     <script type="text/javascript" src="http://booking.manatuscostarica.com/js/myJS.js"></script>
 
     <script type="text/javascript" src="http://booking.manatuscostarica.com/js/tinynav.min.js"></script>
+    
+    <!-- scripts range datepicker -->
+    <script type="text/javascript" src="datepicker/js/datepicker.js"></script>
+    <script type="text/javascript" src="datepicker/js/eye.js"></script>
+    <script type="text/javascript" src="datepicker/js/utils.js"></script>
+    <script type="text/javascript" src="datepicker/js/layout.js"></script>    
+    <!-- end scripts range datepicker -->
+    
+    <script type="text/javascript" src="http://booking.manatuscostarica.com/js/tinynav.min.js"></script>
+
+    <!-- style range datepicker -->
+    <link type="text/css" rel="stylesheet" href="datepicker/css/datepicker.css" />
+    <!--<link type="text/css" rel="stylesheet" href="datepicker/css/layout.css" />-->
+    <!-- end style range datepicker -->
 
     <style type="text/css">
         /*Codigo de css para el pop up*/#fade
@@ -240,29 +254,31 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                 </div>
 
                 <div class="step-process-box">
-                    <div class="step-1">
-                        <div class="step-title">
-                            <p><a href="">Availability</a></p>
+                    <div class="inner">
+                        <div class="step-1 active">
+                            <div class="step-title">
+                                <p><a href="">Availability</a></p>
+                            </div>
+                            <div class="step-point">
+                                <a class="point" href="">1</a>
+                            </div>
                         </div>
-                        <div class="step-point">
-                            <a class="point" href="">1</a>
+                        <div class="step-2">
+                            <div class="step-title">
+                                <p><a href="">Personal Information</a></p>
+                            </div>
+                            <div class="step-point">
+                                <a class="point" href="">2</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="step-2">
-                        <div class="step-title">
-                            <p><a href="">Personal Information</a></p>
-                        </div>
-                        <div class="step-point">
-                            <a class="point" href="">2</a>
-                        </div>
-                    </div>
-                    <div class="step-3">
+                        <div class="step-3">
                         <div class="step-title">
                             <p><a href="">Payment and Confirmation</a></p>
                         </div>
                         <div class="step-point">
                             <a class="point" href="">3</a>
                         </div>
+                    </div>
                     </div>
                 </div>
                 
@@ -291,6 +307,19 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                 <asp:Panel ID="pnl_contenido" runat="server" Visible="true">
                                     <div class="contenedor-desc-reserva">
                                         <div class="contenedor-fechas-hab">
+
+                                            <!-- rango de fecha -->
+                                                <div id="widget">
+                                                    <div id="widgetField">
+                                                        <asp:Label ID="lblIngresoSalida" runat="server" Text="Ingreso y Salida"></asp:Label>
+                                                        <asp:TextBox runat="server" ID="TxtCheckinCheckout" AutoPostBack="true" name="checkin-checkout" value='Select range'></asp:TextBox>
+                                                        <a class="btn" id="btn-reservar" href="javascript:void(0)">Reservar</a>
+                                                    </div>
+                                                    <div id="widgetCalendar" class="hidden">
+                                                    </div>
+                                                </div>
+                                            <!-- fin rango de fecha -->
+
                                             <div class="fecha-field">
                                                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                                     <ContentTemplate>
@@ -435,6 +464,8 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                         
                                                     </div>
                                                 </div>
+
+                                                <a class="btn" id="btn-reservar" href="javascript:void(0)">Reservar</a>
                                                 
                                                 <div style="display: none;">
                                                     <p>
