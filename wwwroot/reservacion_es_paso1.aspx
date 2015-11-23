@@ -438,8 +438,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                                 <span>Total Cost of<br />
                                                                     hosting and transport</span> 
                                                             
-                                                                $
-                                                                <asp:Label ID="lbl_precioConTransporte" runat="server" Text="0"></asp:Label>
+                                                                <div class="preciot">$ <asp:Label ID="lbl_precioConTransporte" runat="server" Text="0"></asp:Label></div>
                                                         </div>
                                                     </div>
                                                 </div>
