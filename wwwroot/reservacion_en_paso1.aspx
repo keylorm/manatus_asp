@@ -499,11 +499,11 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                 </asp:UpdatePanel>
                 <div id="tabs">
                     <ul>
-                        <li><a href="#descripcion">Descripción del paquete</a></li>
-                        <li><a href="#incluye">Lo que incluye</a></li>
-                        <li><a href="#tarifas">Tarifas</a></li>
+                        <li><a href="#description">Package description</a></li>
+                        <li><a href="#included">Included</a></li>
+                        <li><a href="#rates">Rates</a></li>
                     </ul>
-                    <div id="descripcion" class="tbcontent">
+                    <div id="description" class="tbcontent">
                         <div class="des_paq_2_1">
                             <h4>
                                 Tortuguero by Boat:</h4>
@@ -588,7 +588,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                             all meals and the Water Canal Tour.
                         </div>
                     </div>
-                    <div id="incluye" class="tbcontent">
+                    <div id="included" class="tbcontent">
                         <div class="inc_paq_2_1">
                             <h4>
                                 2015</h4>
@@ -833,7 +833,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                             </ul>
                         </div>
                     </div>
-                    <div id="tarifas" class="tbcontent">
+                    <div id="rates" class="tbcontent">
                         <div class="tar_paq_2_1">
                             <div class="contenedor-rates">
                                 <div class="rates-columna1">

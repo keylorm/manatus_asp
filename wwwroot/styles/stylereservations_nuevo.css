@@ -1522,8 +1522,7 @@ input#TxtCheckinCheckout {
     overflow: hidden;
 }
 
-<<<<<<< HEAD
-=======
+
 .hidden {display: none;}
 #widgetCalendar {
     position: absolute;
@@ -1566,7 +1565,6 @@ tr.ayuda td {
 #widgetField {
     height: 50px;
 }
->>>>>>> origin/master
 
 h2.h2Celeste{
     color: #6DA7C0;
@@ -1920,12 +1918,16 @@ h2.h2Celeste{
     color: #594A42;
 }
 .tbcontent .titulo-dia{
+    display: block;
     color: #DC752F;
     font-size: 14px;
+    margin: 7px 0px; padding-bottom: 10px;
+    border-bottom: 1px solid #813400;
 }
 .tbcontent h4{
     color: #DC752F;
     text-transform: uppercase;
+    margin: 10px 0px;
 }
 
 
