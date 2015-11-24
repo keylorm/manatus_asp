@@ -657,9 +657,15 @@ input#txtDateSalida
     
 .box-select-personas select
 {
-    background: url("../images/2014/bg-select-contacto.png") no-repeat scroll 55% center #FFFFFF;
-     width: 150%;
-    }
+    background-image: url("../images/2014/bg-select-contacto.png");
+    background-repeat: no-repeat;
+    background-position: 95% 50%;
+    width: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    line-height: 14px;   
+}
     
 #txt_observaciones
 {
@@ -1575,7 +1581,7 @@ tr.ayuda td {
 h2.h2Celeste{
     color: #6DA7C0;
     font-family: "Raleway", sans-serif;
-    font-weight: bold;
+    font-weight: normal; /*bold*/
     font-size: 26px;
     text-transform: uppercase;    
 }
@@ -1690,6 +1696,7 @@ h2.h2Celeste{
     color: #594A42 !important;
     font-size: 12px !important;
     font-family: "Open Sans",sans-seif !important;
+    font-weight: normal !important;
     font-style: normal !important;
 }
 
@@ -2099,4 +2106,46 @@ a#AplicarSeleccion{
 /* PASO 2: Formulario de registro */
 #btn_aPaso3 {
     color: #000 !important;
+}
+
+.logo-ssl{
+    float: right;
+}
+
+#pnl_contenido{
+
+}
+
+#pnl_contenido input[type="text"]{
+    height: 43px;
+    border: 1px solid #594A42;
+    -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;    
+}
+
+#pnl_contenido select{
+    height: 43px;
+    border: 1px solid #594A42;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; 
+    width: 100%;
+    background-position: 97% 50%;
+}
+
+#pnl_contenido textarea{
+    width: 100%;
+    height: 113px;
+    border: 1px solid #594A42;
+    -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+    clear: both;
+    overflow: hidden;
+
 }

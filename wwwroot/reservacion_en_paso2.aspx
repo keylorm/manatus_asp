@@ -286,16 +286,11 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                         </div>
                     </div>
 
-                    <div class="form-title">
-                        <h2 class="h2Celeste">Please fill out your personal information</h2>
-                        <div class="logo-ssl">
-                            <img src="" />
-                        </div>
-                    </div>
                 </div>
 
 
                 <div class="content-box container-2-3">
+                    <h2 class="h2Celeste">Please fill out your personal information</h2>
                     <!-- register form -->
                     <asp:UpdatePanel ID="updtpanel_reservacion" runat="server">
                         <ContentTemplate>
@@ -379,6 +374,12 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                 </div>
 
                 <div class="content-box container-1-3 sidebar">
+
+                    <div class="logo-ssl">
+                        <img src="images/verisign.png" />
+                    </div>
+
+                    
                     <!-- sidebar with the information previous step -->
                     <!-- end sidebar with the information previous step -->
                 </div>
