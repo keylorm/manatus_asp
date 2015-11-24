@@ -314,10 +314,12 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                                 <asp:Label ID="lblIngresoSalida" runat="server" Text="Ingreso y Salida"></asp:Label>
                                                                 <asp:TextBox runat="server" ID="TxtCheckinCheckout" AutoPostBack="true" name="checkin-checkout"
                                                                     value='Select range'></asp:TextBox>
-                                                                <asp:LinkButton ID="AplicarSeleccion" runat="server" Text="Apply selection"></asp:LinkButton>
+                                                                
                                                                 <a class="btn" id="A1" href="javascript:void(0)">Reservar</a>
                                                             </div>
                                                             <div id="widgetCalendar" class="hidden">
+
+                                                                <asp:LinkButton ID="AplicarSeleccion" runat="server" Text="Apply selection"></asp:LinkButton>
                                                             </div>
                                                         </div>
                                                     </ContentTemplate>
@@ -438,12 +440,13 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                     <div class="precio-con-transporte">
                                                         <div class="precio-con-transporte-value">
                                                             <span>Total Cost of<br />
-                                                                hosting and transport</span> $
-                                                            <asp:Label ID="lbl_precioConTransporte" runat="server" Text="0"></asp:Label>
+                                                                hosting and transport</span>
+                                                                <div class="preciot">$
+                                                            <asp:Label ID="lbl_precioConTransporte" runat="server" Text="0"></asp:Label></div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <a class="btn" id="btn-reservar" href="javascript:void(0)">Reservar</a>
+                                                <div class="content_btn"><a class="btn" id="btn-reservar" href="javascript:void(0)">Reservar</a></div>
                                                 <div style="display: none;">
                                                     <p>
                                                         Pick up place</p>
@@ -1346,7 +1349,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                         </div>
                     </div>
                 </div>
-                <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        
                 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
                 <script>
                     $(function () {

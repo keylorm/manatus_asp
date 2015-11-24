@@ -1500,9 +1500,14 @@ span#lblIngresoSalida{
 
 input#TxtCheckinCheckout {
     float: left;
-    width: 50%;
-    padding-left: 25px;
+    width: 190px;
+    padding-left: 10px;
+    padding-right: 20px;
     margin-top: 0px;
+    background-image: url('../images/calendar.png');
+    background-repeat: no-repeat;
+    background-position: 98% 41%;
+    outline: none;
 }
 
 .contenedor-desc-reserva > div.contenedor-fechas-hab {
@@ -1573,6 +1578,9 @@ h2.h2Celeste{
     font-size: 26px;
     text-transform: uppercase;    
 }
+/*h2.h2Celeste strong{
+    font-weight: bold;
+}*/
 .reservation-form #updtpanel_reservacion{
     background: none;
     border: 1px solid #594A42;
@@ -1620,6 +1628,7 @@ h2.h2Celeste{
 .box-precio-con-transporte{
     clear: both;
     overflow: hidden;
+    margin-bottom: 10px;
 }
 .box-precio-con-transporte .precio-con-transporte-value{
     float: right;
@@ -1656,6 +1665,7 @@ h2.h2Celeste{
     font-weight: normal;
     /*font-family: "Open Sans",sans-seif; 
     line-height: 14px;*/
+    margin: 10px 0px;
 }
 #traslado-box #rdbtnlist_transporte2014 tr td label,
 .reservation-form label,
@@ -1677,10 +1687,15 @@ h2.h2Celeste{
     clear: both;
     overflow: hidden;
 }
+.reservation-form #updtpanel_reservacion #pnl_resultados #gv_ResultadosDisponibles td{
+    margin: 0px;
+}
 .reservation-form #updtpanel_reservacion #pnl_resultados #gv_ResultadosDisponibles td span,
 .reservation-form #updtpanel_reservacion #pnl_resultados #gv_ResultadosDisponibles td select{
-    color: #594A42;
-    font-size: 12px;
+    color: #594A42 !important;
+    font-size: 12px !important;
+    font-family: "Open Sans",sans-seif !important;
+    font-style: normal !important;
 }
 
 .reservation-form #updtpanel_reservacion #pnl_resultados #add_room{
@@ -1698,13 +1713,13 @@ h2.h2Celeste{
 /* sidebar paso 1 */
 
 .paddingBottomp10{
-    border-left: 1px solid #813400;
-    border-right: 1px solid #813400;
-    border-bottom: 5px solid #813400;
+    border-left: 1px solid #B57651;
+    border-right: 1px solid #B57651;
+    border-bottom: 5px solid #B57651;
     padding-bottom: 15px;
 }
 .sidebar h3.h3Sidebar{
-    background-color: #813400;
+    background-color: #B57651;
     font-size: 19px;
     font-family: "Raleway", sans-serif;
     font-weight: 500; 
@@ -1719,7 +1734,7 @@ h2.h2Celeste{
     font-size: 27px;
     background: none;
     border: none;
-    padding: 0 30px;
+    padding: 0 50px;
     text-align: center;
     line-height: 25px;
     font-family: "Raleway", sans-serif;
@@ -1727,7 +1742,7 @@ h2.h2Celeste{
     background-image: url('../images/linea_res_sidebar.png');
     background-repeat: no-repeat;
     background-position: center;
-    margin-bottom: 0px;
+    margin-bottom: 10px;
 }
 
 
@@ -1736,7 +1751,8 @@ h2.h2Celeste{
     width: 65%;
 }
 .paquete-sidebar-desc ul{
-    
+    /*list-style: disc;
+    padding-left: 40px;*/
 }
 .paquete-sidebar-desc ul li{
     color: #594A42;
@@ -1762,7 +1778,7 @@ h2.h2Celeste{
     width: 145px;
     height: 35px;
     margin: 0 auto;
-    background-color: #813400;
+    background-color: #8E4413;
     text-decoration: none;
     line-height: 35px;
     font-family: "Raleway", sans-serif;
@@ -1846,7 +1862,7 @@ h2.h2Celeste{
     background-color: #A53736;
 }
 .sidebar-paquete-popup-botones-chat a{
-    background-color: #813400;
+    background-color: #B57651;
 }
 .sidebar-block-content .popup_block .sidebar-paquete-popup-botones a{
     display: block;
@@ -2041,3 +2057,46 @@ h2.h2Celeste{
 
 
 /*****/
+
+.content_btn{
+    clear: both;
+    overflow: hidden;  
+}
+.btn,
+a#AplicarSeleccion{
+    display: block;
+    height: 40px;
+    text-decoration: none;
+    font-family: "Raleway", sans-serif;
+    font-weight: normal;
+    font-size: 18px;
+    color: #FFF;
+    text-transform: uppercase;
+    line-height: 40px;
+    padding: 0px 10px; padding-right: 45px;
+    background-color: #A53736;
+    background-image: url('../images/2014/bg-h3-chat-reservacion.png');
+    background-repeat: no-repeat;
+    background-position: 92% 50%;
+    background-size: 10px;     
+    
+    float: right;
+}
+a#AplicarSeleccion{
+    clear: both; 
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    z-index: 70;
+}
+
+#widget{
+
+}
+
+#widget #widgetField > span{
+    color: #594A42;
+    font-family: "Open Sans",sans-seif;
+    font-size: 15px;
+    font-weight: 500;     
+}
