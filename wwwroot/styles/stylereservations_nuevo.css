@@ -1516,9 +1516,18 @@ input#TxtCheckinCheckout {
     border-bottom: none;
 }
 
-.contenedor-desc-reserva > div.contenedor-fechas-hab {
+.content-box hr{
+    display: block;
+    height: 2px;
+    border: none;
     border-bottom: 1px solid #594A42;
+    clear: both;
+    overflow: hidden;
 }
+
+/*.contenedor-desc-reserva > div.contenedor-fechas-hab {
+    border-bottom: 1px solid #594A42;
+}*/
 
 .hidden {display: none;}
 #widgetCalendar {
@@ -1595,10 +1604,10 @@ h2.h2Celeste{
     float: right;
     border: 1px solid #7E9B67; 
     color: #7E9B67;
-    font-family: "Raleway", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: normal;
-    font-size: 24px; line-height: 24px; font-weight: bold;    
-    border-radius: 10px; 
+    font-size: 24px; line-height: 32px; font-weight: bold;    
+    border-radius: 10px; padding: 0px 12px; 
 }
 .desc-paquete .precio-sin-transporte-value span{
     color: #7E9B67;
@@ -2085,6 +2094,7 @@ a#AplicarSeleccion{
     font-family: "Open Sans",sans-seif;
     font-size: 15px;
     font-weight: 500;     
+}
 
 /* PASO 2: Formulario de registro */
 #btn_aPaso3 {
