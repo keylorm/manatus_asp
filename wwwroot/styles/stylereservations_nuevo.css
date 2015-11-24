@@ -1,4 +1,6 @@
-﻿article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{
+﻿@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{
 	display: block;
 }
 
@@ -597,8 +599,8 @@ input#txtDateSalida
     }
     
 #traslado-box #rdbtnlist_transporte2014 tr td label,
-.reservation-form  label,
-.reservation-form span
+.reservation-form  label
+/*.reservation-form span*/
 {
     font-family: "Open Sans",sans-seif;
     font-size: 16px;
@@ -1324,7 +1326,7 @@ a img { border: none; }
 }
 
 #TA_excellent625 {
-    float: left;
+    float: right;
     margin-right: 35px;
 }
 
@@ -1368,7 +1370,7 @@ a img { border: none; }
 .step-process-box{
     float:left;
     width:100%;
-    margin: 45px; 0px;
+    margin: 45px 0px; margin-bottom: 65px;
 }
 
 .step-process-box .inner > div {
@@ -1383,16 +1385,19 @@ a img { border: none; }
 }
 
 .step-process-box .inner{
-    width: 65%;
+    width: 60%;
     margin: 0 auto;
-    height: 100px;
+    height: 110px;
+    background-image: url('../images/linea_res.png');
+    background-repeat: no-repeat;
+    background-position: 50% 77%;    
 }
 
 .step-process-box .inner > div a{
     text-decoration: none;
     color: #594A42;
     line-height: 14px;
-    font-size: 14px;
+    font-size: 13px;
     font-family: "Open Sans",sans-seif;
 }
 
@@ -1411,8 +1416,21 @@ a img { border: none; }
 }
 
 .step-process-box .inner > div.active .step-title a {
-    background-color: #ddd;
+    background-color: #E5EBE1;
+    color: #3F4E34;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 10px 0px;  
+    
 }
+
+.step-process-box .inner > div.active .step-title p{
+    background-image: url('../images/arrow_res.png');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    padding-bottom: 8px;
+}
+
 
 .step-process-box .inner > div .step-point {
     height: 25px;
@@ -1420,27 +1438,30 @@ a img { border: none; }
     border: 2px solid #589442;
     border-radius: 15px;
     margin: 0 auto;
-    margin-top: 30px;
+    margin-top: 38px;
+    background-color: #FFF;
 }
 
 .step-process-box .inner > div.active .step-point {
     background-color:#589442;
-    height: 40px;
-    width: 40px;
-    border-radius: 22px;
-    margin-top: 20px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    margin-top: 25px;    
 }
 
 .step-process-box .inner > div.active .step-point a{
     color: #fff;
     padding: 11px 16px;
-    line-height:40px;
+    line-height: 50px;
+    font-family: "Raleway", Sans-Serif;
+    font-size: 19px;      
 }
 
 .step-process-box .inner > div .step-point a{
     padding: 5px 9px;
     line-height: 25px;
-    color: #fff;
+    color: #fff;    
 }
 
 .titulo-logos {
@@ -1492,6 +1513,528 @@ input#TxtCheckinCheckout {
     border-bottom: none;
 }
 
-.contenedor-desc-reserva > div {
+.content-box hr{
+    display: block;
+    height: 2px;
+    border: none;
     border-bottom: 1px solid #594A42;
+    clear: both;
+    overflow: hidden;
 }
+
+
+.hidden {display: none;}
+#widgetCalendar {
+    position: absolute;
+    height: 478px;
+    width: 346px;
+    background-color: #E0C2AD;
+    z-index: 1;
+}
+
+tr.ayuda {
+    margin-top: 10px;
+}
+
+tr.ayuda td {
+    font-size: 11px;
+    color: #86543C;
+    font-weight: 500;
+    padding: 30px 2px !important;
+}
+
+.disponibles, .no-disponibles, .seleccionados {
+    padding: 5px 10px;
+    margin-right: 8px;
+}
+
+.disponibles {
+    background-color: #fff;
+}
+
+.no-disponibles {
+    background-color: #EBD9CD;
+    margin-left: 10px;
+}
+
+.seleccionados {
+    background-color: #813400;
+    margin-left: 10px;
+}
+
+#widgetField {
+    height: 50px;
+}
+
+
+h2.h2Celeste{
+    color: #6DA7C0;
+    font-family: "Raleway", sans-serif;
+    font-weight: bold;
+    font-size: 26px;
+    text-transform: uppercase;    
+}
+.reservation-form #updtpanel_reservacion{
+    background: none;
+    border: 1px solid #594A42;
+}
+
+.reservation-form #updtpanel_reservacion h3{
+    color: #594A42;
+    font-family: "Raleway", sans-serif;
+    font-weight: normal;
+    font-size: 17px;
+    text-transform: uppercase;    
+}
+
+.desc-paquete{
+    width: 220px;
+    float: right;
+}
+.desc-paquete .precio-sin-transporte-value
+{
+    float: right;
+    border: 1px solid #7E9B67; 
+    color: #7E9B67;
+    font-family: "Montserrat", sans-serif;
+    font-weight: normal;
+    font-size: 24px; line-height: 32px; font-weight: bold;    
+    border-radius: 10px; padding: 0px 12px; 
+}
+.desc-paquete .precio-sin-transporte-value span{
+    color: #7E9B67;
+    font-family: "Montserrat", sans-serif;
+    font-weight: normal;
+    font-size: 24px;  line-height: 24px; font-weight: bold;
+}
+.precio-sin-transporte-letra-pequena{
+    float: right;
+}
+.precio-sin-transporte-letra-pequena p{
+    color: #594A42;
+    font-size: 13px;
+    font-family: "Open Sans",sans-seif;
+    font-style: italic; 
+    line-height: 14px;   
+}
+
+.box-precio-con-transporte{
+    clear: both;
+    overflow: hidden;
+}
+.box-precio-con-transporte .precio-con-transporte-value{
+    float: right;
+    background-color: #E6E6E6;
+    padding: 10px;
+    border-radius: 14px;
+    color: #7E9B67;
+}
+.box-precio-con-transporte .precio-con-transporte-value > span{
+    color: #7E9B67;
+    font-family: "Montserrat", sans-serif;
+    font-weight: normal;
+    font-size: 14px;
+    float: left;    
+}
+.box-precio-con-transporte .precio-con-transporte-value .preciot{
+    font-size: 28px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: normal; 
+    float: right; 
+    text-align: left;
+    margin-left: 15px;
+}
+.box-precio-con-transporte .precio-con-transporte-value .preciot span{
+    font-size: 32px;
+    color: #7E9B67;
+    font-family: "Montserrat", sans-serif;
+    font-weight: normal;
+}
+
+#traslado-box .traslado-box-inner > p{
+   /* color: #594A42;*/
+    font-size: 12px;
+    font-weight: normal;
+    /*font-family: "Open Sans",sans-seif; 
+    line-height: 14px;*/
+}
+#traslado-box #rdbtnlist_transporte2014 tr td label,
+.reservation-form label,
+.reservation-form span{
+    font-size: 13px;
+    font-weight: normal;
+}
+
+
+
+.reservation-form #updtpanel_reservacion #pnl_resultados{
+    float: none;
+    overflow: hidden;
+    clear: both;    
+}
+.reservation-form #updtpanel_reservacion #pnl_resultados #gv_ResultadosDisponibles{
+    width: 100% !important;
+    float: left;
+    clear: both;
+    overflow: hidden;
+}
+.reservation-form #updtpanel_reservacion #pnl_resultados #gv_ResultadosDisponibles td span,
+.reservation-form #updtpanel_reservacion #pnl_resultados #gv_ResultadosDisponibles td select{
+    color: #594A42;
+    font-size: 12px;
+}
+
+.reservation-form #updtpanel_reservacion #pnl_resultados #add_room{
+    display: block;
+    clear: both;
+    overflow: hidden;
+    float: left;
+
+    color: #7E9B67;
+    font-size: 11px;
+    font-weight: normal;
+    font-family: "Open Sans",sans-seif;    
+}
+
+/* sidebar paso 1 */
+
+.paddingBottomp10{
+    border-left: 1px solid #813400;
+    border-right: 1px solid #813400;
+    border-bottom: 5px solid #813400;
+    padding-bottom: 15px;
+}
+.sidebar h3.h3Sidebar{
+    background-color: #813400;
+    font-size: 19px;
+    font-family: "Raleway", sans-serif;
+    font-weight: 500; 
+    border: none;  
+}
+.sidebar-paquete sidebar-paquete-1{
+    position: relative;
+    display: block;
+}
+.sidebar h3.paquete-sidebar-titulo{
+    color: #813400;
+    font-size: 27px;
+    background: none;
+    border: none;
+    padding: 0 30px;
+    text-align: center;
+    line-height: 25px;
+    font-family: "Raleway", sans-serif;
+    font-weight: 500;
+    background-image: url('../images/linea_res_sidebar.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 0px;
+}
+
+
+.paquete-sidebar-desc{
+    float: left;
+    width: 65%;
+}
+.paquete-sidebar-desc ul{
+    
+}
+.paquete-sidebar-desc ul li{
+    color: #594A42;
+    font-size: 13px;
+    font-weight: normal;
+    font-family: "Open Sans",sans-seif;     
+}
+.paquete-sidebar-precio{
+    float: left;
+    width: 35%;
+    padding-right: 10px;
+    -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.paquete-sidebar-book-box{
+    clear: both;
+    overflow: hidden;
+}
+
+.paquete-sidebar-book-box a{
+    display: block;
+    width: 145px;
+    height: 35px;
+    margin: 0 auto;
+    background-color: #813400;
+    text-decoration: none;
+    line-height: 35px;
+    font-family: "Raleway", sans-serif;
+    font-weight: normal;
+    font-size: 18px;
+    color: #FFF;
+    text-transform: uppercase;  
+    text-align: center;
+    background-image: url('../images/2014/bg-h3-chat-reservacion.png');
+    background-repeat: no-repeat;
+    background-position: 95% 50%; 
+    background-size: 10px; 
+    margin-top: 15px;
+}
+
+.paquete-sidebar-precio p.paquete-precio{
+    display: block;
+    background-color: #FCC895;
+    border-radius: 10px;
+    color: #813400;
+    font-family: "Montserrat", sans-serif;
+    font-weight: normal;
+    font-size: 40px; 
+    padding: 5px 10px 5px 10px;
+    text-align: center; 
+    line-height: 35px;
+    margin-bottom: 0px;  
+}
+.paquete-sidebar-precio p.paquete-precio span{
+    display: block;
+    font-size: 12px;
+    margin-bottom: 5px;
+    text-align: left;
+    line-height: 12px;
+}
+.paquete-sidebar-precio p.habitacion-desc{
+    color: #594A42;
+    font-family: "Open Sans",sans-seif;
+    font-style: italic; 
+    font-size: 12px;
+    margin-top: 5px;
+    text-align: center; 
+}
+.sidebar-block-content .popup_block{
+    border: 1px solid #736357;
+    border-radius: 0px;
+}
+.sidebar-block-content .popup_block .close img{
+    display: none;
+}
+
+.sidebar-block-content .popup_block .close:before{
+    display: block;
+    content: " X ";
+    float: right;
+    text-decoration: none;
+    font-size: 30px;
+    color: #594A42;
+    font-family: Arial, sans-seif;
+    font-weight: normal;
+    margin: -10px;
+    cursor: pointer;
+}
+
+.sidebar-block-content .popup_block{
+    text-align: center;
+}
+
+.sidebar-block-content .popup_block .sidebar-paquete-popup-texto{
+    padding: 0 50px;
+}
+
+.sidebar-block-content .popup_block .sidebar-paquete-popup-botones{
+    text-align: center;
+    margin: 25px 0px;
+}
+.sidebar-block-content .popup_block .sidebar-paquete-popup-botones > div{
+    display: inline-block;
+}
+.sidebar-paquete-popup-botones-form a{
+    background-color: #A53736;
+}
+.sidebar-paquete-popup-botones-chat a{
+    background-color: #813400;
+}
+.sidebar-block-content .popup_block .sidebar-paquete-popup-botones a{
+    display: block;
+    height: 40px;
+    text-decoration: none;
+    font-family: "Raleway", sans-serif;
+    font-weight: normal;
+    font-size: 18px;
+    color: #FFF;
+    text-transform: uppercase;  
+    line-height: 40px;
+    padding: 0px 10px;
+}
+
+#tabs{
+    border: 1px solid #594A42;
+    margin-bottom: 20px;
+}
+
+#tabs > ul{
+    height: 60px;
+    border-bottom: 1px solid #594A42;
+    padding: 0px; margin: 0px;
+}
+#tabs > ul > li{
+    display: block;
+    float: left;
+    border-right: 1px solid #594A42;
+    padding: 0 15.5px;
+}
+#tabs > ul > li:last-child{
+    border-right: none;
+}
+
+#tabs > ul > li.ui-tabs-active{
+    background-color: #E9E7E6;
+}
+
+#tabs ul li a{
+    display: block;
+    width: auto;
+    line-height: 60px;
+    color: #594A42;
+    text-decoration: none;
+    font-family: "Raleway", sans-serif;
+    font-weight: normal;
+    font-size: 15px;
+    text-transform: uppercase;      
+    outline: none;
+    padding: 0 15px; padding-right: 20px;
+    background-image: url('../images/tab_off.png');
+    background-repeat: no-repeat;
+    background-position: 100% 50%;
+}
+
+#tabs ul li.ui-tabs-active a{
+    background-image: url('../images/tab_on.png');
+}
+
+
+.tbcontent{
+    padding: 15px;
+}
+
+.tbcontent,
+.tbcontent p{
+    font-family: "Open Sans",sans-seif;
+    font-size: 13px;    
+    color: #594A42;
+}
+.tbcontent .titulo-dia{
+    color: #DC752F;
+    font-size: 14px;
+}
+.tbcontent h4{
+    color: #DC752F;
+    text-transform: uppercase;
+}
+
+
+/*****/
+
+.contenedor-rates {
+    display: block;
+    min-height: 510px;
+    margin: 0 auto;
+    width: 100%; /*872px*/
+}
+.rates-columna1{
+    width: 100%; /*403px*/
+    float: left;
+    margin-right: 65px;
+}
+
+.rates-columna2{
+    width: 100%; /*403px*/
+    float: left;
+
+}
+
+.rates-columna1 h4,
+.rates-columna2 h4{
+    border-bottom: 1px solid #F5ECE5 !important;
+    padding-bottom: 15px !important;
+    font-family: "Open Sans", sans-serif !important;
+    font-size: 36px !important;
+    font-weight: 700 !important;
+    color: #594A42 !important;
+    text-align: center !important;
+}
+
+.rates-columna1 p,
+.rates-columna2 p{
+    margin: -20px 0 10px !important;
+    font-family: "Open Sans", sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    color: #594A42 !important;
+    text-align: center !important;
+
+}
+.columna-tabla-rates {
+    display: block;
+    float: left;
+    margin-top: 10px;
+    margin-bottom: 33px;
+    text-align: center;
+    width: 49%; /*194px*/
+    -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;    
+}
+
+.columna-tabla-rates.first {
+    margin-right: 2%;
+}
+
+.columna-tabla-rates table {
+    border: 1px solid #594A42 !important;
+    color: #594A42;
+    font-family: "Open Sans",sans-serif;
+    font-size: 14px;
+    width: 100%;
+    float: left;
+}
+
+.columna-tabla-rates table.season-a {
+    margin-right: 15px;
+}
+.columna-tabla-rates table .headerTabla2.bordeTable {
+    color: #594A42 !important;
+    font-family: "Open Sans Condensed",sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 300 !important;
+    text-transform: uppercase !important;
+    background-color: #FBF8F5 !important;
+    border: 1px solid #F5ECE5 !important;
+    margin-bottom: 5px;
+}
+
+.columna-tabla-rates table .headerTabla2.bordeTable span{
+    color: #594A42 !important;
+    font-family: "Open Sans",sans-serif !important;
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    border-bottom: none !important;;
+    text-transform: uppercase !important;
+    padding-bottom: 0 !important;
+    margin-bottom: -2px  !important;
+    clear: both;
+    overflow: hidden;
+    display: block;
+}
+
+.columna-tabla-rates table.encabezado{
+    margin-bottom: 5px;
+}
+.columna-tabla-rates table td {
+    border: 1px solid #F5ECE5 !important;
+    width: 50% !important;
+    color: #594A42 !important;
+    font-family: "Open Sans Condensed",sans-serif !important;
+    font-size: 17px !important;
+    font-weight: 300 !important;
+    text-transform: uppercase !important;
+    text-align: center;
+}
+
+
+/*****/

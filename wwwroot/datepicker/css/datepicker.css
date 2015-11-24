@@ -6,8 +6,8 @@ div.datepicker {
 	height: 300px;
 	position: absolute;
 	cursor: default;
-	top: 0;
-	left: 0;
+	top: 0px !important;
+	left: 0px !important;
 	display: none;
 }
 .datepickerContainer {
@@ -94,7 +94,7 @@ div.datepicker a {
 }
 div.datepicker table td {
 	text-align: right;
-	padding: 10px 0;
+	padding: 10px 2px;
 	margin: 0;
 	vertical-align: middle;
 }
@@ -162,6 +162,22 @@ div.datepicker tbody th {
 	border: none;
 }
 
+div.datepicker tbody th.datepickerGoNext {
+    background-image: url(../images/flecha-slider-next.png);
+    background-repeat: no-repeat;
+    background-size: 30%;
+    background-position-x: 30px;
+    background-position-y: 8px;
+}
+
+div.datepicker tbody th.datepickerGoPrev {
+    background-image: url(../images/flecha-slider-prev.png);
+    background-repeat: no-repeat;
+    background-size: 30%;
+    background-position-x: 0px;
+    background-position-y: 8px;
+}
+
 div.datepicker tbody tr.checkin-row {
 	background-color: #EBD9CD;
 }
@@ -178,7 +194,7 @@ div.datepicker tbody tr.checkin-row th{
 }
 
 .encabezado-calendario th {
-	padding: 10px 0px !important;
+	padding: 10px 0px 27px !important;
 }
 
 .datepickerSpace div {

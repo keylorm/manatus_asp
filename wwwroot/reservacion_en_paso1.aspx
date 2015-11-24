@@ -1,4 +1,5 @@
-<%@ Page Language="VB" AutoEventWireup="false" CodeFile="reservacion_en_paso1.aspx.vb" Inherits="reservacion_en_paso1" %>
+<%@ Page Language="VB" AutoEventWireup="false" CodeFile="reservacion_en_paso1.aspx.vb"
+    Inherits="reservacion_en_paso1" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -21,27 +22,20 @@
     <!--[if gte IE 9]><!-->
     <link rel="stylesheet" href="styles/stylereservation_nuevo_responsivo.css" type="text/css" />
     <!--<![endif]-->
-
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
-
     <script type="text/javascript" src="http://booking.manatuscostarica.com/js/myJS.js"></script>
-
     <script type="text/javascript" src="http://booking.manatuscostarica.com/js/tinynav.min.js"></script>
-    
     <!-- scripts range datepicker -->
     <script type="text/javascript" src="datepicker/js/datepicker.js"></script>
     <script type="text/javascript" src="datepicker/js/eye.js"></script>
     <script type="text/javascript" src="datepicker/js/utils.js"></script>
-    <script type="text/javascript" src="datepicker/js/layout.js"></script>    
+    <script type="text/javascript" src="datepicker/js/layout.js"></script>
     <!-- end scripts range datepicker -->
-    
     <script type="text/javascript" src="http://booking.manatuscostarica.com/js/tinynav.min.js"></script>
-
     <!-- style range datepicker -->
     <link type="text/css" rel="stylesheet" href="datepicker/css/datepicker.css" />
     <!--<link type="text/css" rel="stylesheet" href="datepicker/css/layout.css" />-->
     <!-- end style range datepicker -->
-
     <style type="text/css">
         /*Codigo de css para el pop up*/#fade
         {
@@ -92,7 +86,6 @@
         }
     </style>
     <!--Start of Zopim Live Chat Script-->
-
     <script type="text/javascript">
         window.$zopim || (function (d, s) {
             var z = $zopim = function (c) { z._.push(c) }, $ = z.s =
@@ -104,7 +97,6 @@ _.push(o)
 type = 'text/javascript'; e.parentNode.insertBefore($, e)
         })(document, 'script');
     </script>
-
     <!--End of Zopim Live Chat Script-->
     <!--[if IE]>
      <link type="text/css" rel="stylesheet" href="styles/stylereservations_nuevo_ie.css" />
@@ -128,7 +120,6 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
     <!--[if lte IE 9]>
 	
 <![endif]-->
-
     <script type="text/javascript">
 
         var _gaq = _gaq || [];
@@ -144,19 +135,17 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
         })();
 
     </script>
-
     <script>
         var urlactual = document.URL.replace(/#.*/, "");
         urlactual = urlactual.replace(/\?.*/, "");
         _gaq.push(['_trackEvent', 'Reservación', 'Paso 1', urlactual]);
     </script>
-
 </head>
 <body class="reservation-form en">
     <form id="form1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
-    <div ID="loader" runat="server" visible="false">
+    <div id="loader" runat="server" visible="false">
         <img src="images/ajax-loader.gif" />
     </div>
     <div id="header">
@@ -242,22 +231,29 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
             <div class="above-content">
                 <div class="titulo-logos">
                     <div class="nombre-hotel">
-                        <h2>Hotel Manatus</h2>
+                        <h2>
+                            Hotel Manatus</h2>
                     </div>
                     <div class="logos-premios">
-                        <a href="http://www.tripadvisor.com.mx/Hotel_Review-g309268-d308651-Reviews-Manatus_Hotel-Tortuguero_Province_of_Limon.html"><img src="images/logo-trip-1.jpg"/></a>
-                        <a href="http://www.tripadvisor.com.mx/Hotel_Review-g309268-d308651-Reviews-Manatus_Hotel-Tortuguero_Province_of_Limon.html"><img src="images/logo-trip-2.jpg"/></a>
-                        <img src="images/logo-rainforest.png"/>
-                        <div id="TA_excellent625" class="TA_excellent"><ul id="zWYVpp9Tm" class="TA_links VlM6UjTeF"><li id="9QVb1lq" class="mW6emucXI9Tk"><a target="_blank" href="http://www.tripadvisor.es/"><img src="http://e2.tacdn.com/img2/widget/tripadvisor_logo_115x18.gif" alt="TripAdvisor" class="widEXCIMG" id="CDSWIDEXCLOGO"/></a></li></ul></div><script src="http://www.jscache.com/wejs?wtype=excellent&amp;uniq=625&amp;locationId=308651&amp;lang=es&amp;display_version=2"></script>
-
+                        <a href="http://www.tripadvisor.com.mx/Hotel_Review-g309268-d308651-Reviews-Manatus_Hotel-Tortuguero_Province_of_Limon.html">
+                            <img src="images/logo-trip-1.jpg" /></a> <a href="http://www.tripadvisor.com.mx/Hotel_Review-g309268-d308651-Reviews-Manatus_Hotel-Tortuguero_Province_of_Limon.html">
+                                <img src="images/logo-trip-2.jpg" /></a>
+                        <img src="images/logo-rainforest.png" />
+                        <div id="TA_excellent625" class="TA_excellent">
+                            <ul id="zWYVpp9Tm" class="TA_links VlM6UjTeF">
+                                <li id="9QVb1lq" class="mW6emucXI9Tk"><a target="_blank" href="http://www.tripadvisor.es/">
+                                    <img src="http://e2.tacdn.com/img2/widget/tripadvisor_logo_115x18.gif" alt="TripAdvisor"
+                                        class="widEXCIMG" id="CDSWIDEXCLOGO" /></a></li></ul>
+                        </div>
+                        <script src="http://www.jscache.com/wejs?wtype=excellent&amp;uniq=625&amp;locationId=308651&amp;lang=es&amp;display_version=2"></script>
                     </div>
                 </div>
-
                 <div class="step-process-box">
                     <div class="inner">
                         <div class="step-1 active">
                             <div class="step-title">
-                                <p><a href="">Availability</a></p>
+                                <p>
+                                    <a href="">Availability</a></p>
                             </div>
                             <div class="step-point">
                                 <a class="point" href="">1</a>
@@ -265,30 +261,31 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                         </div>
                         <div class="step-2">
                             <div class="step-title">
-                                <p><a href="">Personal Information</a></p>
+                                <p>
+                                    <a href="">Personal Information</a></p>
                             </div>
                             <div class="step-point">
                                 <a class="point" href="">2</a>
                             </div>
                         </div>
                         <div class="step-3">
-                        <div class="step-title">
-                            <p><a href="">Payment and Confirmation</a></p>
+                            <div class="step-title">
+                                <p>
+                                    <a href="">Payment and Confirmation</a></p>
+                            </div>
+                            <div class="step-point">
+                                <a class="point" href="">3</a>
+                            </div>
                         </div>
-                        <div class="step-point">
-                            <a class="point" href="">3</a>
-                        </div>
-                    </div>
                     </div>
                 </div>
-                
                 <div class="form-title">
-                    <h2 class="h2Celeste"><strong>Live the Manatus</strong> Experience</h2>
-                    <div class="logo-ssl"><img src="" /></div>
+                    <h2 class="h2Celeste">
+                        <strong>Live the Manatus</strong> Experience</h2>
+                    <div class="logo-ssl">
+                        <img src="" /></div>
                 </div>
             </div>
-
-
             <div class="content-box container-2-3">
                 <asp:UpdatePanel ID="updtpanel_reservacion" runat="server">
                     <ContentTemplate>
@@ -307,120 +304,101 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                 <asp:Panel ID="pnl_contenido" runat="server" Visible="true">
                                     <div class="contenedor-desc-reserva">
                                         <div class="contenedor-fechas-hab">
-
                                             <!-- rango de fecha -->
-                                                <div id="widget">
-                                                    <div id="widgetField">
-                                                        <asp:Label ID="lblIngresoSalida" runat="server" Text="Ingreso y Salida"></asp:Label>
-                                                        <asp:TextBox runat="server" ID="TxtCheckinCheckout" AutoPostBack="true" name="checkin-checkout" value='Select range'></asp:TextBox>
-                                                        <a class="btn" id="btn-reservar" href="javascript:void(0)">Reservar</a>
-                                                    </div>
-                                                    <div id="widgetCalendar" class="hidden">
-                                                    </div>
-                                                </div>
                                             <!-- fin rango de fecha -->
-
                                             <div class="fecha-field">
-                                                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                                <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                                                     <ContentTemplate>
-                                                        <%-- AutoPostBack="true" -> CODIGO PARA LA PROMOCION DEL DESCUENTO O DE VIAJE EN AVION--%>
-                                                        <asp:TextBox runat="server" ID="txtDateEntrada" AutoPostBack="true" CssClass="fechasNuevas"></asp:TextBox>
-                                                        &nbsp;
-                                                        <obout:Calendar runat="server" ID="calendarEntrada" DatePickerMode="true" TextBoxId="txtDateEntrada"
-                                                            DatePickerImagePath="images/2014/bg-fecha-reservation.png" />
-                                                        <asp:RequiredFieldValidator ID="rfv_fecha" runat="server" ControlToValidate="txtDateEntrada"
-                                                            Display="Dynamic" ErrorMessage="Campo Requerido" ValidationGroup="registrese"></asp:RequiredFieldValidator>
-                                                    </ContentTemplate>
-                                                </asp:UpdatePanel>
-                                                <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                                                    <ContentTemplate>
-                                                        <%--AutoPostBack="true" -> CODIGO PARA LA PROMOCION DEL DESCUENTO O DE VIAJE EN AVION--%>
-                                                        <asp:TextBox runat="server" ID="txtDateSalida" AutoPostBack="true" CssClass="fechasNuevas"></asp:TextBox>
-                                                        &nbsp;
-                                                        <obout:Calendar runat="server" ID="calendarSalida" DatePickerMode="true" TextBoxId="txtDateSalida"
-                                                            DatePickerImagePath="images/2014/bg-fecha-reservation.png" />
-                                                        <asp:RequiredFieldValidator ID="rfv_fecha2" runat="server" ControlToValidate="txtDateSalida"
-                                                            Display="Dynamic" ErrorMessage="Campo Requerido" ValidationGroup="registrese"></asp:RequiredFieldValidator>
+                                                        <div id="widget">
+                                                            <div id="widgetField">
+                                                                <asp:Label ID="lblIngresoSalida" runat="server" Text="Ingreso y Salida"></asp:Label>
+                                                                <asp:TextBox runat="server" ID="TxtCheckinCheckout" AutoPostBack="true" name="checkin-checkout"
+                                                                    value='Select range'></asp:TextBox>
+                                                                <asp:LinkButton ID="AplicarSeleccion" runat="server" Text="Apply selection"></asp:LinkButton>
+                                                                <a class="btn" id="A1" href="javascript:void(0)">Reservar</a>
+                                                            </div>
+                                                            <div id="widgetCalendar" class="hidden">
+                                                            </div>
+                                                        </div>
                                                     </ContentTemplate>
                                                 </asp:UpdatePanel>
                                             </div>
-                                            
                                         </div>
                                         <hr />
                                         <div class="contenedor-hab-personas">
-                                            <h3>Package for your vacations in Costa Rica</h3>
+                                            <h3>
+                                                Package for your vacations in Costa Rica</h3>
                                             <hr />
-                                            
                                             <asp:Panel ID="pnl_resultados" runat="server">
-                                                    <asp:GridView ID="gv_ResultadosDisponibles" runat="server" ShowHeader="False" AutoGenerateColumns="False"
-                                                        GridLines="None" Width="246px" EnableModelValidation="True">
-                                                        <RowStyle HorizontalAlign="Left" />
-                                                        <HeaderStyle Font-Bold="false" HorizontalAlign="Left" />
-                                                        <Columns>
-                                                            <asp:TemplateField>
-                                                                <ItemTemplate>
-                                                                    <asp:ImageButton ID="borrarHabitacion" runat="server" ImageUrl="~/images/bg-borrar-habitacion.jpg"
-                                                                        CommandName="borrarHabitacion" CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>" />
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            
-                                                            <asp:TemplateField HeaderText="" HeaderStyle-HorizontalAlign="Left">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lbl_nombre" CssClass="marginleft15" runat="server" Font-Bold="false"
-                                                                        Font-Italic="true" ForeColor="#999999" Text="1 room"></asp:Label>
-                                                                </ItemTemplate>
-                                                                <HeaderStyle HorizontalAlign="Left" />
-                                                                <ItemStyle HorizontalAlign="Right" />
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField>
-                                                                <ItemTemplate>
-                                                                    <div class="lbl_paquete_box">
-                                                                        <asp:Label ID="lbl_tipo_paquete" runat="server" Text="Custom Package"></asp:Label>
-                                                                    </div>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField>
-                                                                <ItemTemplate>
-                                                                    <div class="box-select-personas">
-                                                                        <asp:DropDownList ID="ddl_personas" runat="server" CssClass="dropdownsReserva" OnSelectedIndexChanged="ddl_personas_SelectedIndexChanged"  AutoPostBack="true">
-                                                                            <asp:ListItem Text="1 person" Value="1"></asp:ListItem>
-                                                                            <asp:ListItem Text="2 people" Value="2"></asp:ListItem>
-                                                                            <asp:ListItem Text="3 people" Value="3"></asp:ListItem>
-                                                                            <asp:ListItem Text="4 people" Value="4"></asp:ListItem>
-                                                                        </asp:DropDownList>
-                                                                    </div>
-                                                                </ItemTemplate>
-                                                                <HeaderStyle Font-Bold="True" HorizontalAlign="Right" />
-                                                                <ItemStyle HorizontalAlign="Right" />
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField>
-                                                                <ItemTemplate>
-                                                                    <div class="lbl_precio_habitacion">
-                                                                        <asp:Label ID="lbl_precio_habitacion" runat="server" Text="$ 0"></asp:Label>
-                                                                    </div>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                        </Columns>
-                                                        <RowStyle Font-Bold="true" />
-                                                    </asp:GridView>
-                                                    <asp:LinkButton ID="add_room" runat="server">+ Add Room</asp:LinkButton>
-                                                </asp:Panel>
-                                                
+                                                <asp:GridView ID="gv_ResultadosDisponibles" runat="server" ShowHeader="False" AutoGenerateColumns="False"
+                                                    GridLines="None" Width="246px" EnableModelValidation="True">
+                                                    <RowStyle HorizontalAlign="Left" />
+                                                    <HeaderStyle Font-Bold="false" HorizontalAlign="Left" />
+                                                    <Columns>
+                                                        <asp:TemplateField>
+                                                            <ItemTemplate>
+                                                                <asp:ImageButton ID="borrarHabitacion" runat="server" ImageUrl="~/images/bg-borrar-habitacion.jpg"
+                                                                    CommandName="borrarHabitacion" CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>" />
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="" HeaderStyle-HorizontalAlign="Left">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lbl_nombre" CssClass="marginleft15" runat="server" Font-Bold="false"
+                                                                    Font-Italic="true" ForeColor="#999999" Text="1 room"></asp:Label>
+                                                            </ItemTemplate>
+                                                            <HeaderStyle HorizontalAlign="Left" />
+                                                            <ItemStyle HorizontalAlign="Right" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField>
+                                                            <ItemTemplate>
+                                                                <div class="lbl_paquete_box">
+                                                                    <asp:Label ID="lbl_tipo_paquete" runat="server" Text="Custom Package"></asp:Label>
+                                                                </div>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField>
+                                                            <ItemTemplate>
+                                                                <div class="box-select-personas">
+                                                                    <asp:DropDownList ID="ddl_personas" runat="server" CssClass="dropdownsReserva" OnSelectedIndexChanged="ddl_personas_SelectedIndexChanged"
+                                                                        AutoPostBack="true">
+                                                                        <asp:ListItem Text="1 person" Value="1"></asp:ListItem>
+                                                                        <asp:ListItem Text="2 people" Value="2"></asp:ListItem>
+                                                                        <asp:ListItem Text="3 people" Value="3"></asp:ListItem>
+                                                                        <asp:ListItem Text="4 people" Value="4"></asp:ListItem>
+                                                                    </asp:DropDownList>
+                                                                </div>
+                                                            </ItemTemplate>
+                                                            <HeaderStyle Font-Bold="True" HorizontalAlign="Right" />
+                                                            <ItemStyle HorizontalAlign="Right" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField>
+                                                            <ItemTemplate>
+                                                                <div class="lbl_precio_habitacion">
+                                                                    <asp:Label ID="lbl_precio_habitacion" runat="server" Text="$ 0"></asp:Label>
+                                                                </div>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                    </Columns>
+                                                    <RowStyle Font-Bold="true" />
+                                                </asp:GridView>
+                                                <asp:LinkButton ID="add_room" runat="server">+ Add Room</asp:LinkButton>
+                                            </asp:Panel>
                                         </div>
                                         <asp:Label ID="lbl_ResultadoHabitaciones" runat="server" Text=""></asp:Label>
-
                                         <div class="desc-paquete">
                                             <div class="desc-paquete-inner">
-                                                
                                                 <div class="box-precio-sin-transporte">
                                                     <asp:LinkButton ID="btn_reservar1" runat="server" ToolTip="Reservar" ValidationGroup="registrese"
-                                ForeColor="#FFFFFF" Visible="false">BOOK NOW »</asp:LinkButton>
+                                                        ForeColor="#FFFFFF" Visible="false">BOOK NOW »</asp:LinkButton>
                                                     <div class="precio-sin-transporte">
                                                         <div class="precio-sin-transporte-value">
-                                                            $ <asp:Label ID="lbl_precioSinTransporte" runat="server" Text="0"></asp:Label>
+                                                            $
+                                                            <asp:Label ID="lbl_precioSinTransporte" runat="server" Text="0"></asp:Label>
                                                         </div>
                                                         <div class="precio-sin-transporte-letra-pequena">
-                                                            <p>* Includes: taxes, footd and tours on Tortuguero Channels </p>
+                                                            <p>
+                                                                * Includes: taxes, footd and tours on Tortuguero Channels
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -436,16 +414,13 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                         <asp:Label ID="Label1" runat="server" Text="Cargando ..."></asp:Label>
                                                     </ProgressTemplate>
                                                 </asp:UpdateProgress>
-
                                             </div>
-                                        
                                         </div>
                                         <hr />
                                         <div id="traslado-box">
-                                            <h3>Do  you need <strong>transport</strong> from and to Manatus?</h3>
+                                            <h3>
+                                                Do you need <strong>transport</strong> from and to Manatus?</h3>
                                             <div class="traslado-box-inner">
-                                            
-                                                
                                                 <p>
                                                     Select the transfer options that you require and add it to your package:</p>
                                                 <div class="bdbtnlist_transporte_box">
@@ -453,7 +428,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                         <asp:ListItem Value="1">Transfer to Manatus</asp:ListItem>
                                                         <asp:ListItem Value="2">Transfer back to San Jose</asp:ListItem>
                                                         <asp:ListItem Value="3">Round Trip</asp:ListItem>
-                                                        <asp:ListItem Value="4" Selected=True >None</asp:ListItem>
+                                                        <asp:ListItem Value="4" Selected="True">None</asp:ListItem>
                                                     </asp:RadioButtonList>
                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="rdbtnlist_transporte2014"
                                                         Display="Dynamic" ErrorMessage="Campo Requerido" ValidationGroup="registrese"></asp:RequiredFieldValidator>
@@ -462,14 +437,13 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                 <div class="box-precio-con-transporte">
                                                     <div class="precio-con-transporte">
                                                         <div class="precio-con-transporte-value">
-                                                            <span>Total Cost of<br /> hosting and transport</span> $ <asp:Label ID="lbl_precioConTransporte" runat="server" Text="0"></asp:Label>
+                                                            <span>Total Cost of<br />
+                                                                hosting and transport</span> $
+                                                            <asp:Label ID="lbl_precioConTransporte" runat="server" Text="0"></asp:Label>
                                                         </div>
-                                                        
                                                     </div>
                                                 </div>
-
                                                 <a class="btn" id="btn-reservar" href="javascript:void(0)">Reservar</a>
-                                                
                                                 <div style="display: none;">
                                                     <p>
                                                         Pick up place</p>
@@ -485,26 +459,22 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                     <asp:TextBox ID="txt_leave" runat="server" CssClass="textBoxNuevo"></asp:TextBox>
                                                 </div>
                                             </div>
-                                         </div>
-                
+                                        </div>
                                     </div>
                                 </asp:Panel>
                             </asp:Panel>
-                        
                         </div>
-                            
                     </ContentTemplate>
                 </asp:UpdatePanel>
-                
             </div>
-
             <div class="content-box container-1-3 sidebar">
                 <div class="paddingBottomp10">
                     <h3 class="h3Sidebar">
                         <strong>Other packages</strong> that might interested</h3>
                     <div class="sidebar-block-content">
                         <div class="sidebar-paquete sidebar-paquete-1">
-                            <h3 class="paquete-sidebar-titulo">1 Free extra night</h3>
+                            <h3 class="paquete-sidebar-titulo">
+                                1 Free extra night</h3>
                             <div class="paquete-sidebar-desc-precio">
                                 <div class="paquete-sidebar-desc">
                                     <ul>
@@ -514,44 +484,42 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                     </ul>
                                 </div>
                                 <div class="paquete-sidebar-precio">
-                                   <p class="paquete-precio"><span>From </span> $310</p>
-                                   <p class="habitacion-desc">Double Room</p>
+                                    <p class="paquete-precio">
+                                        <span>From </span>$310</p>
+                                    <p class="habitacion-desc">
+                                        Double Room</p>
                                 </div>
                             </div>
                             <div class="paquete-sidebar-book-box">
                                 <a class="paquets-sidebar-book-link poplight" rel="popup_code" href="#?w=408">Book now</a>
                             </div>
-
                             <div class="sidebar-paquete-popup-1 popup_block" id="popup_code">
-                                
                                 <div class="sidebar-paquete-popup-texto">
-                                    <p><strong>Contact a Manatus representative</strong> to book this package</p>
+                                    <p>
+                                        <strong>Contact a Manatus representative</strong> to book this package</p>
                                 </div>
                                 <div class="sidebar-paquete-popup-botones">
                                     <div class="sidebar-paquete-popup-botones-form">
                                         <a href="http://manatus.net/contact-us" class="boton-form-rojo">Form</a>
                                     </div>
                                     <div class="sidebar-paquete-popup-botones-chat">
-                                        <a href="javascript:%20$zopim.livechat.window.show();" class="boton-chat-cafe">Live Chat</a>
+                                        <a href="javascript:%20$zopim.livechat.window.show();" class="boton-chat-cafe">Live
+                                            Chat</a>
                                     </div>
                                 </div>
                                 <div class="sidebar-paquete-popup-contact-info">
-                                    <p><strong>Manatus Hotel</strong><br />
-                                    Office: <a href="tel:+50622394854">(506) 2239-4854</a><br />
-                                    Hotel: <a href="tel:+50627098197">(506) 2709-8197</a><br />
-                                    Fax: (506) 2709-8198<br />
-                                    <a href="mailto:info@manatuscostarica.com">info@manatuscostarica.com</a><
+                                    <p>
+                                        <strong>Manatus Hotel</strong><br />
+                                        Office: <a href="tel:+50622394854">(506) 2239-4854</a><br />
+                                        Hotel: <a href="tel:+50627098197">(506) 2709-8197</a><br />
+                                        Fax: (506) 2709-8198<br />
+                                        <a href="mailto:info@manatuscostarica.com">info@manatuscostarica.com</a><
                                     </p>
                                 </div>
                             </div>
-                    
                         </div>
-                        
                     </div>
                 </div>
-               
-            
-
             </div>
         </div>
     </div>
@@ -597,11 +565,11 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                     Tortuguero Costa Rica<br />
                     Tel: <a href="tel:+50627098197">(506) 2709.8197</a></p>
                 <div class="redes-footer">
-                      <a href="https://www.facebook.com/manatuscostarica?fref=ts">
-                        <img src="images/2014/face.png" /></a><a href="#"><a
-                            href="https://instagram.com/manatuscostarica/"><img src="images/2014/instagram.png" /></a><a
-                            href="https://www.pinterest.com/manatuscr/"><img src="images/2014/pinterest.png" /></a><a
-                            href="http://www.tripadvisor.com.mx/Hotel_Review-g309268-d308651-Reviews-Manatus_Hotel-Tortuguero_Province_of_Limon.html"><img src="images/2014/tripadvisor.png" /></a>
+                    <a href="https://www.facebook.com/manatuscostarica?fref=ts">
+                        <img src="images/2014/face.png" /></a><a href="#"><a href="https://instagram.com/manatuscostarica/"><img
+                            src="images/2014/instagram.png" /></a><a href="https://www.pinterest.com/manatuscr/"><img
+                                src="images/2014/pinterest.png" /></a><a href="http://www.tripadvisor.com.mx/Hotel_Review-g309268-d308651-Reviews-Manatus_Hotel-Tortuguero_Province_of_Limon.html"><img
+                                    src="images/2014/tripadvisor.png" /></a>
                 </div>
             </div>
             <div class="footer-info-box">
@@ -616,17 +584,14 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                         MANATUS HOTEL, TORTUGUERO COSTA RICA | TEL: <a href="tel: +50627098197">(506) 2709.8197</a></p>
                 </div>
                 <div class="menu-idioma">
-                    <ul><li><a href="reservacion_en.aspx" class="active">English</a></li>|<li><a href="reservacion_sp.aspx">
+                    <ul>
+                        <li><a href="reservacion_en.aspx" class="active">English</a></li>|<li><a href="reservacion_sp.aspx">
                             Español</a></li></ul>
                 </div>
             </div>
-
-            
         </div>
     </div>
-    
     </form>
-
     <script type="text/javascript">
 
         $('a.poplight[href^=#]').live("click", function () {
@@ -697,12 +662,10 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
         });
 
     </script>
-
     <script type="text/javascript">
         var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
         document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
     </script>
-
     <script type="text/javascript">
         try {
             var pageTracker = _gat._getTracker("UA-7635413-1");
@@ -710,8 +673,5 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
             pageTracker._setAllowLinker(true);
             pageTracker._trackPageview();
         } catch (err) { }</script>
-
-    
 </body>
 </html>
-

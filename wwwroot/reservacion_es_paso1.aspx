@@ -24,9 +24,22 @@
     <!--[if gte IE 9]><!-->
     <link rel="Stylesheet" href="styles/stylereservation_nuevo_responsivo.css" type="text/css" />
     <!--<![endif]-->
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://booking.manatuscostarica.com/js/myJS.js"></script>
     <script type="text/javascript" src="http://booking.manatuscostarica.com/js/tinynav.min.js"></script>
+
+    <!-- scripts range datepicker -->
+    <script type="text/javascript" src="datepicker/js/datepicker-es.js"></script>
+    <script type="text/javascript" src="datepicker/js/eye.js"></script>
+    <script type="text/javascript" src="datepicker/js/utils.js"></script>
+    <script type="text/javascript" src="datepicker/js/layout-es.js"></script>    
+    <!-- end scripts range datepicker -->
+
+    <!-- style range datepicker -->
+    <link type="text/css" rel="stylesheet" href="datepicker/css/datepicker.css" />
+    <link type="text/css" rel="stylesheet" href="datepicker/css/layout.css" />
+    <!-- end style range datepicker -->
+
     <style type="text/css">
         /*Codigo de css para el pop up*/#fade
         {
@@ -290,6 +303,19 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                 <asp:Panel ID="pnl_contenido" runat="server" Visible="true">
                                     <div class="contenedor-desc-reserva">
                                         <div class="contenedor-fechas-hab">
+
+                                            <!-- rango de fecha -->
+                                                <div id="widget">
+                                                    <div id="widgetField">
+                                                        <asp:Label ID="lblIngresoSalida" runat="server" Text="Ingreso y Salida"></asp:Label>
+                                                        <asp:TextBox runat="server" ID="TxtCheckinCheckout" AutoPostBack="true" name="checkin-checkout" value='Seleccionar rango de fechas'></asp:TextBox>
+                                                        <a class="btn" id="btn-reservar" href="javascript:void(0)">Reservar</a>
+                                                    </div>
+                                                    <div id="widgetCalendar" class="hidden">
+                                                    </div>
+                                                </div>
+                                            <!-- fin rango de fecha -->
+
                                             <div class="fecha-field">
                                                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                                     <ContentTemplate>
@@ -441,8 +467,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                                 <span>Total Cost of<br />
                                                                     hosting and transport</span> 
                                                             
-                                                                $
-                                                                <asp:Label ID="lbl_precioConTransporte" runat="server" Text="0"></asp:Label>
+                                                                <div class="preciot">$ <asp:Label ID="lbl_precioConTransporte" runat="server" Text="0"></asp:Label></div>
                                                         </div>
                                                     </div>
                                                 </div>
