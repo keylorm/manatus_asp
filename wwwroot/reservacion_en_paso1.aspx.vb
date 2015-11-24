@@ -14,7 +14,7 @@ Partial Class reservacion_en_paso1
     Private Const id_producto As Integer = 3 'Habitacion Sencilla
     Private Const horaEntrada As Integer = 12
     Private Const horaSalida As Integer = 11
-    
+
 
 
     Protected Sub Page_Init(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Init
@@ -194,7 +194,7 @@ Partial Class reservacion_en_paso1
                     result = result + controladora.AgregarItemTemporal(id_producto, item.ordinal.Value, numeroadultos, 0, True, fechaInicio, fechaFin, 1, noches, nochesadicionales, descuento, Session("id_temporadaNueva"), 0, 1)
                 End If
 
-                
+
             Catch ex As Exception
                 result = result + 0
             End Try
@@ -322,7 +322,7 @@ Partial Class reservacion_en_paso1
         Dim resul_producto As ArrayList = TransformDataTable(dataTable, New Producto)
         Dim resul_Item As ArrayList = TransformDataTable(dataTable, New Item)
 
-       
+
     End Sub
 
 
@@ -401,8 +401,8 @@ Partial Class reservacion_en_paso1
                 Dim noches As Integer = controladora.NochesSegunTarifas(id_temporada, id_producto, 0, total_de_noches)
                 Dim nochesAdicionales As Integer = total_de_noches - noches
 
-                
-                
+
+
 
 
                 If validarPrecios(id_temporada, id_producto, noches, gv_ResultadosDisponibles) Then
@@ -491,7 +491,7 @@ Partial Class reservacion_en_paso1
                 Dim nochesAdicionales As Integer = total_de_noches - noches
 
                 'Para cambiar el radio Button del paquete
-                
+
 
 
                 If validarPrecios(id_temporada, id_producto, noches, gv_ResultadosDisponibles) Then
@@ -501,7 +501,7 @@ Partial Class reservacion_en_paso1
 
 
                         Dim precioContransporte As Double = agregaItemTemporal(id_producto, noches, nochesAdicionales, habitacionesDisponibles, gv_ResultadosDisponibles, True)
-                        
+
                         If ((precioContransporte <> 0)) Then
                             lbl_precioConTransporte.Text = precioContransporte
 
@@ -521,10 +521,10 @@ Partial Class reservacion_en_paso1
         End If
 
     End Sub
-    
-   
 
-    
+
+
+
 
 
     Protected Sub mensajeErrorCantPersonasXHabitacion(ByVal codigo_error As Integer)
@@ -541,7 +541,7 @@ Partial Class reservacion_en_paso1
                 lbl_ResultadoHabitaciones.Text = "Las habitaciones solicitadas no son suficientes para hospedar a la cantidad de personas deseadas. Cada habitación puede hospedar un máximo de 4 personas."
             End If
         End If
-        
+
     End Sub
 
     Protected Sub mensajePrecios(ByVal capacidadMax As Integer)
@@ -593,24 +593,33 @@ Partial Class reservacion_en_paso1
     End Sub
 
     Protected Sub rdbtnlist_transporte2014_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles rdbtnlist_transporte2014.SelectedIndexChanged
-        If rdbtnlist_transporte2014.SelectedValue.Length > 0 Then
-            CalculoPrecioConTransporte()
+        If txtDateEntrada.Text.Length > 0 And txtDateSalida.Text.Length > 0 Then
+            If (gv_ResultadosDisponibles.Rows.Count > 0) Then
+                If rdbtnlist_transporte2014.SelectedValue.Length > 0 Then
+                    CalculoPrecioConTransporte()
+                End If
+            End If
         End If
     End Sub
 
-    
+
 
 
     Protected Sub txtDateEntrada_TextChanged(sender As Object, e As System.EventArgs) Handles txtDateEntrada.TextChanged
-        If txtDateEntrada.Text.Length > 0 Then
-            CalculoPrecio()
+        If txtDateEntrada.Text.Length > 0 And txtDateSalida.Text.Length > 0 Then
+            If (gv_ResultadosDisponibles.Rows.Count > 0) Then
+                CalculoPrecio()
+            End If
+
         End If
     End Sub
 
 
     Protected Sub txtDateSalida_TextChanged(sender As Object, e As System.EventArgs) Handles txtDateSalida.TextChanged
-        If txtDateSalida.Text.Length > 0 Then
-            CalculoPrecio()
+        If txtDateEntrada.Text.Length > 0 And txtDateSalida.Text.Length > 0 Then
+            If (gv_ResultadosDisponibles.Rows.Count > 0) Then
+                CalculoPrecio()
+            End If
         End If
     End Sub
 
@@ -650,7 +659,13 @@ Partial Class reservacion_en_paso1
                 contador2 = contador2 + 1
             Next
 
-            CalculoPrecio()
+
+            If txtDateEntrada.Text.Length > 0 And txtDateSalida.Text.Length > 0 Then
+                If (gv_ResultadosDisponibles.Rows.Count > 0) Then
+                    CalculoPrecio()
+
+                End If
+            End If
 
             'Metodo alterno
 
@@ -723,7 +738,24 @@ Partial Class reservacion_en_paso1
 
         Next
 
-        CalculoPrecio()
+        If txtDateEntrada.Text.Length > 0 And txtDateSalida.Text.Length > 0 Then
+            If (gv_ResultadosDisponibles.Rows.Count > 0) Then
+                CalculoPrecio()
+
+            End If
+        End If
     End Sub
+
+    Protected Sub ddl_personas_SelectedIndexChanged(sender As Object, e As System.EventArgs)
+
+        If txtDateEntrada.Text.Length > 0 And txtDateSalida.Text.Length > 0 Then
+            If (gv_ResultadosDisponibles.Rows.Count > 0) Then
+                CalculoPrecio()
+
+            End If
+        End If
+
+    End Sub
+
 
 End Class

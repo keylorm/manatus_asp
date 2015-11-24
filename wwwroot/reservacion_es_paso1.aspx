@@ -354,7 +354,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                                 <asp:TemplateField>
                                                                     <ItemTemplate>
                                                                         <div class="box-select-personas">
-                                                                            <asp:DropDownList ID="ddl_personas" runat="server" CssClass="dropdownsReserva">
+                                                                            <asp:DropDownList ID="ddl_personas" runat="server" CssClass="dropdownsReserva"  OnSelectedIndexChanged="ddl_personas_SelectedIndexChanged" AutoPostBack="true">
                                                                                 <asp:ListItem Text="1 person" Value="1"></asp:ListItem>
                                                                                 <asp:ListItem Text="2 people" Value="2"></asp:ListItem>
                                                                                 <asp:ListItem Text="3 people" Value="3"></asp:ListItem>
@@ -401,10 +401,20 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="desc-paquete-labels-errores">
-                                                <asp:Label ID="lbl_erroFechas" runat="server" Text="" ForeColor="red"></asp:Label>
-                                                <asp:Label ID="lbl_ResultadoReservacion" runat="server" Text=""></asp:Label>
+                                            <div class="loader-error-wrapper">
+                                                <div class="desc-paquete-labels-errores">
+                                                    <asp:Label ID="lbl_erroFechas" runat="server" Text="" ForeColor="red"></asp:Label>
+                                                    <asp:Label ID="lbl_ResultadoReservacion" runat="server" Text=""></asp:Label>
+                                                </div>
+                                                <asp:UpdateProgress ID="UpdateProgress1" runat="server">
+                                                    <ProgressTemplate>
+                                                        <asp:Image ID="Image1" runat="server" ImageUrl="~/images/ajax-loader.gif" />
+                                                        <asp:Label ID="Label1" runat="server" Text="Cargando ..."></asp:Label>
+                                                    </ProgressTemplate>
+                                                </asp:UpdateProgress>
+
                                             </div>
+                                            
                                         </div>
                                         <hr />
                                         <div id="traslado-box">

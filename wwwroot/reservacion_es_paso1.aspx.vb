@@ -583,28 +583,38 @@ Partial Class reservacion_es_paso1
     End Sub
 
     Protected Sub rdbtnlist_transporte2014_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles rdbtnlist_transporte2014.SelectedIndexChanged
-        If rdbtnlist_transporte2014.SelectedValue.Length > 0 Then
-            CalculoPrecioConTransporte()
+        If txtDateEntrada.Text.Length > 0 And txtDateSalida.Text.Length > 0 Then
+            If (gv_ResultadosDisponibles.Rows.Count > 0) Then
+                If rdbtnlist_transporte2014.SelectedValue.Length > 0 Then
+                    CalculoPrecioConTransporte()
+                End If
+            End If
         End If
+
     End Sub
 
 
 
     Protected Sub txtDateEntrada_TextChanged(sender As Object, e As System.EventArgs) Handles txtDateEntrada.TextChanged
-        If txtDateEntrada.Text.Length > 0 Then
-            CalculoPrecio()
+        If txtDateEntrada.Text.Length > 0 And txtDateSalida.Text.Length > 0 Then
+            If (gv_ResultadosDisponibles.Rows.Count > 0) Then
+                CalculoPrecio()
+            End If
         End If
+
     End Sub
 
 
     Protected Sub txtDateSalida_TextChanged(sender As Object, e As System.EventArgs) Handles txtDateSalida.TextChanged
-        If txtDateSalida.Text.Length > 0 Then
-            CalculoPrecio()
+        If txtDateEntrada.Text.Length > 0 And txtDateSalida.Text.Length > 0 Then
+            If (gv_ResultadosDisponibles.Rows.Count > 0) Then
+                CalculoPrecio()
+            End If
         End If
     End Sub
 
 
-   
+
 
     Protected Sub gv_ResultadosDisponibles_RowCommand(sender As Object, e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles gv_ResultadosDisponibles.RowCommand
         If (e.CommandName = "borrarHabitacion") Then
@@ -642,7 +652,11 @@ Partial Class reservacion_es_paso1
                 contador2 = contador2 + 1
             Next
 
-            CalculoPrecio()
+            If txtDateEntrada.Text.Length > 0 And txtDateSalida.Text.Length > 0 Then
+                If (gv_ResultadosDisponibles.Rows.Count > 0) Then
+                    CalculoPrecio()
+                End If
+            End If
 
             'Metodo alterno
 
@@ -679,9 +693,9 @@ Partial Class reservacion_es_paso1
     End Sub
 
 
-   
+
     Protected Sub add_room_Click(sender As Object, e As System.EventArgs) Handles add_room.Click
-        
+
 
 
         Dim contador As Integer = 0
@@ -713,9 +727,23 @@ Partial Class reservacion_es_paso1
                 Lblpaquete.Text = arrayPaquete(contador2)
                 contador2 = contador2 + 1
             End If
-            
-        Next
 
-        CalculoPrecio()
+        Next
+        If txtDateEntrada.Text.Length > 0 And txtDateSalida.Text.Length > 0 Then
+            If (gv_ResultadosDisponibles.Rows.Count > 0) Then
+                CalculoPrecio()
+            End If
+        End If
+
+    End Sub
+
+
+    Protected Sub ddl_personas_SelectedIndexChanged(sender As Object, e As System.EventArgs)
+        If txtDateEntrada.Text.Length > 0 And txtDateSalida.Text.Length > 0 Then
+            If (gv_ResultadosDisponibles.Rows.Count > 0) Then
+                CalculoPrecio()
+            End If
+        End If
+
     End Sub
 End Class
