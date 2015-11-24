@@ -1,6 +1,4 @@
-﻿@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
-
-article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{
+﻿article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{
 	display: block;
 }
 
@@ -1518,15 +1516,9 @@ input#TxtCheckinCheckout {
     border-bottom: none;
 }
 
-.content-box hr{
-    display: block;
-    height: 2px;
-    border: none;
+.contenedor-desc-reserva > div.contenedor-fechas-hab {
     border-bottom: 1px solid #594A42;
-    clear: both;
-    overflow: hidden;
 }
-
 
 .hidden {display: none;}
 #widgetCalendar {
@@ -1595,7 +1587,7 @@ h2.h2Celeste{
 }
 
 .desc-paquete{
-    width: 220px;
+    width: 250px;
     float: right;
 }
 .desc-paquete .precio-sin-transporte-value
@@ -1603,14 +1595,14 @@ h2.h2Celeste{
     float: right;
     border: 1px solid #7E9B67; 
     color: #7E9B67;
-    font-family: "Montserrat", sans-serif;
+    font-family: "Raleway", sans-serif;
     font-weight: normal;
-    font-size: 24px; line-height: 32px; font-weight: bold;    
-    border-radius: 10px; padding: 0px 12px; 
+    font-size: 24px; line-height: 24px; font-weight: bold;    
+    border-radius: 10px; 
 }
 .desc-paquete .precio-sin-transporte-value span{
     color: #7E9B67;
-    font-family: "Montserrat", sans-serif;
+    font-family: "Raleway", sans-serif;
     font-weight: normal;
     font-size: 24px;  line-height: 24px; font-weight: bold;
 }
@@ -1666,12 +1658,6 @@ h2.h2Celeste{
     /*font-family: "Open Sans",sans-seif; 
     line-height: 14px;*/
     margin: 10px 0px;
-}
-#traslado-box #rdbtnlist_transporte2014 tr td label,
-.reservation-form label,
-.reservation-form span{
-    font-size: 13px;
-    font-weight: normal;
 }
 
 
@@ -2099,4 +2085,8 @@ a#AplicarSeleccion{
     font-family: "Open Sans",sans-seif;
     font-size: 15px;
     font-weight: 500;     
+
+/* PASO 2: Formulario de registro */
+#btn_aPaso3 {
+    color: #000 !important;
 }
