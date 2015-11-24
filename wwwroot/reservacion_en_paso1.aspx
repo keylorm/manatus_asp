@@ -271,7 +271,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                             </div>
                             <div class="step-2">
                                 <div class="step-title">
-                                    <p><a href="">Personal Information</a></p>
+                                    <p><a href="reservacion_en_paso1.aspx">Personal Information</a></p>
                                 </div>
                                 <div class="step-point">
                                     <a class="point" href="">2</a>

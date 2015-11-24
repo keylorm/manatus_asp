@@ -1648,3 +1648,8 @@ h2.h2Celeste{
     font-weight: normal;
     font-family: "Open Sans",sans-seif;    
 }
+
+/* PASO 2: Formulario de registro */
+#btn_aPaso3 {
+    color: #000 !important;
+}
