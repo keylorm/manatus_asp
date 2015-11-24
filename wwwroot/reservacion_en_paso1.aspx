@@ -140,6 +140,12 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
         urlactual = urlactual.replace(/\?.*/, "");
         _gaq.push(['_trackEvent', 'Reservación', 'Paso 1', urlactual]);
     </script>
+
+    <script>
+        function pageLoad() {
+            EYE.register(initLayout, 'init');
+        }
+    </script>
 </head>
 <body class="reservation-form en">
     <form id="form1" runat="server">
@@ -307,8 +313,8 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             <!-- rango de fecha -->
                                             <!-- fin rango de fecha -->
                                             <div class="fecha-field">
-                                                <asp:UpdatePanel ID="UpdatePanel3" runat="server">
-                                                    <ContentTemplate>
+                                                <%--<asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Always">
+                                                    <ContentTemplate>--%>
                                                         <div id="widget">
                                                             <div id="widgetField">
                                                                 <asp:Label ID="lblIngresoSalida" runat="server" Text="Ingreso y Salida"></asp:Label>
@@ -320,8 +326,8 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                             <div id="widgetCalendar" class="hidden">
                                                             </div>
                                                         </div>
-                                                    </ContentTemplate>
-                                                </asp:UpdatePanel>
+                                                    <%--</ContentTemplate>
+                                                </asp:UpdatePanel>--%>
                                             </div>
                                         </div>
                                         <hr />
@@ -403,19 +409,20 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="loader-error-wrapper">
+                                           
+                                        </div>
+                                         <div class="loader-error-wrapper">
                                                 <div class="desc-paquete-labels-errores">
                                                     <asp:Label ID="lbl_erroFechas" runat="server" Text="" ForeColor="red"></asp:Label>
                                                     <asp:Label ID="lbl_ResultadoReservacion" runat="server" Text=""></asp:Label>
                                                 </div>
-                                                <asp:UpdateProgress ID="UpdateProgress1" runat="server">
+                                                <asp:UpdateProgress ID="UpdateProgress1" runat="server" >
                                                     <ProgressTemplate>
                                                         <asp:Image ID="Image1" runat="server" ImageUrl="~/images/ajax-loader.gif" />
                                                         <asp:Label ID="Label1" runat="server" Text="Cargando ..."></asp:Label>
                                                     </ProgressTemplate>
                                                 </asp:UpdateProgress>
                                             </div>
-                                        </div>
                                         <hr />
                                         <div id="traslado-box">
                                             <h3>

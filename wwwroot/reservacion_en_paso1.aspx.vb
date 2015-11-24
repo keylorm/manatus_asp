@@ -26,7 +26,11 @@ Partial Class reservacion_en_paso1
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
             
-            
+            If Request.QueryString("rango_fecha") IsNot Nothing Then
+                Culture = "en-us"
+                TxtCheckinCheckout.Text = Request.QueryString("rango_fecha")
+
+            End If
             btn_reservar1.Visible = True
 
             lbl_erroFechas.Visible = False
@@ -42,7 +46,7 @@ Partial Class reservacion_en_paso1
 
             'calendarEntrada.DateMin = Date.Today
 
-            selectHabitaciones(id_producto, 6)
+            'selectHabitaciones(id_producto, 6)
 
             Dim habitacionesDisponibles As Integer = selectHabitaciones(id_producto, 6)
 
@@ -58,7 +62,7 @@ Partial Class reservacion_en_paso1
 
             If ((Request.QueryString("people") IsNot Nothing) And (Request.QueryString("rooms") IsNot Nothing)) Then
                 If calculoPersonasXHabitacion(Request.QueryString("rooms"), Request.QueryString("people")) Then
-                    If ((Request.QueryString("checkin") IsNot Nothing) And (Request.QueryString("checkout") IsNot Nothing)) Then
+                    If ((Request.QueryString("rango_fecha") IsNot Nothing)) Then
                         CalculoPrecio()
                     End If
 
@@ -399,7 +403,9 @@ Partial Class reservacion_en_paso1
                         For Each substring2 In substrings2
                             If (substring2 <> "/") Then
                                 If counter2 = 0 Then
+
                                     m = substring2
+
                                 ElseIf counter2 = 1 Then
                                     d = substring2
                                 Else
@@ -408,12 +414,13 @@ Partial Class reservacion_en_paso1
                             End If
                             counter2 = counter2 + 1
                         Next
-                        Dim date1 As New Date(y, m, d, 12, 0, 0)
+                        Dim date1 As New Date(y, m, d, 0, 0, 0)
                         entrada = date1
                     Else
                         For Each substring2 In substrings2
                             If (substring2 <> "/") Then
                                 If counter2 = 0 Then
+
                                     m = substring2
                                 ElseIf counter2 = 1 Then
                                     d = substring2
@@ -423,7 +430,7 @@ Partial Class reservacion_en_paso1
                             End If
                             counter2 = counter2 + 1
                         Next
-                        Dim date1 As New Date(y, m, d, 11, 0, 0)
+                        Dim date1 As New Date(y, m, d, 0, 0, 0)
                         salida = date1
                     End If
                 End If
@@ -540,6 +547,7 @@ Partial Class reservacion_en_paso1
                         For Each substring2 In substrings2
                             If (substring2 <> "/") Then
                                 If counter2 = 0 Then
+
                                     m = substring2
                                 ElseIf counter2 = 1 Then
                                     d = substring2
@@ -549,12 +557,13 @@ Partial Class reservacion_en_paso1
                             End If
                             counter2 = counter2 + 1
                         Next
-                        Dim date1 As New Date(y, m, d, 12, 0, 0)
+                        Dim date1 As New Date(y, m, d, 0, 0, 0)
                         entrada = date1
                     Else
                         For Each substring2 In substrings2
                             If (substring2 <> "/") Then
                                 If counter2 = 0 Then
+
                                     m = substring2
                                 ElseIf counter2 = 1 Then
                                     d = substring2
@@ -564,7 +573,7 @@ Partial Class reservacion_en_paso1
                             End If
                             counter2 = counter2 + 1
                         Next
-                        Dim date1 As New Date(y, m, d, 11, 0, 0)
+                        Dim date1 As New Date(y, m, d, 0, 0, 0)
                         salida = date1
                     End If
                 End If
@@ -691,7 +700,7 @@ Partial Class reservacion_en_paso1
     End Sub
 
     Protected Sub rdbtnlist_transporte2014_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles rdbtnlist_transporte2014.SelectedIndexChanged
-        If TxtCheckinCheckout.Text.Length > 0 And TxtCheckinCheckout.Text IsNot "Select range" Then
+        If TxtCheckinCheckout.Text.Length > 0 And TxtCheckinCheckout.Text.Contains(" - ") Then
             If (gv_ResultadosDisponibles.Rows.Count > 0) Then
                 If rdbtnlist_transporte2014.SelectedValue.Length > 0 Then
                     CalculoPrecioConTransporte()
@@ -739,7 +748,7 @@ Partial Class reservacion_en_paso1
             Next
 
 
-            If TxtCheckinCheckout.Text.Length > 0 And TxtCheckinCheckout.Text IsNot "Select range" Then
+            If TxtCheckinCheckout.Text.Length > 0 And TxtCheckinCheckout.Text.Contains(" - ") Then
                 If (gv_ResultadosDisponibles.Rows.Count > 0) Then
                     CalculoPrecio()
 
@@ -802,7 +811,21 @@ Partial Class reservacion_en_paso1
 
         Next
 
-        cargarHabitacionesDeseadas(contador + 1)
+
+        Dim habitacionesDisponibles As Integer = selectHabitaciones(id_producto, 6)
+
+        If (habitacionesDisponibles >= contador + 1) Then
+            cargarHabitacionesDeseadas(contador + 1)
+        Else
+            cargarHabitacionesDeseadas(contador)
+            mensajeCantidadHabitaciones(habitacionesDisponibles)
+
+        End If
+
+
+
+
+
 
         Dim contador2 As Integer = 0
 
@@ -817,7 +840,7 @@ Partial Class reservacion_en_paso1
 
         Next
 
-        If TxtCheckinCheckout.Text.Length > 0 And TxtCheckinCheckout.Text IsNot "Select range" Then
+        If TxtCheckinCheckout.Text.Length > 0 And TxtCheckinCheckout.Text.Contains(" - ") Then
             If (gv_ResultadosDisponibles.Rows.Count > 0) Then
                 CalculoPrecio()
 
@@ -827,10 +850,9 @@ Partial Class reservacion_en_paso1
 
     Protected Sub ddl_personas_SelectedIndexChanged(sender As Object, e As System.EventArgs)
 
-        If TxtCheckinCheckout.Text.Length > 0 And TxtCheckinCheckout.Text IsNot "Select range" Then
+        If TxtCheckinCheckout.Text.Length > 0 And TxtCheckinCheckout.Text.Contains(" - ") Then
             If (gv_ResultadosDisponibles.Rows.Count > 0) Then
                 CalculoPrecio()
-
             End If
         End If
 
@@ -852,7 +874,7 @@ Partial Class reservacion_en_paso1
         '    End If
         '    counter = counter + 1
         'Next
-        If TxtCheckinCheckout.Text.Length > 0 And TxtCheckinCheckout.Text IsNot "Select range" Then
+        If TxtCheckinCheckout.Text.Length > 0 And TxtCheckinCheckout.Text.Contains(" - ") Then
             If (gv_ResultadosDisponibles.Rows.Count > 0) Then
                 CalculoPrecio()
             End If

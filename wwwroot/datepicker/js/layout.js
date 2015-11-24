@@ -96,18 +96,19 @@
 
 		var checkin = '';
 		var checkout = '';
-		var param1var = getQueryVariable('rango_fecha');
+		//var param1var = getQueryVariable('rango_fecha');
 		if (param1var != false) {
 		    param1var = unescape(param1var);  //escapar los caracteres especiales en el URL
 		    var rango = param1var.split("+-+"); //separar el rango (checkin - checkout)
 		    var checkin = rango[0];
 		    var checkout = rango[1];
-		    $('#widgetField input[id="TxtCheckinCheckout"]').val(checkin + " - " + checkout);
+		    //$('#widgetField input[id="TxtCheckinCheckout"]').val(checkin + " - " + checkout);
 		    $('#widgetCalendar').DatePicker({
 		        flat: true,
 		        format: 'm/d/Y',
 		        date: [checkin, checkout],
 		        calendars: 1,
+                current: checkin,
 		        mode: 'range',
 		        starts: 1,
 		        onRender: function (date) {
@@ -187,7 +188,7 @@
 		/*});*/
 	
 		var state = false;
-		$('#widgetField>input[id="TxtCheckinCheckout"]').bind('click', function () {
+		$('#widgetField>input[id="TxtCheckinCheckout"]').live('click', function () {
 			/*$('#widgetCalendar').stop().animate({height: state ? 0 : $('#widgetCalendar div.datepicker').get(0).offsetHeight}, 500);
 			state = !state;
 			return false;*/
@@ -200,7 +201,7 @@
 			}
 		});
 
-		$('#AplicarSeleccion').on('click', function () {
+		$('#AplicarSeleccion').live('click', function () {
 			$('#widgetCalendar').attr("class","hidden");
 		});
 		
@@ -246,4 +247,4 @@
 	}
 
 	EYE.register(initLayout, 'init');
-})(jQuery)
+})(jQuery);
