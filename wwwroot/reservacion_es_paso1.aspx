@@ -388,6 +388,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                     </asp:Panel>
                                                 </ContentTemplate>
                                             </asp:UpdatePanel>
+
                                         </div>
                                         <asp:Label ID="lbl_ResultadoHabitaciones" runat="server" Text=""></asp:Label>
                                         <div class="desc-paquete">
@@ -481,8 +482,426 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                 </asp:Panel>
                             </asp:Panel>
                         </div>
+
                     </div>
                 </div>
+
+
+
+
+                <div id="tabs">
+                    <ul>
+                        <li><a href="#descripcion">Descripción del paquete</a></li>
+                        <li><a href="#incluye">Lo que incluye</a></li>
+                        <li><a href="#tarifas">Tarifas</a></li>
+                    </ul>
+                    <div id="descripcion" class="tbcontent">
+                        <div class="des_paq_2_1">
+
+                            <h4>Tortuguero en bus y bote:</h4>
+                            <p><span class="titulo-dia">Día 1</span><br>
+                                Entre 6:00a.m y 7:00 a.m. estaremos recogiendo a nuestros huéspedes en diferentes hoteles del Área Metropolitana de San José.<br>
+                                Aproximadamente entre las 7:45 a.m. y 8:30 a.m se hará una parada para desayunar en el restaurante Nava Café en Guápiles.<br>
+                                A las 11:00 se llega a Caño Blanco donde los espera la lancha que los llevará hacia el Hotel Manatus.<br>
+                                A las 12:30 p.m. en el Hotel Manatus los estarán esperando con un cóctel de bienvenida, luego se realiza el check-in de las habitaciones y se les ofrecerá el almuerzo<br>
+                                A las 2:30p.m. se realiza el tour a los canales y posteriormente se realiza el tour al pueblo. El tour incluido en el paquete se llevan a cabo en la tarde del primer día.<br>
+                                El horario de la cena es de 6:30 p.m. a 8:30 p.m.</p>
+                            <p><span class="titulo-dia">Día 2</span><br>
+                                El horario del desayuno es de 7am a 8:30 am.<br>
+                                Se realiza el check out hasta las 9:15 a.m.<br>
+                                A las 9:30 a.m. sale la lancha para Caño Blanco.<br>
+                                De 12:50 p.m. a 1:15 p.m. tomaremos el almuerzo en el Restaurante Rancho Roberto’s en Guápiles.<br>
+                                Entre las 3 p.m. y 3:30 p.m. se llega a San José.</p>
+                            <h4>Tortuguero llegando con Nature Air ó Sansa</h4>
+                            <p><span class="titulo-dia">Día 1</span><br>
+                                Entre 6:40 a.m. y 7 a.m. estaremos recogiendo a nuestros huéspedes en la Pista de Aterrizaje de Tortuguero..<br>
+                                A las 7 a.m. en el Hotel Manatus los estarán esperando con un cóctel de bienvenida, luego se realiza el check-in de las habitaciones y se les ofrecerá el desayuno<br>
+                                De 8:30a.m se realiza el tour a los Canales de Tortuguero.<br>
+                                El horario del almuerzo es de 12m.d. a 1:30 p.m.<br>
+                                A las 3:00p.m. se realiza el tour al pueblo.<br>
+                                El horario de la cena es de 6:30 p.m. a 8:30 p.m.</p>
+                            <p><span class="titulo-dia">Día 2</span><br>
+                                Se hace el check out el día anterior.<br>
+                                Se ofrece un desayuno liviano a las 6 a.m.<br>
+                                Traslado de los huéspedes a la Pista de Aterrizaje de Tortuguero a las 6:30 a.m.</p>
+
+                        </div>
+                        <div class="des_paq_3_2">
+                            <h4>Llegando en Bus y Bote:</h4>
+                            <p><span class="titulo-dia">Día 1</span><br>
+                                Entre 6:00a.m y 7:00a.m estaremos recogiendo a nuestros huéspedes en hoteles del Área Metropolitana.<br>
+                                Aproximadamente entre las 7:45 a.m. y las 8:30 a.m. se hará una parada para desayunar en el restaurante Nava Café en Guápiles.<br>
+                                A las 11:00 a.m. se llega a Caño Blanco donde una lancha espera a los huéspedes para llevarlos Hotel Manatus.<br>
+                                A las 12:30 p.m. en el Hotel Manatus los estarán esperando con un cóctel de bienvenida, luego se realiza el check-in de las habitaciones y se les ofrecerá el almuerzo.<br>
+                                A las 3:00 p.m. se realiza el tour al pueblo<br>
+                                El horario de la cena es de 6:30 p.m. a 8:30 p.m.</p>
+                            <p><strong>Nota:</strong><br>
+                            Solo se incluyen un tour en este día.</p>
+                            <h4>Llegando con Nature Air ó Sansa:</h4>
+                            <p><span class="titulo-dia">Día 1</span><br>
+                                Entre 6:40 a.m. y 7 a.m. estaremos recogiendo a nuestros huéspedes en la Pista de Aterrizaje de Tortuguero<br>
+                                A las 7 AM. en el Hotel Manatus los estarán esperando con un cóctel de bienvenida, luego se realiza el check-in de las habitaciones y se les ofrecerá el almuerzo.<br>
+                                El horario del almuerzo es de 12m.d. a 1:30 p.m.<br>
+                                A las 3:00 p.m. se realiza el tour al pueblo.<br>
+                                El horario de la cena es de 6:30 p.m. a 8:30 p.m.</p>
+                            <p><strong>Nota:</strong><br>
+                            Solo se incluyen un tour en este día.</p>
+                            <p><span class="titulo-dia">Día 2</span><br>
+                                El horario del desayuno es de 7 a.m. a 8:30 a.m.<br>
+                                De 8:30a.m a 10:30 a.m. se realiza el tour a uno de los Canales de Tortuguero.<br>
+                                El horario del almuerzo es de 12 a.m. a 1:30 p.m.<br>
+                                De 2:30 p.m. a 4:30p.m. se realiza un tour a otro Canal del Parque Nacional Tortuguero.<br>
+                                El horario de la cena es de 6:30 p.m. a 8:30 p.m.</p>
+                            <p><strong>Nota:</strong><br>
+                            Se incluyen dos tour en este día.</p>
+                            <h4>Saliendo con Bote y Bus:</h4>
+                            <p><span class="titulo-dia">Día 3</span><br>
+                                El horario del desayuno es de 7 a.m. a 8:30 a.m.<br>
+                                Se realiza el check out hasta las 9:15 a.m.<br>
+                                A las 9:30 a.m. Sale la lancha para Caño Blanco<br>
+                                De 1 p.m. a 1:30 p.m. se hace una parada para almorzar en el Restaurante Nava Café en Guápiles.<br>
+                                Entre las 3 p.m. y 3:30 p.m. se llega a San José.</p>
+                            <h4>Saliendo con Nature Air ó Sansa:</h4>
+                            <p><span class="titulo-dia">Día 3</span><br>
+                                Se hace el check out el día anterior.<br>
+                                Se ofrece un desayuno liviano a las 6 a.m.<br>
+                                Traslado de los huéspedes a la Pista de Aterrizaje Tortuguero a las 6:30 a.m.</p>
+
+                        </div>
+                        <div class="des_paq_custom">
+                           Si usted desea permanecer más tiempo con nosotros, usted puede personalizar su paquete. Se incluyen todas las comidas y el Tour del Canal del Agua.
+                        </div>
+                    </div>
+                    <div id="incluye" class="tbcontent">
+                        <div class="inc_paq_2_1">
+                            <h4>2015</h4>
+                            <p>Los paquetes incluyen:</p>
+                            <ul><li>Hospedaje y alimentación, bebidas no incluidas</li>
+                            <li>2 Tours en el paquete 2 días y 1 noche: un tour por el pueblo de Tortuguero y un tour a los canales del Parque Nacional Tortuguero- entrada no incluida.</li>
+                            <li>3 Tours en el paquete de 3 días y 2 noches: un tour al pueblo de Tortuguero y dos tours a los canales del Parque Nacional– entrada no incluida.</li>
+                            <li>Incluye todos los impuestos.</li>
+                            </ul><p>No incluye:</p>
+                            <ul><li>Traslado terrestre: San Jose - (Pavona / Caño Blanco) - San José</li>
+                            <li>Traslado en Bote: (Pavona / Caño Blanco) - Tortuguero - (Pavona / Cano Blanco)</li>
+                            <li>Desayuno a la ida y almuerzo al regreso.</li>
+                            <li>Los transfer tendrán un costo de $75 por vía por persona. En la vía SJ-Tortuguero se les brindará desayuno en ruta. </li>
+                            <li>En la vía Tortuguero-SJ se brindará almuerzo en ruta.</li>
+                            <li>Bebidas alcohólicas, gaseosas, y agua embotellada</li>
+                            <li>Entrada al parque nacional USD $15,00 por pax (sujeto a cambios). A partir del 1 de agosto del 2014 el precio será de $15 + impuestos para adultos y $5 + impuestos para niños.</li>
+                            <li>Entrada al Museo de La Tortuga USD $2.00 por pax (sujeto a cambios)</li>
+                            <li>Tour nocturno de desove de tortugas (Jul-Oct) USD $35 por pax (Sujeto a cambios). Debe de ser pagado en efectivo en el hotel.</li>
+                            </ul><p>Condiciones generales</p>
+                            <ul><li>Precios por persona en US Dólares.</li>
+                            <li>Incluye impuestos alimentación y transporte desde San José</li>
+                            <li>Peso máximo de equipaje 10kg = 25 Lbs por persona.</li>
+                            <li>Check in será a partir de las 12 MD - Check out a las 09 AM.</li>
+                            <li>La capacidad máxima por habitación es de 4 personas.</li>
+                            <li>No se admiten grupos mayores de 6 habitaciones - solo bajo solicitud</li>
+                            <li>No se admiten mascotas de ningún tipo</li>
+                            <li>Nos reservamos el derecho de cargar un suplemento para las cenas o fiestas de Navidad y de Año Nuevo, que serán de compra no obligatoria.</li>
+                            </ul><h4>2016</h4>
+                            <p>Los paquetes incluyen:</p>
+                            <ul><li>Hospedaje y alimentación, bebidas no incluidas</li>
+                            <li>2 Tours en el paquete 2 días y 1 noche: un tour por el pueblo de Tortuguero y un tour a los canales del Parque Nacional Tortuguero- entrada no incluida.</li>
+                            <li>3 Tours en el paquete de 3 días y 2 noches: un tour al pueblo de Tortuguero y dos tours a los canales del Parque Nacional– entrada no incluida.</li>
+                            <li>Incluye todos los impuestos.</li>
+                            </ul><p>No incluye:</p>
+                            <ul><li>Traslado terrestre: San Jose - (Pavona / Caño Blanco) - San José</li>
+                            <li>Traslado en Bote: (Pavona / Caño Blanco) - Tortuguero - (Pavona / Cano Blanco)</li>
+                            <li>Desayuno a la ida y almuerzo al regreso.</li>
+                            <li>Los transfer tendrán un costo de $75 por vía por persona. En la vía SJ-Tortuguero se les brindará desayuno en ruta. </li>
+                            <li>En la vía Tortuguero-SJ se brindará almuerzo en ruta.</li>
+                            <li>Bebidas alcohólicas, gaseosas, y agua embotellada</li>
+                            <li>Entrada al parque nacional USD $15,00 por pax (sujeto a cambios)</li>
+                            <li>Entrada al Museo de La Tortuga USD $2.00 por pax (sujeto a cambios)</li>
+                            <li>Tour nocturno de desove de tortugas (Jul-Oct) USD $35 por pax (Sujeto a cambios). Debe de ser pagado en efectivo en el hotel.</li>
+                            </ul><p>Condiciones generales</p>
+                            <ul><li>Precios por persona en US Dólares.</li>
+                            <li>Incluye impuestos alimentación y transporte desde San José</li>
+                            <li>Peso máximo de equipaje 10kg = 25 Lbs por persona.</li>
+                            <li>Check in será a partir de las 12 MD - Check out a las 09 AM.</li>
+                            <li>La capacidad máxima por habitación es de 4 personas.</li>
+                            <li>No se admiten grupos mayores de 6 habitaciones - solo bajo solicitud</li>
+                            <li>No se admiten mascotas de ningún tipo</li>
+                            <li>Nos reservamos el derecho de cargar un suplemento para las cenas o fiestas de Navidad y de Año Nuevo, que serán de compra no obligatoria.</li>
+                            </ul>
+
+                        </div>
+                        <div class="inc_paq_3_2">
+                            <h4>2015</h4>
+                            <p>Los paquetes incluyen:</p>
+                            <ul><li>Hospedaje y alimentación, bebidas no incluidas</li>
+                            <li>2 Tours en el paquete 2 días y 1 noche: un tour por el pueblo de Tortuguero y un tour a los canales del Parque Nacional Tortuguero- entrada no incluida.</li>
+                            <li>3 Tours en el paquete de 3 días y 2 noches: un tour al pueblo de Tortuguero y dos tours a los canales del Parque Nacional– entrada no incluida.</li>
+                            <li>Incluye todos los impuestos.</li>
+                            </ul><p>No incluye:</p>
+                            <ul><li>Traslado terrestre: San Jose - (Pavona / Caño Blanco) - San José</li>
+                            <li>Traslado en Bote: (Pavona / Caño Blanco) - Tortuguero - (Pavona / Cano Blanco)</li>
+                            <li>Desayuno a la ida y almuerzo al regreso.</li>
+                            <li>Los transfer tendrán un costo de $75 por vía por persona. En la vía SJ-Tortuguero se les brindará desayuno en ruta. </li>
+                            <li>En la vía Tortuguero-SJ se brindará almuerzo en ruta.</li>
+                            <li>Bebidas alcohólicas, gaseosas, y agua embotellada</li>
+                            <li>Entrada al parque nacional USD $15,00 por pax (sujeto a cambios). A partir del 1 de agosto del 2014 el precio será de $15 + impuestos para adultos y $5 + impuestos para niños.</li>
+                            <li>Entrada al Museo de La Tortuga USD $2.00 por pax (sujeto a cambios)</li>
+                            <li>Tour nocturno de desove de tortugas (Jul-Oct) USD $35 por pax (Sujeto a cambios). Debe de ser pagado en efectivo en el hotel.</li>
+                            </ul><p>Condiciones generales</p>
+                            <ul><li>Precios por persona en US Dólares.</li>
+                            <li>Incluye impuestos alimentación y transporte desde San José</li>
+                            <li>Peso máximo de equipaje 10kg = 25 Lbs por persona.</li>
+                            <li>Check in será a partir de las 12 MD - Check out a las 09 AM.</li>
+                            <li>La capacidad máxima por habitación es de 4 personas.</li>
+                            <li>No se admiten grupos mayores de 6 habitaciones - solo bajo solicitud</li>
+                            <li>No se admiten mascotas de ningún tipo</li>
+                            <li>Nos reservamos el derecho de cargar un suplemento para las cenas o fiestas de Navidad y de Año Nuevo, que serán de compra no obligatoria.</li>
+                            </ul><h4>2016</h4>
+                            <p>Los paquetes incluyen:</p>
+                            <ul><li>Hospedaje y alimentación, bebidas no incluidas</li>
+                            <li>2 Tours en el paquete 2 días y 1 noche: un tour por el pueblo de Tortuguero y un tour a los canales del Parque Nacional Tortuguero- entrada no incluida.</li>
+                            <li>3 Tours en el paquete de 3 días y 2 noches: un tour al pueblo de Tortuguero y dos tours a los canales del Parque Nacional– entrada no incluida.</li>
+                            <li>Incluye todos los impuestos.</li>
+                            </ul><p>No incluye:</p>
+                            <ul><li>Traslado terrestre: San Jose - (Pavona / Caño Blanco) - San José</li>
+                            <li>Traslado en Bote: (Pavona / Caño Blanco) - Tortuguero - (Pavona / Cano Blanco)</li>
+                            <li>Desayuno a la ida y almuerzo al regreso.</li>
+                            <li>Los transfer tendrán un costo de $75 por vía por persona. En la vía SJ-Tortuguero se les brindará desayuno en ruta. </li>
+                            <li>En la vía Tortuguero-SJ se brindará almuerzo en ruta.</li>
+                            <li>Bebidas alcohólicas, gaseosas, y agua embotellada</li>
+                            <li>Entrada al parque nacional USD $15,00 por pax (sujeto a cambios)</li>
+                            <li>Entrada al Museo de La Tortuga USD $2.00 por pax (sujeto a cambios)</li>
+                            <li>Tour nocturno de desove de tortugas (Jul-Oct) USD $35 por pax (Sujeto a cambios). Debe de ser pagado en efectivo en el hotel.</li>
+                            </ul><p>Condiciones generales</p>
+                            <ul><li>Precios por persona en US Dólares.</li>
+                            <li>Incluye impuestos alimentación y transporte desde San José</li>
+                            <li>Peso máximo de equipaje 10kg = 25 Lbs por persona.</li>
+                            <li>Check in será a partir de las 12 MD - Check out a las 09 AM.</li>
+                            <li>La capacidad máxima por habitación es de 4 personas.</li>
+                            <li>No se admiten grupos mayores de 6 habitaciones - solo bajo solicitud</li>
+                            <li>No se admiten mascotas de ningún tipo</li>
+                            <li>Nos reservamos el derecho de cargar un suplemento para las cenas o fiestas de Navidad y de Año Nuevo, que serán de compra no obligatoria.</li>
+                            </ul>
+
+                        </div>
+                        <div class="inc_paq_custom">
+
+                            <h4>2015</h4>
+                            <p>Los paquetes incluyen:</p>
+                            <ul><li>Hospedaje y alimentación, bebidas no incluidas</li>
+                            <li>2 Tours en el paquete 2 días y 1 noche: un tour por el pueblo de Tortuguero y un tour a los canales del Parque Nacional Tortuguero- entrada no incluida.</li>
+                            <li>3 Tours en el paquete de 3 días y 2 noches: un tour al pueblo de Tortuguero y dos tours a los canales del Parque Nacional– entrada no incluida.</li>
+                            <li>Incluye todos los impuestos.</li>
+                            </ul><p>No incluye:</p>
+                            <ul><li>Traslado terrestre: San Jose - (Pavona / Caño Blanco) - San José</li>
+                            <li>Traslado en Bote: (Pavona / Caño Blanco) - Tortuguero - (Pavona / Cano Blanco)</li>
+                            <li>Desayuno a la ida y almuerzo al regreso.</li>
+                            <li>Los transfer tendrán un costo de $75 por vía por persona. En la vía SJ-Tortuguero se les brindará desayuno en ruta. </li>
+                            <li>En la vía Tortuguero-SJ se brindará almuerzo en ruta.</li>
+                            <li>Bebidas alcohólicas, gaseosas, y agua embotellada</li>
+                            <li>Entrada al parque nacional USD $15,00 por pax (sujeto a cambios). A partir del 1 de agosto del 2014 el precio será de $15 + impuestos para adultos y $5 + impuestos para niños.</li>
+                            <li>Entrada al Museo de La Tortuga USD $2.00 por pax (sujeto a cambios)</li>
+                            <li>Tour nocturno de desove de tortugas (Jul-Oct) USD $35 por pax (Sujeto a cambios). Debe de ser pagado en efectivo en el hotel.</li>
+                            </ul><p>Condiciones generales</p>
+                            <ul><li>Precios por persona en US Dólares.</li>
+                            <li>Incluye impuestos alimentación y transporte desde San José</li>
+                            <li>Peso máximo de equipaje 10kg = 25 Lbs por persona.</li>
+                            <li>Check in será a partir de las 12 MD - Check out a las 09 AM.</li>
+                            <li>La capacidad máxima por habitación es de 4 personas.</li>
+                            <li>No se admiten grupos mayores de 6 habitaciones - solo bajo solicitud</li>
+                            <li>No se admiten mascotas de ningún tipo</li>
+                            <li>Nos reservamos el derecho de cargar un suplemento para las cenas o fiestas de Navidad y de Año Nuevo, que serán de compra no obligatoria.</li>
+                            </ul><h4>2016</h4>
+                            <p>Los paquetes incluyen:</p>
+                            <ul><li>Hospedaje y alimentación, bebidas no incluidas</li>
+                            <li>2 Tours en el paquete 2 días y 1 noche: un tour por el pueblo de Tortuguero y un tour a los canales del Parque Nacional Tortuguero- entrada no incluida.</li>
+                            <li>3 Tours en el paquete de 3 días y 2 noches: un tour al pueblo de Tortuguero y dos tours a los canales del Parque Nacional– entrada no incluida.</li>
+                            <li>Incluye todos los impuestos.</li>
+                            </ul><p>No incluye:</p>
+                            <ul><li>Traslado terrestre: San Jose - (Pavona / Caño Blanco) - San José</li>
+                            <li>Traslado en Bote: (Pavona / Caño Blanco) - Tortuguero - (Pavona / Cano Blanco)</li>
+                            <li>Desayuno a la ida y almuerzo al regreso.</li>
+                            <li>Los transfer tendrán un costo de $75 por vía por persona. En la vía SJ-Tortuguero se les brindará desayuno en ruta. </li>
+                            <li>En la vía Tortuguero-SJ se brindará almuerzo en ruta.</li>
+                            <li>Bebidas alcohólicas, gaseosas, y agua embotellada</li>
+                            <li>Entrada al parque nacional USD $15,00 por pax (sujeto a cambios)</li>
+                            <li>Entrada al Museo de La Tortuga USD $2.00 por pax (sujeto a cambios)</li>
+                            <li>Tour nocturno de desove de tortugas (Jul-Oct) USD $35 por pax (Sujeto a cambios). Debe de ser pagado en efectivo en el hotel.</li>
+                            </ul><p>Condiciones generales</p>
+                            <ul><li>Precios por persona en US Dólares.</li>
+                            <li>Incluye impuestos alimentación y transporte desde San José</li>
+                            <li>Peso máximo de equipaje 10kg = 25 Lbs por persona.</li>
+                            <li>Check in será a partir de las 12 MD - Check out a las 09 AM.</li>
+                            <li>La capacidad máxima por habitación es de 4 personas.</li>
+                            <li>No se admiten grupos mayores de 6 habitaciones - solo bajo solicitud</li>
+                            <li>No se admiten mascotas de ningún tipo</li>
+                            <li>Nos reservamos el derecho de cargar un suplemento para las cenas o fiestas de Navidad y de Año Nuevo, que serán de compra no obligatoria.</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div id="tarifas" class="tbcontent">
+                        <div class="tar_paq_2_1">
+
+
+                            <div class="contenedor-rates">
+                            <div class="rates-columna1">
+                            <h4>2015</h4>
+                            <p>Tarifas por persona, válidas del 01 de Enero hasta el 31 de Diciembre del 2015</p>
+                            <div class="columna-tabla-rates first">
+                            <table cellspacing="0" cellpadding="0" border="1" class="width325 aligncenter season-a encabezado"><tbody><tr><td class="headerTabla2 bordeTable" colspan="3"><span class="titulo-dia">Temporada Alta</span> Ene - Feb - Mar - Abr - Jul - Ago - Dic  </td>
+                            </tr></tbody></table><table cellspacing="0" cellpadding="0" border="1" class="width325 aligncenter season-a"><tbody><tr class="headerTabla"><td> OCUPACIÓN</td>
+                            <td> TARIFA</td>
+                            </tr><tr><td> INDIVIDUAL</td>
+                            <td> $ 301 </td>
+                            </tr><tr><td> DOBLE</td>
+                            <td> $ 270 </td>
+                            </tr><tr><td> TRIPLE</td>
+                            <td> $ 247 </td>
+                            </tr><tr><td> CUADRUPLE</td>
+                            <td> $ 225 </td>
+                            </tr><tr><td> ADULTO (Noche Adicional)</td>
+                            <td> $ 210 </td>
+                            </tr></tbody></table></div>
+                            <div class="columna-tabla-rates">
+                            <table cellspacing="0" cellpadding="0" border="1" class="width325 aligncenter season-b encabezado"><tbody><tr><td class="headerTabla2 bordeTable" colspan="3"><span class="titulo-dia">Temporada Baja</span> May - Jun - Set - Oct - Nov  </td>
+                            </tr></tbody></table><table cellspacing="0" cellpadding="0" border="1" class="width325 aligncenter season-b"><tbody><tr class="headerTabla"><td> OCUPACIÓN </td>
+                            <td> TARIFA</td>
+                            </tr><tr><td> INDIVIDUAL</td>
+                            <td> $ 250 </td>
+                            </tr><tr><td> DOBLE</td>
+                            <td> $ 220 </td>
+                            </tr><tr><td> TRIPLE</td>
+                            <td> $ 200 </td>
+                            </tr><tr><td> CUADRUPLE</td>
+                            <td> $ 190 </td>
+                            </tr><tr><td> ADULTO (Noche Adicional) </td>
+                            <td> $ 178</td>
+                            </tr></tbody></table></div>
+                            </div>
+                            <div class="rates-columna2">
+                            <h4>2016</h4>
+                            <p>Tarifas por persona, válidas del 01 de Enerohasta el 31 de Diciembre del 2016</p>
+                            <div class="columna-tabla-rates first">
+                            <table cellspacing="0" cellpadding="0" border="1" class="width325 aligncenter season-a encabezado"><tbody><tr><td class="headerTabla2 bordeTable" colspan="2"><span class="titulo-dia">Temporada Alta</span> Ene - Feb - Mar - Abr - Jul - Ago - Dic  </td>
+                            </tr></tbody></table><table cellspacing="0" cellpadding="0" border="1" class="width325 aligncenter season-a"><tbody><tr class="headerTabla"><td> OCUPACIÓN </td>
+                            <td> TARIFA </td>
+                            </tr><tr><td> INDIVIDUAL</td>
+                            <td> $ 317</td>
+                            </tr><tr><td> DOBLE </td>
+                            <td> $ 283 </td>
+                            </tr><tr><td> TRIPLE </td>
+                            <td> $ 260 </td>
+                            </tr><tr><td> CUADRUPLE </td>
+                            <td> $236 </td>
+                            </tr><tr><td>ADULTO (Noche Adicional)</td>
+                            <td> $ 220 </td>
+                            </tr></tbody></table></div>
+                            <div class="columna-tabla-rates">
+                            <table cellspacing="0" cellpadding="0" border="1" class="width325 aligncenter season-b encabezado"><tbody><tr><td class="headerTabla2 bordeTable" colspan="2"><span class="titulo-dia">Temparada Baja</span> May - Jun - Set - Oct - Nov  </td>
+                            </tr></tbody></table><table cellspacing="0" cellpadding="0" border="1" class="width325 aligncenter season-b"><tbody><tr class="headerTabla"><td> OCUPACIÓN </td>
+                            <td> TARIFA </td>
+                            </tr><tr><td> INDIVIDUAL</td>
+                            <td> $ 262 </td>
+                            </tr><tr><td> DOBLE</td>
+                            <td> $ 231 </td>
+                            </tr><tr><td> TRIPLE</td>
+                            <td> $ 210 </td>
+                            </tr><tr><td> CUADRUPLE</td>
+                            <td> $ 199 </td>
+                            </tr><tr><td> ADULTO (Noche Adicional)</td>
+                            <td> $ 185 </td>
+                            </tr></tbody></table></div>
+                            </div>
+                            </div>
+
+                        </div>
+                        <div class="tar_paq_3_2">
+
+                            <div class="contenedor-rates">
+                            <div class="rates-columna1">
+                            <h4>2015</h4>
+                            <p>Tarifas por persona, válidas del 01 de Enero hasta el 31 de Diciembre del 2015</p>
+                            <div class="columna-tabla-rates first">
+                            <table cellspacing="0" cellpadding="0" border="1" class="width325 aligncenter season-a encabezado"><tbody><tr><td class="headerTabla2 bordeTable" colspan="3"><span class="titulo-dia">Temporada Alta</span> Ene - Feb - Mar - Abr - Jul - Ago - Dic  </td>
+                            </tr></tbody></table><table cellspacing="0" cellpadding="0" border="1" class="width325 aligncenter season-a"><tbody><tr class="headerTabla"><td> OCUPACIÓN</td>
+                            <td> TARIFA</td>
+                            </tr><tr><td> INDIVIDUAL</td>
+                            <td> $ 428</td>
+                            </tr><tr><td> DOBLE</td>
+                            <td> $ 383</td>
+                            </tr><tr><td> TRIPLE</td>
+                            <td> $ 346</td>
+                            </tr><tr><td> CUADRUPLE</td>
+                            <td> $ 322</td>
+                            </tr><tr><td> ADULTO (Noche Adicional)</td>
+                            <td> $ 210 </td>
+                            </tr></tbody></table></div>
+                            <div class="columna-tabla-rates">
+                            <table cellspacing="0" cellpadding="0" border="1" class="width325 aligncenter season-b encabezado"><tbody><tr><td class="headerTabla2 bordeTable" colspan="3"><span class="titulo-dia">Temporada Baja</span> May - Jun - Set - Oct - Nov  </td>
+                            </tr></tbody></table><table cellspacing="0" cellpadding="0" border="1" class="width325 aligncenter season-b"><tbody><tr class="headerTabla"><td> OCUPACIÓN </td>
+                            <td> TARIFA</td>
+                            </tr><tr><td> INDIVIDUAL</td>
+                            <td> $ 354</td>
+                            </tr><tr><td> DOBLE</td>
+                            <td> $ 310</td>
+                            </tr><tr><td> TRIPLE</td>
+                            <td> $ 284</td>
+                            </tr><tr><td> CUADRUPLE</td>
+                            <td> $ 262</td>
+                            </tr><tr><td> ADULTO (Noche Adicional) </td>
+                            <td> $ 178</td>
+                            </tr></tbody></table></div>
+                            </div>
+                            <div class="rates-columna2">
+                            <h4>2016</h4>
+                            <p>Tarifas por persona, válidas del 01 de Enerohasta el 31 de Diciembre del 2016</p>
+                            <div class="columna-tabla-rates first">
+                            <table cellspacing="0" cellpadding="0" border="1" class="width325 aligncenter season-a encabezado"><tbody><tr><td class="headerTabla2 bordeTable" colspan="2"><span class="titulo-dia">Temporada Alta</span> Ene - Feb - Mar - Abr - Jul - Ago - Dic  </td>
+                            </tr></tbody></table><table cellspacing="0" cellpadding="0" border="1" class="width325 aligncenter season-a"><tbody><tr class="headerTabla"><td> OCUPACIÓN</td>
+                            <td> TARIFA</td>
+                            </tr><tr><td> INDIVIDUAL</td>
+                            <td> $ 450</td>
+                            </tr><tr><td> DOBLE</td>
+                            <td> $ 402</td>
+                            </tr><tr><td> TRIPLE</td>
+                            <td> $ 363</td>
+                            </tr><tr><td> CUADRUPLE</td>
+                            <td> $ 338</td>
+                            </tr><tr><td> ADULTO (Noche Adicional)</td>
+                            <td> $ 220 </td>
+                            </tr></tbody></table></div>
+                            <div class="columna-tabla-rates">
+                            <table cellspacing="0" cellpadding="0" border="1" class="width325 aligncenter season-b encabezado"><tbody><tr><td class="headerTabla2 bordeTable" colspan="2"><span class="titulo-dia">Temparada Baja</span> May - Jun - Set - Oct - Nov  </td>
+                            </tr></tbody></table><table cellspacing="0" cellpadding="0" border="1" class="width325 aligncenter season-b"><tbody><tr class="headerTabla"></tr><tr class="headerTabla"><td> OCUPACIÓN </td>
+                            <td> TARIFA</td>
+                            </tr><tr><td> INDIVIDUAL</td>
+                            <td> $ 371</td>
+                            </tr><tr><td> DOBLE</td>
+                            <td> $ 325</td>
+                            </tr><tr><td> TRIPLE</td>
+                            <td> $ 298</td>
+                            </tr><tr><td> CUADRUPLE</td>
+                            <td> $ 275</td>
+                            </tr><tr><td> ADULTO (Noche Adicional) </td>
+                            <td> $ 185</td>
+                            </tr></tbody></table></div>
+                            </div>
+                            </div>
+
+                        </div>
+                        <div class="tar_paq_custom">
+                            Reserve ahora su paquete.
+                        </div>
+                    </div>
+                </div>
+                
+                <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+                <script>
+                    $(function () {
+                        $("#tabs").tabs();
+                    });
+                </script>
+
+                
+
             </div>
             <div class="content-box container-1-3 sidebar">
                 <div class="paddingBottomp10">
