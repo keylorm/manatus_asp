@@ -1591,6 +1591,7 @@ h2.h2Celeste{
 .reservation-form #updtpanel_reservacion{
     background: none;
     border: 1px solid #594A42;
+    padding: 20px;
 }
 
 .reservation-form #updtpanel_reservacion h3{
@@ -2116,9 +2117,18 @@ a#AplicarSeleccion{
 
 }
 
+#pnl_contenido .span-field{
+    color: #594A42;
+    font-family: "Open Sans",sans-seif;
+    font-size: 15px; 
+    display: block;
+    margin: 12px 0px 8px 0px;  
+}
+
 #pnl_contenido input[type="text"]{
     height: 43px;
     border: 1px solid #594A42;
+    margin: 0px;
     -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;    
@@ -2126,6 +2136,8 @@ a#AplicarSeleccion{
 
 #pnl_contenido select{
     height: 43px;
+    margin: 0px;
+    line-height: normal;
     border: 1px solid #594A42;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -2147,5 +2159,36 @@ a#AplicarSeleccion{
           box-sizing: border-box;
     clear: both;
     overflow: hidden;
+
+}
+
+.cod-telefono{
+
+}
+
+.cod-telefono .wrapper-field{
+    display: inline-block;
+    width: 47%;
+    -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;    
+}
+.cod-telefono .wrapper-field:first-child{
+    margin-right: 5%;
+}
+a#linkTerminosCondiciones{
+    color: #594A42;
+    font-family: "Open Sans",sans-seif;
+    font-size: 12px;
+    text-decoration: none; 
+    font-weight: 600;
+    line-height: 60px;    
+}
+
+#pnl_contenido label[for="chkTerminosCondiciones"]{
+    color: #594A42;
+    font-family: "Open Sans",sans-seif;
+    font-size: 12px; 
+    font-weight: normal;
 
 }
