@@ -96,7 +96,7 @@
 
 		var checkin = '';
 		var checkout = '';
-		//var param1var = getQueryVariable('rango_fecha');
+		var param1var = getQueryVariable('rango_fecha');
 		if (param1var != false) {
 		    param1var = unescape(param1var);  //escapar los caracteres especiales en el URL
 		    var rango = param1var.split("+-+"); //separar el rango (checkin - checkout)

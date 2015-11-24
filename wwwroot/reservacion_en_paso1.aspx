@@ -140,12 +140,6 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
         urlactual = urlactual.replace(/\?.*/, "");
         _gaq.push(['_trackEvent', 'Reservación', 'Paso 1', urlactual]);
     </script>
-
-    <script>
-        function pageLoad() {
-            EYE.register(initLayout, 'init');
-        }
-    </script>
 </head>
 <body class="reservation-form en">
     <form id="form1" runat="server">
