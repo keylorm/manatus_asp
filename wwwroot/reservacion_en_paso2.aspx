@@ -314,52 +314,56 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                 </center>
                                             </asp:Panel>
                                             <asp:Panel ID="pnl_contenido" runat="server" Visible="true">
-                                                <div>
-                                                    <asp:Label ID="lbl_nombre" runat="server" Text="Full name"></asp:Label>
+                                                <div class="wrapper-field">
+                                                    <asp:Label ID="lbl_nombre" runat="server" Text="Full name" class="span-field"></asp:Label>
                                                     <asp:TextBox ID="txt_nombre" runat="server" CssClass="textBoxNuevo"></asp:TextBox>
                                                     <asp:RequiredFieldValidator ID="rfv_nombre" runat="server" ControlToValidate="txt_nombre" Display="Dynamic" ErrorMessage="Required field" ValidationGroup="registrese"></asp:RequiredFieldValidator>
                                                 </div>
-                                                <div>
-                                                    <asp:Label ID="lbl_dir" runat="server" Text="Address"></asp:Label>
+                                                <div class="wrapper-field">
+                                                    <asp:Label ID="lbl_dir" runat="server" Text="Address" class="span-field"></asp:Label>
                                                     <asp:TextBox ID="txt_direccion" runat="server" CssClass="textBoxNuevo"></asp:TextBox>
                                                     <asp:RequiredFieldValidator ID="rfv_direccion" runat="server" ControlToValidate="txt_direccion" Display="Dynamic" ErrorMessage="Required field" ValidationGroup="registrese"></asp:RequiredFieldValidator>
                                                 </div>
-                                                <div class="box-ubicacion">
-                                                    <asp:Label ID="lbl_ubicacion" runat="server" Text="Country"></asp:Label>
+                                                <div class="box-ubicacion wrapper-field">
+                                                    <asp:Label ID="lbl_ubicacion" runat="server" Text="Country" class="span-field"></asp:Label>
                                                     <asp:DropDownList ID="ddl_ubicacion" runat="server" CssClass="dropdownsReserva"></asp:DropDownList>
                                                 </div>
                                                 <!--<div>
                                                 <asp:Label ID="lbl_codigo" runat="server" Text="Código Postal:"></asp:Label>
                                                 <asp:TextBox ID="txt_codPostal" runat="server" CssClass="textBoxNuevo"></asp:TextBox>
-                                            </div>-->
-                                                <div>
-                                                    <asp:Label ID="lbl_codigoA" runat="server" Text="Area code"></asp:Label>
-                                                    <asp:TextBox ID="txt_codArea" runat="server" CssClass="textBoxNuevo"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="rfv_codigoA" runat="server" ControlToValidate="txt_codArea" Display="Dynamic" ErrorMessage="Required field" ValidationGroup="registrese"></asp:RequiredFieldValidator>
+                                                </div>-->
+                                                <div class="cod-telefono">
+                                                    <div class="wrapper-field">
+                                                        <asp:Label ID="lbl_codigoA" runat="server" Text="Area code" class="span-field"></asp:Label>
+                                                        <asp:TextBox ID="txt_codArea" runat="server" CssClass="textBoxNuevo"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="rfv_codigoA" runat="server" ControlToValidate="txt_codArea" Display="Dynamic" ErrorMessage="Required field" ValidationGroup="registrese"></asp:RequiredFieldValidator>
+                                                    </div>
+                                                    <div class="wrapper-field">
+                                                        <asp:Label ID="lbl_telefono" runat="server" Text="Phone" class="span-field"></asp:Label>
+                                                        <asp:TextBox ID="txt_tel" runat="server" CssClass="textBoxNuevo"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator ID="rfv_Tel" runat="server" ControlToValidate="txt_tel" Display="Dynamic" ErrorMessage="Required field" ValidationGroup="registrese"></asp:RequiredFieldValidator>
+                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <asp:Label ID="lbl_telefono" runat="server" Text="Phone"></asp:Label>
-                                                    <asp:TextBox ID="txt_tel" runat="server" CssClass="textBoxNuevo"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator ID="rfv_Tel" runat="server" ControlToValidate="txt_tel" Display="Dynamic" ErrorMessage="Required field" ValidationGroup="registrese"></asp:RequiredFieldValidator>
-                                                </div>
-                                                <div>
-                                                    <asp:Label ID="lbl_email" runat="server" Text="Email"></asp:Label>
+                                                <div class="wrapper-field">
+                                                    <asp:Label ID="lbl_email" runat="server" Text="Email" class="span-field"></asp:Label>
                                                     <asp:TextBox ID="txt_email" runat="server" CssClass="textBoxNuevo"></asp:TextBox>
                                                     <asp:RequiredFieldValidator ID="rfv_email" runat="server" ControlToValidate="txt_email" Display="Dynamic" ErrorMessage="Required field" ValidationGroup="registrese"></asp:RequiredFieldValidator>
                                                     <asp:RegularExpressionValidator ID="rev_email" runat="server" ControlToValidate="txt_email" Display="Dynamic" ErrorMessage="Formato incorrecto" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="registrese"></asp:RegularExpressionValidator>
                                                 </div>
-                                                <div>
-                                                    <asp:Label ID="lbl_mensajeAdicional" runat="server" Text="Additional message"></asp:Label>
+                                                <div class="wrapper-field">
+                                                    <asp:Label ID="lbl_mensajeAdicional" runat="server" Text="Additional message" class="span-field"></asp:Label>
                                                     <asp:TextBox TextMode="MultiLine" runat="server" CssClass="textMensajeAdicional" ID="txtMensajeAdicional"></asp:TextBox>
                                                 </div>
-                                                <div id="terminos-condiciones">
+                                                <div id="terminos-condiciones" class="wrapper-field">
                                                     <asp:HyperLink NavigateUrl="javascript:void(0)" runat="server" Text="See Terms and Conditions" ID="linkTerminosCondiciones" />
                                                 </div>
-                                                <div>
+                                                <div class="wrapper-field">
                                                     <asp:CheckBox Text="I have read and accept the Terms and Conditions" runat="server" ID="chkTerminosCondiciones" />
                                                     <asp:CustomValidator ID="val_terminosCondiciones" runat="server" ErrorMessage="Please accept the terms..." ClientValidationFunction="CustomValidatorTerminosCondiciones" ValidationGroup="registrese"></asp:CustomValidator>
                                                     <%--<asp:RequiredFieldValidator ID="rev_terminosCondiciones" runat="server" ControlToValidate="chkTerminosCondiciones" Display="Dynamic" ErrorMessage="Required field" ValidationGroup="registrese"></asp:RequiredFieldValidator>--%>
                                                 </div>
+                                                <!-- mensajes -->
+                                                <asp:Label ID="lbl_ResultadoReservacion" runat="server" Text=""></asp:Label>
                                             </asp:Panel>
                                         </asp:Panel>
                                     </div>
