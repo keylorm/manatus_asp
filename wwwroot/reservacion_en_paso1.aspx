@@ -311,10 +311,10 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                     <div class="fecha-field">
                                                         <div id="widget">
                                                             <div id="widgetField">
-                                                                <asp:Label ID="lblIngresoSalida" runat="server" Text="Ingreso y Salida"></asp:Label>
+                                                                <asp:Label ID="lblIngresoSalida" runat="server" Text="Arrival and departure"></asp:Label>
                                                                 <asp:TextBox runat="server" ID="TxtCheckinCheckout" AutoPostBack="true" name="checkin-checkout"
                                                                     value='Select range'></asp:TextBox>
-                                                                <a class="btn" id="A1" href="javascript:void(0)">Reservar</a>
+                                                                <a class="btn" id="A1" href="javascript:void(0)">Book now</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -398,7 +398,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                 <ContentTemplate>
                                                     <div class="desc-paquete-inner">
                                                         <div class="box-precio-sin-transporte">
-                                                            <asp:LinkButton ID="btn_reservar1" runat="server" ToolTip="Reservar" ValidationGroup="registrese"
+                                                            <asp:LinkButton ID="btn_reservar1" runat="server" ToolTip="Book now" ValidationGroup="registrese"
                                                                 ForeColor="#FFFFFF" Visible="false">BOOK NOW »</asp:LinkButton>
                                                             <div class="precio-sin-transporte">
                                                                 <div class="precio-sin-transporte-value">
@@ -464,7 +464,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                             </div>
                                                         </div>
                                                         <div class="content_btn">
-                                                            <a class="btn" id="btn-reservar" href="javascript:void(0)">Reservar</a></div>
+                                                            <a class="btn" id="btn-reservar" href="javascript:void(0)">Book now</a></div>
                                                         <div style="display: none;">
                                                             <p>
                                                                 Pick up place</p>

@@ -309,7 +309,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                             <div id="widgetField">
                                                                 <asp:Label ID="lblIngresoSalida" runat="server" Text="Ingreso y Salida"></asp:Label>
                                                                 <asp:TextBox runat="server" ID="TxtCheckinCheckout" AutoPostBack="true" name="checkin-checkout"
-                                                                    value='Seleccionar rango de fechas'></asp:TextBox>
+                                                                    value='Seleccionar un rango'></asp:TextBox>
                                                                 <a class="btn" id="btn-reservar" href="javascript:void(0)">Reservar</a>
                                                             </div>
                                                         </div>
