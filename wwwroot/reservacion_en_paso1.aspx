@@ -140,12 +140,6 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
         urlactual = urlactual.replace(/\?.*/, "");
         _gaq.push(['_trackEvent', 'Reservación', 'Paso 1', urlactual]);
     </script>
-
-    <script>
-        function pageLoad() {
-            EYE.register(initLayout, 'init');
-        }
-    </script>
 </head>
 <body class="reservation-form en">
     <form id="form1" runat="server">
@@ -293,8 +287,8 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                 </div>
             </div>
             <div class="content-box container-2-3">
-                <asp:UpdatePanel ID="updtpanel_reservacion" runat="server">
-                    <ContentTemplate>
+                <div id="updtpanel_reservacion">
+                    <div>
                         <asp:Label ID="lbl_paquete" runat="server" Text="" Visible="false"></asp:Label>
                         <div>
                             <asp:Panel ID="panel" runat="server" Visible="true">
@@ -312,172 +306,189 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                         <div class="contenedor-fechas-hab">
                                             <!-- rango de fecha -->
                                             <!-- fin rango de fecha -->
-                                            <div class="fecha-field">
-                                                <%--<asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Always">
-                                                    <ContentTemplate>--%>
+                                            <asp:UpdatePanel ID="updatePane_fecha" runat="server" UpdateMode="Always">
+                                                <ContentTemplate>
+                                                    <div class="fecha-field">
                                                         <div id="widget">
                                                             <div id="widgetField">
                                                                 <asp:Label ID="lblIngresoSalida" runat="server" Text="Ingreso y Salida"></asp:Label>
                                                                 <asp:TextBox runat="server" ID="TxtCheckinCheckout" AutoPostBack="true" name="checkin-checkout"
                                                                     value='Select range'></asp:TextBox>
-                                                                
                                                                 <a class="btn" id="A1" href="javascript:void(0)">Reservar</a>
                                                             </div>
-                                                            <div id="widgetCalendar" class="hidden">
-
-                                                                <asp:LinkButton ID="AplicarSeleccion" runat="server" Text="Apply selection"></asp:LinkButton>
-                                                            </div>
                                                         </div>
-                                                    <%--</ContentTemplate>
-                                                </asp:UpdatePanel>--%>
-                                            </div>
+                                                    </div>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
+                                        </div>
+                                        <div id="widgetCalendar" class="hidden">
+                                            <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Always">
+                                                <ContentTemplate>
+                                                    <asp:LinkButton ID="AplicarSeleccion" runat="server" Text="Apply selection"></asp:LinkButton>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
                                         </div>
                                         <hr />
                                         <div class="contenedor-hab-personas">
                                             <h3>
                                                 Package for your vacations in Costa Rica</h3>
                                             <hr />
-                                            <asp:Panel ID="pnl_resultados" runat="server">
-                                                <asp:GridView ID="gv_ResultadosDisponibles" runat="server" ShowHeader="False" AutoGenerateColumns="False"
-                                                    GridLines="None" Width="246px" EnableModelValidation="True">
-                                                    <RowStyle HorizontalAlign="Left" />
-                                                    <HeaderStyle Font-Bold="false" HorizontalAlign="Left" />
-                                                    <Columns>
-                                                        <asp:TemplateField>
-                                                            <ItemTemplate>
-                                                                <asp:ImageButton ID="borrarHabitacion" runat="server" ImageUrl="~/images/bg-borrar-habitacion.jpg"
-                                                                    CommandName="borrarHabitacion" CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>" />
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="" HeaderStyle-HorizontalAlign="Left">
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lbl_nombre" CssClass="marginleft15" runat="server" Font-Bold="false"
-                                                                    Font-Italic="true" ForeColor="#999999" Text="1 room"></asp:Label>
-                                                            </ItemTemplate>
-                                                            <HeaderStyle HorizontalAlign="Left" />
-                                                            <ItemStyle HorizontalAlign="Right" />
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField>
-                                                            <ItemTemplate>
-                                                                <div class="lbl_paquete_box">
-                                                                    <asp:Label ID="lbl_tipo_paquete" runat="server" Text="Custom Package"></asp:Label>
-                                                                </div>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField>
-                                                            <ItemTemplate>
-                                                                <div class="box-select-personas">
-                                                                    <asp:DropDownList ID="ddl_personas" runat="server" CssClass="dropdownsReserva" OnSelectedIndexChanged="ddl_personas_SelectedIndexChanged"
-                                                                        AutoPostBack="true">
-                                                                        <asp:ListItem Text="1 person" Value="1"></asp:ListItem>
-                                                                        <asp:ListItem Text="2 people" Value="2"></asp:ListItem>
-                                                                        <asp:ListItem Text="3 people" Value="3"></asp:ListItem>
-                                                                        <asp:ListItem Text="4 people" Value="4"></asp:ListItem>
-                                                                    </asp:DropDownList>
-                                                                </div>
-                                                            </ItemTemplate>
-                                                            <HeaderStyle Font-Bold="True" HorizontalAlign="Right" />
-                                                            <ItemStyle HorizontalAlign="Right" />
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField>
-                                                            <ItemTemplate>
-                                                                <div class="lbl_precio_habitacion">
-                                                                    <asp:Label ID="lbl_precio_habitacion" runat="server" Text="$ 0"></asp:Label>
-                                                                </div>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                    </Columns>
-                                                    <RowStyle Font-Bold="true" />
-                                                </asp:GridView>
-                                                <asp:LinkButton ID="add_room" runat="server">+ Add Room</asp:LinkButton>
-                                            </asp:Panel>
+                                            <asp:UpdatePanel ID="updatePane_habitaciones" runat="server" UpdateMode="Always">
+                                                <ContentTemplate>
+                                                    <asp:Panel ID="pnl_resultados" runat="server">
+                                                        <asp:GridView ID="gv_ResultadosDisponibles" runat="server" ShowHeader="False" AutoGenerateColumns="False"
+                                                            GridLines="None" Width="246px" EnableModelValidation="True">
+                                                            <RowStyle HorizontalAlign="Left" />
+                                                            <HeaderStyle Font-Bold="false" HorizontalAlign="Left" />
+                                                            <Columns>
+                                                                <asp:TemplateField>
+                                                                    <ItemTemplate>
+                                                                        <asp:ImageButton ID="borrarHabitacion" runat="server" ImageUrl="~/images/bg-borrar-habitacion.jpg"
+                                                                            CommandName="borrarHabitacion" CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>" />
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField HeaderText="" HeaderStyle-HorizontalAlign="Left">
+                                                                    <ItemTemplate>
+                                                                        <asp:Label ID="lbl_nombre" CssClass="marginleft15" runat="server" Font-Bold="false"
+                                                                            Font-Italic="true" ForeColor="#999999" Text="1 room"></asp:Label>
+                                                                    </ItemTemplate>
+                                                                    <HeaderStyle HorizontalAlign="Left" />
+                                                                    <ItemStyle HorizontalAlign="Right" />
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField>
+                                                                    <ItemTemplate>
+                                                                        <div class="lbl_paquete_box">
+                                                                            <asp:Label ID="lbl_tipo_paquete" runat="server" Text="Custom Package"></asp:Label>
+                                                                        </div>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField>
+                                                                    <ItemTemplate>
+                                                                        <div class="box-select-personas">
+                                                                            <asp:DropDownList ID="ddl_personas" runat="server" CssClass="dropdownsReserva" OnSelectedIndexChanged="ddl_personas_SelectedIndexChanged"
+                                                                                AutoPostBack="true">
+                                                                                <asp:ListItem Text="1 person" Value="1"></asp:ListItem>
+                                                                                <asp:ListItem Text="2 people" Value="2"></asp:ListItem>
+                                                                                <asp:ListItem Text="3 people" Value="3"></asp:ListItem>
+                                                                                <asp:ListItem Text="4 people" Value="4"></asp:ListItem>
+                                                                            </asp:DropDownList>
+                                                                        </div>
+                                                                    </ItemTemplate>
+                                                                    <HeaderStyle Font-Bold="True" HorizontalAlign="Right" />
+                                                                    <ItemStyle HorizontalAlign="Right" />
+                                                                </asp:TemplateField>
+                                                                <asp:TemplateField>
+                                                                    <ItemTemplate>
+                                                                        <div class="lbl_precio_habitacion">
+                                                                            <asp:Label ID="lbl_precio_habitacion" runat="server" Text="$ 0"></asp:Label>
+                                                                        </div>
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                            </Columns>
+                                                            <RowStyle Font-Bold="true" />
+                                                        </asp:GridView>
+                                                        <asp:LinkButton ID="add_room" runat="server">+ Add Room</asp:LinkButton>
+                                                    </asp:Panel>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
                                         </div>
                                         <asp:Label ID="lbl_ResultadoHabitaciones" runat="server" Text=""></asp:Label>
                                         <div class="desc-paquete">
-                                            <div class="desc-paquete-inner">
-                                                <div class="box-precio-sin-transporte">
-                                                    <asp:LinkButton ID="btn_reservar1" runat="server" ToolTip="Reservar" ValidationGroup="registrese"
-                                                        ForeColor="#FFFFFF" Visible="false">BOOK NOW »</asp:LinkButton>
-                                                    <div class="precio-sin-transporte">
-                                                        <div class="precio-sin-transporte-value">
-                                                            $
-                                                            <asp:Label ID="lbl_precioSinTransporte" runat="server" Text="0"></asp:Label>
-                                                        </div>
-                                                        <div class="precio-sin-transporte-letra-pequena">
-                                                            <p>
-                                                                * Includes: taxes, footd and tours on Tortuguero Channels
-                                                            </p>
+                                            <asp:UpdatePanel ID="updatePane_detalleprecio" runat="server" UpdateMode="Always">
+                                                <ContentTemplate>
+                                                    <div class="desc-paquete-inner">
+                                                        <div class="box-precio-sin-transporte">
+                                                            <asp:LinkButton ID="btn_reservar1" runat="server" ToolTip="Reservar" ValidationGroup="registrese"
+                                                                ForeColor="#FFFFFF" Visible="false">BOOK NOW »</asp:LinkButton>
+                                                            <div class="precio-sin-transporte">
+                                                                <div class="precio-sin-transporte-value">
+                                                                    $
+                                                                    <asp:Label ID="lbl_precioSinTransporte" runat="server" Text="0"></asp:Label>
+                                                                </div>
+                                                                <div class="precio-sin-transporte-letra-pequena">
+                                                                    <p>
+                                                                        * Includes: taxes, footd and tours on Tortuguero Channels
+                                                                    </p>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                           
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
                                         </div>
-                                         <div class="loader-error-wrapper">
-                                                <div class="desc-paquete-labels-errores">
-                                                    <asp:Label ID="lbl_erroFechas" runat="server" Text="" ForeColor="red"></asp:Label>
-                                                    <asp:Label ID="lbl_ResultadoReservacion" runat="server" Text=""></asp:Label>
-                                                </div>
-                                                <asp:UpdateProgress ID="UpdateProgress1" runat="server" >
-                                                    <ProgressTemplate>
-                                                        <asp:Image ID="Image1" runat="server" ImageUrl="~/images/ajax-loader.gif" />
-                                                        <asp:Label ID="Label1" runat="server" Text="Cargando ..."></asp:Label>
-                                                    </ProgressTemplate>
-                                                </asp:UpdateProgress>
-                                            </div>
+                                        <div class="loader-error-wrapper">
+                                            <asp:UpdatePanel ID="updatePane_errores_loader" runat="server" UpdateMode="Always">
+                                                <ContentTemplate>
+                                                    <div class="desc-paquete-labels-errores">
+                                                        <asp:Label ID="lbl_erroFechas" runat="server" Text="" ForeColor="red"></asp:Label>
+                                                        <asp:Label ID="lbl_ResultadoReservacion" runat="server" Text=""></asp:Label>
+                                                    </div>
+                                                    <asp:UpdateProgress ID="UpdateProgress1" runat="server">
+                                                        <ProgressTemplate>
+                                                            <asp:Image ID="Image1" runat="server" ImageUrl="~/images/ajax-loader.gif" />
+                                                            <asp:Label ID="Label1" runat="server" Text="Cargando ..."></asp:Label>
+                                                        </ProgressTemplate>
+                                                    </asp:UpdateProgress>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
+                                        </div>
                                         <hr />
                                         <div id="traslado-box">
-                                            <h3>
-                                                Do you need <strong>transport</strong> from and to Manatus?</h3>
-                                            <div class="traslado-box-inner">
-                                                <p>
-                                                    Select the transfer options that you require and add it to your package:</p>
-                                                <div class="bdbtnlist_transporte_box">
-                                                    <asp:RadioButtonList ID="rdbtnlist_transporte2014" runat="server" AutoPostBack="true">
-                                                        <asp:ListItem Value="1">Transfer to Manatus</asp:ListItem>
-                                                        <asp:ListItem Value="2">Transfer back to San Jose</asp:ListItem>
-                                                        <asp:ListItem Value="3">Round Trip</asp:ListItem>
-                                                        <asp:ListItem Value="4" Selected="True">None</asp:ListItem>
-                                                    </asp:RadioButtonList>
-                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="rdbtnlist_transporte2014"
-                                                        Display="Dynamic" ErrorMessage="Campo Requerido" ValidationGroup="registrese"></asp:RequiredFieldValidator>
-                                                </div>
-                                                <hr />
-                                                <div class="box-precio-con-transporte">
-                                                    <div class="precio-con-transporte">
-                                                        <div class="precio-con-transporte-value">
-                                                            <span>Total Cost of<br />
-                                                                hosting and transport</span>
-                                                                <div class="preciot">$
-                                                            <asp:Label ID="lbl_precioConTransporte" runat="server" Text="0"></asp:Label></div>
+                                            <asp:UpdatePanel ID="updatePane_transporte" runat="server" UpdateMode="Always">
+                                                <ContentTemplate>
+                                                    <h3>
+                                                        Do you need <strong>transport</strong> from and to Manatus?</h3>
+                                                    <div class="traslado-box-inner">
+                                                        <p>
+                                                            Select the transfer options that you require and add it to your package:</p>
+                                                        <div class="bdbtnlist_transporte_box">
+                                                            <asp:RadioButtonList ID="rdbtnlist_transporte2014" runat="server" AutoPostBack="true">
+                                                                <asp:ListItem Value="1">Transfer to Manatus</asp:ListItem>
+                                                                <asp:ListItem Value="2">Transfer back to San Jose</asp:ListItem>
+                                                                <asp:ListItem Value="3">Round Trip</asp:ListItem>
+                                                                <asp:ListItem Value="4" Selected="True">None</asp:ListItem>
+                                                            </asp:RadioButtonList>
+                                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="rdbtnlist_transporte2014"
+                                                                Display="Dynamic" ErrorMessage="Campo Requerido" ValidationGroup="registrese"></asp:RequiredFieldValidator>
+                                                        </div>
+                                                        <hr />
+                                                        <div class="box-precio-con-transporte">
+                                                            <div class="precio-con-transporte">
+                                                                <div class="precio-con-transporte-value">
+                                                                    <span>Total Cost of<br />
+                                                                        hosting and transport</span>
+                                                                    <div class="preciot">
+                                                                        $
+                                                                        <asp:Label ID="lbl_precioConTransporte" runat="server" Text="0"></asp:Label></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="content_btn">
+                                                            <a class="btn" id="btn-reservar" href="javascript:void(0)">Reservar</a></div>
+                                                        <div style="display: none;">
+                                                            <p>
+                                                                Pick up place</p>
+                                                        </div>
+                                                        <div id="box_pickup" runat="server" visible="false">
+                                                            <asp:TextBox ID="txt_pickup" runat="server" CssClass="textBoxNuevo"></asp:TextBox>
+                                                        </div>
+                                                        <div style="display: none;">
+                                                            <p>
+                                                                Drop off place</p>
+                                                        </div>
+                                                        <div id="box_leave" runat="server" visible="false">
+                                                            <asp:TextBox ID="txt_leave" runat="server" CssClass="textBoxNuevo"></asp:TextBox>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="content_btn"><a class="btn" id="btn-reservar" href="javascript:void(0)">Reservar</a></div>
-                                                <div style="display: none;">
-                                                    <p>
-                                                        Pick up place</p>
-                                                </div>
-                                                <div id="box_pickup" runat="server" visible="false">
-                                                    <asp:TextBox ID="txt_pickup" runat="server" CssClass="textBoxNuevo"></asp:TextBox>
-                                                </div>
-                                                <div style="display: none;">
-                                                    <p>
-                                                        Drop off place</p>
-                                                </div>
-                                                <div id="box_leave" runat="server" visible="false">
-                                                    <asp:TextBox ID="txt_leave" runat="server" CssClass="textBoxNuevo"></asp:TextBox>
-                                                </div>
-                                            </div>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
                                         </div>
                                     </div>
                                 </asp:Panel>
                             </asp:Panel>
                         </div>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-
-
+                    </div>
+                </div>
                 <div id="tabs">
                     <ul>
                         <li><a href="#description">Package description</a></li>
@@ -1356,14 +1367,12 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                         </div>
                     </div>
                 </div>
-        
                 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
                 <script>
                     $(function () {
                         $("#tabs").tabs();
                     });
                 </script>
-
             </div>
             <div class="content-box container-1-3 sidebar">
                 <div class="paddingBottomp10">
