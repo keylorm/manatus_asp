@@ -1606,6 +1606,10 @@ h2.h2Celeste{
     width: 250px;
     float: right;
 }
+.reservation-form #UpdatePanel1
+{
+    margin-right: 0px;
+}
 .desc-paquete .precio-sin-transporte-value
 {
     float: right;
@@ -2134,7 +2138,7 @@ a#AplicarSeleccion{
           box-sizing: border-box;    
 }
 
-#pnl_contenido select{
+#pnl_contenido select.dropdownsReserva#ddl_ubicacion{
     height: 43px;
     margin: 0px;
     line-height: normal;
@@ -2148,6 +2152,9 @@ a#AplicarSeleccion{
     appearance: none; 
     width: 100%;
     background-position: 97% 50%;
+}
+.box-select-personas{
+    width: 100%;
 }
 
 #pnl_contenido textarea{
