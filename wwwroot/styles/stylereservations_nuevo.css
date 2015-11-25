@@ -1399,7 +1399,7 @@ a img { border: none; }
     height: 110px;
     background-image: url('../images/linea_res.png');
     background-repeat: no-repeat;
-    background-position: 46% 77%;    
+    background-position: 48% 76%;    
 }
 
 .step-process-box .inner > div a{
@@ -1462,7 +1462,7 @@ a img { border: none; }
 .step-process-box .inner > div.active .step-point a{
     color: #fff;
     padding: 11px 16px;
-    line-height: 50px;
+    line-height: 42px;
     font-family: "Raleway", Sans-Serif;
     font-size: 19px;      
 }
@@ -1503,13 +1503,14 @@ a img { border: none; }
 
 span#lblIngresoSalida{
     float: left;
-    padding: 13px 0px;
+    padding: 8px 0px;
     font-size: 13px;
 }
 
 input#TxtCheckinCheckout {
     float: left;
-    width: 190px;
+    width: 220px;
+    height: 40px;
     padding-left: 10px;
     padding-right: 20px;
     margin-top: 0px;
@@ -2291,6 +2292,82 @@ have a fixed width and height (but it's not required).
 }
 
 
+#su-reservacion{
+    background-color: #F9F9F8;
+    background-image: url('../images/info_reserva.jpg');
+    background-repeat: no-repeat;
+    background-position: left top;
+    padding: 20px;
+}
+
+#su-reservacion h2#titulo-reservacion{
+    color: #594A42;
+    font-family: "Raleway", sans-serif;
+    font-weight: normal;
+    font-size: 27px;
+    text-transform: uppercase;
+    text-align: center;
+    border-bottom: 1px solid #594A42;
+    padding-bottom: 20px;    
+}
+
+#su-reservacion .detalle{
+    display: table;
+    border-spacing: 5px;
+    border-collapse: separate;    
+}
+#su-reservacion .detalle .wrapper-field{
+    display: table-row;
+}
+#su-reservacion .detalle .wrapper-field .key{
+    display: table-cell;
+    width: 50%;
+    color: #594A42;
+    font-family: "Open Sans",sans-seif;
+    font-size: 14px; 
+    font-weight: bold;    
+}
+#su-reservacion .detalle .wrapper-field .value{
+    display: table-cell;
+    width: 50%;
+    color: #594A42;
+    font-family: "Open Sans",sans-seif;
+    font-size: 14px; 
+    font-weight: normal;
+}
+
+#su-reservacion .detalle .wrapper-field .key,
+#su-reservacion .detalle .wrapper-field .value{
+    background-color: #F2F1F0;
+    padding: 8px;
+}
+
+#su-reservacion .detalle .wrapper-field.servicio .key,
+#su-reservacion .detalle .wrapper-field.servicio .value{
+    background: transparent;
+}
+
+#su-reservacion .detalle .wrapper-field.costo-adicional .key{
+    font-size: 12px;
+}
+
+#LinkEditarInformacion{
+    display: block;
+    width: 100%;
+    text-align: right;
+    color: #B57651;
+    text-decoration: none;
+    margin-top: 10px;
+    font-family: "Open Sans",sans-seif;
+    font-size: 15px; 
+    font-weight: 600;
+    font-style: italic;    
+}
+
+
+
+
+
 @media (max-width: 991px) {
     .container-980{
         width: 600px;
@@ -2420,8 +2497,17 @@ have a fixed width and height (but it's not required).
         padding: 10px !important;
         left: 60% !important;
     }
+    .cod-telefono .wrapper-field{
+        width: 100%;
+    }
+    .cod-telefono .wrapper-field:first-child{
+        margin-right: 0px;
+    }
+    #pnl_contenido input[type="text"].textBoxNuevo{
+        width: 100%;
+    }
 
 }
 
-@media (max-width: 479px) {
-}
+/*@media (max-width: 479px) {
+}*/

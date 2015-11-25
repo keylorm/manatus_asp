@@ -444,8 +444,9 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                     <asp:Label ID="ValueLblCostoTotal" CssClass="span-field" Text="" runat="server"></asp:Label>
                                 </div>
                             </div>
-                            <asp:HyperLink ID="LinkEditarInformacion" NavigateUrl="navigateurl" runat="server" text="< Editar información" />
+                            
                         </div>
+                        <asp:HyperLink ID="LinkEditarInformacion" NavigateUrl="navigateurl" runat="server" text="< Editar información" />
                     </div>
                     <!-- end sidebar with the information previous step -->
                 </div>
