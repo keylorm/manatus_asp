@@ -246,7 +246,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                         <a href="javascript:void(0)" class="downloadVoucher" target="_blank">Descargar comprobante.</a>
                     </p>
                 </div>
-                <div class="content-box container-3-3">
+                <div class="content-box container-2-3">
                     <!-- cuadro respuesta de reservacion -->
                     <div class="detalle-reservacion">
                         <div id="su-reservacion">
@@ -310,44 +310,47 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                 </div>
                             </div>
                         </div>
-                        <div id="sus-datos">
-                            <h2 id="titulo-sus-datos">Sus datos</h2>
-                            <div class="detalle">
-                                <div class="wrapper-field nombre-completo">
-                                    <div class="row">
-                                        <asp:Label ID="lblNombreCompleto" CssClass="span-field" Text="" runat="server"></asp:Label>
-                                    </div>
+                    </div>
+                    <!-- end cuadro respuesta de reservacion -->
+                </div>
+                <div class="content-box container-1-3 sidebar">
+                    <div id="sus-datos">
+                        <h2 id="titulo-sus-datos">Sus datos</h2>
+                        <div class="detalle">
+                            <div class="wrapper-field nombre-completo">
+                                <div class="row">
+                                    <asp:Label ID="lblNombreCompleto" CssClass="span-field" Text="" runat="server"></asp:Label>
                                 </div>
-                                <div class="wrapper-field telefono">
-                                    <div class="row">
-                                        <asp:Label ID="lblTelefono" CssClass="span-field" Text="" runat="server"></asp:Label>
-                                    </div>
+                            </div>
+                            <div class="wrapper-field telefono">
+                                <div class="row">
+                                    <asp:Label ID="lblTelefono" CssClass="span-field" Text="" runat="server"></asp:Label>
                                 </div>
-                                <div class="wrapper-field email">
-                                    <div class="row">
-                                        <asp:Label ID="lblEmail" CssClass="span-field" Text="" runat="server"></asp:Label>
-                                    </div>
+                            </div>
+                            <div class="wrapper-field email">
+                                <div class="row">
+                                    <asp:Label ID="lblEmail" CssClass="span-field" Text="" runat="server"></asp:Label>
                                 </div>
-                                <div class="wrapper-field no-tarjeta">
-                                    <div class="row">
-                                        <asp:Label ID="lblNoTarjeta" CssClass="span-field" Text="" runat="server"></asp:Label>
-                                    </div>
+                            </div>
+                            <div class="wrapper-field no-tarjeta">
+                                <div class="row">
+                                    <asp:Label ID="lblNoTarjeta" CssClass="span-field" Text="" runat="server"></asp:Label>
                                 </div>
-                                <div class="wrapper-field fecha-vencimiento">
-                                    <div class="row">
-                                        <asp:Label ID="lblFechaVencimiento" CssClass="span-field" Text="" runat="server"></asp:Label>
-                                    </div>
+                            </div>
+                            <div class="wrapper-field fecha-vencimiento">
+                                <div class="row">
+                                    <asp:Label ID="lblFechaVencimiento" CssClass="span-field" Text="" runat="server"></asp:Label>
                                 </div>
-                                <div class="wrapper-field tipo-tarjeta">
-                                    <div class="row">
-                                        <asp:Label ID="lblTipoTarjeta" CssClass="span-field" Text="" runat="server"></asp:Label>
-                                    </div>
+                            </div>
+                            <div class="wrapper-field tipo-tarjeta">
+                                <div class="row">
+                                    <asp:Label ID="lblTipoTarjeta" CssClass="span-field" Text="" runat="server"></asp:Label>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- end cuadro respuesta de reservacion -->
                 </div>
+                <div class="clear"></div>
                 <div class="below-content blog">
                     <div class="jcarousel">
                         <ul>
