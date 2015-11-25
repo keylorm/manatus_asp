@@ -240,11 +240,11 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                         <div class="logo-ssl">
                             <img src="" />
                         </div>
-                        <p class="comprobante-reserva">
-                            Your reservation has been processed successfully. Very soon you will receive a confirmation in your email.
-                            <a href="javascript:void(0)" class="downloadVoucher" target="_blank">Download voucher.</a>
-                        </p>
                     </div>
+                    <p class="comprobante-reserva">
+                        Your reservation has been processed successfully. Very soon you will receive a confirmation in your email.
+                        <a href="javascript:void(0)" class="downloadVoucher" target="_blank">Download voucher.</a>
+                    </p>
                 </div>
                 <div class="content-box container-3-3">
                     <!-- cuadro respuesta de reservacion -->

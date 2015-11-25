@@ -239,12 +239,12 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                         <h2 class="h2Celeste">¡Será un placer recibirlo en el Hotel Manatus!</h2>
                         <div class="logo-ssl">
                             <img src="" />
-                        </div>
-                        <p class="comprobante-reserva">
-                            Su reserva se tramitó con éxito. Muy pronto llegará a su correo una conrmación.
-                            <a href="javascript:void(0)" class="downloadVoucher" target="_blank">Descargar comprobante.</a>
-                        </p>
+                        </div>                        
                     </div>
+                    <p class="comprobante-reserva">
+                        Su reserva se tramitó con éxito. Muy pronto llegará a su correo una conrmación.
+                        <a href="javascript:void(0)" class="downloadVoucher" target="_blank">Descargar comprobante.</a>
+                    </p>
                 </div>
                 <div class="content-box container-3-3">
                     <!-- cuadro respuesta de reservacion -->
