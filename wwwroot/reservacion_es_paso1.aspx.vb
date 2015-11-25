@@ -454,12 +454,13 @@ Partial Class reservacion_es_paso1
                         For counter As Integer = 0 To gv_ResultadosDisponibles.Rows.Count - 1
                             Dim unItem As GridViewRow = gv_ResultadosDisponibles.Rows(counter)
                             Dim lbl_tipo_paquete As Label = unItem.FindControl("lbl_tipo_paquete")
+                            lbl_tipo_paquete.Text = "Paquete Personalizado"
                             'Para cambiar el radio Button del paquete
                             If ((noches = 1) And (nochesAdicionales = 0)) Then
 
-                                lbl_tipo_paquete.Text = "2 days 1 night"
+                                lbl_tipo_paquete.Text = "2 días 1 noche"
                             ElseIf ((noches = 2) And (nochesAdicionales = 0)) Then
-                                lbl_tipo_paquete.Text = "3 days 2 nights"
+                                lbl_tipo_paquete.Text = "3 días 2 noches"
                             End If
                             Dim lbl_precio_habitacion As Label = unItem.FindControl("lbl_precio_habitacion")
                             lbl_precio_habitacion.Text = "$ " + Convert.ToString(agregaItemTemporalIndividual(id_producto, noches, nochesAdicionales, habitacionesDisponibles, unItem, counter, False, fechaInicio, fechaFin))
