@@ -285,16 +285,11 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                             </div>
                         </div>
                     </div>
-
-                    <div class="form-title">
-                        <h2 class="h2Celeste">Favor completar su información personal</h2>
-                        <div class="logo-ssl">
-                            <img src="" /></div>
-                    </div>
                 </div>
 
 
                 <div class="content-box container-2-3">
+                    <h2 class="h2Celeste">Favor completar su información personal</h2>
                     <!-- register form -->
                     <asp:UpdatePanel ID="updtpanel_reservacion" runat="server">
                     <ContentTemplate>
@@ -313,52 +308,56 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             </center>
                                         </asp:Panel>
                                         <asp:Panel ID="pnl_contenido" runat="server" Visible="true">
-                                            <div>
-                                                <asp:Label ID="lbl_nombre" runat="server" Text="Nombre completo"></asp:Label>
+                                            <div class="wrapper-field">
+                                                <asp:Label ID="lbl_nombre" runat="server" Text="Nombre completo" CssClass="span-field"></asp:Label>
                                                 <asp:TextBox ID="txt_nombre" runat="server" CssClass="textBoxNuevo"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="rfv_nombre" runat="server" ControlToValidate="txt_nombre" Display="Dynamic" ErrorMessage="Campo requerido" ValidationGroup="registrese"></asp:RequiredFieldValidator>
                                             </div>
-                                            <div>
-                                                <asp:Label ID="lbl_dir" runat="server" Text="Dirección"></asp:Label>
+                                            <div class="wrapper-field">
+                                                <asp:Label ID="lbl_dir" runat="server" Text="Dirección" CssClass="span-field"></asp:Label>
                                                 <asp:TextBox ID="txt_direccion" runat="server" CssClass="textBoxNuevo"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="rfv_direccion" runat="server" ControlToValidate="txt_direccion" Display="Dynamic" ErrorMessage="Campo requerido" ValidationGroup="registrese"></asp:RequiredFieldValidator>
                                             </div>
-                                            <div class="box-ubicacion">
-                                                <asp:Label ID="lbl_ubicacion" runat="server" Text="País"></asp:Label>
+                                            <div class="box-ubicacion wrapper-field">
+                                                <asp:Label ID="lbl_ubicacion" runat="server" Text="País" CssClass="span-field"></asp:Label>
                                                 <asp:DropDownList ID="ddl_ubicacion" runat="server" CssClass="dropdownsReserva"></asp:DropDownList>
                                             </div>
                                             <!--<div>
                                                 <asp:Label ID="lbl_codigo" runat="server" Text="Código Postal:"></asp:Label>
                                                 <asp:TextBox ID="txt_codPostal" runat="server" CssClass="textBoxNuevo"></asp:TextBox>
-                                            </div>-->                                            
-                                            <div>
-                                                <asp:Label ID="lbl_codigoA" runat="server" Text="Código de Area"></asp:Label>
-                                                <asp:TextBox ID="txt_codArea" runat="server" CssClass="textBoxNuevo"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="rfv_codigoA" runat="server" ControlToValidate="txt_codArea" Display="Dynamic" ErrorMessage="Campo requerido" ValidationGroup="registrese"></asp:RequiredFieldValidator>
-                                            </div>                                            
-                                            <div>
-                                                <asp:Label ID="lbl_telefono" runat="server" Text="Teléfono"></asp:Label>
-                                                <asp:TextBox ID="txt_tel" runat="server" CssClass="textBoxNuevo"></asp:TextBox>
-                                                <asp:RequiredFieldValidator ID="rfv_Tel" runat="server" ControlToValidate="txt_tel" Display="Dynamic" ErrorMessage="Campo requerido" ValidationGroup="registrese"></asp:RequiredFieldValidator>
+                                            </div>-->    
+                                            <div class="cod-telefono">                                        
+                                                <div class="wrapper-field">
+                                                    <asp:Label ID="lbl_codigoA" runat="server" Text="Código de Area" CssClass="span-field"></asp:Label>
+                                                    <asp:TextBox ID="txt_codArea" runat="server" CssClass="textBoxNuevo"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="rfv_codigoA" runat="server" ControlToValidate="txt_codArea" Display="Dynamic" ErrorMessage="Campo requerido" ValidationGroup="registrese"></asp:RequiredFieldValidator>
+                                                </div>                                            
+                                                <div class="wrapper-field">
+                                                    <asp:Label ID="lbl_telefono" runat="server" Text="Teléfono" CssClass="span-field"></asp:Label>
+                                                    <asp:TextBox ID="txt_tel" runat="server" CssClass="textBoxNuevo"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="rfv_Tel" runat="server" ControlToValidate="txt_tel" Display="Dynamic" ErrorMessage="Campo requerido" ValidationGroup="registrese"></asp:RequiredFieldValidator>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <asp:Label ID="lbl_email" runat="server" Text="Email"></asp:Label>
+                                            <div class="wrapper-field">
+                                                <asp:Label ID="lbl_email" runat="server" Text="Email" CssClass="span-field"></asp:Label>
                                                 <asp:TextBox ID="txt_email" runat="server" CssClass="textBoxNuevo"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="rfv_email" runat="server" ControlToValidate="txt_email" Display="Dynamic" ErrorMessage="Campo Requerido" ValidationGroup="registrese"></asp:RequiredFieldValidator>
                                                 <asp:RegularExpressionValidator ID="rev_email" runat="server" ControlToValidate="txt_email" Display="Dynamic" ErrorMessage="Formato incorrecto" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ValidationGroup="registrese"></asp:RegularExpressionValidator>
                                             </div>                                            
-                                            <div>
-                                                <asp:Label ID="lbl_mensajeAdicional" runat="server" Text="Mensaje Adicional"></asp:Label>
+                                            <div class="wrapper-field">
+                                                <asp:Label ID="lbl_mensajeAdicional" runat="server" Text="Mensaje Adicional" CssClass="span-field"></asp:Label>
                                                 <asp:TextBox TextMode="MultiLine" runat="server" CssClass="textMensajeAdicional" ID="txtMensajeAdicional"></asp:TextBox>
                                             </div>
                                             <div id="terminos-condiciones">
                                                 <asp:HyperLink NavigateUrl="javascript:void(0)" runat="server" text="Ver Términos y Condiciones" ID="linkTerminosCondiciones" />
                                             </div>
-                                            <div>
+                                            <div class="wrapper-field">
                                                 <asp:CheckBox Text="He leído y acepto los Términos y Condiciones" runat="server" ID="chkTerminosCondiciones"/>
                                                 <asp:CustomValidator ID="val_terminosCondiciones" runat="server" ErrorMessage="Favor aceptar los términos y condiciones" ClientValidationFunction="CustomValidatorTerminosCondiciones" ValidationGroup="registrese" ></asp:CustomValidator>
                                                 <%--<asp:RequiredFieldValidator ID="rev_terminosCondiciones" runat="server" ControlToValidate="chkTerminosCondiciones" Display="Dynamic" ErrorMessage="Campo requerido" ValidationGroup="registrese"></asp:RequiredFieldValidator>--%>
                                             </div>
+                                            <!-- mensajes -->
+                                            <asp:Label ID="lbl_ResultadoReservacion" runat="server" Text=""></asp:Label>
                                         </asp:Panel>
                                      </asp:Panel>
                                 </div>
@@ -373,7 +372,13 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                     <!-- end register form -->
                 </div>
 
+
                 <div class="content-box container-1-3 sidebar">
+                    <div class="logo-ssl">
+                        <img src="images/verisign.png" />
+                    </div>
+
+
                     <!-- sidebar with the information previous step -->
                     <!-- end sidebar with the information previous step -->
                 </div>

@@ -657,9 +657,15 @@ input#txtDateSalida
     
 .box-select-personas select
 {
-    background: url("../images/2014/bg-select-contacto.png") no-repeat scroll 55% center #FFFFFF;
-     width: 150%;
-    }
+    background-image: url("../images/2014/bg-select-contacto.png");
+    background-repeat: no-repeat;
+    background-position: 95% 50%;
+    width: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    line-height: 14px;   
+}
     
 #txt_observaciones
 {
@@ -1383,12 +1389,12 @@ a img { border: none; }
 }
 
 .step-process-box .inner{
-    width: 60%;
+    width: 59%;
     margin: 0 auto;
     height: 110px;
     background-image: url('../images/linea_res.png');
     background-repeat: no-repeat;
-    background-position: 50% 77%;    
+    background-position: 46% 77%;    
 }
 
 .step-process-box .inner > div a{
@@ -1416,7 +1422,7 @@ a img { border: none; }
 .step-process-box .inner > div.active .step-title a {
     background-color: #E5EBE1;
     color: #3F4E34;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
     padding: 10px 0px;  
     
@@ -1575,7 +1581,7 @@ tr.ayuda td {
 h2.h2Celeste{
     color: #6DA7C0;
     font-family: "Raleway", sans-serif;
-    font-weight: bold;
+    font-weight: normal; /*bold*/
     font-size: 26px;
     text-transform: uppercase;    
 }
@@ -1585,6 +1591,7 @@ h2.h2Celeste{
 .reservation-form #updtpanel_reservacion{
     background: none;
     border: 1px solid #594A42;
+    padding: 20px;
 }
 
 .reservation-form #updtpanel_reservacion h3{
@@ -1690,6 +1697,7 @@ h2.h2Celeste{
     color: #594A42 !important;
     font-size: 12px !important;
     font-family: "Open Sans",sans-seif !important;
+    font-weight: normal !important;
     font-style: normal !important;
 }
 
@@ -2097,6 +2105,115 @@ a#AplicarSeleccion{
 }
 
 /* PASO 2: Formulario de registro */
-#btn_aPaso3 {
+/*#btn_aPaso3 {
     color: #000 !important;
+}*/
+
+.logo-ssl{
+    float: right;
+}
+
+#pnl_contenido{
+
+}
+
+#pnl_contenido .span-field{
+    color: #594A42;
+    font-family: "Open Sans",sans-seif;
+    font-size: 15px; 
+    display: block;
+    margin: 12px 0px 8px 0px;  
+}
+
+#pnl_contenido input[type="text"].textBoxNuevo{
+    height: 43px;
+    border: 1px solid #594A42;
+    margin: 0px;
+    -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;    
+}
+
+#pnl_contenido select{
+    height: 43px;
+    margin: 0px;
+    line-height: normal;
+    border: 1px solid #594A42;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; 
+    width: 100%;
+    background-position: 97% 50%;
+}
+
+#pnl_contenido textarea{
+    width: 100%;
+    height: 113px;
+    border: 1px solid #594A42;
+    -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+    clear: both;
+    overflow: hidden;
+
+}
+
+.cod-telefono{
+
+}
+
+.cod-telefono .wrapper-field{
+    display: inline-block;
+    width: 47%;
+    -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;    
+}
+.cod-telefono .wrapper-field:first-child{
+    margin-right: 5%;
+}
+a#linkTerminosCondiciones{
+    color: #594A42;
+    font-family: "Open Sans",sans-seif;
+    font-size: 12px;
+    text-decoration: none; 
+    font-weight: 600;
+    line-height: 60px;    
+}
+
+#pnl_contenido label[for="chkTerminosCondiciones"]{
+    color: #594A42;
+    font-family: "Open Sans",sans-seif;
+    font-size: 12px; 
+    font-weight: normal;
+
+}
+
+a#btn_aPaso3{
+    display: block;
+    width: 300px;
+    /*height: 55px;*/
+    font-family: "Raleway", sans-serif;
+    font-weight: normal;
+    font-size: 13px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #FFF;    
+    background-color: #7E9B67;
+    background-image: url('../images/2014/bg-h3-chat-reservacion.png');
+    background-repeat: no-repeat;
+    background-position: 95% 50%;
+    background-size: 12px;
+    border-bottom: 10px solid #637256;
+    padding: 12px 50px 12px 10px;
+    -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+
+
+    margin-bottom: 30px;      
 }
