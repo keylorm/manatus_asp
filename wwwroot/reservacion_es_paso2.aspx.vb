@@ -13,6 +13,14 @@ Partial Class reservacion_es_paso2
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not IsPostBack Then
             selectPaises()
+            'cargar la informacion de la sesion en el cuadro de 'su resevacion' en el sidebar
+            ValueLblIngresoSalida.Text = Session("rango")
+            ValueLblServicio.Text() = CType(Session("habitacionesDeseadas"), String) + " habitaciones para " + CType(Session("total_personas"), String) + " personas, " + CType(Session("noches"), String) + " noches, " + CType(Session("nochesAdicionales"), String) + " noches adicionales Impuestos incluidos. Traslados incluidos."
+            ValueLblPersonas.Text() = Session("total_personas")
+            ValueLblHabitaciones.Text() = Session("habitacionesDeseadas")
+            ValueLblCostoSinTransporte.Text() = Session("costoSinTrasporte")
+            ValueLblCostoAdicional.Text() = Session("costoConTrasporte")
+            ValueLblCostoTotal.Text() = Session("costoSinTrasporte") + Session("costoConTrasporte")
         End If
     End Sub
     Protected Function insertEntidad(ByVal id_tipoEntidad As Integer, ByVal id_ubicacion As Integer, ByVal nombre As String, ByVal apellido As String, ByVal codigoPostal As String, ByVal tel As String, ByVal email As String, ByVal direccion As String) As Boolean

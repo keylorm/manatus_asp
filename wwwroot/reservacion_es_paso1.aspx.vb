@@ -361,7 +361,7 @@ Partial Class reservacion_es_paso1
 
     Public Sub CalculoPrecio()
         loader.Visible = True
-
+        Dim ready As Boolean = True
         Dim paquete As Integer = Request.QueryString("paquete")
         'paquete = 0
         If paquete = 2 Then
@@ -437,19 +437,20 @@ Partial Class reservacion_es_paso1
                 Dim id_temporada As Integer = controladora.buscarTemporada(fechaInicio, fechaInicio.AddDays(1)).id_Temporada
 
                 Dim habitacionesDeseadas As Integer = gv_ResultadosDisponibles.Rows.Count
+                Session("habitacionesDeseadas") = habitacionesDeseadas
 
                 Dim noches As Integer = controladora.NochesSegunTarifas(id_temporada, id_producto, 0, total_de_noches)
+                Session("noches") = noches
                 Dim nochesAdicionales As Integer = total_de_noches - noches
-
-               
-
+                Session("nochesAdicionales") = nochesAdicionales
 
                 If validarPrecios(id_temporada, id_producto, noches, gv_ResultadosDisponibles) Then
 
                     Dim habitacionesDisponibles As Data.DataTable = cargarItemsDisponibles(id_producto, fechaInicio, fechaFin)
                     If habitacionesDisponibles.Rows.Count >= habitacionesDeseadas Then
 
-                      
+                        Dim total_personas As Integer = 0
+
                         For counter As Integer = 0 To gv_ResultadosDisponibles.Rows.Count - 1
                             Dim unItem As GridViewRow = gv_ResultadosDisponibles.Rows(counter)
                             Dim lbl_tipo_paquete As Label = unItem.FindControl("lbl_tipo_paquete")
@@ -463,27 +464,33 @@ Partial Class reservacion_es_paso1
                             Dim lbl_precio_habitacion As Label = unItem.FindControl("lbl_precio_habitacion")
                             lbl_precio_habitacion.Text = "$ " + Convert.ToString(agregaItemTemporalIndividual(id_producto, noches, nochesAdicionales, habitacionesDisponibles, unItem, counter, False, fechaInicio, fechaFin))
 
+                            Dim ddlPersonas As DropDownList = unItem.FindControl("ddl_personas")
+                            total_personas = total_personas + ddlPersonas.SelectedValue
                         Next
 
+                        Session("total_personas") = total_personas
 
                         Dim precioSintrasporte As Double = agregaItemTemporal(id_producto, noches, nochesAdicionales, habitacionesDisponibles, gv_ResultadosDisponibles, False, fechaInicio, fechaFin)
                         Dim precioContranporte As Double = agregaItemTemporal(id_producto, noches, nochesAdicionales, habitacionesDisponibles, gv_ResultadosDisponibles, True, fechaInicio, fechaFin)
 
                         If ((precioSintrasporte <> 0)) Then
+                            Session("costoSinTrasporte") = precioSintrasporte
                             lbl_precioSinTransporte.Text = precioSintrasporte
 
                             'exito(ReservacionActual)
                         Else
                             mensajeErrorReservacion()
+                            ready = False
 
                         End If
                         If ((precioContranporte <> 0)) Then
+                            Session("costoConTrasporte") = precioContranporte
                             lbl_precioConTransporte.Text = precioContranporte
 
                             'exito(ReservacionActual)
                         Else
                             mensajeErrorReservacion()
-
+                            ready = False
                         End If
                     Else
                         mensajeCantidadHabitaciones(habitacionesDisponibles.Rows.Count)
@@ -491,17 +498,20 @@ Partial Class reservacion_es_paso1
                 End If
             Else
                 mensajeErrorFechas()
+                ready = False
             End If
 
         End If
         loader.Visible = False
+        If ready = True Then
+            exito()
+        End If
     End Sub
 
     Public Sub CalculoPrecioConPaquete()
         loader.Visible = True
         loader.Visible = False
     End Sub
-
 
     Public Sub CalculoPrecioConTransporte()
         loader.Visible = True
@@ -617,8 +627,6 @@ Partial Class reservacion_es_paso1
 
     End Sub
 
-
-
     Protected Sub mensajeErrorCantPersonasXHabitacion(ByVal codigo_error As Integer)
         If codigo_error = 1 Then
             If Orbelink.DBHandler.LanguageHandler.CurrentLanguage = Orbelink.DBHandler.LanguageHandler.Language.INGLES Then
@@ -635,7 +643,6 @@ Partial Class reservacion_es_paso1
         End If
 
     End Sub
-
 
     Protected Sub mensajePrecios(ByVal capacidadMax As Integer)
         If Orbelink.DBHandler.LanguageHandler.CurrentLanguage = Orbelink.DBHandler.LanguageHandler.Language.INGLES Then
@@ -678,11 +685,10 @@ Partial Class reservacion_es_paso1
         End If
     End Sub
 
-    Protected Sub exito(ByVal ReservacionActual As Integer)
+    Protected Sub exito()
         'Dim controladoraReservaciones As New Orbelink.Control.Reservaciones.ControladorReservaciones(connection, Resources.Reservaciones_Resources.ResourceManager)
         'controladoraReservaciones.Emails(ReservacionActual)
-        Session("id_reservacion") = ReservacionActual
-        Response.Redirect("shoppingCart_en.aspx?id_reservacion=" & Session("id_reservacion") & "&termino=" & 0)
+        Response.Redirect("reservacion_es_paso2.aspx")
     End Sub
 
     Protected Sub rdbtnlist_transporte2014_SelectedIndexChanged(sender As Object, e As System.EventArgs) Handles rdbtnlist_transporte2014.SelectedIndexChanged
@@ -695,12 +701,6 @@ Partial Class reservacion_es_paso1
         End If
 
     End Sub
-
-
-
-
-
-
 
     Protected Sub gv_ResultadosDisponibles_RowCommand(sender As Object, e As System.Web.UI.WebControls.GridViewCommandEventArgs) Handles gv_ResultadosDisponibles.RowCommand
         If (e.CommandName = "borrarHabitacion") Then
@@ -778,8 +778,6 @@ Partial Class reservacion_es_paso1
         End If
     End Sub
 
-
-
     Protected Sub add_room_Click(sender As Object, e As System.EventArgs) Handles add_room.Click
 
 
@@ -831,7 +829,6 @@ Partial Class reservacion_es_paso1
 
     End Sub
 
-
     Protected Sub ddl_personas_SelectedIndexChanged(sender As Object, e As System.EventArgs)
         If TxtCheckinCheckout.Text.Length > 0 And TxtCheckinCheckout.Text.Contains(" - ") Then
             If (gv_ResultadosDisponibles.Rows.Count > 0) Then
@@ -841,23 +838,11 @@ Partial Class reservacion_es_paso1
 
     End Sub
 
-
     Protected Sub AplicarSeleccion_Click(sender As Object, e As EventArgs) Handles AplicarSeleccion.Click
 
-        'Separar la fecha por checkin - checkout
-        'Dim rango = TxtCheckinCheckout.Text
-        'Dim delimiter As Char = " - "
-        'Dim substrings() As String = rango.Split(delimiter)
-        'Dim counter = 0
-        'For Each substring In substrings
-        '    If counter = 0 Then
-        '        txtDateEntrada.Text = substring
-        '    Else
-        '        txtDateSalida.Text = substring
-        '    End If
-        '    counter = counter + 1
-        'Next
         If TxtCheckinCheckout.Text.Length > 0 And TxtCheckinCheckout.Text.Contains(" - ") Then
+            'almacenar el rango de fecha en una sesion
+            Session("rango") = TxtCheckinCheckout.Text
             If (gv_ResultadosDisponibles.Rows.Count > 0) Then
                 CalculoPrecio()
             End If

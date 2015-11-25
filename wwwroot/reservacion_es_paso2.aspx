@@ -379,6 +379,68 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
 
                 <div class="content-box container-1-3 sidebar">
                     <!-- sidebar with the information previous step -->
+                    <div id="su-reservacion">
+                        <h2 id="titulo-reservacion">Su reservación</h2>
+                        <div class="detalle">
+                            <div class="wrapper-field ingreso-salida">
+                                <div class="key">
+                                    <asp:Label ID="KeyLblIngresoSalida" CssClass="span-field" Text="Ingreso y Salida" runat="server"></asp:Label>
+                                </div>
+                                <div class="value">
+                                    <asp:Label ID="ValueLblIngresoSalida" CssClass="span-field" Text="" runat="server"></asp:Label>
+                                </div>
+                            </div>
+                            <div class="wrapper-field servicio">
+                                <div class="key">
+                                    <asp:Label ID="KeyLblServicio" CssClass="span-field" Text="Servicio" runat="server"></asp:Label>
+                                </div>
+                                <div class="value">
+                                    <asp:Label ID="ValueLblServicio" CssClass="span-field" Text="" runat="server"></asp:Label>
+                                </div>
+                            </div>
+                            <div class="wrapper-field personas">
+                                <div class="key">
+                                    <asp:Label ID="KeyLblPersonas" CssClass="span-field" Text="Personas" runat="server"></asp:Label>
+                                </div>
+                                <div class="value">
+                                    <asp:Label ID="ValueLblPersonas" CssClass="span-field" Text="" runat="server"></asp:Label>
+                                </div>
+                            </div>
+                            <div class="wrapper-field habitaciones">
+                                <div class="key">
+                                    <asp:Label ID="KeyLblHabitaciones" CssClass="span-field" Text="Habitaciones" runat="server"></asp:Label>
+                                </div>
+                                <div class="value">
+                                    <asp:Label ID="ValueLblHabitaciones" CssClass="span-field" Text="" runat="server"></asp:Label>
+                                </div>
+                            </div>
+                            <div class="wrapper-field costo-sin-transporte">
+                                <div class="key">
+                                    <asp:Label ID="KeyLblCostoSinTransporte" CssClass="span-field" Text="Costo estadia" runat="server"></asp:Label>
+                                </div>
+                                <div class="value">
+                                    <asp:Label ID="ValueLblCostoSinTransporte" CssClass="span-field" Text="" runat="server"></asp:Label>
+                                </div>
+                            </div>
+                            <div class="wrapper-field costo-adicional">
+                                <div class="key">
+                                    <asp:Label ID="KeyLblCostoAdicional" CssClass="span-field" Text="Costo noches adicionales" runat="server"></asp:Label>
+                                </div>
+                                <div class="value">
+                                    <asp:Label ID="ValueLblCostoAdicional" CssClass="span-field" Text="" runat="server"></asp:Label>
+                                </div>
+                            </div>
+                            <div class="wrapper-field total">
+                                <div class="key">
+                                    <asp:Label ID="KeyLblCostoTotal" CssClass="span-field" Text="Total" runat="server"></asp:Label>
+                                </div>
+                                <div class="value">
+                                    <asp:Label ID="ValueLblCostoTotal" CssClass="span-field" Text="" runat="server"></asp:Label>
+                                </div>
+                            </div>
+                            <asp:HyperLink ID="LinkEditarInformacion" NavigateUrl="navigateurl" runat="server" text="< Editar información" />
+                        </div>
+                    </div>
                     <!-- end sidebar with the information previous step -->
                 </div>
             </div>
