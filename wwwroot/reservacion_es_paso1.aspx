@@ -277,10 +277,10 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                     </div>
                 </div>
                 <div class="form-title">
-                    <h2 class="h2Celeste">
-                        <strong>Viva la experiencia</strong> Manatus</h2>
+                    <h2 class="h2Celeste"><strong>Viva la experiencia</strong> Manatus</h2>
                     <div class="logo-ssl">
-                        <img src="" /></div>
+                        <img src="images/verisign.png" />
+                    </div>
                 </div>
             </div>
             <div class="content-box container-2-3">
@@ -1409,9 +1409,9 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
             </div>
             <div class="content-box container-1-3 sidebar">
                 <div class="paddingBottomp10">
-                    <h3 class="h3Sidebar">
+                    <h3 class="h3Sidebar" id="tbar">
                         <strong>Otros paquetes</strong> que podrían interesarle</h3>
-                    <div class="sidebar-block-content">
+                    <div class="sidebar-block-content" id="ct_tbar">
                         <div class="sidebar-paquete sidebar-paquete-1">
                             <h3 class="paquete-sidebar-titulo">
                                 1 noche extra gratis</h3>
@@ -1453,7 +1453,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                         Oficina: <a href="tel:+50622394854">(506) 2239-4854</a><br />
                                         Hotel: <a href="tel:+50627098197">(506) 2709-8197</a><br />
                                         Fax: (506) 2709-8198<br />
-                                        <a href="mailto:info@manatuscostarica.com">info@manatuscostarica.com</a><
+                                        <a href="mailto:info@manatuscostarica.com">info@manatuscostarica.com</a>
                                     </p>
                                 </div>
                             </div>
@@ -1533,6 +1533,14 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
     </div>
     <script type="text/javascript">
 
+        $('#tbar').live("click", function () {
+            if($(this).hasClass('activ')){
+                $(this).removeClass('activ').parent().removeClass('activ');
+            }else{
+                $(this).addClass('activ').parent().addClass('activ');
+            }
+            $('#ct_tbar').toggle("slow");
+        }); $('#tbar').trigger("click");
 
 
         $('a.poplight[href^=#]').live("click", function () {
