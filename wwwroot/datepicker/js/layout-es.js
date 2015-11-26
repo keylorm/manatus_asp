@@ -127,8 +127,8 @@
 						//deshabilitar boton
 						$(".reservation-form input[type='submit'").attr("disabled","disabled");
 					}
-					//obtener el ingreso (checkin)
-					$("span.checkin").html(formated[0]);*/
+					//obtener el ingreso (checkin)*/
+					$("span.checkin").html(formated[0]);
                     $('#widgetField input[id="TxtCheckinCheckout"]').val(formated.join(' - '));
                 }
             });
@@ -156,8 +156,8 @@
 						//deshabilitar boton
 						$(".reservation-form input[type='submit'").attr("disabled","disabled");
 					}
-					//obtener el ingreso (checkin)
-					$("span.checkin").html(formated[0]);*/
+					//obtener el ingreso (checkin)*/
+					$("span.checkin").html(formated[0]);
                     $('#widgetField input[id="TxtCheckinCheckout"]').val(formated.join(' - '));
                 }
             });

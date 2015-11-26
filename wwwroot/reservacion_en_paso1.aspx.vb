@@ -35,6 +35,16 @@ Partial Class reservacion_en_paso1
 
             lbl_erroFechas.Visible = False
 
+            'muestra descripciones de paquetes custom por default
+            des_paq_2_1.Visible = False
+            des_paq_3_2.Visible = False
+            des_paq_custom.Visible = True
+            inc_paq_2_1.Visible = False
+            inc_paq_3_2.Visible = False
+            inc_paq_custom.Visible = True
+            tar_paq_2_1.Visible = False
+            tar_paq_3_2.Visible = False
+            tar_paq_custom.Visible = True
 
             'trPaquetes2014.Visible = True
             'box_leave.Visible = False
@@ -890,6 +900,10 @@ Partial Class reservacion_en_paso1
         If (String.Equals(lbl_precioSinTransporte.Text, "0") = False And String.Equals(lbl_precioConTransporte.Text, "0") = False) Then
             paso1.Visible = False
             paso2.Visible = True
+            Dim class1 As String = step_1.CssClass
+            class1 = class1.Replace("active", "")
+            step_1.CssClass = class1
+            step_2.CssClass = step_2.CssClass + " active"
         Else
             lbl_ResultadoReservacion.Visible = True
             lbl_ResultadoReservacion.ForeColor = Drawing.Color.Red
@@ -906,6 +920,10 @@ Partial Class reservacion_en_paso1
         If (String.Equals(lbl_precioSinTransporte.Text, "0") = False And String.Equals(lbl_precioConTransporte.Text, "0") = False) Then
             paso1.Visible = False
             paso2.Visible = True
+            Dim class1 As String = step_1.CssClass
+            class1 = class1.Replace("active", "")
+            step_1.CssClass = class1
+            step_2.CssClass = step_2.CssClass + " active"
         Else
             lbl_ResultadoReservacion.Visible = True
             lbl_ResultadoReservacion.ForeColor = Drawing.Color.Red
@@ -913,14 +931,17 @@ Partial Class reservacion_en_paso1
         End If
     End Sub
 
-
     Protected Sub LinkEditarInformacion_Click(sender As Object, e As System.EventArgs) Handles LinkEditarInformacion.Click
         lbl_ResultadoHabitaciones.Visible = False
         lbl_erroFechas.Visible = False
         lbl_ResultadoReservacion.Visible = False
         paso2.Visible = False
         paso1.Visible = True
+        Dim class2 As String = step_2.CssClass
+        class2 = class2.Replace("active", "")
+        step_2.CssClass = class2
 
+        step_1.CssClass = step_1.CssClass + " active"
     End Sub
 
     Protected Sub step_2_link_Click(sender As Object, e As System.EventArgs) Handles step_2_link.Click
@@ -931,6 +952,29 @@ Partial Class reservacion_en_paso1
         If (String.Equals(lbl_precioSinTransporte.Text, "0") = False And String.Equals(lbl_precioConTransporte.Text, "0") = False) Then
             paso1.Visible = False
             paso2.Visible = True
+            Dim class1 As String = step_1.CssClass
+            class1 = class1.Replace("active", "")
+            step_1.CssClass = class1
+            step_2.CssClass = step_2.CssClass + " active"
+        Else
+            lbl_ResultadoReservacion.Visible = True
+            lbl_ResultadoReservacion.ForeColor = Drawing.Color.Red
+            lbl_ResultadoReservacion.Text = "You need to choose your reservations days and rooms to continue with the process"
+        End If
+    End Sub
+
+    Protected Sub step_2_point_Click(sender As Object, e As System.EventArgs) Handles step_2_point.Click
+        lbl_ResultadoHabitaciones.Visible = False
+        lbl_erroFechas.Visible = False
+        lbl_ResultadoReservacion.Visible = False
+
+        If (String.Equals(lbl_precioSinTransporte.Text, "0") = False And String.Equals(lbl_precioConTransporte.Text, "0") = False) Then
+            paso1.Visible = False
+            paso2.Visible = True
+            Dim class1 As String = step_1.CssClass
+            class1 = class1.Replace("active", "")
+            step_1.CssClass = class1
+            step_2.CssClass = step_2.CssClass + " active"
         Else
             lbl_ResultadoReservacion.Visible = True
             lbl_ResultadoReservacion.ForeColor = Drawing.Color.Red
@@ -944,185 +988,38 @@ Partial Class reservacion_en_paso1
         lbl_ResultadoReservacion.Visible = False
         paso2.Visible = False
         paso1.Visible = True
+
+        Dim class2 As String = step_2.CssClass
+        class2 = class2.Replace("active", "")
+        step_2.CssClass = class2
+        
+        step_1.CssClass = step_1.CssClass + " active"
     End Sub
-    Protected Sub step_3_link_Click(sender As Object, e As System.EventArgs) Handles step_3_link.Click
+
+    Protected Sub step_1_point_Click(sender As Object, e As System.EventArgs) Handles step_1_point.Click
         lbl_ResultadoHabitaciones.Visible = False
         lbl_erroFechas.Visible = False
         lbl_ResultadoReservacion.Visible = False
-        Dim paquete As Integer = Request.QueryString("paquete")
-        'paquete = 0
-        If paquete = 2 Then
-            reservarconPaquete()
-        Else
-
-            pnl_exito.Visible = False
-            lbl_ResultadoReservacion.ForeColor = Drawing.Color.Red
-            Dim id_entidad As Integer = 0
-            If InsertarModificar(id_tipoEntidadUSUARIO) Then
-                If txt_nombre.ToolTip <> "" Then
-                    id_entidad = txt_nombre.ToolTip
-                End If
-                Dim controladora As New ControladorReservaciones(connection, Resources.Reservaciones_Resources.ResourceManager)
-
-                If id_entidad > 0 Then
-                    If txt_observaciones.Text.Length < 7000 Then
-
-                        'Dim fechaInicio As Date = controladora.crearFechaHora(calendarEntrada.SelectedDate, horaEntrada, 0)
-                        'Dim fechaFin As Date = controladora.crearFechaHora(calendarSalida.SelectedDate, horaSalida, 0)
-                        'fechaInicio = DateHandler.ToUtcFromLocalizedDate(fechaInicio)
-                        'fechaFin = DateHandler.ToUtcFromLocalizedDate(fechaFin)
-
-                        Dim entrada As Date
-                        Dim salida As Date
-
-                        'separador para el rango de fecha
-                        Dim rango = TxtCheckinCheckout.Text
-                        Dim delimiter As Char = " - "
-                        Dim substrings() As String = rango.Split(delimiter)
-                        Dim counter1 = 0
-
-                        For Each substring In substrings
-                            If (substring <> "-") Then
-                                'separador para el checkin
-                                Dim delimiter2 As Char = "/"
-                                Dim substrings2() As String = substring.Split(delimiter2)
-                                Dim counter2 = 0
-                                Dim d = 0
-                                Dim m = 0
-                                Dim y = 0
-                                If counter1 = 0 Then
-                                    For Each substring2 In substrings2
-                                        If (substring2 <> "/") Then
-                                            If counter2 = 0 Then
-
-                                                m = substring2
-                                            ElseIf counter2 = 1 Then
-                                                d = substring2
-                                            Else
-                                                y = substring2
-                                            End If
-                                        End If
-                                        counter2 = counter2 + 1
-                                    Next
-                                    Dim date1 As New Date(y, m, d, 0, 0, 0)
-                                    entrada = date1
-                                Else
-                                    For Each substring2 In substrings2
-                                        If (substring2 <> "/") Then
-                                            If counter2 = 0 Then
-
-                                                m = substring2
-                                            ElseIf counter2 = 1 Then
-                                                d = substring2
-                                            Else
-                                                y = substring2
-                                            End If
-                                        End If
-                                        counter2 = counter2 + 1
-                                    Next
-                                    Dim date1 As New Date(y, m, d, 0, 0, 0)
-                                    salida = date1
-                                End If
-                            End If
-                            counter1 = counter1 + 1
-                        Next
-
-                        'Dim entrada As Date = calendarEntrada.SelectedDate
-                        'Dim salida As Date = calendarSalida.SelectedDate
-
-                        Dim fechaInicio As New Date(entrada.Year, entrada.Month, entrada.Day, 12, 0, 0)
-                        Dim fechaFin As New Date(salida.Year, salida.Month, salida.Day, 11, 0, 0)
-
-
-                        Dim total_de_noches As Integer = controladora.TotalNoches(fechaInicio, fechaFin)
-                        If total_de_noches > 0 Then
-
-                            Dim id_temporada As Integer = controladora.buscarTemporada(fechaInicio, fechaInicio.AddDays(1)).id_Temporada
-
-                            Dim habitacionesDeseadas As Integer = gv_ResultadosDisponibles.Rows.Count
-
-                            Dim noches As Integer = controladora.NochesSegunTarifas(id_temporada, id_producto, 0, total_de_noches)
-                            Dim nochesAdicionales As Integer = total_de_noches - noches
-                            If validarPrecios(id_temporada, id_producto, noches, gv_ResultadosDisponibles) Then
-
-                                Dim habitacionesDisponibles As Data.DataTable = cargarItemsDisponibles(id_producto, fechaInicio, fechaFin)
-                                If habitacionesDisponibles.Rows.Count >= habitacionesDeseadas Then
-                                    Dim descripcion As String = txt_observaciones.Text
-
-
-                                    If rdbtnlist_transporte2014.Visible = True Then
-
-                                        Dim preciotransporte As Integer = 0
-
-                                        If entrada.Year = 2014 Then
-                                            preciotransporte = 70
-
-                                        ElseIf entrada.Year = 2015 Then
-                                            preciotransporte = 75
-                                        End If
-
-                                        'If entrada.Year = 2014 Then
-                                        '    preciotransporte = 70
-
-                                        'ElseIf entrada.Year = 2015 Then
-                                        '    preciotransporte = 75
-                                        'End If
-
-
-                                        Select Case rdbtnlist_transporte2014.SelectedValue
-                                            Case 1
-                                                descripcion &= "<br /><strong> Transfer to Manatus ($" & preciotransporte & "p/p)</strong>"
-                                            Case 2
-                                                descripcion &= "<br /><strong> Transfer back to San Jose ($" & preciotransporte & " p/p)</strong>"
-                                            Case 3
-                                                descripcion &= "<br /><strong> Round Trip ($" & preciotransporte * 2 & " p/p)</strong>"
-                                        End Select
-                                        'If trPlacetoPickup.Visible = True Then
-                                        '    descripcion &= "<br /><strong> Lugar donde se recoge:</strong>" & txt_pickup.Text
-                                        'End If
-                                        'If trPlacetoLeave.Visible = True Then
-                                        '    descripcion &= "<br /><strong>Lugar donde se deja:</strong>" & txt_leave.Text
-
-                                        'End If
-                                        descripcion &= "<br/><strong>For Pick up place and Drop off place:</strong> Service subject to availability. Guests must contact Manatus Hotel in order to establish the pick up or drop off place."
-                                    End If
-
-                                    Dim ReservacionActual As Integer = controladora.CrearReservacion(id_entidad, fechaInicio, fechaFin, id_entidad, True, "", 0, descripcion)
-
-                                    If ReservacionActual > 0 Then
-
-                                        If agregaItem(ReservacionActual, id_entidad, id_producto, noches, nochesAdicionales, habitacionesDisponibles, gv_ResultadosDisponibles, fechaInicio, fechaFin) Then
-                                            exito(ReservacionActual)
-                                        Else
-                                            mensajeErrorReservacion()
-                                        End If
-                                        'If agregaItem(ReservacionActual, id_entidad, id_producto, noches, nochesAdicionales, habitacionesDisponibles, gv_ResultadosDisponibles, fechaInicio, fechaFin) Then
-                                        '    exito(ReservacionActual)
-                                        'Else
-                                        '    mensajeErrorReservacion()
-                                        'End If
-                                    Else
-                                        mensajeErrorReservacion()
-                                    End If
-                                Else
-                                    mensajeCantidadHabitaciones(habitacionesDisponibles.Rows.Count)
-                                End If
-
-                            End If
-                        Else
-                            mensajeErrorFechas()
-                        End If
-                    Else
-                        mensajeErrorObservaciones()
-                    End If
-                End If
-            End If
-            lbl_ResultadoReservacion.Visible = True
-
-        End If
+        paso2.Visible = False
+        paso1.Visible = True
+        Dim class2 As String = step_2.CssClass
+        class2 = class2.Replace("active", "")
+        step_2.CssClass = class2
+        step_1.CssClass = step_1.CssClass + " active"
     End Sub
 
+    Protected Sub step_3_link_Click(sender As Object, e As System.EventArgs) Handles step_3_link.Click
+        reservarNormal()
+    End Sub
 
+    Protected Sub step_3_point_Click(sender As Object, e As System.EventArgs) Handles step_3_point.Click
+        reservarNormal()
+    End Sub
+
+    Protected Sub btn_aPaso3_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btn_aPaso3.Click
+        reservarNormal()
+
+    End Sub
 
     Protected Sub AplicarSeleccion_Click(sender As Object, e As EventArgs) Handles AplicarSeleccion.Click
         lbl_ResultadoHabitaciones.Visible = False
@@ -1149,8 +1046,9 @@ Partial Class reservacion_en_paso1
 
     End Sub
 
+
     'Calculos de Precio  y reservaciones
-    Public Sub CalculoPrecio()
+    Protected Sub CalculoPrecio()
 
 
         Dim paquete As Integer = Request.QueryString("paquete")
@@ -1245,13 +1143,45 @@ Partial Class reservacion_en_paso1
                         For counter As Integer = 0 To gv_ResultadosDisponibles.Rows.Count - 1
                             Dim unItem As GridViewRow = gv_ResultadosDisponibles.Rows(counter)
                             Dim lbl_tipo_paquete As Label = unItem.FindControl("lbl_tipo_paquete")
+                            lbl_tipo_paquete.Text = "Custom Package"
                             'Para cambiar el radio Button del paquete
-                            If ((noches = 1) And (nochesAdicionales = 0)) Then
 
+                            'mostrar descripciones de paquetes custom por default
+                            des_paq_2_1.Visible = False
+                            des_paq_3_2.Visible = False
+                            des_paq_custom.Visible = True
+                            inc_paq_2_1.Visible = False
+                            inc_paq_3_2.Visible = False
+                            inc_paq_custom.Visible = True
+                            tar_paq_2_1.Visible = False
+                            tar_paq_3_2.Visible = False
+                            tar_paq_custom.Visible = True
+                            If ((noches = 1) And (nochesAdicionales = 0)) Then
+                                'mostrar descripciones de paquetes de 2 dias y una noche
                                 lbl_tipo_paquete.Text = "2 days 1 night"
+                                des_paq_2_1.Visible = True
+                                des_paq_3_2.Visible = False
+                                des_paq_custom.Visible = False
+                                inc_paq_2_1.Visible = True
+                                inc_paq_3_2.Visible = False
+                                inc_paq_custom.Visible = False
+                                tar_paq_2_1.Visible = True
+                                tar_paq_3_2.Visible = False
+                                tar_paq_custom.Visible = False
+
 
                             ElseIf ((noches = 2) And (nochesAdicionales = 0)) Then
                                 lbl_tipo_paquete.Text = "3 days 2 nights"
+                                'mostrar descripciones de paquetes de 3 dias y dos noches
+                                des_paq_2_1.Visible = False
+                                des_paq_3_2.Visible = True
+                                des_paq_custom.Visible = False
+                                inc_paq_2_1.Visible = False
+                                inc_paq_3_2.Visible = True
+                                inc_paq_custom.Visible = False
+                                tar_paq_2_1.Visible = False
+                                tar_paq_3_2.Visible = True
+                                tar_paq_custom.Visible = False
                             End If
                             Dim lbl_precio_habitacion As Label = unItem.FindControl("lbl_precio_habitacion")
                             lbl_precio_habitacion.Text = "$ " + Convert.ToString(agregaItemTemporalIndividual(id_producto, noches, nochesAdicionales, habitacionesDisponibles, unItem, counter, False, fechaInicio, fechaFin))
@@ -1289,12 +1219,12 @@ Partial Class reservacion_en_paso1
 
     End Sub
 
-    Public Sub CalculoPrecioConPaquete()
+    Protected Sub CalculoPrecioConPaquete()
         'loader.Visible = True
         'loader.Visible = False
     End Sub
 
-    Public Sub CalculoPrecioConTransporte()
+    Protected Sub CalculoPrecioConTransporte()
 
 
         Dim paquete As Integer = Request.QueryString("paquete")
@@ -1409,8 +1339,11 @@ Partial Class reservacion_en_paso1
         End If
 
     End Sub
-   
-    Protected Sub btn_aPaso3_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btn_aPaso3.Click
+
+    Protected Sub reservarNormal()
+        lbl_ResultadoHabitaciones.Visible = False
+        lbl_erroFechas.Visible = False
+        lbl_ResultadoReservacion.Visible = False
         Dim paquete As Integer = Request.QueryString("paquete")
         'paquete = 0
         If paquete = 2 Then
@@ -1753,8 +1686,10 @@ Partial Class reservacion_en_paso1
 
 
 
-    
-    
-  
+
+
+
+
+
 
 End Class

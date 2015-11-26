@@ -14,9 +14,11 @@
     //    });
 
     var topCalendar = $("input#TxtCheckinCheckout").position().top;
+    var leftCalendar = $("input#TxtCheckinCheckout").position().left;
 
     var heightInput = $("input#TxtCheckinCheckout").height();
-    $("#widgetCalendar").css("top", topCalendar + heightInput+15);
+    $("#widgetCalendar").css("top", topCalendar + heightInput + 15);
+    $("#widgetCalendar").css("left", leftCalendar);
 
 
 });
