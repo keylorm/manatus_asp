@@ -18,7 +18,6 @@ Partial Class reservacion_es_paso1
         Orbelink.DBHandler.LanguageHandler.CurrentLanguage = Orbelink.DBHandler.LanguageHandler.Language.ESPANOL
     End Sub
 
-
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         If Not IsPostBack Then
@@ -81,7 +80,6 @@ Partial Class reservacion_es_paso1
             'cambiaIdioma()
         End If
     End Sub
-
     'Funciones necesarias para calculos y procesos
     Protected Function insertEntidad(ByVal id_tipoEntidad As Integer, ByVal id_ubicacion As Integer, ByVal nombre As String, ByVal apellido As String, ByVal codigoPostal As String, ByVal tel As String, ByVal email As String, ByVal direccion As String) As Boolean
         Dim entidad As Entidad

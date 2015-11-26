@@ -9,12 +9,12 @@ Imports System.Data
 Partial Class reservacionExitosa_en
     Inherits Orbelink.FrontEnd6.PageBaseClass
     ''Datos de la reservacion
-    Protected ingresoSalida As String = "29/11/2015 - 30/11/2015"
-    Protected servicio As String = "2 rooms for 3 people, 2 nights, additional nights 0 Taxes included. Transport included."
-    Protected personas As Integer = 3
-    Protected habitaciones As Integer = 2
-    Protected costoEstadia As Double = 790.0
-    Protected costoNocheAdicional As Double = 0.0
+    'Protected ingresoSalida As String = "29/11/2015 - 30/11/2015"
+    'Protected servicio As String = "2 rooms for 3 people, 2 nights, additional nights 0 Taxes included. Transport included."
+    'Protected personas As Integer = 3
+    'Protected habitaciones As Integer = 2
+    'Protected costoEstadia As Double = 790.0
+    'Protected costoNocheAdicional As Double = 0.0
 
     ''Datos personales
     'Protected nombreCompleto As String = "María Quesadas López"
@@ -113,37 +113,8 @@ Partial Class reservacionExitosa_en
                 Dim fechaFinal As Date = FormatDateTime(reservacion.fecha_finalProgramado.ValueLocalized, DateFormat.ShortDate)
                 Dim idReservacion As Integer = CType(reservacion.Id_Reservacion.Value, Integer)
 
-                'realizamos una subconsulta para obtener los datos de la noche adicional (relacion entre la tabla factura y detalle factura)
-                Dim QueryBuilder2 As New QueryBuilder
-                Dim ds2 As DataSet
-                Dim reservacion2 As New Reservacion
-                Dim factura2 As New Factura
-                Dim detalle_factura2 As New DetalleFactura
-
-                'selects
-                detalle_factura2.Precio_Unitario_Extra.ToSelect = True
-
-                'where
-                reservacion2.Id_Reservacion.Where.EqualCondition(id_reservacion)
-
-                'Join
-                QueryBuilder2.Join.EqualCondition(reservacion2.Id_factura, factura2.Id_Factura)
-
-                'froms
-                QueryBuilder2.From.Add(reservacion2)
-                QueryBuilder2.From.Add(factura2)
-                QueryBuilder2.From.Add(detalle_factura2)
-
-                'execute
-                ds2 = connection.executeSelect(QueryBuilder2.RelationalSelectQuery)
-
-                Dim precioUnitarioExtra As Double = 0.0
-                If ds2.Tables(0).Rows.Count > 0 Then
-                    For index = 0 To ds2.Tables(0).Rows.Count - 1
-                        ObjectBuilder.CreateObject(ds2.Tables(0), index, detalle_factura2)
-                        precioUnitarioExtra = (precioUnitarioExtra + CType(detalle_factura2.Precio_Unitario_Extra.Value, Double))
-                    Next
-                End If
+                'extraemos el total del costo de la noche adicional
+                Dim precioUnitarioExtra As Double = precio_noche_adicional(idReservacion)
 
                 'recorremos cada tupla para extraer la cantidad de personas (adultos + niños)
                 For index = 0 To ds.Tables(0).Rows.Count - 1
@@ -169,58 +140,59 @@ Partial Class reservacionExitosa_en
                 ValueLblPersonas.Text = CType(personas, String)
                 ValueLblHabitaciones.Text = CType(habitaciones, String)
                 ValueLblCostoSinTransporte.Text = String.Format("{0:$###,###,###.##}", factura.SubTotal.Value)
-                ValueLblCostoAdicional.Text = String.Format("{0:$###,###,###.##}", costoNocheAdicional)
-                ValueLblCostoTotal.Text = String.Format("{0:$###,###,###.##}", (factura.SubTotal.Value + costoNocheAdicional))
+                If (precioUnitarioExtra = 0.0) Then
+                    ValueLblCostoAdicional.Text = "$0"
+                Else
+                    ValueLblCostoAdicional.Text = String.Format("{0:$###,###,###.##}", precioUnitarioExtra)
+                End If
+                ValueLblCostoTotal.Text = String.Format("{0:$###,###,###.##}", (factura.SubTotal.Value + precioUnitarioExtra))
 
             End If
-            End If
+        End If
 
     End Function
 
-    'Public Sub asignaInformacion(ByVal reservacion As Reservacion, ByVal entidad As Entidad, ByVal factura As Factura)
-    '    Dim QueryBuilder As New QueryBuilder
-    '    Dim ds As DataSet
-    '    Dim result As String
-    '    Dim id_carrito As Integer = reservacion.Id_factura.Value
+    Public Function precio_noche_adicional(id_reserva As Integer) As Double
 
-    '    Dim detalle_factura As New DetalleFactura
-    '    detalle_factura.NombreDisplay.ToSelect = True
-    '    detalle_factura.Id_Factura.Where.EqualCondition(reservacion.Id_factura.Value)
+        'realizamos una subconsulta para obtener los datos de la noche adicional (relacion entre la tabla factura y detalle factura)
+        Dim QueryBuilder As New QueryBuilder
+        Dim ds As DataSet
+        Dim reservacion As New Reservacion
+        Dim factura As New Factura
+        Dim detalle_factura As New DetalleFactura
+        Dim total As Double = 0
 
-    '    QueryBuilder.From.Add(detalle_factura)
+        'selects
+        detalle_factura.Precio_Unitario_Extra.ToSelect = True
 
-    '    result = QueryBuilder.RelationalSelectQuery()
-    '    ds = connection.executeSelect(result)
+        'where
+        reservacion.Id_Reservacion.Where.EqualCondition(id_reserva)
 
-    '    If ds.Tables.Count > 0 Then
-    '        If ds.Tables(0).Rows.Count > 0 Then
+        'Join
+        QueryBuilder.Join.EqualCondition(reservacion.Id_factura, factura.Id_Factura)
+        QueryBuilder.Join.EqualCondition(factura.Id_Factura, detalle_factura.Id_Factura)
 
-    '            dtl_shoppingCart.DataSource = ds
-    '            dtl_shoppingCart.DataBind()
+        'froms
+        QueryBuilder.From.Add(reservacion)
+        QueryBuilder.From.Add(factura)
+        QueryBuilder.From.Add(detalle_factura)
 
-    '            Dim fechaInicio As Date = reservacion.fecha_inicioProgramado.ValueLocalized
-    '            Dim fechaFinal As Date = reservacion.fecha_finalProgramado.ValueLocalized
-    '            Dim fecha As String = ""
+        ds = connection.executeSelect(QueryBuilder.RelationalSelectQuery)
+        'execute
 
-    '            For i As Integer = 0 To ds.Tables(0).Rows.Count - 1
-    '                ObjectBuilder.CreateObject(ds.Tables(0), i, detalle_factura)
+        If ds.Tables.Count > 0 Then
+            If ds.Tables(0).Rows.Count > 0 Then
 
-    '                Dim lbl_producto As Label = dtl_shoppingCart.Items(i).FindControl("lbl_producto")
-    '                lbl_producto.Text = detalle_factura.NombreDisplay.Value
+                For i As Integer = 0 To ds.Tables(0).Rows.Count - 1
+                    ObjectBuilder.CreateObject(ds.Tables(0), i, reservacion)
+                    ObjectBuilder.CreateObject(ds.Tables(0), i, factura)
+                    ObjectBuilder.CreateObject(ds.Tables(0), i, detalle_factura)
+                    total += (CType(detalle_factura.Precio_Unitario_Extra.Value, Double))
+                Next
 
+            End If
+        End If
+        Return total
+    End Function
 
-    '            Next
-
-    '        Else
-    '            esconderCarrito()
-    '        End If
-    '    End If
-
-    'End Sub
-
-    Protected Sub esconderCarrito()
-        'pnl_principal.Visible = False
-        'lbl_mensaje.Visible = True
-
-    End Sub
 End Class
