@@ -14,6 +14,15 @@ Partial Class reservacion_es_paso1
     Private Const horaEntrada As Integer = 12
     Private Const horaSalida As Integer = 11
 
+    'variables para almacenar los calculos
+    Public Shared GlobalIngresoSalida As String = ""
+    Public Shared GlobalHabitaciones As Integer = 0
+    Public Shared GlobalPersonas As Integer = 0
+    Public Shared GlobalNoches As Integer = 0
+    Public Shared GlobalNoches_adicionales As Integer = 0
+    Public Shared GlobalCosto_estadia As Double = 0.0
+    Public Shared GlobalCosto_noche_adicional As Double = 0.0
+
     Protected Sub Page_Init(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Init
         Orbelink.DBHandler.LanguageHandler.CurrentLanguage = Orbelink.DBHandler.LanguageHandler.Language.ESPANOL
     End Sub
@@ -481,7 +490,7 @@ Partial Class reservacion_es_paso1
 
                 Dim precio_transporte As Integer = 0
 
-                
+
 
                 If rdbtnlist_transporte2014.Visible = True Then
 
@@ -570,7 +579,7 @@ Partial Class reservacion_es_paso1
 
 
 
-               
+
             End If
         End If
         Return hasta
@@ -587,9 +596,9 @@ Partial Class reservacion_es_paso1
         Dim resul_producto As ArrayList = TransformDataTable(dataTable, New Producto)
         Dim resul_Item As ArrayList = TransformDataTable(dataTable, New Item)
 
-       
+
     End Sub
-    
+
 
     Protected Function calculoPersonasXHabitacion(ByVal num_habitaciones As Integer, ByVal num_personas As Integer) As Boolean
         Dim resultado As Boolean = True
@@ -894,7 +903,7 @@ Partial Class reservacion_es_paso1
             'almacenar el rango de fecha en una sesion
             Session("rango") = TxtCheckinCheckout.Text
             If (gv_ResultadosDisponibles.Rows.Count > 0) Then
-                
+
                 CalculoPrecio()
             End If
         End If
@@ -913,6 +922,19 @@ Partial Class reservacion_es_paso1
             class1 = class1.Replace("active", "")
             step_1.CssClass = class1
             step_2.CssClass = step_2.CssClass + " active"
+
+            'cargar los datos de la reserva almacenados en variables globales
+            ValueLblIngresoSalida.Text = TxtCheckinCheckout.Text
+            ValueLblServicio.Text = CType(GlobalHabitaciones, String) + " habitaciones para " + CType(GlobalPersonas, String) + " personas, " + CType(GlobalNoches, String) + " noches, " + CType(GlobalNoches_adicionales, String) + " noches adicionales Impuestos incluidos. Traslados incluidos."
+            ValueLblPersonas.Text = CType(GlobalPersonas, String)
+            ValueLblHabitaciones.Text = CType(GlobalHabitaciones, String)
+            ValueLblCostoSinTransporte.Text = String.Format("{0:$###,###,###.##}", GlobalCosto_estadia)
+            If GlobalCosto_noche_adicional = 0.0 Then
+                ValueLblCostoAdicional.Text = "$0.0"
+            Else
+                ValueLblCostoAdicional.Text = String.Format("{0:$###,###,###.##}", GlobalCosto_noche_adicional)
+            End If
+            ValueLblCostoTotal.Text = String.Format("{0:$###,###,###.##}", (GlobalCosto_estadia + GlobalCosto_noche_adicional))
         Else
             lbl_ResultadoReservacion.Visible = True
             lbl_ResultadoReservacion.ForeColor = Drawing.Color.Red
@@ -1028,7 +1050,7 @@ Partial Class reservacion_es_paso1
         reservarNormal()
 
     End Sub
-  
+
     'Calculos
     Protected Sub CalculoPrecio()
 
@@ -1047,6 +1069,7 @@ Partial Class reservacion_es_paso1
 
             'separador para el rango de fecha
             Dim rango = TxtCheckinCheckout.Text
+            GlobalIngresoSalida = rango
             Dim delimiter As Char = " - "
             Dim substrings() As String = rango.Split(delimiter)
             Dim counter1 = 0
@@ -1104,22 +1127,21 @@ Partial Class reservacion_es_paso1
             Dim fechaFin As New Date(salida.Year, salida.Month, salida.Day, 11, 0, 0)
 
             Dim total_de_noches As Integer = controladora.TotalNoches(fechaInicio, fechaFin)
+            GlobalNoches = total_de_noches
             If total_de_noches > 0 Then
                 Dim id_temporada As Integer = controladora.buscarTemporada(fechaInicio, fechaInicio.AddDays(1)).id_Temporada
 
                 Dim habitacionesDeseadas As Integer = gv_ResultadosDisponibles.Rows.Count
-
-
                 Dim noches As Integer = controladora.NochesSegunTarifas(id_temporada, id_producto, 0, total_de_noches)
 
                 Dim nochesAdicionales As Integer = total_de_noches - noches
-
+                GlobalNoches_adicionales = nochesAdicionales
 
                 If validarPrecios(id_temporada, id_producto, noches, gv_ResultadosDisponibles) Then
 
                     Dim habitacionesDisponibles As Data.DataTable = cargarItemsDisponibles(id_producto, fechaInicio, fechaFin)
                     If habitacionesDisponibles.Rows.Count >= habitacionesDeseadas Then
-
+                        GlobalHabitaciones = habitacionesDeseadas
                         Dim total_personas As Integer = 0
 
                         For counter As Integer = 0 To gv_ResultadosDisponibles.Rows.Count - 1
@@ -1170,8 +1192,7 @@ Partial Class reservacion_es_paso1
                             Dim ddlPersonas As DropDownList = unItem.FindControl("ddl_personas")
                             total_personas = total_personas + ddlPersonas.SelectedValue
                         Next
-
-
+                        GlobalPersonas = total_personas
 
                         Dim precioSintrasporte As Double = agregaItemTemporal(id_producto, noches, nochesAdicionales, habitacionesDisponibles, gv_ResultadosDisponibles, False, fechaInicio, fechaFin)
                         Dim precioContranporte As Double = agregaItemTemporal(id_producto, noches, nochesAdicionales, habitacionesDisponibles, gv_ResultadosDisponibles, True, fechaInicio, fechaFin)
@@ -1179,7 +1200,7 @@ Partial Class reservacion_es_paso1
                         If ((precioSintrasporte <> 0)) Then
 
                             lbl_precioSinTransporte.Text = precioSintrasporte
-
+                            GlobalCosto_estadia = precioSintrasporte
                             'exito(ReservacionActual)
                         Else
                             mensajeErrorReservacion()
@@ -1189,7 +1210,6 @@ Partial Class reservacion_es_paso1
                         If ((precioContranporte <> 0)) Then
 
                             lbl_precioConTransporte.Text = precioContranporte
-
                             'exito(ReservacionActual)
                         Else
                             mensajeErrorReservacion()
@@ -1218,8 +1238,7 @@ Partial Class reservacion_es_paso1
                             Dim ddlPersonas As DropDownList = unItem.FindControl("ddl_personas")
                             total_personas = total_personas + ddlPersonas.SelectedValue
                         Next
-
-
+                        GlobalPersonas = total_personas
 
                         Dim precioSintrasporte As Double = agregaItemTemporal(id_producto, noches, nochesAdicionales, habitacionesDisponibles, gv_ResultadosDisponibles, False, fechaInicio, fechaFin)
                         Dim precioContranporte As Double = agregaItemTemporal(id_producto, noches, nochesAdicionales, habitacionesDisponibles, gv_ResultadosDisponibles, True, fechaInicio, fechaFin)

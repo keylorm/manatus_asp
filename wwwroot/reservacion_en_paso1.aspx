@@ -1548,7 +1548,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                 <div class="detalle">
                                     <div class="wrapper-field ingreso-salida">
                                         <div class="key">
-                                            <asp:Label ID="KeyLblIngresoSalida" CssClass="span-field" Text="Ingreso y Salida"
+                                            <asp:Label ID="KeyLblIngresoSalida" CssClass="span-field" Text="Check in and Check out"
                                                 runat="server"></asp:Label>
                                         </div>
                                         <div class="value">
@@ -1557,7 +1557,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                     </div>
                                     <div class="wrapper-field servicio">
                                         <div class="key">
-                                            <asp:Label ID="KeyLblServicio" CssClass="span-field" Text="Servicio" runat="server"></asp:Label>
+                                            <asp:Label ID="KeyLblServicio" CssClass="span-field" Text="Service" runat="server"></asp:Label>
                                         </div>
                                         <div class="value">
                                             <asp:Label ID="ValueLblServicio" CssClass="span-field" Text="" runat="server"></asp:Label>
@@ -1565,7 +1565,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                     </div>
                                     <div class="wrapper-field personas">
                                         <div class="key">
-                                            <asp:Label ID="KeyLblPersonas" CssClass="span-field" Text="Personas" runat="server"></asp:Label>
+                                            <asp:Label ID="KeyLblPersonas" CssClass="span-field" Text="People" runat="server"></asp:Label>
                                         </div>
                                         <div class="value">
                                             <asp:Label ID="ValueLblPersonas" CssClass="span-field" Text="" runat="server"></asp:Label>
@@ -1573,7 +1573,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                     </div>
                                     <div class="wrapper-field habitaciones">
                                         <div class="key">
-                                            <asp:Label ID="KeyLblHabitaciones" CssClass="span-field" Text="Habitaciones" runat="server"></asp:Label>
+                                            <asp:Label ID="KeyLblHabitaciones" CssClass="span-field" Text="Rooms" runat="server"></asp:Label>
                                         </div>
                                         <div class="value">
                                             <asp:Label ID="ValueLblHabitaciones" CssClass="span-field" Text="" runat="server"></asp:Label>
@@ -1581,7 +1581,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                     </div>
                                     <div class="wrapper-field costo-sin-transporte">
                                         <div class="key">
-                                            <asp:Label ID="KeyLblCostoSinTransporte" CssClass="span-field" Text="Costo estadia"
+                                            <asp:Label ID="KeyLblCostoSinTransporte" CssClass="span-field" Text="Stay Cost"
                                                 runat="server"></asp:Label>
                                         </div>
                                         <div class="value">
@@ -1590,7 +1590,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                     </div>
                                     <div class="wrapper-field costo-adicional">
                                         <div class="key">
-                                            <asp:Label ID="KeyLblCostoAdicional" CssClass="span-field" Text="Costo noches adicionales"
+                                            <asp:Label ID="KeyLblCostoAdicional" CssClass="span-field" Text="Additiona cost night"
                                                 runat="server"></asp:Label>
                                         </div>
                                         <div class="value">
