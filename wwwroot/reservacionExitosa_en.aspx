@@ -1,9 +1,9 @@
-﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="reservacionExitosa.aspx.vb" Inherits="reservacionExitosa" %>
+﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="reservacionExitosa_en.aspx.vb" Inherits="reservacionExitosa_en" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
+<head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     <title>Online hotel reservations, booking a hotel in Tortuguero </title>
     <link rel="shortcut icon" href="images/images2/favicon.ico" />
@@ -129,7 +129,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
         var urlactual = document.URL.replace(/#.*/, "");
         urlactual = urlactual.replace(/\?.*/, "");
         _gaq.push(['_trackEvent', 'Reservación', 'Paso 1', urlactual]);
-    </script>    
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -144,71 +144,71 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                 <div class="menu-top-box">
                     <div class="menu-idioma">
                         <ul>
-                            <li><a href="reservacion_en.aspx">English</a></li>|<li><a href="reservacion_sp.aspx"
-                                class="active">Español</a></li></ul>
+                            <li><a href="reservacion_en.aspx" class="active">English</a></li>|<li><a href="reservacion_sp.aspx">
+                                Español</a></li></ul>
                     </div>
                     <div class="menu-top">
                         <ul>
-                            <li><a href="http://manatuscostarica.com/es/">Inicio</a></li>|<li><a href="http://booking.manatuscostarica.com/reservacion_sp.aspx">
-                                Reservar</a></li>|<li><a href="http://manatuscostarica.com/es/gallery">Galeria</a></li>|<li>
-                                    <a href="http://manatuscostarica.com/es/contacto">Contacto</a></li></ul>
+                            <li><a href="http://manatuscostarica.com/">Home</a></li>|<li><a href="http://booking.manatuscostarica.com/reservacion_en.aspx">
+                                Book Now</a></li>|<li><a href="http://manatuscostarica.com/gallery">Gallery</a></li>|<li>
+                                    <a href="http://manatuscostarica.com/contact-us">Contact</a></li></ul>
                     </div>
                     <div class="contact-info">
                         <p>
-                            MANATUS HOTEL, TORTUGUERO COSTA RICA | RESERVACIONES: <a href="tel: +50622397364">(506)
+                            MANATUS HOTEL, TORTUGUERO COSTA RICA | RESERVATIONS: <a href="tel: +50622397364">(506)
                                 2239.7364</a> | HOTEL: <a href="tel: +50627098197">(506) 2709.8197</a></p>
                     </div>
                 </div>
                 <div class="menu-principal-box">
                     <div class="menu-principal">
                         <ul class="mi-menu">
-                            <li><a href="http://manatuscostarica.com/es/experiencia-manatus">Experiencia Manatus</a>
+                            <li><a href="http://manatuscostarica.com/manatus-experience">Manatus Experience</a>
                                 <ul>
-                                    <li><a href="http://manatuscostarica.com/es/habitaciones">Habitaciones Acogedoras</a></li>
-                                    <li><a href="http://manatuscostarica.com/es/jardines">Jardines y Alrededores del Hotel</a></li>
-                                    <li><a href="http://manatuscostarica.com/es/servicios">Servicios Exclusivos</a></li>
-                                    <li><a href="http://manatuscostarica.com/es/restaurante">Restaurante de Comida Caribeña</a></li>
-                                    <li><a href="http://manatuscostarica.com/es/piscina">Área de la Piscina</a></li>
+                                    <li><a href="http://manatuscostarica.com/rooms">Cozy Rooms</a></li>
+                                    <li><a href="http://manatuscostarica.com/gardens-surroundings">Hotel Gardens and Surroundings</a></li>
+                                    <li><a href="http://manatuscostarica.com/amenities">Exclusive Amenities</a></li>
+                                    <li><a href="http://manatuscostarica.com/restaurant">Caribbean Food Restaurant</a></li>
+                                    <li><a href="http://manatuscostarica.com/pool">River Front Pool Area</a></li>
                                 </ul>
                             </li>
-                            <li><a href="http://manatuscostarica.com/es/qué-hacer">¿Qué hacer?</a>
+                            <li><a href="http://manatuscostarica.com/what-to-do">What to do?</a>
                                 <ul>
-                                    <li><a href="http://manatuscostarica.com/es/tours-actividades">Tours de Aventura y Actividades</a></li>
-                                    <li><a href="http://manatuscostarica.com/es/pesca-deportiva">Tours de Pesca Deportiva</a></li>
+                                    <li><a href="http://manatuscostarica.com/tours-and-activities">Tours and Activities</a></li>
+                                    <li><a href="http://manatuscostarica.com/sportsfishing-tour">Sportfishing Tours</a></li>
                                 </ul>
                             </li>
-                            <li><a href="http://manatuscostarica.com/es/paquetes-tarifas">Paquetes &amp; Tarifas</a>
+                            <li><a href="http://manatuscostarica.com/package-and-rates">Packages &amp; Rates</a>
                                 <ul>
-                                    <li><a href="http://manatuscostarica.com/es/paquetes-luna-de-miel">Paquetes de Luna
-                                        de Miel</a></li>
-                                    <li><a href="http://manatuscostarica.com/es/paquetes-regulares-tarifas">Paquetes Regulares</a></li>
-                                    <li><a href="http://manatuscostarica.com/es/paquetes-especiales">Paquetes Especiales</a></li>
+                                    <li><a href="http://manatuscostarica.com/honeymoon-packages">Honeymoon Packages</a></li>
+                                    <li><a href="http://manatuscostarica.com/regular-packages-rates">Regular Packages</a></li>
+                                    <li><a href="http://manatuscostarica.com/special-packages">Seasonal Packages</a></li>
                                 </ul>
                             </li>
-                            <li><a href="http://manatuscostarica.com/es/area-de-tortuguero">Tortuguero</a></li>
-                            <li class="active-trail"><a href="http://booking.manatuscostarica.com/reservacion_sp.aspx">
-                                Reservaciones</a></li>
-                            <li><a href="http://manatuscostarica.com/es/blog">Blog</a></li></ul>
+                            <li><a href="http://manatuscostarica.com/tortuguero-area">Tortuguero</a></li>
+                            <li class="active-trail"><a href="http://booking.manatuscostarica.com/reservacion_en.aspx">
+                                Reservations</a></li>
+                            <li><a href="http://manatuscostarica.com/blog">Blog</a></li></ul>
                         <ul class="mi-menu-responsivo">
-                            <li><a href="http://manatuscostarica.com/es/experiencia-manatus">Experiencia Manatus</a>
+                            <li><a href="http://manatuscostarica.com/manatus-experience">Manatus Experience</a>
                             </li>
-                            <li><a href="http://manatuscostarica.com/qué-hacer">¿Qué hacer?</a> </li>
-                            <li><a href="http://manatuscostarica.com/es/paquetes-tarifas">Paquetes &amp; Tarifas</a>
+                            <li><a href="http://manatuscostarica.com/what-to-do">What to do?</a> </li>
+                            <li><a href="http://manatuscostarica.com/package-and-rates">Packages &amp; Rates</a>
                             </li>
-                            <li><a href="http://manatuscostarica.com/es/area-de-tortuguero">Tortuguero</a></li>
-                            <li class="active-trail"><a href="http://booking.manatuscostarica.com/reservacion_sp.aspx">
-                                Reservaciones</a></li>
-                            <li><a href="http://manatuscostarica.com/es/blog">Blog</a></li></ul>
+                            <li><a href="http://manatuscostarica.com/tortuguero-area">Tortuguero</a></li>
+                            <li class="active-trail"><a href="http://booking.manatuscostarica.com/reservacion_en.aspx">
+                                Reservations</a></li>
+                            <li><a href="http://manatuscostarica.com/blog">Blog</a></li></ul>
                     </div>
                 </div>
                 <div id="page-head">
                     <div class="page-title">
-                        <h1 title="Reservaciones On-line, reservas en el hotel Manatus" class="h1ReservaNew">
-                            RESERVACIÓN</h1>
+                        <h1 title="On-line reservations, booking at Manatus, tortuguero hotel reservations"
+                            class="h1ReservaNew">
+                            RESERVATION</h1>
                     </div>
                     <div class="breadcrumbs">
-                        <a href="http://manatuscostarica.com/es/" title="P&aacute;gina principal Hotel Manatus Tortuguero Costa Rica">
-                            Inicio</a> / Reservación
+                        <a href="http://manatuscostarica.com/" title="P&aacute;gina principal Hotel Manatus Tortuguero Costa Rica">
+                            Home</a> / Reservation
                     </div>
                 </div>
             </div>
@@ -236,28 +236,27 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                         </div>
                     </div>
                     <div class="form-title">
-                        <h2 class="h2Celeste">¡Será un placer recibirlo en el Hotel Manatus!</h2>
+                        <h2 class="h2Celeste">We will be happy to receive you in Hotel Manatus!</h2>
                         <div class="logo-ssl">
                             <img src="images/verisign.png" />
-                        </div>                  
+                        </div>
                     </div>
                     <p class="comprobante-reserva">
-                        Su reserva se tramitó con éxito. Muy pronto llegará a su correo una confirmación.
-                        <a href="javascript:void(0)" class="downloadVoucher" target="_blank">Descargar comprobante.</a>
+                        Your reservation has been processed successfully. Very soon you will receive a confirmation in your email.
+                        <a href="javascript:void(0)" class="downloadVoucher" target="_blank">Download voucher.</a>
                     </p>
                 </div>
 
                 <div class="ct_detalle_reserva">
-
                 <div class="content-box container-2-3">
                     <!-- cuadro respuesta de reservacion -->
                     <div class="detalle-reservacion">
                         <div id="su-reservacion">
-                            <h2 id="titulo-reservacion">Detalle de reservación</h2>
+                            <h2 id="titulo-reservacion">Detail Booking</h2>
                             <div class="detalle">
                                 <div class="wrapper-field ingreso-salida">
                                     <div class="key">
-                                        <asp:Label ID="KeyLblIngresoSalida" CssClass="span-field" Text="Ingreso y Salida" runat="server"></asp:Label>
+                                        <asp:Label ID="KeyLblIngresoSalida" CssClass="span-field" Text="Checkin and Checkout" runat="server"></asp:Label>
                                     </div>
                                     <div class="value">
                                         <asp:Label ID="ValueLblIngresoSalida" CssClass="span-field" Text="" runat="server"></asp:Label>
@@ -265,7 +264,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                 </div>
                                 <div class="wrapper-field servicio">
                                     <div class="key">
-                                        <asp:Label ID="KeyLblServicio" CssClass="span-field" Text="Servicio" runat="server"></asp:Label>
+                                        <asp:Label ID="KeyLblServicio" CssClass="span-field" Text="Service" runat="server"></asp:Label>
                                     </div>
                                     <div class="value">
                                         <asp:Label ID="ValueLblServicio" CssClass="span-field" Text="" runat="server"></asp:Label>
@@ -273,7 +272,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                 </div>
                                 <div class="wrapper-field personas">
                                     <div class="key">
-                                        <asp:Label ID="KeyLblPersonas" CssClass="span-field" Text="Personas" runat="server"></asp:Label>
+                                        <asp:Label ID="KeyLblPersonas" CssClass="span-field" Text="People" runat="server"></asp:Label>
                                     </div>
                                     <div class="value">
                                         <asp:Label ID="ValueLblPersonas" CssClass="span-field" Text="" runat="server"></asp:Label>
@@ -281,7 +280,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                 </div>
                                 <div class="wrapper-field habitaciones">
                                     <div class="key">
-                                        <asp:Label ID="KeyLblHabitaciones" CssClass="span-field" Text="Habitaciones" runat="server"></asp:Label>
+                                        <asp:Label ID="KeyLblHabitaciones" CssClass="span-field" Text="Rooms" runat="server"></asp:Label>
                                     </div>
                                     <div class="value">
                                         <asp:Label ID="ValueLblHabitaciones" CssClass="span-field" Text="" runat="server"></asp:Label>
@@ -289,7 +288,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                 </div>
                                 <div class="wrapper-field costo-sin-transporte">
                                     <div class="key">
-                                        <asp:Label ID="KeyLblCostoSinTransporte" CssClass="span-field" Text="Costo estadia" runat="server"></asp:Label>
+                                        <asp:Label ID="KeyLblCostoSinTransporte" CssClass="span-field" Text="Cost stay" runat="server"></asp:Label>
                                     </div>
                                     <div class="value">
                                         <asp:Label ID="ValueLblCostoSinTransporte" CssClass="span-field" Text="" runat="server"></asp:Label>
@@ -297,7 +296,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                 </div>
                                 <div class="wrapper-field costo-adicional">
                                     <div class="key">
-                                        <asp:Label ID="KeyLblCostoAdicional" CssClass="span-field" Text="Costo noches adicionales" runat="server"></asp:Label>
+                                        <asp:Label ID="KeyLblCostoAdicional" CssClass="span-field" Text="Additional nights cost" runat="server"></asp:Label>
                                     </div>
                                     <div class="value">
                                         <asp:Label ID="ValueLblCostoAdicional" CssClass="span-field" Text="" runat="server"></asp:Label>
@@ -318,7 +317,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                 </div>
                 <div class="content-box container-1-3 sidebar">
                     <div id="sus-datos">
-                        <h2 id="titulo-sus-datos">Sus datos</h2>
+                        <h2 id="titulo-sus-datos">Your personal information</h2>
                         <div class="detalle">
                             <div class="wrapper-field nombre-completo">
                                 <div class="row">
@@ -365,14 +364,14 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                         <img src="images/manatee.jpg" alt="" />
                                         <div class="precio">
                                             $ 123
-                                            <span>por persona</span>
+                                            <span>by person</span>
                                         </div>
                                     </div>
                                     <div class="detalle">
-                                        <h3>Anidamientos de tortugas</h3>
-                                        <p class="descripcion-corta">Disfrute en vivo el desove de la Tortuga Verde (sólo en los meses de julio, agosto, setiembre y octubre)</p>
+                                        <h3>Turtle nesting</h3>
+                                        <p class="descripcion-corta">Enjoy live nesting of the Green Turtle (only in the months of July, August, September and October)</p>
                                         <div class="boton-contacto">
-                                            <a href="#">Contáctenos para reservar</a>
+                                            <a href="#">Contact us to reserve</a>
                                         </div>
                                     </div>
                                 </div>
@@ -383,14 +382,14 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                         <img src="images/manatee.jpg" alt="" />
                                         <div class="precio">
                                             $ 123
-                                            <span>por persona</span>
+                                            <span>by person</span>
                                         </div>
                                     </div>
                                     <div class="detalle">
-                                        <h3>Anidamientos de tortugas</h3>
-                                        <p class="descripcion-corta">Disfrute en vivo el desove de la Tortuga Verde (sólo en los meses de julio, agosto, setiembre y octubre)</p>
+                                        <h3>Turtle nesting</h3>
+                                        <p class="descripcion-corta">Enjoy live nesting of the Green Turtle (only in the months of July, August, September and October)</p>
                                         <div class="boton-contacto">
-                                            <a href="#">Contáctenos para reservar</a>
+                                            <a href="#">Contact us to reserve</a>
                                         </div>
                                     </div>
                                 </div>
@@ -401,14 +400,14 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                         <img src="images/manatee.jpg" alt="" />
                                         <div class="precio">
                                             $ 123
-                                            <span>por persona</span>
+                                            <span>by person</span>
                                         </div>
                                     </div>
                                     <div class="detalle">
-                                        <h3>Anidamientos de tortugas</h3>
-                                        <p class="descripcion-corta">Disfrute en vivo el desove de la Tortuga Verde (sólo en los meses de julio, agosto, setiembre y octubre)</p>
+                                        <h3>Turtle nesting</h3>
+                                        <p class="descripcion-corta">Enjoy live nesting of the Green Turtle (only in the months of July, August, September and October)</p>
                                         <div class="boton-contacto">
-                                            <a href="#">Contáctenos para reservar</a>
+                                            <a href="#">Contact us to reserve</a>
                                         </div>
                                     </div>
                                 </div>
@@ -419,14 +418,14 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                         <img src="images/manatee.jpg" alt="" />
                                         <div class="precio">
                                             $ 123
-                                            <span>por persona</span>
+                                            <span>by person</span>
                                         </div>
                                     </div>
                                     <div class="detalle">
-                                        <h3>Anidamientos de tortugas</h3>
-                                        <p class="descripcion-corta">Disfrute en vivo el desove de la Tortuga Verde (sólo en los meses de julio, agosto, setiembre y octubre)</p>
+                                        <h3>Turtle nesting</h3>
+                                        <p class="descripcion-corta">Enjoy live nesting of the Green Turtle (only in the months of July, August, September and October)</p>
                                         <div class="boton-contacto">
-                                            <a href="#">Contáctenos para reservar</a>
+                                            <a href="#">Contact us to reserve</a>
                                         </div>
                                     </div>
                                 </div>
@@ -437,14 +436,14 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                         <img src="images/manatee.jpg" alt="" />
                                         <div class="precio">
                                             $ 123
-                                            <span>por persona</span>
+                                            <span>by person</span>
                                         </div>
                                     </div>
                                     <div class="detalle">
-                                        <h3>Anidamientos de tortugas</h3>
-                                        <p class="descripcion-corta">Disfrute en vivo el desove de la Tortuga Verde (sólo en los meses de julio, agosto, setiembre y octubre)</p>
+                                        <h3>Turtle nesting</h3>
+                                        <p class="descripcion-corta">Enjoy live nesting of the Green Turtle (only in the months of July, August, September and October)</p>
                                         <div class="boton-contacto">
-                                            <a href="#">Contáctenos para reservar</a>
+                                            <a href="#">Contact us to reserve</a>
                                         </div>
                                     </div>
                                 </div>
@@ -455,14 +454,14 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                         <img src="images/manatee.jpg" alt="" />
                                         <div class="precio">
                                             $ 123
-                                            <span>por persona</span>
+                                            <span>by person</span>
                                         </div>
                                     </div>
                                     <div class="detalle">
-                                        <h3>Anidamientos de tortugas</h3>
-                                        <p class="descripcion-corta">Disfrute en vivo el desove de la Tortuga Verde (sólo en los meses de julio, agosto, setiembre y octubre)</p>
+                                        <h3>Turtle nesting</h3>
+                                        <p class="descripcion-corta">Enjoy live nesting of the Green Turtle (only in the months of July, August, September and October)</p>
                                         <div class="boton-contacto">
-                                            <a href="#">Contáctenos para reservar</a>
+                                            <a href="#">Contact us to reserve</a>
                                         </div>
                                     </div>
                                 </div>
@@ -479,36 +478,36 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
             <div id="footer-inner" class="container-980">
                 <div class="menu-footer-responsivo">
                     <ul class="mi-menu-responsivo">
-                        <li><a href="http://manatuscostarica.com/es/experiencia-manatus">Experiencia Manatus</a>
+                        <li><a href="http://manatuscostarica.com/manatus-experience">Manatus Experience</a>
                         </li>
-                        <li><a href="http://manatuscostarica.com/es/qué-hacer">¿Qué hacer?</a> </li>
-                        <li><a href="http://manatuscostarica.com/es/paquetes-tarifas">Paquetes &amp; Tarifas</a>
+                        <li><a href="http://manatuscostarica.com/what-to-do">What to do?</a> </li>
+                        <li><a href="http://manatuscostarica.com/package-and-rates">Packages &amp; Rates</a>
                         </li>
-                        <li><a href="http://manatuscostarica.com/es/area-de-tortuguero">Tortuguero</a></li>
-                        <li class="active-trail"><a href="http://booking.manatuscostarica.com/reservacion_sp.aspx">
-                            Reservaciones</a></li>
+                        <li><a href="http://manatuscostarica.com/tortuguero-area">Tortuguero</a></li>
+                        <li class="active-trail"><a href="http://booking.manatuscostarica.com/reservacion_en.aspx">
+                            Reservations</a></li>
                         <li><a href="http://manatuscostarica.com/blog">Blog</a></li>
                     </ul>
                 </div>
                 <div class="column1 column">
                     <ul>
-                        <li><a href="http://booking.manatuscostarica.com/reservacion_sp.aspx" class="active-trail">
-                            Reservaciones</a></li>
-                        <li><a href="http://manatuscostarica.com/es/experiencia-manatus">Experiencia Manatus</a></li>
-                        <li><a href="http://manatuscostarica.com/es/area-de-tortuguero">Tortuguero</a></li>
+                        <li><a href="http://booking.manatuscostarica.com/reservacion_en.aspx" class="active-trail">
+                            Reservations</a></li>
+                        <li><a href="http://manatuscostarica.com/manatus-experience">Hotel Experience</a></li>
+                        <li><a href="http://manatuscostarica.com/tortuguero-area">Tortuguero</a></li>
                     </ul>
                 </div>
                 <div class="column2 column">
                     <ul>
-                        <li><a href="http://manatuscostarica.com/es/paquetes-tarifas">Paquetes & Tarifas</a></li>
-                        <li><a href="http://manatuscostarica.com/es/blog">Blog</a></li>
-                        <li><a href="http://manatuscostarica.com/es/gallery">Galeria</a></li>
+                        <li><a href="http://manatuscostarica.com/package-and-rates">Packages & Rates</a></li>
+                        <li><a href="http://manatuscostarica.com/blog">Blog</a></li>
+                        <li><a href="http://manatuscostarica.com/gallery">Gallery</a></li>
                     </ul>
                 </div>
                 <div class="column3 column">
                     <ul>
-                        <li><a href="http://manatuscostarica.com/es/virtual-tours/jardines">Tours Virtuales</a></li>
-                        <li><a href="http://manatuscostarica.com/es/qué-hacer">¿Qué hacer?</a></li>
+                        <li><a href="http://manatuscostarica.com/virtual-tours/garden">Virtual Tours</a></li>
+                        <li><a href="http://manatuscostarica.com/what-to-do">What to do?</a></li>
                     </ul>
                 </div>
                 <div class="column4 column">
@@ -527,9 +526,9 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                 <div class="footer-info-box">
                     <div class="menu-top">
                         <ul>
-                            <li><a href="http://manatuscostarica.com/es/">Inicio</a></li>|<li><a href="http://booking.manatuscostarica.com/reservacion_sp.aspx">
-                                Book Now</a></li>|<li><a href="http://manatuscostarica.com/es/gallery">Galeria</a></li>|<li>
-                                    <a href="http://manatuscostarica.com/es/contacto">Contacto</a></li></ul>
+                            <li><a href="http://manatuscostarica.com/">Home</a></li>|<li><a href="http://booking.manatuscostarica.com/reservacion_en.aspx">
+                                Book Now</a></li>|<li><a href="http://manatuscostarica.com/gallery">Gallery</a></li>|<li>
+                                    <a href="http://manatuscostarica.com/contact-us">Contact</a></li></ul>
                     </div>
                     <div class="contact-info">
                         <p>
@@ -537,8 +536,8 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                     </div>
                     <div class="menu-idioma">
                         <ul>
-                            <li><a href="reservacion_en.aspx">English</a></li>|<li><a href="reservacion_sp.aspx"
-                                class="active">Español</a></li></ul>
+                            <li><a href="reservacion_en.aspx" class="active">English</a></li>|<li><a href="reservacion_sp.aspx">
+                                Español</a></li></ul>
                     </div>
                 </div>
             </div>

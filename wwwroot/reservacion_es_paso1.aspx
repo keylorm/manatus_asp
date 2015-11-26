@@ -293,6 +293,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                         </div>
                     </div>
                 </div>
+
             </div>
             <div id="widgetCalendar" class="hidden">
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Always">
@@ -308,7 +309,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                             <h2 class="h2Celeste">
                                 <strong>Viva la experiencia</strong> Manatus</h2>
                             <div class="logo-ssl">
-                                <img src="" /></div>
+                                <img src="images/verisign.png" /></div>
                         </div>
                         <div class="content-box container-2-3">
                             <div id="updtpanel_reservacion">
@@ -1615,6 +1616,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             <asp:Label ID="ValueLblHabitaciones" CssClass="span-field" Text="" runat="server"></asp:Label>
                                         </div>
                                     </div>
+
                                     <div class="wrapper-field costo-sin-transporte">
                                         <div class="key">
                                             <asp:Label ID="KeyLblCostoSinTransporte" CssClass="span-field" Text="Costo estadia"
@@ -1633,6 +1635,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             <asp:Label ID="ValueLblCostoAdicional" CssClass="span-field" Text="" runat="server"></asp:Label>
                                         </div>
                                     </div>
+
                                     <div class="wrapper-field total">
                                         <div class="key">
                                             <asp:Label ID="KeyLblCostoTotal" CssClass="span-field" Text="Total" runat="server"></asp:Label>
@@ -1642,6 +1645,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                         </div>
                                     </div>
                                     <asp:LinkButton ID="LinkEditarInformacion" runat="server">< Editar información</asp:LinkButton>
+
                                 </div>
                             </div>
                             <!-- end sidebar with the information previous step -->
@@ -1721,6 +1725,14 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
     </div>
     <script type="text/javascript">
 
+        $('#tbar').live("click", function () {
+            if($(this).hasClass('activ')){
+                $(this).removeClass('activ').parent().removeClass('activ');
+            }else{
+                $(this).addClass('activ').parent().addClass('activ');
+            }
+            $('#ct_tbar').toggle("slow");
+        }); $('#tbar').trigger("click");
 
 
         $('a.poplight[href^=#]').live("click", function () {

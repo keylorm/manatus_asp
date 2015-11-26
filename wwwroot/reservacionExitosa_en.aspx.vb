@@ -6,12 +6,11 @@ Imports Orbelink.Control.Reservaciones
 Imports Orbelink.Entity.Facturas
 Imports Orbelink.Entity.Entidades
 Imports System.Data
-Partial Class reservacionExitosa
+Partial Class reservacionExitosa_en
     Inherits Orbelink.FrontEnd6.PageBaseClass
-
     'Datos de la reservacion
     Protected ingresoSalida As String = "29/11/2015 - 30/11/2015"
-    Protected servicio As String = "2 habitaciones para 3 personas, 2 noches, 0 noches adicionales Impuestos incluidos. Traslados incluidos."
+    Protected servicio As String = "2 rooms for 3 people, 2 nights, additional nights 0 Taxes included. Transport included."
     Protected personas As Integer = 3
     Protected habitaciones As Integer = 2
     Protected costoEstadia As Double = 790.0
@@ -27,33 +26,10 @@ Partial Class reservacionExitosa
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         '*********** Originalmente el codigo para mostrar los datos de la reserva y del usuario deben de cargarse dinamicamente por medio de sesion ***********
-
         'If Session("id_reservacion") IsNot Nothing Then
         '    Dim id_reservacion As Integer = Session("id_reservacion")
         '    numero_orden.InnerText = id_reservacion
         '    CargarCarrito(numero_orden.InnerText)
-
-        'End If
-
-        Dim id_reservacion As Integer = 10959
-        numero_orden.InnerText = id_reservacion
-        CargarCarrito(numero_orden.InnerText)
-
-
-        'Dim id_reservacion As Integer = 8461
-        'numero_orden.InnerText = id_reservacion
-        'CargarCarrito(numero_orden.InnerText)
-
-
-        'If Not IsPostBack Then
-        '    If Orbelink.DBHandler.LanguageHandler.CurrentLanguage = Orbelink.DBHandler.LanguageHandler.Language.INGLES Then
-        '        lbl_exito.Text = "<br/><br/>Congratulations!!! The reservation has been recorded correctly.<br/><br/>"
-        '    Else
-        '        lbl_exito.Text = "<br/><br/>Felicidades!!!  La reservación ha sido registrada correctamente.<br/><br/>"
-        '    End If
-        '    lbl_exito.ForeColor = Drawing.Color.Black
-        '    hyl_inicio.NavigateUrl = "home_sp.html"
-
         'End If
 
         '************ Temporalmente se mostrará la información estaticamente *********
@@ -72,6 +48,5 @@ Partial Class reservacionExitosa
         lblFechaVencimiento.Text = tarjetaVencimiento
         lblTipoTarjeta.Text = tarjeta
         '************ Fin de inicializacion de datos temporales *********
-
     End Sub
 End Class
