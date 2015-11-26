@@ -315,7 +315,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                     <div id="paso1" runat="server" visible="true">
                         <div class="form-title">
                             <h2 class="h2Celeste">
-                                <strong>Live the Manatus</strong> Experience</h2>
+                                Live the Manatus Experience</h2>
                             <div class="logo-ssl">
                                 <img src="images/verisign.png" /></div>
                         </div>
@@ -1453,6 +1453,8 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                         <div class="form-title">
                             <h2 class="h2Celeste">
                                 <strong>Please fill out your personal information</strong></h2>
+                                <div class="logo-ssl">
+                                <img src="images/verisign.png" /></div>
                         </div>
                         <!-- register form -->
                         <div class="content-box container-2-3">
@@ -1543,9 +1545,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                             <!-- end register form -->
                         </div>
                         <div class="content-box container-1-3 sidebar">
-                            <div class="logo-ssl">
-                                <img src="images/verisign.png" />
-                            </div>
+                            
                             <!-- sidebar with the information previous step -->
                             <div id="su-reservacion">
                                 <h2 id="titulo-reservacion">

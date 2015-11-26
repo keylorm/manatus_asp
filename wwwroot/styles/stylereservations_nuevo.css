@@ -473,8 +473,7 @@ width: 598px;
 
     
 .reservation-form #updtpanel_reservacion,
-.reservation-form #updtpanel_form
- {
+.reservation-form #updtpanel_form {
     background-color: #FAF6F2;
     padding: 20px 20px 0;
     margin-bottom: 40px;
@@ -1251,6 +1250,11 @@ p.texto-payment-description
 
 a img { border: none; }
 
+*{
+    -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;    
+}
 
 /*Para responsividad*/
 
@@ -1330,9 +1334,12 @@ a img { border: none; }
     float: left;
 }
 
+#CDSWIDEXC{
+    width: 175px !important;
+}
 #TA_excellent625 {
-    float: right;
-    margin-right: 35px;
+    float: right !important;
+
 }
 
 .widEXC, .widCOE {
@@ -1395,7 +1402,7 @@ a img { border: none; }
     height: 110px;
     background-image: url('../images/linea_res.png');
     background-repeat: no-repeat;
-    background-position: 46% 77%;    
+    background-position: 48% 76%;
 }
 
 .step-process-box .inner > div a{
@@ -1458,7 +1465,7 @@ a img { border: none; }
 .step-process-box .inner > div.active .step-point a{
     color: #fff;
     padding: 11px 16px;
-    line-height: 50px;
+    line-height: 42px;
     font-family: "Raleway", Sans-Serif;
     font-size: 19px;      
 }
@@ -1470,10 +1477,13 @@ a img { border: none; }
 }
 
 .titulo-logos {
-    width: 97.5%;
-    padding: 13px;
-    height: 118px;
+  width: 100%;
+    padding: 15px;
+    /*height: 118px;*/
     background-color: #fAfAFA;
+   /* padding-bottom: 15px;*/
+   clear: both;
+   overflow: hidden;
 }
 
 .titulo-logos > div {
@@ -1482,7 +1492,7 @@ a img { border: none; }
 
 .titulo-logos div.nombre-hotel {
     width: 47%;
-    padding: 44px 0px 44px 20px;
+    /*padding: 44px 0px 44px 20px;*/
 }
 
 .titulo-logos div.nombre-hotel h2 {
@@ -1494,18 +1504,23 @@ a img { border: none; }
 }
 
 .titulo-logos div.logos-premios {
-    width: 50%;
+     width: 53%;
 }
 
+.titulo-logos div.logos-premios a,
+.titulo-logos div.logos-premios > img{
+    margin-right: 20px;
+}
 span#lblIngresoSalida{
     float: left;
-    padding: 13px 0px;
+    padding: 8px 0px;
     font-size: 13px;
 }
 
 input#TxtCheckinCheckout {
     float: left;
-    width: 190px;
+    width: 220px;
+	height: 40px;
     padding-left: 10px;
     padding-right: 20px;
     margin-top: 0px;
@@ -1591,6 +1606,7 @@ h2.h2Celeste{
 }*/
 .reservation-form #updtpanel_reservacion,
 .reservation-form #updtpanel_form{
+
     background: none;
     border: 1px solid #594A42;
     padding: 20px;
@@ -1725,14 +1741,32 @@ h2.h2Celeste{
     border-left: 1px solid #B57651;
     border-right: 1px solid #B57651;
     border-bottom: 5px solid #B57651;
-    padding-bottom: 15px;
+ 
+    /*padding-bottom: 15px;*/
+}
+.paddingBottomp10.activ{
+    border-bottom: 5px solid #DFC0AB;
 }
 .sidebar h3.h3Sidebar{
     background-color: #B57651;
-    font-size: 19px;
+    font-size: 18px;
+    letter-spacing: 0px;
     font-family: "Raleway", sans-serif;
     font-weight: 500; 
-    border: none;  
+    border: none;
+
+    
+    background-image: url('../images/+open.png');
+    background-repeat: no-repeat;
+    background-position: 97% 50%;
+    cursor: pointer;   
+}
+.sidebar h3.h3Sidebar.activ{
+    background-image: url('../images/+close.png');
+    margin-bottom: 0px;
+}
+.sidebar-block-content{
+    padding-bottom: 15px;
 }
 .sidebar-paquete sidebar-paquete-1{
     position: relative;
@@ -2115,15 +2149,15 @@ a#AplicarSeleccion{
     color: #000 !important;
 }*/
 
-.logo-ssl{
-    float: right;
+
+
+
+
+#updtpanel_form{
+
 }
 
-#pnl_contenido_form{
-
-}
-
-#pnl_contenido_form .span-field{
+#updtpanel_form .span-field{
     color: #594A42;
     font-family: "Open Sans",sans-seif;
     font-size: 15px; 
@@ -2131,7 +2165,7 @@ a#AplicarSeleccion{
     margin: 12px 0px 8px 0px;  
 }
 
-#pnl_contenido_form input[type="text"].textBoxNuevo{
+#updtpanel_form input[type="text"].textBoxNuevo{
     height: 43px;
     border: 1px solid #594A42;
     margin: 0px;
@@ -2140,7 +2174,7 @@ a#AplicarSeleccion{
           box-sizing: border-box;    
 }
 
-#pnl_contenido_form select.dropdownsReserva#ddl_ubicacion{
+#updtpanel_form select.dropdownsReserva#ddl_ubicacion{
     height: 43px;
     margin: 0px;
     line-height: normal;
@@ -2159,7 +2193,7 @@ a#AplicarSeleccion{
     width: 100%;
 }
 
-#pnl_contenido_form textarea{
+#updtpanel_form textarea{
     width: 100%;
     height: 113px;
     border: 1px solid #594A42;
@@ -2194,7 +2228,7 @@ a#linkTerminosCondiciones{
     line-height: 60px;    
 }
 
-#pnl_contenido_form label[for="chkTerminosCondiciones"]{
+#updtpanel_form label[for="chkTerminosCondiciones"]{
     color: #594A42;
     font-family: "Open Sans",sans-seif;
     font-size: 12px; 
@@ -2228,8 +2262,343 @@ a#btn_aPaso3{
 }
 
 
-#book_now_2_wrapper
-{
+/*jCarousel*/
+/*
+This is the visible area of you carousel.
+Set a width here to define how much items are visible.
+The width can be either fixed in px or flexible in %.
+Position must be relative!
+*/
+.jcarousel {
+    position: relative;
+    overflow: hidden;
+}
+
+
+/*
+This is the container of the carousel items.
+You must ensure that the position is relative or absolute and
+that the width is big enough to contain all items.
+*/
+.jcarousel ul {
+    width: 20000em;
+    position: relative;
+
+    /* Optional, required in this case since it's a <ul> element */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+These are the item elements. jCarousel works best, if the items
+have a fixed width and height (but it's not required).
+*/
+.jcarousel li {
+    /* Required only for block elements like <li>'s */
+    float: left;
+    width: 332px;
+}
+.form-title{
+    clear: both;
+    overflow: hidden;
+}
+.form-title h2{
+    float: left;
+}
+.logo-ssl{
+    float: right;
+}
+
+
+#su-reservacion{
+    background-color: #F9F9F8;
+    background-image: url('../images/info_reserva.jpg');
+    background-repeat: no-repeat;
+    background-position: left top;
+    padding: 20px;
+}
+
+#su-reservacion h2#titulo-reservacion{
+    color: #594A42;
+    font-family: "Raleway", sans-serif;
+    font-weight: normal;
+    font-size: 27px;
+    text-transform: uppercase;
+    text-align: center;
+    border-bottom: 1px solid #594A42;
+    padding-bottom: 20px;    
+}
+
+#su-reservacion .detalle{
+    display: table;
+    border-spacing: 5px;
+    border-collapse: separate;    
+}
+#su-reservacion .detalle .wrapper-field{
+    display: table-row;
+}
+#su-reservacion .detalle .wrapper-field .key{
+    display: table-cell;
+    width: 50%;
+    color: #594A42;
+    font-family: "Open Sans",sans-seif;
+    font-size: 14px; 
+    font-weight: bold;    
+}
+#su-reservacion .detalle .wrapper-field .value{
+    display: table-cell;
+    width: 50%;
+    color: #594A42;
+    font-family: "Open Sans",sans-seif;
+    font-size: 14px; 
+    font-weight: normal;
+}
+
+#su-reservacion .detalle .wrapper-field .key,
+#su-reservacion .detalle .wrapper-field .value{
+    background-color: #F2F1F0;
+    padding: 8px;
+}
+
+#su-reservacion .detalle .wrapper-field.servicio .key,
+#su-reservacion .detalle .wrapper-field.servicio .value{
+    background: transparent;
+}
+
+#su-reservacion .detalle .wrapper-field.costo-adicional .key{
+    font-size: 12px;
+}
+
+#LinkEditarInformacion{
+    display: block;
+    width: 100%;
+    text-align: right;
+    color: #B57651;
+    text-decoration: none;
+    margin-top: 10px;
+    font-family: "Open Sans",sans-seif;
+    font-size: 15px; 
+    font-weight: 600;
+    font-style: italic;    
+}
+
+p.comprobante-reserva{
+    color: #594A42;
+    font-family: "Open Sans",sans-seif;
+    font-size: 18px; 
+    font-weight: 600;
+    text-align: left;
+}
+p.comprobante-reserva a{
+    color: #594A42;
+    font-weight: bold;
+}
+.clear{
+    clear: both;
+}
+
+.ct_detalle_reserva{
+    clear: both;
+    overflow: hidden;
+    margin: 30px 0px;
+    border: 1px solid #594A42;
+    border-bottom: 10px solid #594A42;
+    padding: 20px;
+}
+.ct_detalle_reserva .container-2-3{
+    width: 550px;
+}
+.ct_detalle_reserva #su-reservacion{
+    background: none;
+}
+.ct_detalle_reserva #su-reservacion{
+    padding: 0px;
+}
+.ct_detalle_reserva #su-reservacion h2#titulo-reservacion,
+.ct_detalle_reserva h2#titulo-sus-datos{
+    color: #594A42;
+    font-family: "Raleway", sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    text-transform: uppercase;   
+    text-align: left;
+    border-bottom: 1px solid #594A42;
+    padding: 0px;
+    margin: 0px;
+    padding-bottom: 25px; margin-bottom: 30px; margin-top: 10px;
+    width: 260px;
+}
+
+.ct_detalle_reserva #su-reservacion .detalle .wrapper-field .key{
+    width: 25%;
+}
+.ct_detalle_reserva #su-reservacion .detalle .wrapper-field .value{
+    width: 75%;
+}
+
+.ct_detalle_reserva #sus-datos .detalle .wrapper-field span{
+    color: #594A42;
+    font-family: "Open Sans",sans-seif;
+    font-size: 17px; 
+    line-height: 25px;
+    font-weight: normal;    
+}
+
+
+
+@media (max-width: 991px) {
+    .container-980{
+        width: 600px;
+        margin: 0 auto;
+    }
+    .content-box{
+        width: 100%;
+    }
+
+    .sidebar h3.paquete-sidebar-titulo{
+        padding: 0px 170px;
+    }
+    .titulo-logos{
+        width: 100%;
+        clear: both;
+        height: auto;
+        overflow: hidden;
+    }
+    .titulo-logos div.logos-premios{
+        width: 100%;
+    }
+    .titulo-logos div.logos-premios a{
+        margin-right: 40px;
+    }
+    .titulo-logos div.nombre-hotel{
+        width: 100%;
+        padding: 20px 0px;
+    }
+    .step-process-box .inner{
+        width: 97%;
+    }
+
+}
+
+/*@media (max-width: 767px) {
+
+}*/
+@media (max-width: 690px) {
+    #main-content{
+        padding: 8px 0px !important;
+    }
+    .sidebar h3.paquete-sidebar-titulo{
+        padding: 0px 25px;
+    }
+    #tabs > ul{
+        height: auto;
+        /*border: none;*/
+        clear: both;
+        overflow: hidden;
+    }
+    #tabs > ul > li{
+        width: 100%;
+        border-right: none;
+    }
+    .columna-tabla-rates{
+        width: 100%;
+        margin-right: 0%;
+    }
+    .titulo-logos div.logos-premios a,
+    .titulo-logos div.logos-premios > img{
+        margin-right: 0px;
+        width: 250px;
+        clear: both;
+        display: block;
+        margin: 0 auto; 
+        text-align: center;
+        margin-bottom: 10px;       
+    }
+    .titulo-logos div.logos-premios > img{
+        width: 100px;
+    }
+    #TA_excellent625{
+        float: none;
+        margin-right: 0px;
+    }
+    #TA_excellent625 #CDSWIDEXC{
+        width: 100% !important;
+    }
+    .step-process-box .inner{
+        background: none;
+    }
+    .step-process-box .inner > div{
+        width: 100%;
+        margin-right: 0px !important;
+        margin-top: 15px;
+    }
+    .step-process-box .inner > div .step-point{
+        margin-top: 10px;
+    }
+    h2.h2Celeste{
+        line-height: 23px;
+        margin-bottom: 0px;
+    }
+    input#TxtCheckinCheckout{
+        width: 100%;
+        height: 45px;
+    }
+    #widgetCalendar{
+        width: 270px;
+        height: 440px;
+    }
+    .datepickerDays a{
+        width: 29px !important;
+    }
+    div.datepicker table td{
+        text-align: left !important;
+        padding: 8px 3px !important;
+    }
+    div.datepicker tbody th.datepickerGoNext{
+        background-position-x: 15px !important; 
+    }
+    a#AplicarSeleccion{
+        width: 100%;
+    }
+    .btn{
+        width: 100%;
+    }
+    .box-precio-con-transporte .precio-con-transporte-value{
+        width: 100%;
+    }
+    .reservation-form #updtpanel_reservacion #pnl_resultados #gv_ResultadosDisponibles td span,
+    .reservation-form #updtpanel_reservacion #pnl_resultados #gv_ResultadosDisponibles td select{
+        line-height: 12px;
+        font-size: 11px !important;
+        padding: 0px; margin: 0px;
+        text-align: left;
+    }
+    .reservation-form #updtpanel_reservacion #pnl_resultados #gv_ResultadosDisponibles td select{
+        background-size: 5px;
+        padding-right: 10px;
+    }
+    .popup_block{
+        width: 320px !important;
+        padding: 10px !important;
+        left: 60% !important;
+    }
+    .cod-telefono .wrapper-field{
+        width: 100%;
+    }
+    .cod-telefono .wrapper-field:first-child{
+        margin-right: 0px;
+    }
+    #updtpanel_form input[type="text"].textBoxNuevo{
+        width: 100%;
+    }
+
+}
+
+/*@media (max-width: 479px) {
+}*/
+
+#book_now_2_wrapper{
 	clear: both;
     overflow: hidden;
 	}

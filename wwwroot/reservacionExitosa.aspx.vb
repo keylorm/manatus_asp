@@ -33,26 +33,6 @@ Partial Class reservacionExitosa
         '    numero_orden.InnerText = id_reservacion
         '    CargarCarrito(numero_orden.InnerText)
 
-        'End If
-
-        Dim id_reservacion As Integer = 10959
-        numero_orden.InnerText = id_reservacion
-        CargarCarrito(numero_orden.InnerText)
-
-
-        'Dim id_reservacion As Integer = 8461
-        'numero_orden.InnerText = id_reservacion
-        'CargarCarrito(numero_orden.InnerText)
-
-
-        'If Not IsPostBack Then
-        '    If Orbelink.DBHandler.LanguageHandler.CurrentLanguage = Orbelink.DBHandler.LanguageHandler.Language.INGLES Then
-        '        lbl_exito.Text = "<br/><br/>Congratulations!!! The reservation has been recorded correctly.<br/><br/>"
-        '    Else
-        '        lbl_exito.Text = "<br/><br/>Felicidades!!!  La reservación ha sido registrada correctamente.<br/><br/>"
-        '    End If
-        '    lbl_exito.ForeColor = Drawing.Color.Black
-        '    hyl_inicio.NavigateUrl = "home_sp.html"
 
         'End If
 

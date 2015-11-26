@@ -307,7 +307,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                     <div id="paso1" runat="server" visible="true">
                         <div class="form-title">
                             <h2 class="h2Celeste">
-                                <strong>Viva la experiencia</strong> Manatus</h2>
+                                Viva la experiencia Manatus</h2>
                             <div class="logo-ssl">
                                 <img src="images/verisign.png" /></div>
                         </div>
@@ -1423,9 +1423,9 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                         </div>
                         <div class="content-box container-1-3 sidebar">
                             <div class="paddingBottomp10">
-                                <h3 class="h3Sidebar">
-                                    <strong>Otros paquetes</strong> que podrían interesarle</h3>
-                                <div class="sidebar-block-content">
+                                <h3 class="h3Sidebar" id="tbar">
+                        <strong>Otros paquetes</strong> que podrían interesarle</h3>
+                    <div class="sidebar-block-content" id="ct_tbar">
                                     <div class="sidebar-paquete sidebar-paquete-1">
                                         <h3 class="paquete-sidebar-titulo">
                                             1 noche extra gratis</h3>
@@ -1484,10 +1484,10 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                     <div id="paso2" runat="server" visible="false">
                         <div class="form-title">
                             <h2 class="h2Celeste">
-                                <strong>Favor completar su información<br />
-                                    Personal</strong></h2>
+                                Favor completar su información<br />
+                                    Personal</h2>
                             <div class="logo-ssl">
-                                <img src="" /></div>
+                                <img src="images/verisign.png" /></div>
                         </div>
                         <div class="content-box container-2-3">
                             <!-- register form -->
@@ -1625,6 +1625,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                         <div class="value">
                                             <asp:Label ID="ValueLblCostoSinTransporte" CssClass="span-field" Text="" runat="server"></asp:Label>
                                         </div>
+
                                     </div>
                                     <div class="wrapper-field costo-adicional">
                                         <div class="key">
@@ -1644,9 +1645,10 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             <asp:Label ID="ValueLblCostoTotal" CssClass="span-field" Text="" runat="server"></asp:Label>
                                         </div>
                                     </div>
-                                    <asp:LinkButton ID="LinkEditarInformacion" runat="server">< Editar información</asp:LinkButton>
+                                    
 
                                 </div>
+                                <asp:LinkButton ID="LinkEditarInformacion" runat="server">< Editar información</asp:LinkButton>
                             </div>
                             <!-- end sidebar with the information previous step -->
                         </div>
