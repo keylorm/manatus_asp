@@ -238,7 +238,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                     <div class="form-title">
                         <h2 class="h2Celeste">We will be happy to receive you in Hotel Manatus!</h2>
                         <div class="logo-ssl">
-                            <img src="" />
+                            <img src="images/verisign.png" />
                         </div>
                     </div>
                     <p class="comprobante-reserva">
@@ -246,6 +246,8 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                         <a href="javascript:void(0)" class="downloadVoucher" target="_blank">Download voucher.</a>
                     </p>
                 </div>
+
+                <div class="ct_detalle_reserva">
                 <div class="content-box container-2-3">
                     <!-- cuadro respuesta de reservacion -->
                     <div class="detalle-reservacion">
@@ -350,6 +352,8 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                         </div>
                     </div>
                 </div>
+                </div>
+
                 <div class="clear"></div>
                 <div class="below-content blog">
                     <div class="jcarousel">
