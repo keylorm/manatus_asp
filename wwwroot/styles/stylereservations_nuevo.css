@@ -1555,7 +1555,7 @@ input#TxtCheckinCheckout {
 #widgetCalendar {
     position: absolute;
     height: 478px;
-    width: 346px;
+    width: 332px;
     background-color: #E0C2AD;
     z-index: 1;
 }
@@ -2000,13 +2000,12 @@ h2.h2Celeste{
 }
 .rates-columna1{
     width: 100%; /*403px*/
-    float: left;
-    margin-right: 65px;
+    overflow: hidden;
 }
 
 .rates-columna2{
     width: 100%; /*403px*/
-    float: left;
+    overflow: hidden;
 
 }
 
@@ -2019,6 +2018,7 @@ h2.h2Celeste{
     font-weight: 700 !important;
     color: #594A42 !important;
     text-align: center !important;
+     margin: 0 0 30px;
 }
 
 .rates-columna1 p,

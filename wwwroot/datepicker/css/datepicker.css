@@ -165,17 +165,15 @@ div.datepicker tbody th {
 div.datepicker tbody th.datepickerGoNext {
     background-image: url(../images/flecha-slider-next.png);
     background-repeat: no-repeat;
+    background-position: right 20%;
     background-size: 30%;
-    background-position-x: 30px;
-    background-position-y: 8px;
 }
 
 div.datepicker tbody th.datepickerGoPrev {
     background-image: url(../images/flecha-slider-prev.png);
     background-repeat: no-repeat;
-    background-size: 30%;
-    background-position-x: 0px;
-    background-position-y: 8px;
+    background-position: left 20%;
+    background-size: 30%;    
 }
 
 div.datepicker tbody tr.checkin-row {

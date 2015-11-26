@@ -262,38 +262,41 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                         <script src="http://www.jscache.com/wejs?wtype=excellent&amp;uniq=625&amp;locationId=308651&amp;lang=es&amp;display_version=2"></script>
                     </div>
                 </div>
-                <div class="step-process-box">
-                    <div class="inner">
-                        <div class="step-1 active step">
-                            <div class="step-title">
-                                <p>
-                                    <a href="">Disponibilidad</a></p>
-                            </div>
-                            <div class="step-point">
-                                <a class="point" href="">1</a>
+                <asp:UpdatePanel ID="up_step_process" runat="server" UpdateMode="Always">
+                    <ContentTemplate>
+                        <div class="step-process-box">
+                            <div class="inner">
+                                <asp:Panel ID="step_1" runat="server" CssClass="step-1 active step" Visible="true">
+                                    <div class="step-title">
+                                        <p>
+                                            <asp:LinkButton ID="step_1_link" runat="server">Disponibilidad</asp:LinkButton></p>
+                                    </div>
+                                    <div class="step-point">
+                                        <asp:LinkButton ID="step_1_point" runat="server" CssClass="point">1</asp:LinkButton>
+                                    </div>
+                                </asp:Panel>
+                                <asp:Panel ID="step_2" runat="server" CssClass="step-2 step" Visible="true">
+                                    <div class="step-title">
+                                        <p>
+                                            <asp:LinkButton ID="step_2_link" runat="server">Datos Personales</asp:LinkButton></p>
+                                    </div>
+                                    <div class="step-point">
+                                        <asp:LinkButton ID="step_2_point" runat="server" CssClass="point">2</asp:LinkButton>
+                                    </div>
+                                </asp:Panel>
+                                <asp:Panel ID="step_3" runat="server" CssClass="step-3 step" Visible="true">
+                                    <div class="step-title">
+                                        <p>
+                                            <asp:LinkButton ID="step_3_link" runat="server">Datos de pago y cancelación</asp:LinkButton></p>
+                                    </div>
+                                    <div class="step-point">
+                                        <asp:LinkButton ID="step_3_point" runat="server" CssClass="point">3</asp:LinkButton>
+                                    </div>
+                                </asp:Panel>
                             </div>
                         </div>
-                        <div class="step-2 step">
-                            <div class="step-title">
-                                <p>
-                                    <a href="">Datos Personales</a></p>
-                            </div>
-                            <div class="step-point">
-                                <a class="point" href="">2</a>
-                            </div>
-                        </div>
-                        <div class="step-3 step">
-                            <div class="step-title">
-                                <p>
-                                    <a href="">Datos de pago y cancelación</a></p>
-                            </div>
-                            <div class="step-point">
-                                <a class="point" href="">3</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                    </ContentTemplate>
+                </asp:UpdatePanel>
             </div>
             <div id="widgetCalendar" class="hidden">
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Always">
@@ -512,7 +515,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                     <li><a href="#tarifas">Tarifas</a></li>
                                 </ul>
                                 <div id="descripcion" class="tbcontent">
-                                    <div class="des_paq_2_1">
+                                    <div class="des_paq_2_1" id="des_paq_2_1" runat="server">
                                         <h4>
                                             Tortuguero en bus y bote:</h4>
                                         <p>
@@ -555,7 +558,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             Se ofrece un desayuno liviano a las 6 a.m.<br>
                                             Traslado de los huéspedes a la Pista de Aterrizaje de Tortuguero a las 6:30 a.m.</p>
                                     </div>
-                                    <div class="des_paq_3_2">
+                                    <div class="des_paq_3_2" id="des_paq_3_2" runat="server">
                                         <h4>
                                             Llegando en Bus y Bote:</h4>
                                         <p>
@@ -615,13 +618,13 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             Se ofrece un desayuno liviano a las 6 a.m.<br>
                                             Traslado de los huéspedes a la Pista de Aterrizaje Tortuguero a las 6:30 a.m.</p>
                                     </div>
-                                    <div class="des_paq_custom">
+                                    <div class="des_paq_custom" id="des_paq_custom" runat="server">
                                         Si usted desea permanecer más tiempo con nosotros, usted puede personalizar su paquete.
                                         Se incluyen todas las comidas y el Tour del Canal del Agua.
                                     </div>
                                 </div>
                                 <div id="incluye" class="tbcontent">
-                                    <div class="inc_paq_2_1">
+                                    <div class="inc_paq_2_1" id="inc_paq_2_1" runat="server">
                                         <h4>
                                             2015</h4>
                                         <p>
@@ -705,7 +708,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                 y de Año Nuevo, que serán de compra no obligatoria.</li>
                                         </ul>
                                     </div>
-                                    <div class="inc_paq_3_2">
+                                    <div class="inc_paq_3_2" id="inc_paq_3_2" runat="server">
                                         <h4>
                                             2015</h4>
                                         <p>
@@ -789,7 +792,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                 y de Año Nuevo, que serán de compra no obligatoria.</li>
                                         </ul>
                                     </div>
-                                    <div class="inc_paq_custom">
+                                    <div class="inc_paq_custom" id="inc_paq_custom" runat="server">
                                         <h4>
                                             2015</h4>
                                         <p>
@@ -875,7 +878,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                     </div>
                                 </div>
                                 <div id="tarifas" class="tbcontent">
-                                    <div class="tar_paq_2_1">
+                                    <div class="tar_paq_2_1" id="tar_paq_2_1" runat="server">
                                         <div class="contenedor-rates">
                                             <div class="rates-columna1">
                                                 <h4>
@@ -1145,7 +1148,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tar_paq_3_2">
+                                    <div class="tar_paq_3_2" id="tar_paq_3_2" runat="server">
                                         <div class="contenedor-rates">
                                             <div class="rates-columna1">
                                                 <h4>
@@ -1415,7 +1418,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tar_paq_custom">
+                                    <div class="tar_paq_custom" id="tar_paq_custom" runat="server">
                                         Reserve ahora su paquete.
                                     </div>
                                 </div>
@@ -1424,8 +1427,8 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                         <div class="content-box container-1-3 sidebar">
                             <div class="paddingBottomp10">
                                 <h3 class="h3Sidebar" id="tbar">
-                        <strong>Otros paquetes</strong> que podrían interesarle</h3>
-                    <div class="sidebar-block-content" id="ct_tbar">
+                                    <strong>Otros paquetes</strong> que podrían interesarle</h3>
+                                <div class="sidebar-block-content" id="ct_tbar">
                                     <div class="sidebar-paquete sidebar-paquete-1">
                                         <h3 class="paquete-sidebar-titulo">
                                             1 noche extra gratis</h3>
@@ -1485,7 +1488,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                         <div class="form-title">
                             <h2 class="h2Celeste">
                                 Favor completar su información<br />
-                                    Personal</h2>
+                                Personal</h2>
                             <div class="logo-ssl">
                                 <img src="images/verisign.png" /></div>
                         </div>
@@ -1616,7 +1619,6 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             <asp:Label ID="ValueLblHabitaciones" CssClass="span-field" Text="" runat="server"></asp:Label>
                                         </div>
                                     </div>
-
                                     <div class="wrapper-field costo-sin-transporte">
                                         <div class="key">
                                             <asp:Label ID="KeyLblCostoSinTransporte" CssClass="span-field" Text="Costo estadia"
@@ -1625,7 +1627,6 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                         <div class="value">
                                             <asp:Label ID="ValueLblCostoSinTransporte" CssClass="span-field" Text="" runat="server"></asp:Label>
                                         </div>
-
                                     </div>
                                     <div class="wrapper-field costo-adicional">
                                         <div class="key">
@@ -1636,7 +1637,6 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             <asp:Label ID="ValueLblCostoAdicional" CssClass="span-field" Text="" runat="server"></asp:Label>
                                         </div>
                                     </div>
-
                                     <div class="wrapper-field total">
                                         <div class="key">
                                             <asp:Label ID="KeyLblCostoTotal" CssClass="span-field" Text="Total" runat="server"></asp:Label>
@@ -1645,8 +1645,6 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             <asp:Label ID="ValueLblCostoTotal" CssClass="span-field" Text="" runat="server"></asp:Label>
                                         </div>
                                     </div>
-                                    
-
                                 </div>
                                 <asp:LinkButton ID="LinkEditarInformacion" runat="server">< Editar información</asp:LinkButton>
                             </div>
@@ -1728,9 +1726,9 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
     <script type="text/javascript">
 
         $('#tbar').live("click", function () {
-            if($(this).hasClass('activ')){
+            if ($(this).hasClass('activ')) {
                 $(this).removeClass('activ').parent().removeClass('activ');
-            }else{
+            } else {
                 $(this).addClass('activ').parent().addClass('activ');
             }
             $('#ct_tbar').toggle("slow");
@@ -1842,6 +1840,15 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
         function pageLoad() {
             $(function () {
                 $("#tabs").tabs();
+            });
+
+            $('#tbar').live("click", function () {
+                if ($(this).hasClass('activ')) {
+                    $(this).removeClass('activ').parent().removeClass('activ');
+                } else {
+                    $(this).addClass('activ').parent().addClass('activ');
+                }
+                $('#ct_tbar').toggle("slow");
             });
         }
         
