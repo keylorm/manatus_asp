@@ -1340,6 +1340,7 @@ Partial Class reservacion_en_paso1
 
     End Sub
 
+
     Protected Sub reservarNormal()
         lbl_ResultadoHabitaciones.Visible = False
         lbl_erroFechas.Visible = False
@@ -1683,12 +1684,6 @@ Partial Class reservacion_en_paso1
 
 
     End Sub
-
-
-
-
-
-
 
 
 

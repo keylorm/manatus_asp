@@ -357,6 +357,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
 
                 <div class="clear"></div>
                 <div class="below-content blog">
+                    <h3 class="blog-title">TOURS DISPONIBLES PARA DISFRUTAR DURANTE SUS VACACIONES EN MANATUS</h3>
                     <div class="jcarousel">
                         <ul>
                             <li>
