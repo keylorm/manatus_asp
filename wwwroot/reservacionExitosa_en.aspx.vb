@@ -77,7 +77,6 @@ Partial Class reservacionExitosa_en
         reservacion.id_Cliente.ToSelect = True
         reservacion.Id_Reservacion.ToSelect = True
         reservacion.descripcion.ToSelect = True
-        detalle_factura.Precio_Unitario_Extra.ToSelect = True
         detalle_reservacion.Adultos.ToSelect = True
         detalle_reservacion.Ninos.ToSelect = True
 
@@ -87,7 +86,6 @@ Partial Class reservacionExitosa_en
         'joins
         QueryBuilder.Join.EqualCondition(entidad.Id_entidad, reservacion.id_Cliente)
         QueryBuilder.Join.EqualCondition(reservacion.Id_factura, factura.Id_Factura)
-        QueryBuilder.Join.DiferentCondition(detalle_factura.Id_Factura, factura.Id_Factura)
         QueryBuilder.Join.EqualCondition(ubicacion.Id_ubicacion, entidad.Id_Ubicacion)
         QueryBuilder.Join.EqualCondition(detalle_reservacion.id_reservacion, reservacion.Id_Reservacion)
 
@@ -95,7 +93,6 @@ Partial Class reservacionExitosa_en
         QueryBuilder.From.Add(reservacion)
         QueryBuilder.From.Add(ubicacion)
         QueryBuilder.From.Add(entidad)
-        QueryBuilder.From.Add(detalle_factura)
         QueryBuilder.From.Add(factura)
         QueryBuilder.From.Add(detalle_reservacion)
 
@@ -114,6 +111,39 @@ Partial Class reservacionExitosa_en
 
                 Dim fechaInicio As Date = FormatDateTime(reservacion.fecha_inicioProgramado.ValueLocalized, DateFormat.ShortDate)
                 Dim fechaFinal As Date = FormatDateTime(reservacion.fecha_finalProgramado.ValueLocalized, DateFormat.ShortDate)
+                Dim idReservacion As Integer = CType(reservacion.Id_Reservacion.Value, Integer)
+
+                'realizamos una subconsulta para obtener los datos de la noche adicional (relacion entre la tabla factura y detalle factura)
+                Dim QueryBuilder2 As New QueryBuilder
+                Dim ds2 As DataSet
+                Dim reservacion2 As New Reservacion
+                Dim factura2 As New Factura
+                Dim detalle_factura2 As New DetalleFactura
+
+                'selects
+                detalle_factura2.Precio_Unitario_Extra.ToSelect = True
+
+                'where
+                reservacion2.Id_Reservacion.Where.EqualCondition(id_reservacion)
+
+                'Join
+                QueryBuilder2.Join.EqualCondition(reservacion2.Id_factura, factura2.Id_Factura)
+
+                'froms
+                QueryBuilder2.From.Add(reservacion2)
+                QueryBuilder2.From.Add(factura2)
+                QueryBuilder2.From.Add(detalle_factura2)
+
+                'execute
+                ds2 = connection.executeSelect(QueryBuilder2.RelationalSelectQuery)
+
+                Dim precioUnitarioExtra As Double = 0.0
+                If ds2.Tables(0).Rows.Count > 0 Then
+                    For index = 0 To ds2.Tables(0).Rows.Count - 1
+                        ObjectBuilder.CreateObject(ds2.Tables(0), index, detalle_factura2)
+                        precioUnitarioExtra = (precioUnitarioExtra + CType(detalle_factura2.Precio_Unitario_Extra.Value, Double))
+                    Next
+                End If
 
                 'recorremos cada tupla para extraer la cantidad de personas (adultos + niños)
                 For index = 0 To ds.Tables(0).Rows.Count - 1
@@ -135,7 +165,7 @@ Partial Class reservacionExitosa_en
 
                 'Booking information
                 ValueLblIngresoSalida.Text = fechaInicio + " - " + fechaFinal
-                ValueLblServicio.Text = CType(habitaciones, String) + " rooms for " + CType(personas, String) + " people, 2 nights, additional nights 0, " + taxesText + " . Transport included."
+                ValueLblServicio.Text = CType(habitaciones, String) + " rooms for " + CType(personas, String) + " people, 2 nights, additional nights " + CType(precioUnitarioExtra, String) + ", " + taxesText + " . Transport included."
                 ValueLblPersonas.Text = CType(personas, String)
                 ValueLblHabitaciones.Text = CType(habitaciones, String)
                 ValueLblCostoSinTransporte.Text = String.Format("{0:$###,###,###.##}", factura.SubTotal.Value)

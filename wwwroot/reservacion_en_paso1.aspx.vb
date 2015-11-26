@@ -1409,7 +1409,7 @@ Partial Class reservacion_en_paso1
         End If
 
     End Sub
-   
+
     Protected Sub btn_aPaso3_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btn_aPaso3.Click
         Dim paquete As Integer = Request.QueryString("paquete")
         'paquete = 0
@@ -1753,8 +1753,8 @@ Partial Class reservacion_en_paso1
 
 
 
-    
-    
-  
+
+
+
 
 End Class
