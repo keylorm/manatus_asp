@@ -315,7 +315,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                             <h2 class="h2Celeste">
                                 Live the Manatus Experience</h2>
                             <div class="logo-ssl">
-                                <img src="images/verisign.png" /></div>
+                                <%--<img src="images/verisign.png" />--%></div>
                         </div>
                         <div class="content-box container-2-3">
                             <div id="updtpanel_reservacion">
@@ -507,7 +507,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                     </div>
                                 </div>
                             </div>
-                            <div id="tabs">
+                            <div id="tabs" runat="server">
                                 <ul>
                                     <li><a href="#description">Package description</a></li>
                                     <li><a href="#included">Included</a></li>
@@ -1450,7 +1450,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                             <h2 class="h2Celeste">
                                 <strong>Please fill out your personal information</strong></h2>
                             <div class="logo-ssl">
-                                <img src="images/verisign.png" /></div>
+                                <%--<img src="images/verisign.png" />--%></div>
                         </div>
                         <!-- register form -->
                         <div class="content-box container-2-3">

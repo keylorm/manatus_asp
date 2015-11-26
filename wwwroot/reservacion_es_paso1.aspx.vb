@@ -1,8 +1,10 @@
 ﻿Imports Orbelink.Entity.Entidades
 Imports Orbelink.Entity.Productos
 Imports Orbelink.Entity.Reservaciones
+Imports Orbelink.Entity.Facturas
 Imports Orbelink.DBHandler
 Imports Orbelink.Control.Reservaciones
+Imports Orbelink.Control.Facturas
 Imports Orbelink.DateAndTime.DateHandler
 Imports Orbelink.DateAndTime
 
@@ -22,6 +24,16 @@ Partial Class reservacion_es_paso1
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         If Not IsPostBack Then
+
+            If Request.QueryString("exito") IsNot Nothing Then
+                Try
+                    Dim exito As Integer = Request.QueryString("exito")
+                    cargarPanelExito(exito)
+                Catch ex As Exception
+                    cargarPanelExito(0)
+                End Try
+            End If
+
             selectPaises()
 
             If Request.QueryString("rango_fecha") IsNot Nothing Then
@@ -44,15 +56,8 @@ Partial Class reservacion_es_paso1
             tar_paq_custom.Visible = True
 
 
-            'trPaquetes2014.Visible = True
-            'box_leave.Visible = False
-            'box_pickup.Visible = False
-
             Dim paquete As Integer = Request.QueryString("paquete")
-            'paquete = 0
 
-
-            'calendarEntrada.DateMin = Date.Today
 
             Dim habitacionesDisponibles As Integer = selectHabitaciones(id_producto, 6)
 
@@ -79,16 +84,8 @@ Partial Class reservacion_es_paso1
 
             End If
 
-            'cargarCantidadNoches(id_producto, 0)
-            'cargarNochesAdicionales()
 
 
-            ' CODIGO PARA LA PROMOCION DEL DESCUENTO O DE VIAJE EN AVION
-            'If Request.QueryString("promo") IsNot Nothing Then
-            '    rbtnlst_Promocion.SelectedIndex = Request.QueryString("promo")
-            'End If
-
-            'cambiaIdioma()
         End If
     End Sub
 
@@ -118,6 +115,7 @@ Partial Class reservacion_es_paso1
             Return False
         End Try
     End Function
+
     Protected Function updateEntidad(ByVal id_entidad As Integer, ByVal id_ubicacion As Integer, ByVal nombre As String, ByVal apellido As String, ByVal codigoPostal As String, ByVal tel As String, ByVal email As String, ByVal direccion As String) As Boolean
         Dim result As Boolean = True
         Dim entidad As New Entidad
@@ -156,6 +154,7 @@ Partial Class reservacion_es_paso1
             Return False
         End Try
     End Function
+
     Protected Function existEmail(ByVal email As String) As Boolean
         Dim exist As Boolean = False
         Dim dataSet As Data.DataSet
@@ -179,6 +178,7 @@ Partial Class reservacion_es_paso1
 
         Return exist
     End Function
+
     Protected Function existUserName(ByVal username As String, ByVal id_entidad As String) As Boolean
         Dim exist As Boolean = False
         Dim dataSet As Data.DataSet
@@ -206,6 +206,7 @@ Partial Class reservacion_es_paso1
 
         Return exist
     End Function
+
     Protected Function InsertarModificar(ByVal id_tipoEntidad As Integer) As Boolean
         Dim resul As Boolean = True
         Dim entidad As New Entidad
@@ -239,6 +240,7 @@ Partial Class reservacion_es_paso1
         End If
         Return resul
     End Function
+
     'Devuelve listado de los paises
     Protected Sub selectPaises()
         Dim dataset As Data.DataSet
@@ -450,7 +452,6 @@ Partial Class reservacion_es_paso1
         Return result
     End Function
 
-
     Protected Function agregaItem(ByVal ReservacionActual As Integer, ByVal id_entidad As Integer, ByVal id_producto As Integer, ByVal noches As Integer, ByVal nochesadicionales As Integer, ByVal habitacionesDisponibles As Data.DataTable, ByVal theGridView As GridView, ByVal fechaInicio As Date, ByVal fechaFin As Date, Optional ByVal descuento As String = "") As Boolean
         Dim result As Boolean = True
 
@@ -485,29 +486,29 @@ Partial Class reservacion_es_paso1
 
                 
 
-                If rdbtnlist_transporte2014.Visible = True Then
 
-                    Dim preciotransporte As Integer = 0
 
-                    If fechaInicio.Year = 2014 Then
-                        preciotransporte = 70
+                Dim preciotransporte As Integer = 0
 
-                    ElseIf fechaInicio.Year = 2015 Then
-                        preciotransporte = 75
+                If fechaInicio.Year = 2014 Then
+                    preciotransporte = 70
 
-                    End If
+                ElseIf fechaInicio.Year = 2015 Then
+                    preciotransporte = 75
 
-                    Select Case rdbtnlist_transporte2014.SelectedValue
-                        Case 1
-                            precio_transporte = preciotransporte ' Compra de ida
-                        Case 2
-                            precio_transporte = preciotransporte ' Compra de vuelta
-                        Case 3
-                            precio_transporte = preciotransporte * 2 ' Compra ida y vuelta
-                        Case 4
-                            precio_transporte = 0
-                    End Select
                 End If
+
+                Select Case rdbtnlist_transporte2014.SelectedValue
+                    Case 1
+                        precio_transporte = preciotransporte ' Compra de ida
+                    Case 2
+                        precio_transporte = preciotransporte ' Compra de vuelta
+                    Case 3
+                        precio_transporte = preciotransporte * 2 ' Compra ida y vuelta
+                    Case 4
+                        precio_transporte = 0
+                End Select
+
 
                 resultado = controladora.AgregarItem(ReservacionActual, id_entidad, id_producto, item.ordinal.Value, numeroadultos, 0, True, 1, noches, nochesadicionales, getNombreDisplay(numeroadultos, noches, nochesadicionales), descuento, Session("id_temporadaNueva"), precio_transporte)
                 If Not resultado = ControladorReservaciones.Resultado_Code.OK Then
@@ -525,17 +526,16 @@ Partial Class reservacion_es_paso1
 
         Dim transporte As String = ""
 
-        If rdbtnlist_transporte2014.Visible = True Then
-            Select Case rdbtnlist_transporte2014.SelectedValue
-                Case 1
-                    transporte = "<br/>Traslado a Manatus"
-                Case 2
-                    transporte = "<br/>Traslado a San José"
-                Case 3
-                    transporte = "<br/>Transporte completo"
-            End Select
 
-        End If
+        Select Case rdbtnlist_transporte2014.SelectedValue
+            Case 1
+                transporte = "<br/>Traslado a Manatus"
+            Case 2
+                transporte = "<br/>Traslado a San José"
+            Case 3
+                transporte = "<br/>Transporte completo"
+        End Select
+
 
         Orbelink.DBHandler.LanguageHandler.CurrentLanguage = Orbelink.DBHandler.LanguageHandler.Language.ESPANOL
         If Orbelink.DBHandler.LanguageHandler.CurrentLanguage = Orbelink.DBHandler.LanguageHandler.Language.INGLES Then
@@ -577,6 +577,7 @@ Partial Class reservacion_es_paso1
         End If
         Return hasta
     End Function
+
     Protected Sub cargarHabitacionesDeseadas(ByVal habitaciones As Integer)
         Dim dataTable As New Data.DataTable
         dataTable.Columns.Add("numero")
@@ -589,10 +590,9 @@ Partial Class reservacion_es_paso1
         Dim resul_producto As ArrayList = TransformDataTable(dataTable, New Producto)
         Dim resul_Item As ArrayList = TransformDataTable(dataTable, New Item)
 
-       
+
     End Sub
     
-
     Protected Function calculoPersonasXHabitacion(ByVal num_habitaciones As Integer, ByVal num_personas As Integer) As Boolean
         Dim resultado As Boolean = True
         Dim habitaciones(num_habitaciones - 1) As Integer
@@ -638,6 +638,32 @@ Partial Class reservacion_es_paso1
 
     End Function
 
+    Protected Sub cargarPanelExito(ByVal exito As Integer)
+        If Request.QueryString("exito") IsNot Nothing Then
+            lbl_ResultadoReservacion.Visible = True
+            lbl_ResultadoHabitaciones.Visible = False
+            lbl_erroFechas.Visible = False
+            pnl_contenido.Visible = False
+            tabs.Visible = False
+            pnl_exito.Visible = True
+
+            If Request.QueryString("exito") = 1 Then
+                Response.Redirect("reservacionExitosa_sp.aspx")
+
+            Else
+                lbl_exito.ForeColor = Drawing.Color.Red
+                If Request.QueryString("exito") = 0 Then
+                    If Orbelink.DBHandler.LanguageHandler.CurrentLanguage = Orbelink.DBHandler.LanguageHandler.Language.INGLES Then
+                        lbl_exito.Text = "<br/><br/>Sorry, your transacction was cancelled. Please click <a href='reservacion_en_paso1.aspx'>HERE</a> to try again.<br/><br/>"
+                    Else
+                        lbl_exito.Text = "<br/><br/>Lo sentimos, su transacción fue cancelada.  Por favor haga click <a href='reservacion_es_paso1.aspx'>AQUÍ</a> para intentar de nuevo.<br/><br/>"
+                    End If
+                End If
+            End If
+        Else
+
+        End If
+    End Sub
 
     'Funciones de mensajes
     Protected Sub mensajeErrorCantPersonasXHabitacion(ByVal codigo_error As Integer)
@@ -705,6 +731,7 @@ Partial Class reservacion_es_paso1
             lbl_ResultadoReservacion.Text = "Error al registrar la reservación"
         End If
     End Sub
+
     Protected Sub mensajeErrorObservaciones()
         lbl_ResultadoReservacion.Visible = True
         Orbelink.DBHandler.LanguageHandler.CurrentLanguage = Orbelink.DBHandler.LanguageHandler.Language.ESPANOL
@@ -718,9 +745,21 @@ Partial Class reservacion_es_paso1
 
     'Triggers
     Protected Sub exito(ByVal ReservacionActual As Integer)
+        Dim control As New ControladorReservaciones(connection, Resources.Reservaciones_Resources.ResourceManager)
+        Dim carrito As New FacturasHandler(connection)
+        Dim factura As New Factura
+        If carrito.ActualizarFactura(factura, control.obtenerFactura(ReservacionActual)) Then
+            control.Emails(ReservacionActual, True)
+        End If
 
-        Session("id_reservacion") = ReservacionActual
-        Response.Redirect("ShoppingCart_sp.aspx?id_reservacion=" & Session("id_reservacion") & "&termino=" & 0)
+
+
+        factura.id_TipoFactura.Value = FacturasHandler.Config_TipoFacturaBNCR
+        If carrito.ActualizarFactura(factura, control.obtenerFactura(ReservacionActual)) Then
+            control.Emails(ReservacionActual)
+            Response.Redirect("checkoutbncr.aspx")
+            'Response.Redirect("~/BNCR/IntermediaBNCR.aspx", False)
+        End If
     End Sub
 
 
@@ -1482,42 +1521,42 @@ Partial Class reservacion_es_paso1
                                     Dim descripcion As String = txt_observaciones.Text
 
 
-                                    If rdbtnlist_transporte2014.Visible = True Then
-
-                                        Dim preciotransporte As Integer = 0
-
-                                        If entrada.Year = 2014 Then
-                                            preciotransporte = 70
-
-                                        ElseIf entrada.Year = 2015 Then
-                                            preciotransporte = 75
-                                        End If
-
-                                        'If entrada.Year = 2014 Then
-                                        '    preciotransporte = 70
-
-                                        'ElseIf entrada.Year = 2015 Then
-                                        '    preciotransporte = 75
-                                        'End If
 
 
-                                        Select Case rdbtnlist_transporte2014.SelectedValue
-                                            Case 1
-                                                descripcion &= "<br /><strong> Traslado a Manatus ($" & preciotransporte & " p/p)</strong>"
-                                            Case 2
-                                                descripcion &= "<br /><strong> Traslado a San José ($" & preciotransporte & " p/p)</strong>"
-                                            Case 3
-                                                descripcion &= "<br /><strong> Transporte completo ($" & preciotransporte * 2 & " p/p)</strong>"
-                                        End Select
-                                        'If trPlacetoPickup.Visible = True Then
-                                        '    descripcion &= "<br /><strong> Lugar donde se recoge:</strong>" & txt_pickup.Text
-                                        'End If
-                                        'If trPlacetoLeave.Visible = True Then
-                                        '    descripcion &= "<br /><strong>Lugar donde se deja:</strong>" & txt_leave.Text
+                                    Dim preciotransporte As Integer = 0
 
-                                        'End If
-                                        descripcion &= "<br/><strong>Para lugar donde se recoge y donde se deja:</strong> El huesped debe contactar el hotel Manatus para definir el lugar donde se recoge y/o se deja."
+                                    If entrada.Year = 2014 Then
+                                        preciotransporte = 70
+
+                                    ElseIf entrada.Year = 2015 Then
+                                        preciotransporte = 75
                                     End If
+
+                                    'If entrada.Year = 2014 Then
+                                    '    preciotransporte = 70
+
+                                    'ElseIf entrada.Year = 2015 Then
+                                    '    preciotransporte = 75
+                                    'End If
+
+
+                                    Select Case rdbtnlist_transporte2014.SelectedValue
+                                        Case 1
+                                            descripcion &= "<br /><strong> Traslado a Manatus ($" & preciotransporte & " p/p)</strong>"
+                                        Case 2
+                                            descripcion &= "<br /><strong> Traslado a San José ($" & preciotransporte & " p/p)</strong>"
+                                        Case 3
+                                            descripcion &= "<br /><strong> Transporte completo ($" & preciotransporte * 2 & " p/p)</strong>"
+                                    End Select
+                                    'If trPlacetoPickup.Visible = True Then
+                                    '    descripcion &= "<br /><strong> Lugar donde se recoge:</strong>" & txt_pickup.Text
+                                    'End If
+                                    'If trPlacetoLeave.Visible = True Then
+                                    '    descripcion &= "<br /><strong>Lugar donde se deja:</strong>" & txt_leave.Text
+
+                                    'End If
+                                    descripcion &= "<br/><strong>Para lugar donde se recoge y donde se deja:</strong> El huesped debe contactar el hotel Manatus para definir el lugar donde se recoge y/o se deja."
+
 
                                     Dim ReservacionActual As Integer = controladora.CrearReservacion(id_entidad, fechaInicio, fechaFin, id_entidad, True, "", 0, descripcion)
 
@@ -1548,8 +1587,8 @@ Partial Class reservacion_es_paso1
                         mensajeErrorObservaciones()
                     End If
                 End If
-            End If
-            lbl_ResultadoReservacion.Visible = True
+        End If
+        lbl_ResultadoReservacion.Visible = True
 
         End If
     End Sub
