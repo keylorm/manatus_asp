@@ -11,11 +11,15 @@ Partial Class reservacionExitosa
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        If Session("id_reservacion") IsNot Nothing Then
-            Dim id_reservacion As Integer = Session("id_reservacion")
-            numero_orden.InnerText = id_reservacion
-            CargarCarrito(numero_orden.InnerText)
-        End If
+        'If Session("id_reservacion") IsNot Nothing Then
+        '    Dim id_reservacion As Integer = Session("id_reservacion")
+        '    numero_orden.InnerText = id_reservacion
+        '    CargarCarrito(numero_orden.InnerText)
+        'End If
+
+        Dim id_reservacion As Integer = 10959
+        numero_orden.InnerText = id_reservacion
+        CargarCarrito(numero_orden.InnerText)
 
 
         'Dim id_reservacion As Integer = 8461

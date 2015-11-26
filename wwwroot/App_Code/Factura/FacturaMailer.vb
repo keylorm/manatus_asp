@@ -97,11 +97,11 @@ Namespace Orbelink.Control.Facturas
                             'Administradores
                             ''Configuration.Config_DefaultAdminEmail
 
-                            result = Orbelink.Helpers.Mailer.SendOneMail(Configuration.Config_DefaultSenderEmail, entidad.NombreDisplay.Value, "rsansoc@manatuscostarica.com", Configuration.Config_SiteName, subject, bodyAdmin)
-                            result = Orbelink.Helpers.Mailer.SendOneMail(Configuration.Config_DefaultSenderEmail, entidad.NombreDisplay.Value, Configuration.Config_DefaultAdminEmail, Configuration.Config_SiteName, subject, bodyAdmin)
-                            result = Orbelink.Helpers.Mailer.SendOneMail(Configuration.Config_DefaultSenderEmail, entidad.NombreDisplay.Value, "joseortiz@orbelink.com", "Jose Ortiz", subject, bodyAdmin)
-                            result = Orbelink.Helpers.Mailer.SendOneMail(Configuration.Config_DefaultSenderEmail, entidad.NombreDisplay.Value, "fabiola@orbelink.com", "Fabiola Chaves", subject, bodyAdmin)
-                            'result = Orbelink.Helpers.Mailer.SendOneMail(Configuration.Config_DefaultSenderEmail, entidad.NombreDisplay.Value, "lalonso@orbelink.com", "Luis Alonso", subject, bodyAdmin)
+                            'result = Orbelink.Helpers.Mailer.SendOneMail(Configuration.Config_DefaultSenderEmail, entidad.NombreDisplay.Value, "rsansoc@manatuscostarica.com", Configuration.Config_SiteName, subject, bodyAdmin)
+                            'result = Orbelink.Helpers.Mailer.SendOneMail(Configuration.Config_DefaultSenderEmail, entidad.NombreDisplay.Value, Configuration.Config_DefaultAdminEmail, Configuration.Config_SiteName, subject, bodyAdmin)
+                            'result = Orbelink.Helpers.Mailer.SendOneMail(Configuration.Config_DefaultSenderEmail, entidad.NombreDisplay.Value, "joseortiz@orbelink.com", "Jose Ortiz", subject, bodyAdmin)
+                            'result = Orbelink.Helpers.Mailer.SendOneMail(Configuration.Config_DefaultSenderEmail, entidad.NombreDisplay.Value, "fabiola@orbelink.com", "Fabiola Chaves", subject, bodyAdmin)
+                            result = Orbelink.Helpers.Mailer.SendOneMail(Configuration.Config_DefaultSenderEmail, entidad.NombreDisplay.Value, "keylor@orbelink.com", "Luis Alonso", subject, bodyAdmin)
                         End If
                     Catch ex As Exception
                         result = False

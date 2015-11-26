@@ -472,7 +472,8 @@ width: 598px;
     
 
     
-.reservation-form #updtpanel_reservacion
+.reservation-form #updtpanel_reservacion,
+.reservation-form #updtpanel_form
  {
     background-color: #FAF6F2;
     padding: 20px 20px 0;
@@ -1588,7 +1589,8 @@ h2.h2Celeste{
 /*h2.h2Celeste strong{
     font-weight: bold;
 }*/
-.reservation-form #updtpanel_reservacion{
+.reservation-form #updtpanel_reservacion,
+.reservation-form #updtpanel_form{
     background: none;
     border: 1px solid #594A42;
     padding: 20px;
@@ -2117,11 +2119,11 @@ a#AplicarSeleccion{
     float: right;
 }
 
-#pnl_contenido{
+#pnl_contenido_form{
 
 }
 
-#pnl_contenido .span-field{
+#pnl_contenido_form .span-field{
     color: #594A42;
     font-family: "Open Sans",sans-seif;
     font-size: 15px; 
@@ -2129,7 +2131,7 @@ a#AplicarSeleccion{
     margin: 12px 0px 8px 0px;  
 }
 
-#pnl_contenido input[type="text"].textBoxNuevo{
+#pnl_contenido_form input[type="text"].textBoxNuevo{
     height: 43px;
     border: 1px solid #594A42;
     margin: 0px;
@@ -2138,7 +2140,7 @@ a#AplicarSeleccion{
           box-sizing: border-box;    
 }
 
-#pnl_contenido select.dropdownsReserva#ddl_ubicacion{
+#pnl_contenido_form select.dropdownsReserva#ddl_ubicacion{
     height: 43px;
     margin: 0px;
     line-height: normal;
@@ -2157,7 +2159,7 @@ a#AplicarSeleccion{
     width: 100%;
 }
 
-#pnl_contenido textarea{
+#pnl_contenido_form textarea{
     width: 100%;
     height: 113px;
     border: 1px solid #594A42;
@@ -2192,7 +2194,7 @@ a#linkTerminosCondiciones{
     line-height: 60px;    
 }
 
-#pnl_contenido label[for="chkTerminosCondiciones"]{
+#pnl_contenido_form label[for="chkTerminosCondiciones"]{
     color: #594A42;
     font-family: "Open Sans",sans-seif;
     font-size: 12px; 
@@ -2224,3 +2226,10 @@ a#btn_aPaso3{
 
     margin-bottom: 30px;      
 }
+
+
+#book_now_2_wrapper
+{
+	clear: both;
+    overflow: hidden;
+	}
