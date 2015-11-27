@@ -1551,8 +1551,9 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                                 Height="70px" Rows="5" TextMode="MultiLine"></asp:TextBox>
                                                         </div>
                                                         <div id="terminos-condiciones">
-                                                            <asp:HyperLink NavigateUrl="javascript:void(0)" runat="server" Text="Ver Términos y Condiciones"
-                                                                ID="linkTerminosCondiciones" />
+                                                            <!--<asp:HyperLink NavigateUrl="javascript:void(0)" runat="server" Text="Ver Términos y Condiciones"
+                                                                ID="linkTerminosCondiciones" />-->
+                                                            <asp:HyperLink NavigateUrl="#?w=620" runat="server" Text="Leer términos y condiciones" ID="linkTerminosCondiciones2" rel="popup_code2" CssClass="poplight"/>
                                                         </div>
                                                         <div class="wrapper-field">
                                                             <asp:CheckBox Text="He leído y acepto los Términos y Condiciones" runat="server"
@@ -1853,5 +1854,376 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
         }
         
     </script>
+    <!--terminos y condiciones-->
+    <div id="popup_code2" class="popup_block">
+        <a class="close" href="#">
+            <img alt="Close" title="" class="btn_close" src="images/close_pop.png"></a>
+        <br />
+        <asp:Panel ID="Panel1" runat="server" ScrollBars="Vertical" Height="400px" Visible="true">
+            <div class="textoTerminos">
+                <center>
+                    <h2 class="principal">
+                        T&eacute;rminos y Condiciones</h2>
+                    <%--  <span class="terminosNuevo"><a href="#terminos2014">(ver T&eacute;rminos y Condiciones
+                                                                2014)</a></span>--%>
+                </center>
+                <%-- <h2>
+                                                            El paquete incluye</h2>
+                                                        <ul>
+                                                            <li>Traslado terrestre: San Jos&eacute; - (Pavona/ Caño Blanco) - San Jos&eacute;</li>
+                                                            <li>Traslado en Bote: (Pavona/ Caño Blanco) - Tortuguero - (Pavona/ Caño Blanco)</li>
+                                                            <li>Hospedaje, alimentaci&oacute;n y excursiones con gu&iacute;a: recorrido por el pueblo
+                                                                y canales</li>
+                                                            <li>El paquete de m&aacute;s de 1 noche incluye la visita al parque - entrada no incluida
+                                                            </li>
+                <li>Desayuno a la ida y almuerzo al regreso </li>
+                <li>Incluye todos los impuestos (NOTA: No incluye el impuesto ICT porque se elimin&oacute;)</li>
+                </ul>--%>
+                <h2>
+                    No incluye</h2>
+                <ul>
+                    <li>Traslado terrestre: San José - (Pavona/Caño Blanco) – San José</li>
+                    <li>Traslado en Bote: (Pavona/Caño Blanco) – Tortuguero - (Pavona/Cano Blanco)</li>
+                    <li>Desayuno a la ida y almuerzo al regreso
+                        <ul>
+                            <li>Los transfer tienen un costo de $75por vía por persona.</li>
+                            <li>En la vía SJ-Tortuguero se les brindará desayuno en ruta.</li>
+                            <li>En la víaTortuguero-SJ se brindará almuerzo en ruta.</li>
+                        </ul>
+                    </li>
+                    <li>Bebidas alcohólicas, gaseosas, y agua embotellada</li>
+                    <li>Entrada al parque nacional USD$15,00 por pax (sujeto a cambios)</li>
+                    <li>Entrada al Museo de La Tortuga USD $2.00 por pax (sujeto a cambios)</li>
+                    <li>Tour nocturno de desove de tortugas (Jul-Oct) USD $35 por pax (Sujeto A cambios).
+                        Debe de ser pagado en efectivo en el hotel.</li>
+                </ul>
+                <h2>
+                    Condiciones generales</h2>
+                <ul>
+                    <li>Precios por persona en US D&oacute;lares.</li>
+                    <li>Incluye todos los impuestos.</li>
+                    <li>Peso m&aacute;ximo de equipaje 10kg = 25 Lbs por persona.</li>
+                    <li>Check in ser&aacute; a partir de las 12 MD - Check out a las 09 AM.</li>
+                    <li>La capacidad m&aacute;xima por habitaci&oacute;n es de 4 personas. </li>
+                    <li>No se admiten grupos mayores de 6 habitaciones - solo bajo solicitud </li>
+                    <li>No se admiten mascotas de ning&uacute;n tipo </li>
+                    <li>Nos reservamos el derecho de cargar un suplemento para las cenas o fiestas de Navidad
+                        y de Año Nuevo, que ser&aacute;n de compra no obligatoria.</li>
+                </ul>
+                <h2>
+                    Pol&iacute;tica de los niños</h2>
+                <ul>
+                    <li>Dadas las características del hotel, el ambiente de privacidad y tranquilidad que
+                        se desea proporcionar a nuestros huéspedes, <strong>se ha tomado la decisión de permitir
+                            únicamente a niños mayores de 3años</strong>. Estos a su vez se contabilizarán
+                        como adultos para asignar las tarifas.</li>
+                </ul>
+                <h2>
+                    Pol&iacute;tica de gu&iacute;as</h2>
+                <ul>
+                    <li>Los guías en grupos mayores de 6 habitaciones se recibirán CPL en habitación y alimentación
+                        para guías.</li>
+                    <li>Los guías en grupos de 4 a 5 habitaciones se recibirán cancelando un 25% de la tarifa
+                        RACK SGL del paquete en habitación para guías.</li>
+                    <li>Los guías para grupos de 1 a 3 habitaciones se recibirán cancelando un 50% de la
+                        tarifa RACK SGL del paquete en habitación para guías.</li>
+                    <li>Guías en habitación regular del hotel pagarán tarifa regular neta de la agencia.</li>
+                </ul>
+                <h2>
+                    Pol&iacute;ticas de pago para FIT'S y para grupos</h2>
+                <p>
+                    Debido al tamaño de nuestro hotel y a su ubicación remota, el prepago de sus reservaciones
+                    es necesario. La reservación de los servicios se mantendrá durante 21 días posteriores
+                    a recibir la solicitud escrita o por correo electrónico. Se requiere un depósito
+                    del 25%, a ser efectuado durante este período de 21 días o la reservación será cancelada.
+                    Las reservaciones son confirmadas una vez que el 25% de la cuenta total sea recibido
+                    por nuestras oficinas, ya sea por cheque o mediante depósito en cuenta bancaria.
+                    El balance de pago deberá recibirse a más tardar 30 días antes de la llegada de
+                    los huéspedes al hotel, en el caso de FIT’s y 60 días antes del ingreso de los huéspedes
+                    en el caso de GRUPOS menores a 6 habitaciones.
+                    <br />
+                    Las reservaciones realizadas dentro de los 30 días antes (fit’s) ó 60 días antes
+                    (grupos menos de 6 habitaciones) del ingreso al hotel, se dará un plazo de dos días
+                    hábiles para confirmar / pagar ó cancelar sin recargos.
+                </p>
+                <h2>
+                    Cuenta Corriente para Pagos</h2>
+                <p>
+                    <strong>Se deben de realizar:</strong><br />
+                    A nombre de: La Casa del Manatí S.A.<br />
+                    Cedula Jurídica #: 3-101-130226<br /><br />
+                    <strong>A las siguientes cuentas corrientes en dólares:</strong>
+                </p>
+                <ul>
+                    <li>Banco de SanJosé (BAC) <strong># 905887964 / CC 10200009058879648</strong></li>
+                    <li>Banco de CostaRica (BCR) <strong># 001-0252364-7 / CC 15201001025236479</strong></li>
+                </ul>
+                <p>
+                    Por favor enviar copia del depósito al correo <a href="mailto:info@manatuscostarica.com">
+                        info@manatuscostarica.com</a> O al fax 00 (506) 2239-4857.
+                </p>
+                <h2>
+                    Pol&iacute;ticas de cancelaci&oacute;n para grupos
+                </h2>
+                <p>
+                    Para efectos de estas políticas se entenderá como grupo reservaciones de 3 o más
+                    habitaciones para las mismas fechas. No se admiten grupos mayores de 6 habitaciones.
+                    Cancelaciones de grupos reservados tendrán los siguientes cargos: Los días se cuentan
+                    tomando como referencia la fecha del ingreso de los huéspedes.
+                </p>
+                <ul>
+                    <li>Antes de 60 d&iacute;as - sin cargo </li>
+                    <li>59 a 30 d&iacute;as el 10% del monto de la reserva</li>
+                    <li>29 a 15 d&iacute;as el 25% del monto de la reserva</li>
+                    <li>14 a 08 d&iacute;as el 50% del monto de la reserva</li>
+                    <li>07 d&iacute;as o antes, 100% del monto de la reserva.</li>
+                    <li>NO se har&aacute;n reembolsos por "NO presentaci&oacute;n" (no shows)</li>
+                </ul>
+                <h2>
+                    Pol&iacute;ticas de cancelaci&oacute;n para FIT'S
+                </h2>
+                <p>
+                    Cancelaciones de FIT's o pasajeros individuales reservados tendr&aacute;n los siguientes
+                    cargos:<br />
+                    Los d&iacute;as se cuentan tomando como referencia la fecha del ingreso de los huspedes.
+                </p>
+                <ul>
+                    <li>Antes de 30 d&iacute;as - sin cargo</li>
+                    <li>29 a 15 d&iacute;as el 10% del monto de la reserva</li>
+                    <li>14 a 10 d&iacute;as el 25% del monto de la reserva</li>
+                    <li>09 a 04 d&iacute;as el 50% del monto de la reserva</li>
+                    <li>Menos de 03 d&iacute;as, 100% del monto de la reserva.</li>
+                    <li>NO se har&aacute;n reembolsos por "NO presentaci&oacute;n" (no shows)</li>
+                </ul>
+                <h2>
+                    Pol&iacute;ticas de reembolsos por cancelaci&oacute;n de reservaciones:</h2>
+                <p>
+                    Con lo concerniente a la devolución del dinero por reservaciones pagadas y canceladas,
+                    dentro de nuestras políticas de cancelación, el hotel realiza devoluciones de dinero
+                    únicamente a las reservaciones realizadas de forma directa y que por distintas razones
+                    justificadas el cliente no pueda realizar el viaje.
+                    <br />
+                    En caso de agencias o entidades que cobran un porcentaje de comisión, el hotel trabaja
+                    únicamente bajo el formato de notas de crédito consumibles.
+                    <br />
+                    El departamento de reservaciones y contabilidad envía una nota de crédito por medio
+                    del correo electrónico o fax, en el cuál indicará el monto para aplicar a favor
+                    de la agencia para hacerlo efectivo dentro de un período de un año.
+                    <br />
+                    <br />
+                </p>
+                <h2>
+                    T&eacute;rminos de reembolso y pago en caso de cancelaci&oacute;n de reserva por
+                    parte del hotel:</h2>
+                <p>
+                    En caso de emergencias naturales, huelgas, derrumbes o situaciones en las cuales
+                    el hotel se vea imposibilitado de ofrecer el servicio tanto de transporte como alojamiento.
+                    EL HOTEL, se reserva el derecho de rembolsar el 70% del total de la reservación,
+                    el restante 30% de la misma se destinarán para cubrir los gastos de operación. Las
+                    devoluciones a las agencias se realizarán mediante notas de crédito por el monto
+                    correspondiente al 70% neto de la reservación, para el caso de reservaciones directas
+                    el hotel cubrirá el 70% de la reservación en efectivo en un plazo de24horas.
+                </p>
+                <p>
+                    Si fuese por causas atribuibles al HOTEL, este asumirá los gastos de hospedaje,
+                    alimentación, transporte y derivados, (DURANTE UN PERÍODO DE TIEMPO EQUIVALENTE
+                    A LA ESTADÍA DENTRO DEL HOTEL.) hasta poder suministrar el servicio reservado.
+                </p>
+                <br />
+                <%-- <center>
+                                                            <a name="terminos2014"></a>
+                                                            <h2 class="principal">
+                                                                T&eacute;rminos y Condiciones 2014</h2>
+                                                        </center>
+                                                        <h2>
+                                                            El paquete incluye</h2>
+                                                        <ul>
+                                                            <li>Hospedaje y alimentaci&oacute;n, bebidas no incluidas</li>
+                                                            <li>2 Tours en el paquete 2 d&iacute;as y 1 noche: un tour por el pueblo de Tortuguero
+                                                                y un tour a los canales del Parque Nacional Tortuguero- entrada no incluida.</li>
+                                                            <li>3 Tours en el paquete de 3 d&iacute;as y 2 noches: un tour al pueblo de Tortuguero
+                                                                y dos tours a los canales del Parque Nacional– entrada no incluida.</li>
+                                                                                                  
+                                                            <li>Incluye todos los impuestos.</li>
+                                                        </ul>
+                                                        <h2>
+                                                            No incluye</h2>
+                                                        <ul>
+                                                            <li>Traslado terrestre: San Jose - (Pavona / Ca&ntilde;o Blanco) - San Jos&eacute;</li>
+                                                            <li>Traslado en Bote: (Pavona / Ca&ntilde;o Blanco) - Tortuguero - (Pavona / Cano Blanco)
+                                                            </li>
+                                                            <li>Desayuno a la ida y almuerzo al regreso.</li>
+                                                            <li>Los transfer tendrán un costo de $70 por vía. En la vía SJ-Tortuguero se les brindará
+                                                                desayuno en ruta. En la vía Tortuguero-SJ se brindará almuerzo en ruta.</li>
+                                                            <li>Bebidas alcohólicas, gaseosas, y agua embotellada</li>
+                                                            <li>Entrada al parque nacional USD $10,00 por pax (sujeto a cambios)</li>
+                                                            <li>Entrada al Museo de La Tortuga USD $1.00 por pax (sujeto a cambios)</li>
+                                                            <li>Tour nocturno de desove de tortugas (Jul-Oct) USD $35 por pax (Sujeto a cambios).
+                                                                Debe de ser pagado en efectivo en el hotel.</li>
+                                                        </ul>
+                                                        <h2>
+                                                            Condiciones generales</h2>
+                                                        <ul>
+                                                            <li>Precios por persona en US D&oacute;lares.</li>
+                                                            <li>Incluye impuestos alimentaci&oacute;n y transporte desde San Jos&eacute;</li>
+                                                            <li>Peso m&aacute;ximo de equipaje 10kg = 25 Lbs por persona.</li>
+                                                            <li>Check in ser&aacute; a partir de las 12 MD - Check out a las 09 AM.</li>
+                                                            <li>La capacidad m&aacute;xima por habitaci&oacute;n es de 4 personas. </li>
+                                                            <li>No se admiten grupos mayores de 6 habitaciones - solo bajo solicitud </li>
+                                                            <li>No se admiten mascotas de ning&uacute;n tipo </li>
+                                                            <li>Nos reservamos el derecho de cargar un suplemento para las cenas o fiestas de Navidad
+                                                                y de Año Nuevo, que ser&aacute;n de compra no obligatoria.</li>
+                                                        </ul>
+                                                        <h2>
+                                                            Pol&iacute;tica de los niños</h2>
+                                                        <ul>
+                                                            <li>Dadas las caracter&iacute;sticas del hotel, el ambiente de privacidad y tranquilidad
+                                                                que se desea proporcionar a nuestros huspedes, se ha tomado la decisi&oacute;n de
+                                                                permitir &uacute;nicamente a niños mayores de 6 años. Estos a su vez se contabilizar&aacute;n
+                                                                como adultos para asignar las tarifas</li>
+                                                        </ul>
+                                                        <h2>
+                                                            Pol&iacute;tica de gu&iacute;as</h2>
+                                                        <ul>
+                                                            <li>Los gu&iacute;as en grupos mayores de 6 habitaciones se recibir&aacute;n CPL en
+                                                                habitaci&oacute;n y alimentaci&oacute;n para gu&iacute;as.</li>
+                                                            <li>Los gu&iacute;as en grupos de 4 a 5 habitaciones se recibir&aacute;n cancelando
+                                                                un 25% de la tarifa RACK SGL del paquete en habitaci&oacute;n para gu&iacute;as.</li>
+                                                            <li>Los gu&iacute;as para grupos de 1 a 3 habitaciones se recibir&aacute;n cancelando
+                                                                un 50% de la tarifa RACK SGL del paquete en habitaci&oacute;n para gu&iacute;as.</li>
+                                                            <li>Gu&iacute;as en habitaci&oacute;n regular del hotel pagar&aacute;n tarifa regular
+                                                                neta de la agencia. </li>
+                                                        </ul>
+                                                        <h2>
+                                                            Pol&iacute;ticas de pago para FIT'S y para grupos</h2>
+                                                        <p>
+                                                            Debido a lo pequeño de nuestro Hotel y a su ubicaci&oacute;n remota, el prepago
+                                                            de sus reservaciones es necesario. La reservaci&oacute;n de los servicios se mantendr&aacute;
+                                                            durante 21 d&iacute;as posteriores a recibir la solicitud escrita o por correo electr&oacute;nico.
+                                                            Se requiere un dep&oacute;sito del 25%, a ser efectuado durante este per&iacute;odo
+                                                            de 21 d&iacute;as o la reservaci&oacute;n ser&aacute; cancelada. Las reservaciones
+                                                            son confirmadas una vez que el 25% de la cuenta total sea recibido por nuestras
+                                                            oficinas, v&iacute;a tarjeta de cr&eacute;dito, cheque o mediante dep&oacute;sito
+                                                            en cuenta bancaria. El balance de pago deber recibirse a m&aacute;s tardar 30 d&iacute;as
+                                                            antes de la llegada de los huspedes al Hotel, en el caso de FIT's y 60 d&iacute;as
+                                                            antes del ingreso de los huspedes en el caso de GRUPOS. Las reservaciones realizadas
+                                                            dentro de los 30 d&iacute;as antes (fit's) o 60 d&iacute;as antes (grupos) del ingreso
+                                                            al hotel, se dar&aacute; un plazo de dos d&iacute;as h&aacute;biles para confirmar/pagar
+                                                            o cancelar sin recargos.
+                                                        </p>
+                                                        <h2>
+                                                            Cuenta Corriente para Pagos</h2>
+                                                        <p>
+                                                            CUENTA corriente en dlares US $ en el Bac de San Jos&eacute; (BAC) # 90 58 87 964
+                                                            A nombre de: La Casa del Manat&iacute; S.A.<br />
+                                                            Por favor enviar copia del dep&oacute;sito por correo electr&oacute;nico a info@manatuscostarica.com
+                                                            o por fax al n&uacute;mero 00 (506) – 2239-4857.
+                                                        </p>
+                                                        <h2>
+                                                            Pol&iacute;ticas de cancelaci&oacute;n para grupos
+                                                        </h2>
+                                                        <p>
+                                                            Para efectos de estas pol&iacute;ticas se entender&aacute; como grupo, reservaciones
+                                                            de 3 o m&aacute;s habitaciones para las mismas fechas. No se admiten grupos mayores
+                                                            de 6 habitaciones.
+                                                            <br />
+                                                            <br />
+                                                            Cancelaciones de grupos reservados tendr&aacute;n los siguientes cargos: Los d&iacute;as
+                                                            se cuentan tomando como referencia la fecha del ingreso de los huspedes.
+                                                        </p>
+                                                        <ul>
+                                                            <li>Antes de 60 d&iacute;as - sin cargo </li>
+                                                            <li>59 a 30 d&iacute;as el 10% del monto de la reserva</li>
+                                                            <li>29 a 15 d&iacute;as el 25% del monto de la reserva</li>
+                                                            <li>14 a 08 d&iacute;as el 50% del monto de la reserva</li>
+                                                            <li>07 d&iacute;as o antes, 100% del monto de la reserva.</li>
+                                                            <li>NO se har&aacute;n reembolsos por "NO presentaci&oacute;n" (no shows)</li>
+                                                        </ul>
+                                                        <h2>
+                                                            Pol&iacute;ticas de cancelaci&oacute;n para FIT'S
+                                                        </h2>
+                                                        <p>
+                                                            Cancelaciones de FIT's o pasajeros individuales reservados tendr&aacute;n los siguientes
+                                                            cargos:<br />
+                                                            Los d&iacute;as se cuentan tomando como referencia la fecha del ingreso de los huspedes.
+                                                        </p>
+                                                        <ul>
+                                                            <li>Antes de 30 d&iacute;as - sin cargo</li>
+                                                            <li>29 a 15 d&iacute;as el 10% del monto de la reserva</li>
+                                                            <li>14 a 10 d&iacute;as el 25% del monto de la reserva</li>
+                                                            <li>09 a 04 d&iacute;as el 50% del monto de la reserva</li>
+                                                            <li>Menos de 03 d&iacute;as, 100% del monto de la reserva.</li>
+                                                            <li>NO se har&aacute;n reembolsos por "NO presentaci&oacute;n" (no shows)</li>
+                                                        </ul>
+                                                        <h2>
+                                                            Pol&iacute;ticas de reenbolsos por cancelaci&oacute;n de reservaciones:</h2>
+                                                        <p>
+                                                            Con lo concerniente a la devoluci&oacute;n del dinero por reservaciones pagadas
+                                                            y canceladas dentro de nuestras pol&iacute;ticas de cancelaci&oacute;n, el hotel
+                                                            realiza devoluciones de dinero &uacute;nicamente a las reservaciones realizadas
+                                                            de forma directa y que por distintas razones el cliente no pueda realizar el viaje.<br />
+                                                            En caso de agencias o entidades que cobran un porcentaje de comisi&oacute;n, el
+                                                            hotel trabaja &uacute;nicamente bajo el formato de notas de cr&eacute;dito consumibles
+                                                            ya sea por clientes o personal interno de la agencia.
+                                                            <br />
+                                                            El departamento de reservaciones y contabilidad env&iacute;a una nota de cr&eacute;dito
+                                                            por medio del correo electr&oacute;nico o fax, en el c&uacute;al indicar el monto
+                                                            para aplicar a favor de la agencia para hacerlo efectivo dentro de un per&iacute;odo
+                                                            de un año.
+                                                            <br />
+                                                            <br />
+                                                            T&eacute;rminos de reembolso y pago en caso de cancelaci&oacute;n de reserva por
+                                                            parte del hotel:<br />
+                                                            En caso de emergencias naturales, huelgas, derrumbes o situaciones en las cuales
+                                                            el Hotel se vea imposibilitado de ofrecer el servicio tanto de transporte como alojamiento.
+                                                            EL HOTEL, se reserva el derecho de reembolsar el 70% del total de la reservaci&oacute;n,
+                                                            el restante 30% de la misma se destinar&aacute;n para cubrir los gastos de operaci&oacute;n.<br />
+                                                            Las devoluciones a las agencias se realizar&aacute;n mediante notas de cr&eacute;dito
+                                                            por el monto correspondiente al 70% neto de la reservaci&oacute;n, para el caso
+                                                            de reservaciones directas el hotel cubrir el 70% de la reservaci&oacute;n en efectivo
+                                                            en un plazo de 24 horas. Si fuese por causas atribuibles al HOTEL, esta asumir los
+                                                            gastos de hospedaje, alimentaci&oacute;n, transporte y derivados, (DURANTE UN PERODO
+                                                            DE TIEMPO EQUIVALENTE A LA ESTAD&Iacute;A DENTRO DEL HOTEL) hasta poder suministrar
+                                                            el servicio reservado.
+                                                        </p>--%>
+            </div>
+        </asp:Panel>
+        <asp:Panel ID="pnl_terminospaquete" runat="server" ScrollBars="Vertical" Height="400px"
+            Visible="false">
+            <div class="textoTerminos">
+                <center>
+                    <h2 class="font22 fontVerde">
+                        T&eacute;rminos y condiciones de la oferta</h2>
+                    <br />
+                </center>
+                <ul>
+                    <li>Oferta de vuelo gratis, v&aacute;lido por los meses de setiembre, octubre y noviembre.</li>
+                    <li>Oferta de tour de anidaci&oacute;n gratis, v&aacute;lido por los meses de setiembre
+                        y octubre.</li>
+                    <li>Promoción no aplicable con otras ofertas. </li>
+                    <li>Vuelo de una sola v&iacute;a, para la ida,(San Jos&eacute;- Tortuguero) a trav&eacute;s
+                        de Nature Air.</li>
+                    <li>No aplica para el vuelo de regreso (Tortuguero-San Jos&eacute;). </li>
+                    <li>Tarifas y promociones de uso independiente.</li>
+                    <li>&Uacute;nicamente aplicable a trav&eacute;s de reservas directas, en línea en nuestra
+                        p&aacute;gina de internet (www.manatuscostarica.com )</li>
+                    <li>No incluye otros aspectos que no estén descritos en el afiche de la promoci&oacute;n.
+                    </li>
+                    <li>No aplica para reservas telef&oacute;nicas o a trav&eacute;s de agencias.</li>
+                </ul>
+                <h2>
+                    Condiciones de vuelo:</h2>
+                <ul>
+                    <li>El peso permitido en equipaje para cada persona es de 27 lbs para chequear y 10
+                        lbs en equipaje de mano.</li>
+                    <li>No se permiten cancelaciones.</li>
+                    <li>Los cambios en itinerario deben ser solicitados con 24 horas antes de la salida
+                        del vuelo.</li>
+                    <li>Penalidad por cambios es de $40 por persona y por vía.</li>
+                    <li>Vuelos sujetos a disponibilidad</li>
+                </ul>
+            </div>
+        </asp:Panel>
+    </div>
 </body>
 </html>

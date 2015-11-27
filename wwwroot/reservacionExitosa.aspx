@@ -129,6 +129,49 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
         var urlactual = document.URL.replace(/#.*/, "");
         urlactual = urlactual.replace(/\?.*/, "");
         _gaq.push(['_trackEvent', 'Reservación', 'Paso 1', urlactual]);
+    </script>
+    
+    <!-- custom scripts -->
+    <script type="text/javascript">
+        (function ($) {
+            $(document).ready(function () {
+                $(".downloadVoucher").on("click", function () {
+                    /*call print page function*/
+                    printPage();
+                });
+                function printPage() {
+                    /*Remove elements*/
+                    /*header*/
+                    $(".menu-top-box").remove();
+                    $(".menu-principal-box").remove();
+                    $("#page-head").remove();
+                    $(".above-content").hide(); /*ocultamos el bloque porque necesito clonar el html de los logos de los premos*/
+                    $(".below-content").remove();
+                    $("#footer").remove();
+                    var styles = {
+                        "position": "relative",
+                        "margin-bottom": "20px",
+                        "float": "left",
+                        "left": "0px"
+                    };
+                    var styles2 = {
+                        "float": "left",
+                        "margin-top": "25px",
+                        "margin-left": "50px"
+                    };
+                    var logos_premios = $(".logos-premios");
+                    $(".logos_premios a").css("margin-right", "20px");
+                    $(".logos_premios img").css("margin-right", "20px");
+                    $(".logos-premios #CDSWIDEXC").css("display","none");
+                    $(logos_premios).css(styles2);
+                    $("#header-inner").css("height","160px");
+                    $("#header-inner").append(logos_premios);
+                    $("#logo-box").css(styles);
+                    javascript: window.print(); void 0;
+                    location.reload();
+                }
+            });
+        })(jQuery);
     </script>    
 </head>
 <body>
@@ -243,7 +286,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                     </div>
                     <p class="comprobante-reserva">
                         Su reserva se tramitó con éxito. Muy pronto llegará a su correo una confirmación.
-                        <a href="javascript:void(0)" class="downloadVoucher" target="_blank">Descargar comprobante.</a>
+                        <a href="#" class="downloadVoucher">Descargar comprobante.</a>
                     </p>
                 </div>
 

@@ -1555,7 +1555,7 @@ input#TxtCheckinCheckout {
 #widgetCalendar {
     position: absolute;
     height: 478px;
-    width: 332px;
+    width: 346px;
     background-color: #E0C2AD;
     z-index: 1;
 }
@@ -2000,12 +2000,13 @@ h2.h2Celeste{
 }
 .rates-columna1{
     width: 100%; /*403px*/
-    overflow: hidden;
+    float: left;
+    margin-right: 65px;
 }
 
 .rates-columna2{
     width: 100%; /*403px*/
-    overflow: hidden;
+    float: left;
 
 }
 
@@ -2018,7 +2019,6 @@ h2.h2Celeste{
     font-weight: 700 !important;
     color: #594A42 !important;
     text-align: center !important;
-     margin: 0 0 30px;
 }
 
 .rates-columna1 p,
@@ -2219,7 +2219,8 @@ a#AplicarSeleccion{
 .cod-telefono .wrapper-field:first-child{
     margin-right: 5%;
 }
-a#linkTerminosCondiciones{
+a#linkTerminosCondiciones,
+a#linkTerminosCondiciones2{
     color: #594A42;
     font-family: "Open Sans",sans-seif;
     font-size: 12px;
