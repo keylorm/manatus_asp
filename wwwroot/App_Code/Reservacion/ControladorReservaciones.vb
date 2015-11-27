@@ -596,15 +596,94 @@ Namespace Orbelink.Control.Reservaciones
 
 
                     If usarlogicaPorNoches Then
-                        If CalculoDetalleFacturaTemporal(id_producto, ordinal, adultos, ninos, fechaInicio, fechaFin, noches, nochesadicionales, items_a_reservar, descuento, id_TemporadaNueva, precio_transporte) <> 0 Then
 
-                            result = CalculoDetalleFacturaTemporal(id_producto, ordinal, adultos, ninos, fechaInicio, fechaFin, noches, nochesadicionales, items_a_reservar, descuento, id_TemporadaNueva, precio_transporte)
+                        Dim resultadoTemporal As Double = CalculoDetalleFacturaTemporal(id_producto, ordinal, adultos, ninos, fechaInicio, fechaFin, noches, nochesadicionales, items_a_reservar, descuento, id_TemporadaNueva, precio_transporte)
+                        If resultadoTemporal <> 0 Then
+
+                            result = resultadoTemporal
 
                         End If
                     Else
-                        If CalculoDetalleFacturaTemporal(id_producto, ordinal, capacidad, adultos, ninos, fechaInicio, fechaFin) <> 0 Then
-                            result = CalculoDetalleFacturaTemporal(id_producto, ordinal, capacidad, adultos, ninos, fechaInicio, fechaFin)
+                        Dim resultadoTemporal As Double = CalculoDetalleFacturaTemporal(id_producto, ordinal, capacidad, adultos, ninos, fechaInicio, fechaFin)
+                        If resultadoTemporal <> 0 Then
+                            result = resultadoTemporal
                         End If
+                    End If
+
+
+                End If
+                Return result
+            Else
+                'Excede el maximo
+                Return 0
+            End If
+        End Function
+
+        Public Function GetPrecioNoches(ByVal id_producto As Integer, ByVal ordinal As Integer, ByVal adultos As Integer, ByVal ninos As Integer, ByVal usarlogicaPorNoches As Boolean, ByVal fechaInicio As Date, ByVal fechaFin As Date, Optional ByVal items_a_reservar As Integer = 1, Optional ByVal noches As Integer = 0, Optional ByVal nochesadicionales As Integer = 0, Optional ByVal descuento As String = "", Optional ByVal id_TemporadaNueva As Integer = 0, Optional ByVal precio_transporte As Integer = 0, Optional ByVal ubicacion As Integer = 1) As Double
+            precioTransporte = precio_transporte
+
+            Dim controladora As New Orbelink.Control.Productos.ProductosHandler(connection.connectionString)
+            Dim producto As Producto = controladora.ConsultarProducto(id_producto)
+
+            Dim capacidad As Integer = producto.Capacidad.Value
+            Dim capacidadMax As Integer = producto.CapacidadMaxima.Value
+
+            If adultos + ninos <= capacidadMax Or usarlogicaPorNoches = True Then
+                Dim resultado As Resultado_Code = Me.IsItemDisponible_WithoutReservation(id_producto, ordinal, ubicacion, fechaInicio, fechaFin, items_a_reservar)
+                Dim result As Double = 0
+                If resultado = Resultado_Code.OK Then
+
+
+
+
+
+                    If usarlogicaPorNoches Then
+
+                        Dim resultado_temporal As Double = CalculoDetalleNochesNormales(id_producto, ordinal, adultos, ninos, fechaInicio, fechaFin, noches, items_a_reservar, descuento, id_TemporadaNueva, precio_transporte)
+
+                        If resultado_temporal <> 0 Then
+
+                            result = resultado_temporal
+
+                        End If
+                    End If
+
+
+                End If
+                Return result
+            Else
+                'Excede el maximo
+                Return 0
+            End If
+        End Function
+
+        Public Function GetPrecioNochesAdicionales(ByVal id_producto As Integer, ByVal ordinal As Integer, ByVal adultos As Integer, ByVal ninos As Integer, ByVal usarlogicaPorNoches As Boolean, ByVal fechaInicio As Date, ByVal fechaFin As Date, Optional ByVal items_a_reservar As Integer = 1, Optional ByVal noches As Integer = 0, Optional ByVal nochesadicionales As Integer = 0, Optional ByVal descuento As String = "", Optional ByVal id_TemporadaNueva As Integer = 0, Optional ByVal ubicacion As Integer = 1) As Double
+
+
+
+            Dim controladora As New Orbelink.Control.Productos.ProductosHandler(connection.connectionString)
+            Dim producto As Producto = controladora.ConsultarProducto(id_producto)
+
+            Dim capacidad As Integer = producto.Capacidad.Value
+            Dim capacidadMax As Integer = producto.CapacidadMaxima.Value
+
+            If adultos + ninos <= capacidadMax Or usarlogicaPorNoches = True Then
+                Dim resultado As Resultado_Code = Me.IsItemDisponible_WithoutReservation(id_producto, ordinal, ubicacion, fechaInicio, fechaFin, items_a_reservar)
+                Dim result As Double = 0
+                If resultado = Resultado_Code.OK Then
+
+
+
+
+
+                    If usarlogicaPorNoches Then
+                        Dim resultadoTemporal As Double = CalculoDetalleNochesAdicionales(id_producto, ordinal, adultos, ninos, fechaInicio, fechaFin, noches, nochesadicionales, items_a_reservar, descuento, id_TemporadaNueva)
+                        If resultadoTemporal <> 0 Then
+
+                            result = resultadoTemporal
+
+                        End If
+
                     End If
 
 
@@ -892,6 +971,154 @@ Namespace Orbelink.Control.Reservaciones
 
 
             resultado = resMontos.MontoUnitario + resMontos.MontoUnitarioExtra - descuentoPromo
+
+
+            'Next
+            Return resultado
+        End Function
+
+        ''' <summary>
+        ''' Logica Calculo por noches normales. En caso de traslape cobra segun la temporada de la fecha de inicio
+        ''' Esta se usa en el paso 1 de la Reservación, cuando aun no se ha registrado la reservacion ni la entidad en Base de Datos
+        ''' </summary>
+        ''' <param name="reservacion"></param>
+        ''' <param name="id_producto"></param>
+        ''' <param name="ordinal"></param>
+        ''' <param name="capacidad"></param>
+        ''' <param name="adultos"></param>
+        ''' <param name="ninos"></param>
+        ''' <param name="EntidadResponsable"></param>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
+        Protected Function CalculoDetalleNochesNormales(ByVal id_producto As Integer, ByVal ordinal As Integer, ByVal adultos As Integer, ByVal ninos As Integer, ByVal fechaInicio As Date, ByVal fechaFin As Date, ByVal noches As Integer, Optional ByVal items_a_reservar As Integer = 1, Optional ByVal descuento As String = "", Optional ByVal id_TemporadaNueva As Integer = 0, Optional ByVal precio_transporte As Integer = 0) As Double
+            'Dim resMontos As New ResultadoMontosUnitarios
+            Dim resultado As Double = 0
+
+            Dim rangos As New RangoTemporada
+            Dim temporada As New Temporada
+            'PRIMERA TEMPORADA SEGUN FECHA DE INICIO
+            Dim datos As Data.DataTable = buscarTemporadas(rangos, temporada, fechaInicio, fechaInicio)
+
+
+            'buscar en datos el id que se necesita y con un if se le manda el id temporada directo a.. 
+            'buscarPrecioTemporada( temporadaActual.Id_Temporada.Value
+
+
+            'For counter As Integer = 0 To datos.Rows.Count - 1
+            Dim counter As Integer = 0
+            Dim rangoActual As RangoTemporada = ObjectBuilder.CreateDBTable_BySelectIndex(datos.Rows(counter), rangos)
+            Dim temporadaActual As Temporada = ObjectBuilder.CreateDBTable_BySelectIndex(datos.Rows(counter), temporada)
+            Dim precio As Precios_Temporada
+
+            If id_TemporadaNueva <> 0 Then
+                precio = buscarPrecioTemporada(id_TemporadaNueva, id_producto, adultos, noches)
+            Else
+                precio = buscarPrecioTemporada(temporadaActual.Id_Temporada.Value, id_producto, adultos, noches)
+            End If
+
+            Dim resMontos As New ResultadoMontosUnitarios
+            resMontos = calcularMontosUnitarioXnochesNormales(precio, adultos, ninos, id_TemporadaNueva)
+
+            ' Si seleccionaron adquirir transporte 
+
+            If precio_transporte <> 0 Then
+                resMontos.MontoUnitario += precio_transporte * adultos
+                resMontos.MontoUnitario += precio_transporte * ninos
+            End If
+
+
+
+            ' Si seleccionaron adquirir transporte 
+
+            Dim fechaBase As Date
+            Dim fechaTope As Date
+            If fechaInicio < rangoActual.fecha_inicio.ValueUtc Then
+                fechaBase = rangoActual.fecha_inicio.ValueUtc
+            Else
+                fechaBase = fechaInicio
+            End If
+
+            If fechaFin < rangoActual.fecha_final.ValueUtc Then
+                fechaTope = fechaFin
+            Else
+                fechaTope = rangoActual.fecha_final.ValueUtc
+            End If
+            'resMontos.dias = calcularCantidadFacturar(fechaBase, fechaTope, precio.UnidadTiempo.Value)
+            resMontos.dias = noches
+
+
+            resultado = resMontos.MontoUnitario
+
+
+            'Next
+            Return resultado
+        End Function
+
+        ''' <summary>
+        ''' Logica Calculo por noches adicionales. En caso de traslape cobra segun la temporada de la fecha de inicio
+        ''' Esta se usa en el paso 1 de la Reservación, cuando aun no se ha registrado la reservacion ni la entidad en Base de Datos
+        ''' </summary>
+        ''' <param name="reservacion"></param>
+        ''' <param name="id_producto"></param>
+        ''' <param name="ordinal"></param>
+        ''' <param name="capacidad"></param>
+        ''' <param name="adultos"></param>
+        ''' <param name="ninos"></param>
+        ''' <param name="EntidadResponsable"></param>
+        ''' <returns></returns>
+        ''' <remarks></remarks>
+        Protected Function CalculoDetalleNochesAdicionales(ByVal id_producto As Integer, ByVal ordinal As Integer, ByVal adultos As Integer, ByVal ninos As Integer, ByVal fechaInicio As Date, ByVal fechaFin As Date, ByVal noches As Integer, ByVal nochesadicionales As Integer, Optional ByVal items_a_reservar As Integer = 1, Optional ByVal descuento As String = "", Optional ByVal id_TemporadaNueva As Integer = 0) As Double
+            'Dim resMontos As New ResultadoMontosUnitarios
+            Dim resultado As Double = 0
+
+            Dim rangos As New RangoTemporada
+            Dim temporada As New Temporada
+            'PRIMERA TEMPORADA SEGUN FECHA DE INICIO
+            Dim datos As Data.DataTable = buscarTemporadas(rangos, temporada, fechaInicio, fechaInicio)
+
+
+            'buscar en datos el id que se necesita y con un if se le manda el id temporada directo a.. 
+            'buscarPrecioTemporada( temporadaActual.Id_Temporada.Value
+
+
+            'For counter As Integer = 0 To datos.Rows.Count - 1
+            Dim counter As Integer = 0
+            Dim rangoActual As RangoTemporada = ObjectBuilder.CreateDBTable_BySelectIndex(datos.Rows(counter), rangos)
+            Dim temporadaActual As Temporada = ObjectBuilder.CreateDBTable_BySelectIndex(datos.Rows(counter), temporada)
+            Dim precio As Precios_Temporada
+
+            If id_TemporadaNueva <> 0 Then
+                precio = buscarPrecioTemporada(id_TemporadaNueva, id_producto, adultos, noches)
+            Else
+                precio = buscarPrecioTemporada(temporadaActual.Id_Temporada.Value, id_producto, adultos, noches)
+            End If
+
+            Dim resMontos As New ResultadoMontosUnitarios
+            resMontos = calcularMontosUnitarioXnochesAdicionales(precio, adultos, ninos, nochesadicionales, id_TemporadaNueva)
+
+            ' Si seleccionaron adquirir transporte 
+
+           
+
+
+            Dim fechaBase As Date
+            Dim fechaTope As Date
+            If fechaInicio < rangoActual.fecha_inicio.ValueUtc Then
+                fechaBase = rangoActual.fecha_inicio.ValueUtc
+            Else
+                fechaBase = fechaInicio
+            End If
+
+            If fechaFin < rangoActual.fecha_final.ValueUtc Then
+                fechaTope = fechaFin
+            Else
+                fechaTope = rangoActual.fecha_final.ValueUtc
+            End If
+            'resMontos.dias = calcularCantidadFacturar(fechaBase, fechaTope, precio.UnidadTiempo.Value)
+            resMontos.dias = noches + nochesadicionales
+
+
+            resultado = resMontos.MontoUnitarioExtra
 
 
             'Next
@@ -1570,6 +1797,84 @@ Namespace Orbelink.Control.Reservaciones
             If id_TemporadaNueva = 14 Then
                 resultado.MontoUnitario = precio.PrecioProducto.Value * losAdultos
             End If
+
+            '  resultado.MontoUnitario += precio.PrecioAdAdulto.Value * adultosCapacidad
+            '  resultado.MontoUnitario += precio.PrecioAdNino.Value * ninosCapacidad
+            '  resultado.MontoUnitarioExtra = precio.PrecioAdAdultoExtra.Value * adultosExtra
+            '  resultado.MontoUnitarioExtra += precio.PrecioAdNinoExtra.Value * ninosExtra
+
+            resultado.MontoUnitarioExtra = (precio.PrecioNocheExtraAd.Value * losAdultos * nochesAdicionales) + (precio.PrecioNocheExtraNino.Value * losNinos * nochesAdicionales)
+
+            resultado.unidad = precio.UnidadTiempo.Value
+            'resultado.TotalCalculoPrevio = 0
+            Return resultado
+        End Function
+
+        Private Function calcularMontosUnitarioXnochesNormales(ByVal precio As Precios_Temporada, ByVal losAdultos As Integer, ByVal losNinos As Integer, Optional ByVal id_TemporadaNueva As Integer = 0) As ResultadoMontosUnitarios
+            Dim resultado As ResultadoMontosUnitarios
+            'Dim adultosCapacidad As Integer = 0
+            'Dim ninosCapacidad As Integer = 0
+            'Dim adultosExtra As Integer = 0
+            'Dim ninosExtra As Integer = 0
+
+            'Calcula la distribucion de adultos y ninos
+            'If losAdultos <= capacidadProducto Then
+            '    adultosCapacidad = losAdultos
+            '    'If losAdultos + losNinos <= capacidadProducto Then
+            '    '    ninosCapacidad = losNinos
+            '    'Else
+            '    '    ninosCapacidad = capacidadProducto - losAdultos
+            '    '    ninosExtra = losNinos - ninosCapacidad
+            '    'End If
+            'Else
+            '    adultosCapacidad = capacidadProducto
+            '    'adultosExtra = losAdultos - adultosCapacidad
+            '    ninosCapacidad = 0
+            '    'ninosExtra = losNinos
+            'End If
+
+            If id_TemporadaNueva <> 0 Then
+                resultado.MontoUnitario = precio.PrecioProducto.Value
+            Else
+                resultado.MontoUnitario = precio.PrecioProducto.Value * losAdultos
+            End If
+
+            If id_TemporadaNueva = 14 Then
+                resultado.MontoUnitario = precio.PrecioProducto.Value * losAdultos
+            End If
+
+            '  resultado.MontoUnitario += precio.PrecioAdAdulto.Value * adultosCapacidad
+            '  resultado.MontoUnitario += precio.PrecioAdNino.Value * ninosCapacidad
+            '  resultado.MontoUnitarioExtra = precio.PrecioAdAdultoExtra.Value * adultosExtra
+            '  resultado.MontoUnitarioExtra += precio.PrecioAdNinoExtra.Value * ninosExtra
+
+            resultado.unidad = precio.UnidadTiempo.Value
+            'resultado.TotalCalculoPrevio = 0
+            Return resultado
+        End Function
+
+        Private Function calcularMontosUnitarioXnochesAdicionales(ByVal precio As Precios_Temporada, ByVal losAdultos As Integer, ByVal losNinos As Integer, ByVal nochesAdicionales As Integer, Optional ByVal id_TemporadaNueva As Integer = 0) As ResultadoMontosUnitarios
+            Dim resultado As ResultadoMontosUnitarios
+            'Dim adultosCapacidad As Integer = 0
+            'Dim ninosCapacidad As Integer = 0
+            'Dim adultosExtra As Integer = 0
+            'Dim ninosExtra As Integer = 0
+
+            'Calcula la distribucion de adultos y ninos
+            'If losAdultos <= capacidadProducto Then
+            '    adultosCapacidad = losAdultos
+            '    'If losAdultos + losNinos <= capacidadProducto Then
+            '    '    ninosCapacidad = losNinos
+            '    'Else
+            '    '    ninosCapacidad = capacidadProducto - losAdultos
+            '    '    ninosExtra = losNinos - ninosCapacidad
+            '    'End If
+            'Else
+            '    adultosCapacidad = capacidadProducto
+            '    'adultosExtra = losAdultos - adultosCapacidad
+            '    ninosCapacidad = 0
+            '    'ninosExtra = losNinos
+            'End If
 
             '  resultado.MontoUnitario += precio.PrecioAdAdulto.Value * adultosCapacidad
             '  resultado.MontoUnitario += precio.PrecioAdNino.Value * ninosCapacidad
