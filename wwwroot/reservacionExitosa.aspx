@@ -408,7 +408,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                     <div class="imagen-precio">
                                         <img src="images/manatee.jpg" alt="" />
                                         <div class="precio">
-                                            $ 123
+                                            <span class="sdolar">$</span> 123
                                             <span>por persona</span>
                                         </div>
                                     </div>
@@ -426,7 +426,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                     <div class="imagen-precio">
                                         <img src="images/manatee.jpg" alt="" />
                                         <div class="precio">
-                                            $ 123
+                                            <span class="sdolar">$</span> 123
                                             <span>por persona</span>
                                         </div>
                                     </div>
@@ -444,7 +444,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                     <div class="imagen-precio">
                                         <img src="images/manatee.jpg" alt="" />
                                         <div class="precio">
-                                            $ 123
+                                            <span class="sdolar">$</span> 123
                                             <span>por persona</span>
                                         </div>
                                     </div>
@@ -462,7 +462,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                     <div class="imagen-precio">
                                         <img src="images/manatee.jpg" alt="" />
                                         <div class="precio">
-                                            $ 123
+                                            <span class="sdolar">$</span> 123
                                             <span>por persona</span>
                                         </div>
                                     </div>
@@ -480,7 +480,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                     <div class="imagen-precio">
                                         <img src="images/manatee.jpg" alt="" />
                                         <div class="precio">
-                                            $ 123
+                                            <span class="sdolar">$</span> 123
                                             <span>por persona</span>
                                         </div>
                                     </div>
@@ -498,7 +498,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                     <div class="imagen-precio">
                                         <img src="images/manatee.jpg" alt="" />
                                         <div class="precio">
-                                            $ 123
+                                            <span class="sdolar">$</span> 123
                                             <span>por persona</span>
                                         </div>
                                     </div>

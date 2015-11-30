@@ -165,7 +165,7 @@ width: 598px;
     border-top: 10px solid #F2E3DA;
     clear: both;
     width: 100%;
-    height: 40px;
+    /*height: 40px;*/
 }
 
 #header .menu-principal-box .menu-principal ul.mi-menu{
@@ -733,7 +733,7 @@ input#txtDateSalida
     margin-top: -80px;
     }
     
-#popup_code h2.principal
+.popup_block h2.principal,
 {
     color: #852703;
     font-size: 27px;
@@ -741,7 +741,7 @@ input#txtDateSalida
     text-transform: uppercase;
     }
     
-#popup_code .terminosNuevo a
+.popup_block .terminosNuevo a
 {
     font-family: "Open Sans", Sans-Serif;
     font-size: 18px;
@@ -761,7 +761,7 @@ input#txtDateSalida
     
     }
     
-#popup_code h2
+.popup_block h2
 {
     color: #852703;
     font-size: 22px;
@@ -769,7 +769,7 @@ input#txtDateSalida
     text-transform: uppercase;
     }
     
-#popup_code h3
+.popup_block h3
 {
     color: #852703;
     font-size: 18px;
@@ -778,8 +778,8 @@ input#txtDateSalida
     }
     
     
-#popup_code ul li,
-#popup_code p
+.popup_block ul li,
+.popup_block p
 {
     font-family: "Open Sans", Sans-Serif;
     font-size: 16px;
@@ -1261,23 +1261,23 @@ a img { border: none; }
 .mi-menu-responsivo
 {
     display: none;
-    }
+}
     
-    ul.mi-menu
+ul.mi-menu
 {
     display: block;
-    }
+}
     
 #tinynav1
 {
     display: none;
-    }
+}
     
 #tinynav2,
 #tinynav3
 {
     display: none;
-    }
+}
     
 #txt_observaciones
 {
@@ -1865,15 +1865,15 @@ h2.h2Celeste{
     margin-top: 5px;
     text-align: center; 
 }
-.sidebar-block-content .popup_block{
-    border: 1px solid #736357;
-    border-radius: 0px;
+/*.sidebar-block-content*/ .popup_block{
+    border: 1px solid #736357 !important;
+    border-radius: 0px !important;
 }
-.sidebar-block-content .popup_block .close img{
+/*.sidebar-block-content*/ .popup_block .close img{
     display: none;
 }
 
-.sidebar-block-content .popup_block .close:before{
+/*.sidebar-block-content*/ .popup_block .close:before{
     display: block;
     content: " X ";
     float: right;
@@ -1886,19 +1886,29 @@ h2.h2Celeste{
     cursor: pointer;
 }
 
-.sidebar-block-content .popup_block{
+/*.sidebar-block-content*/ .popup_block{
     text-align: center;
 }
+.popup_block .textoTerminos{
+    text-align: left;
+}
+.popup_block .textoTerminos h2{
+    font-size: 19px;
+}
+.popup_block .textoTerminos p,
+.popup_block .textoTerminos li{
+    font-size: 13px;
+}
 
-.sidebar-block-content .popup_block .sidebar-paquete-popup-texto{
+/*.sidebar-block-content*/ .popup_block .sidebar-paquete-popup-texto{
     padding: 0 50px;
 }
 
-.sidebar-block-content .popup_block .sidebar-paquete-popup-botones{
+/*.sidebar-block-content*/ .popup_block .sidebar-paquete-popup-botones{
     text-align: center;
     margin: 25px 0px;
 }
-.sidebar-block-content .popup_block .sidebar-paquete-popup-botones > div{
+/*.sidebar-block-content*/ .popup_block .sidebar-paquete-popup-botones > div{
     display: inline-block;
 }
 .sidebar-paquete-popup-botones-form a{
@@ -1907,7 +1917,7 @@ h2.h2Celeste{
 .sidebar-paquete-popup-botones-chat a{
     background-color: #B57651;
 }
-.sidebar-block-content .popup_block .sidebar-paquete-popup-botones a{
+/*.sidebar-block-content*/ .popup_block .sidebar-paquete-popup-botones a{
     display: block;
     height: 40px;
     text-decoration: none;
@@ -2451,7 +2461,20 @@ p.comprobante-reserva a{
 
 .below-content.blog{
     background-color: #F9F9F8;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    position: relative;
 }
+
+.below-content.blog h3.blog-title{
+    color: #813400;
+    font-family: "Raleway", sans-serif;
+    font-weight: normal;
+    font-size: 23px;
+    letter-spacing: -1px;
+    padding-left: 25px; 
+}
+
 .jcarousel{
     width: 85%;
     margin: 0 auto;
@@ -2463,21 +2486,139 @@ p.comprobante-reserva a{
     display: block;
     width: 245px;
     background-color: #FFF;
-    margin-right: 40px;
+    margin-right: 46px;
+    margin-bottom: 30px;
 }
 
 .jcarousel ul li .imagen-precio img{
     width: 100%;
 }
+.jcarousel ul li .imagen-precio{
+    position: relative;
+    border-bottom: 4px solid #813400;
+}
 .jcarousel ul li .imagen-precio .precio{
+    width: 80px;
+    height: 50px;
+    background: rgba(237, 215, 215, 0.9);
+    position: absolute;
+    bottom: 5px; right: 5px;
+    border-radius: 7px;
 
+    font-family: "Montserrat", sans-serif;
+    font-weight: normal;
+    font-size: 31px;
+    line-height: 30px;
+    color: #A53736;
+    text-align: center;
+    padding: 5px 0px;
+}
+.jcarousel ul li .imagen-precio .precio span{
+    font-size: 10px;
+    line-height: 10px;
+    text-align: center;
+}
+
+.jcarousel ul li .imagen-precio .precio span.sdolar{
+    font-size: 19px;   
+}
+.jcarousel ul li .detalle{
+    padding: 15px;
+}
+.jcarousel ul li .detalle h3{
+    color: #594A42;
+    font-family: "Raleway", sans-serif;
+    font-weight: normal;
+    font-size: 14px; 
+    text-transform: uppercase;
+}
+.jcarousel ul li .detalle p{
+    color: #594A42;
+    font-family: "Open Sans",sans-seif;
+    font-size: 13px; 
+    font-weight: normal;
+}
+.jcarousel ul li .detalle a{
+    display: block;
+    width: 148px;
+    height: 37px;
+    text-decoration: none;
+    font-family: "Raleway", sans-serif;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 12px !important;
+    color: #FFF;
+    text-transform: uppercase;
+    line-height: 40px;
+    padding: 0px 10px;
+    padding-top: 7px;
+    padding-right: 40px;
+    background-color: #A53736;
+    background-image: url('../images/2014/bg-h3-chat-reservacion.png');
+    background-repeat: no-repeat;
+    background-position: 92% 50%;
+    background-size: 10px;
+
+    margin: 0 auto;
+
+    position: relative;
+    bottom: -33px;
+   
+}
+.below-content.blog .jcarousel-control-next,
+.below-content.blog .jcarousel-control-prev{
+    display: block;
+    width: 35px;
+    height: 35px;
+    text-indent: 50px;
+    text-decoration: none;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;  
+}
+.below-content.blog .jcarousel-control-prev{
+    background-image: url('../images/cprev.png');
+    left: 15px;
+}
+.below-content.blog .jcarousel-control-next{
+    background-image: url('../images/cnext.png');
+    right: 15px;
 }
 
 
 
-
-
 @media (max-width: 991px) {
+/*.mi-menu-responsivo
+{
+    display: block;
+}
+    
+ul.mi-menu
+{
+    display: none;
+}
+    
+#tinynav1
+{
+    display: block;
+}
+    
+#tinynav2,
+#tinynav3
+{
+    display: block;
+}*/
+
+    .jcarousel{
+        width: 90%;
+    }
+
+    .below-content.blog .jcarousel-control-next{
+        right: 0px;
+    }
+    .below-content.blog .jcarousel-control-prev{
+        left: 0px;
+    }
     .container-980{
         width: 600px;
         margin: 0 auto;
@@ -2515,6 +2656,17 @@ p.comprobante-reserva a{
 
 }*/
 @media (max-width: 690px) {
+    .below-content.blog .jcarousel-control-next,
+    .below-content.blog .jcarousel-control-prev{
+        top: 60%;
+    }    
+    .jcarousel ul li {
+        width: 279px;
+        margin-right: 0;
+    }    
+    .ct_detalle_reserva .container-2-3{
+        width: 100%;
+    }
     #main-content{
         padding: 8px 0px !important;
     }
