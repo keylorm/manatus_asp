@@ -2451,7 +2451,20 @@ p.comprobante-reserva a{
 
 .below-content.blog{
     background-color: #F9F9F8;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    position: relative;
 }
+
+.below-content.blog h3.blog-title{
+    color: #813400;
+    font-family: "Raleway", sans-serif;
+    font-weight: normal;
+    font-size: 23px;
+    letter-spacing: -1px;
+    padding-left: 25px; 
+}
+
 .jcarousel{
     width: 85%;
     margin: 0 auto;
@@ -2463,17 +2476,104 @@ p.comprobante-reserva a{
     display: block;
     width: 245px;
     background-color: #FFF;
-    margin-right: 40px;
+    margin-right: 46px;
+    margin-bottom: 30px;
 }
 
 .jcarousel ul li .imagen-precio img{
     width: 100%;
 }
+.jcarousel ul li .imagen-precio{
+    position: relative;
+    border-bottom: 4px solid #813400;
+}
 .jcarousel ul li .imagen-precio .precio{
+    width: 80px;
+    height: 50px;
+    background: rgba(237, 215, 215, 0.9);
+    position: absolute;
+    bottom: 5px; right: 5px;
+    border-radius: 7px;
 
+    font-family: "Montserrat", sans-serif;
+    font-weight: normal;
+    font-size: 31px;
+    line-height: 30px;
+    color: #A53736;
+    text-align: center;
+    padding: 5px 0px;
+}
+.jcarousel ul li .imagen-precio .precio span{
+    font-size: 10px;
+    line-height: 10px;
+    text-align: center;
 }
 
+.jcarousel ul li .imagen-precio .precio span.sdolar{
+    font-size: 19px;   
+}
+.jcarousel ul li .detalle{
+    padding: 15px;
+}
+.jcarousel ul li .detalle h3{
+    color: #594A42;
+    font-family: "Raleway", sans-serif;
+    font-weight: normal;
+    font-size: 14px; 
+    text-transform: uppercase;
+}
+.jcarousel ul li .detalle p{
+    color: #594A42;
+    font-family: "Open Sans",sans-seif;
+    font-size: 13px; 
+    font-weight: normal;
+}
+.jcarousel ul li .detalle a{
+    display: block;
+    width: 148px;
+    height: 37px;
+    text-decoration: none;
+    font-family: "Raleway", sans-serif;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 12px !important;
+    color: #FFF;
+    text-transform: uppercase;
+    line-height: 40px;
+    padding: 0px 10px;
+    padding-top: 7px;
+    padding-right: 40px;
+    background-color: #A53736;
+    background-image: url('../images/2014/bg-h3-chat-reservacion.png');
+    background-repeat: no-repeat;
+    background-position: 92% 50%;
+    background-size: 10px;
 
+    margin: 0 auto;
+
+    position: relative;
+    bottom: -33px;
+   
+}
+.below-content.blog .jcarousel-control-next,
+.below-content.blog .jcarousel-control-prev{
+    display: block;
+    width: 35px;
+    height: 35px;
+    text-indent: 50px;
+    text-decoration: none;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;  
+}
+.below-content.blog .jcarousel-control-prev{
+    background-image: url('../images/cprev.png');
+    left: 15px;
+}
+.below-content.blog .jcarousel-control-next{
+    background-image: url('../images/cnext.png');
+    right: 15px;
+}
 
 
 
