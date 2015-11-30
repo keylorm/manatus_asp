@@ -1492,7 +1492,7 @@ a img { border: none; }
 
 .titulo-logos div.nombre-hotel {
     width: 47%;
-    /*padding: 44px 0px 44px 20px;*/
+    padding: 44px 0px 44px 20px;
 }
 
 .titulo-logos div.nombre-hotel h2 {
@@ -2445,6 +2445,35 @@ p.comprobante-reserva a{
     line-height: 25px;
     font-weight: normal;    
 }
+
+
+
+
+.below-content.blog{
+    background-color: #F9F9F8;
+}
+.jcarousel{
+    width: 85%;
+    margin: 0 auto;
+}
+.jcarousel ul{
+
+}
+.jcarousel ul li{
+    display: block;
+    width: 245px;
+    background-color: #FFF;
+    margin-right: 40px;
+}
+
+.jcarousel ul li .imagen-precio img{
+    width: 100%;
+}
+.jcarousel ul li .imagen-precio .precio{
+
+}
+
+
 
 
 
