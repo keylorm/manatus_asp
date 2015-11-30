@@ -1,26 +1,4 @@
-﻿
-@media only screen and (max-width : 690px) {
-    .container-980
-{
-    width: 310px;
-    margin: 0 auto;
-    }
-
-
-     
- /*#main-content, #header, #footer
- {
-     width: 310px;
-     padding: 0 5px;
-     margin: 0 auto;
-     }
- 
-#header .container-980
-{
-    width: 310px;
-    padding: 0 5px;
-    }*/
-    
+﻿@media (max-width: 991px) {
 ul.mi-menu
 {
     display: none;
@@ -62,6 +40,9 @@ ul.mi-menu
     width: 120%;
 }
 
+
+   
+
 .container-2-3
 {
     width: 100%;
@@ -98,6 +79,34 @@ ul.mi-menu
     position: relative;
     top: 0;
     }
+
+
+    
+}
+@media only screen and (max-width : 690px) {
+    .container-980
+{
+    width: 310px;
+    margin: 0 auto;
+    }
+
+
+     
+ /*#main-content, #header, #footer
+ {
+     width: 310px;
+     padding: 0 5px;
+     margin: 0 auto;
+     }
+ 
+#header .container-980
+{
+    width: 310px;
+    padding: 0 5px;
+    }*/
+    
+
+
     
     
 #header #page-head

@@ -1432,7 +1432,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                     Office: <a href="tel:+50622394854">(506) 2239-4854</a><br />
                                                     Hotel: <a href="tel:+50627098197">(506) 2709-8197</a><br />
                                                     Fax: (506) 2709-8198<br />
-                                                    <a href="mailto:info@manatuscostarica.com">info@manatuscostarica.com</a><
+                                                    <a href="mailto:info@manatuscostarica.com">info@manatuscostarica.com</a>
                                                 </p>
                                             </div>
                                         </div>
@@ -1692,7 +1692,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                 $(this).addClass('activ').parent().addClass('activ');
             }
             $('#ct_tbar').toggle("slow");
-        }); $('#tbar').trigger("click");
+        });
 
 
         $('a.poplight[href^=#]').live("click", function () {
@@ -1782,15 +1782,6 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
         function pageLoad() {
             $(function () {
                 $("#tabs").tabs();
-            });
-
-            $('#tbar').live("click", function () {
-                if ($(this).hasClass('activ')) {
-                    $(this).removeClass('activ').parent().removeClass('activ');
-                } else {
-                    $(this).addClass('activ').parent().addClass('activ');
-                }
-                $('#ct_tbar').toggle("slow");
             });
         }
     </script>
