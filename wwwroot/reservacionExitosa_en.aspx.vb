@@ -8,49 +8,21 @@ Imports Orbelink.Entity.Entidades
 Imports System.Data
 Partial Class reservacionExitosa_en
     Inherits Orbelink.FrontEnd6.PageBaseClass
-    ''Datos de la reservacion
-    'Protected ingresoSalida As String = "29/11/2015 - 30/11/2015"
-    'Protected servicio As String = "2 rooms for 3 people, 2 nights, additional nights 0 Taxes included. Transport included."
-    'Protected personas As Integer = 3
-    'Protected habitaciones As Integer = 2
-    'Protected costoEstadia As Double = 790.0
-    'Protected costoNocheAdicional As Double = 0.0
-
-    ''Datos personales
-    'Protected nombreCompleto As String = "María Quesadas López"
-    'Protected telefono As String = "2234-5390"
-    'Protected email As String = "mquesada@gmail.com"
-    'Protected noTarjeta As String = "10418920001"
-    'Protected tarjetaVencimiento As String = "08/17"
-    'Protected tarjeta As String = "Visa"
+ 
+    Private Const id_producto As Integer = 3 'Habitacion Sencilla
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         '*********** Originalmente el codigo para mostrar los datos de la reserva y del usuario deben de cargarse dinamicamente por medio de sesion ***********
-        'If Session("id_reservacion") IsNot Nothing Then
-        '    Dim id_reservacion As Integer = Session("id_reservacion")
-        '    numero_orden.InnerText = id_reservacion
-        '    CargarCarrito(numero_orden.InnerText)
-        'End If
+        If Session("id_reservacion") IsNot Nothing Then
+            Dim id_reservacion As Integer = Session("id_reservacion")
 
-        Dim id_reservacion As Integer = 10960
-        CargarCarrito(id_reservacion)
+            CargarCarrito(id_reservacion)
+        End If
 
-        '************ Temporalmente se mostrará la información estaticamente *********
-        'ValueLblIngresoSalida.Text = ingresoSalida
-        'ValueLblServicio.Text = servicio
-        'ValueLblPersonas.Text = personas
-        'ValueLblHabitaciones.Text = habitaciones
-        'ValueLblCostoSinTransporte.Text = String.Format("{0:$###,###,###.##}", costoEstadia)
-        'ValueLblCostoAdicional.Text = String.Format("{0:$###,###,###.##}", costoNocheAdicional)
-        'ValueLblCostoTotal.Text = String.Format("{0:$###,###,###.##}", (costoEstadia + costoNocheAdicional))
+        'Dim id_reservacion As Integer = 10983
+        'CargarCarrito(id_reservacion)
 
-        'lblNombreCompleto.Text = nombreCompleto
-        'lblTelefono.Text = telefono
-        'lblEmail.Text = email
-        'lblNoTarjeta.Text = noTarjeta
-        'lblFechaVencimiento.Text = tarjetaVencimiento
-        'lblTipoTarjeta.Text = tarjeta
-        '************ Fin de inicializacion de datos temporales *********
+       
     End Sub
     Public Function CargarCarrito(ByVal id_reservacion As String) As Boolean
 
@@ -113,8 +85,16 @@ Partial Class reservacionExitosa_en
                 Dim fechaFinal As Date = FormatDateTime(reservacion.fecha_finalProgramado.ValueLocalized, DateFormat.ShortDate)
                 Dim idReservacion As Integer = CType(reservacion.Id_Reservacion.Value, Integer)
 
+                'para tomar noches y noches adicionales
+                Dim controladora As New ControladorReservaciones(connection, Resources.Reservaciones_Resources.ResourceManager)
+                Dim total_de_noches As Integer = controladora.TotalNoches(fechaInicio, fechaFinal)
+                Dim id_temporada As Integer = controladora.buscarTemporada(fechaInicio, fechaInicio.AddDays(1)).id_Temporada
+                Dim noches As Integer = controladora.NochesSegunTarifas(id_temporada, id_producto, 0, total_de_noches)
+                Dim nochesAdicionales As Integer = total_de_noches - noches
+
                 'extraemos el total del costo de la noche adicional
                 Dim precioUnitarioExtra As Double = precio_noche_adicional(idReservacion)
+                Dim precioUnitario As Double = precio_noche_normal(idReservacion)
 
                 'recorremos cada tupla para extraer la cantidad de personas (adultos + niños)
                 For index = 0 To ds.Tables(0).Rows.Count - 1
@@ -136,16 +116,16 @@ Partial Class reservacionExitosa_en
 
                 'Booking information
                 ValueLblIngresoSalida.Text = fechaInicio + " - " + fechaFinal
-                ValueLblServicio.Text = CType(habitaciones, String) + " rooms for " + CType(personas, String) + " people, 2 nights, additional nights " + CType(precioUnitarioExtra, String) + ", " + taxesText + " . Transport included."
+                ValueLblServicio.Text = CType(habitaciones, String) + " rooms for " + CType(personas, String) + " people, " + CType(noches, String) + " nights, " + CType(nochesAdicionales, String) + " additional nights,<br /><br />" + taxesText + " . Transport included."
                 ValueLblPersonas.Text = CType(personas, String)
                 ValueLblHabitaciones.Text = CType(habitaciones, String)
-                ValueLblCostoSinTransporte.Text = String.Format("{0:$###,###,###.##}", factura.SubTotal.Value)
+                ValueLblCostoSinTransporte.Text = String.Format("{0:$###,###,###.##}", precioUnitario)
                 If (precioUnitarioExtra = 0.0) Then
                     ValueLblCostoAdicional.Text = "$0"
                 Else
                     ValueLblCostoAdicional.Text = String.Format("{0:$###,###,###.##}", precioUnitarioExtra)
                 End If
-                ValueLblCostoTotal.Text = String.Format("{0:$###,###,###.##}", (factura.SubTotal.Value + precioUnitarioExtra))
+                ValueLblCostoTotal.Text = String.Format("{0:$###,###,###.##}", (precioUnitario + precioUnitarioExtra))
 
             End If
         End If
@@ -194,5 +174,49 @@ Partial Class reservacionExitosa_en
         End If
         Return total
     End Function
+
+    Public Function precio_noche_normal(id_reserva As Integer) As Double
+
+        'realizamos una subconsulta para obtener los datos de la noche adicional (relacion entre la tabla factura y detalle factura)
+        Dim QueryBuilder As New QueryBuilder
+        Dim ds As DataSet
+        Dim reservacion As New Reservacion
+        Dim factura As New Factura
+        Dim detalle_factura As New DetalleFactura
+        Dim total As Double = 0
+
+        'selects
+        detalle_factura.Precio_Unitario.ToSelect = True
+
+        'where
+        reservacion.Id_Reservacion.Where.EqualCondition(id_reserva)
+
+        'Join
+        QueryBuilder.Join.EqualCondition(reservacion.Id_factura, factura.Id_Factura)
+        QueryBuilder.Join.EqualCondition(factura.Id_Factura, detalle_factura.Id_Factura)
+
+        'froms
+        QueryBuilder.From.Add(reservacion)
+        QueryBuilder.From.Add(factura)
+        QueryBuilder.From.Add(detalle_factura)
+
+        ds = connection.executeSelect(QueryBuilder.RelationalSelectQuery)
+        'execute
+
+        If ds.Tables.Count > 0 Then
+            If ds.Tables(0).Rows.Count > 0 Then
+
+                For i As Integer = 0 To ds.Tables(0).Rows.Count - 1
+                    ObjectBuilder.CreateObject(ds.Tables(0), i, reservacion)
+                    ObjectBuilder.CreateObject(ds.Tables(0), i, factura)
+                    ObjectBuilder.CreateObject(ds.Tables(0), i, detalle_factura)
+                    total += (CType(detalle_factura.Precio_Unitario.Value, Double))
+                Next
+
+            End If
+        End If
+        Return total
+    End Function
+
 
 End Class

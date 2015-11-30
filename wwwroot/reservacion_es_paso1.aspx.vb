@@ -765,7 +765,7 @@ Partial Class reservacion_es_paso1
             pnl_exito.Visible = True
 
             If Request.QueryString("exito") = 1 Then
-                Response.Redirect("reservacionExitosa_sp.aspx")
+                Response.Redirect("reservacionExitosa.aspx")
 
             Else
                 lbl_exito.ForeColor = Drawing.Color.Red

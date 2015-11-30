@@ -764,7 +764,7 @@ Partial Class reservacion_en_paso1
 
 
             If Request.QueryString("exito") = 1 Then
-                Response.Redirect("reservacionExitosa.aspx")
+                Response.Redirect("reservacionExitosa_en.aspx")
 
             Else
                 lbl_exito.ForeColor = Drawing.Color.Red
@@ -1237,6 +1237,7 @@ Partial Class reservacion_en_paso1
             Dim total_de_noches As Integer = controladora.TotalNoches(fechaInicio, fechaFin)
 
             If total_de_noches > 0 Then
+
                 Dim id_temporada As Integer = controladora.buscarTemporada(fechaInicio, fechaInicio.AddDays(1)).id_Temporada
 
                 Dim habitacionesDeseadas As Integer = gv_ResultadosDisponibles.Rows.Count
@@ -1311,7 +1312,7 @@ Partial Class reservacion_en_paso1
                         GlobalCosto_noche_adicional = precioNochesAdicionales
 
                         If ((precioSintrasporte <> 0)) Then
-                            
+
                             lbl_precioSinTransporte.Text = precioSintrasporte
 
                             'exito(ReservacionActual)
@@ -1397,7 +1398,7 @@ Partial Class reservacion_en_paso1
                         GlobalCosto_noche_adicional = precioNochesAdicionales
 
                         If ((precioSintrasporte <> 0)) Then
-                            
+
                             lbl_precioSinTransporte.Text = precioSintrasporte
 
                             'exito(ReservacionActual)

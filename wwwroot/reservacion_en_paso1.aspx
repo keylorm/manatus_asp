@@ -1692,7 +1692,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                 $(this).addClass('activ').parent().addClass('activ');
             }
             $('#ct_tbar').toggle("slow");
-        }); $('#tbar').trigger("click");
+        }); 
 
 
         $('a.poplight[href^=#]').live("click", function () {
@@ -1784,14 +1784,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                 $("#tabs").tabs();
             });
 
-            $('#tbar').live("click", function () {
-                if ($(this).hasClass('activ')) {
-                    $(this).removeClass('activ').parent().removeClass('activ');
-                } else {
-                    $(this).addClass('activ').parent().addClass('activ');
-                }
-                $('#ct_tbar').toggle("slow");
-            });
+           
         }
     </script>
     <div id="popup_code2" class="popup_block">
