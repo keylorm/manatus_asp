@@ -769,8 +769,8 @@ Partial Class reservacion_sp
 
             'Paquete 2, Noche extra
 
-            Dim PromoIni As New Date(2015, 5, 1)
-            Dim PromoFin As New Date(2015, 6, 30)
+            Dim PromoIni As New Date(2015, 12, 1)
+            Dim PromoFin As New Date(2015, 12, 30)
 
             If DateEntrada >= PromoIni And DateSalida <= PromoFin Then
                 lbl_terminos.Visible = False
@@ -1041,8 +1041,8 @@ Partial Class reservacion_sp
             'min = DateValue("5/01/2015") 'Arriba
             'max = DateValue("6/27/2015") 'Arriba
 
-            min = DateValue("2015/5/01") ' Abajo
-            max = DateValue("2015/6/27") ' Abajo
+            min = DateValue("2015/12/01") ' Abajo
+            max = DateValue("2015/12/30") ' Abajo
 
             If calendarEntrada.SelectedDate >= min And calendarEntrada.SelectedDate <= max Then
                 calendarSalida.Enabled = False

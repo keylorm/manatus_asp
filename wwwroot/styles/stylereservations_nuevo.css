@@ -1996,7 +1996,7 @@ h2.h2Celeste{
 .tbcontent h4{
     color: #DC752F;
     text-transform: uppercase;
-    margin: 10px 0px;
+    /*margin: 10px 0px;*/
 }
 
 
@@ -2009,14 +2009,13 @@ h2.h2Celeste{
     width: 100%; /*872px*/
 }
 .rates-columna1{
-    width: 100%; /*403px*/
-    float: left;
-    margin-right: 65px;
+    overflow: hidden;
+    width: 100%;
 }
 
 .rates-columna2{
-    width: 100%; /*403px*/
-    float: left;
+    overflow: hidden;
+    width: 100%;
 
 }
 
