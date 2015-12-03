@@ -174,12 +174,12 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
             <div class="menu-top-box">
                 <div class="menu-idioma">
                     <ul>
-                        <li><a href="reservacion_en.aspx" class="active">English</a></li>|<li><a href="reservacion_sp.aspx">
+                        <li><a href="reservacion_en_paso1.aspx" class="active">English</a></li>|<li><a href="reservacion_sp.aspx">
                             Español</a></li></ul>
                 </div>
                 <div class="menu-top">
                     <ul>
-                        <li><a href="http://manatuscostarica.com/">Home</a></li>|<li><a href="http://booking.manatuscostarica.com/reservacion_en.aspx">
+                        <li><a href="http://manatuscostarica.com/">Home</a></li>|<li><a href="http://booking.manatuscostarica.com/reservacion_en_paso1.aspx">
                             Book Now</a></li>|<li><a href="http://manatuscostarica.com/gallery">Gallery</a></li>|<li>
                                 <a href="http://manatuscostarica.com/contact-us">Contact</a></li></ul>
                 </div>
@@ -215,7 +215,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                             </ul>
                         </li>
                         <li><a href="http://manatuscostarica.com/tortuguero-area">Tortuguero</a></li>
-                        <li class="active-trail"><a href="http://booking.manatuscostarica.com/reservacion_en.aspx">
+                        <li class="active-trail"><a href="http://booking.manatuscostarica.com/reservacion_en_paso1.aspx">
                             Reservations</a></li>
                         <li><a href="http://manatuscostarica.com/blog">Blog</a></li></ul>
                     <ul class="mi-menu-responsivo">
@@ -225,7 +225,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                         <li><a href="http://manatuscostarica.com/package-and-rates">Packages &amp; Rates</a>
                         </li>
                         <li><a href="http://manatuscostarica.com/tortuguero-area">Tortuguero</a></li>
-                        <li class="active-trail"><a href="http://booking.manatuscostarica.com/reservacion_en.aspx">
+                        <li class="active-trail"><a href="http://booking.manatuscostarica.com/reservacion_en_paso1.aspx">
                             Reservations</a></li>
                         <li><a href="http://manatuscostarica.com/blog">Blog</a></li></ul>
                 </div>
@@ -1511,7 +1511,9 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                                 Height="70px" Rows="5" TextMode="MultiLine"></asp:TextBox>
                                                         </div>
                                                         <div id="terminos-condiciones" class="wrapper-field">
-                                                            <asp:HyperLink NavigateUrl="#?w=620" runat="server" Text="Read our Terms and Conditions" ID="linkTerminosCondiciones" rel="popup_code2" CssClass="poplight"/>
+                                                            <asp:HyperLink NavigateUrl="javascript:void(0)" runat="server" Text="Ver Términos y Condiciones"
+                                                                ID="linkTerminosCondiciones" />
+                                                            <asp:HyperLink NavigateUrl="#?w=620" runat="server" Text="Read our Terms and Conditions" ID="linkTerminosCondiciones2" rel="popup_code2" CssClass="poplight"/>
                                                         </div>
                                                         <div class="wrapper-field">
                                                             <asp:CheckBox Text="I have read and accept the Terms and Conditions" runat="server" ID="chkTerminosCondiciones" />
@@ -1624,14 +1626,14 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                     <li><a href="http://manatuscostarica.com/package-and-rates">Packages &amp; Rates</a>
                     </li>
                     <li><a href="http://manatuscostarica.com/tortuguero-area">Tortuguero</a></li>
-                    <li class="active-trail"><a href="http://booking.manatuscostarica.com/reservacion_en.aspx">
+                    <li class="active-trail"><a href="http://booking.manatuscostarica.com/reservacion_en_paso1.aspx">
                         Reservations</a></li>
                     <li><a href="http://manatuscostarica.com/blog">Blog</a></li>
                 </ul>
             </div>
             <div class="column1 column">
                 <ul>
-                    <li><a href="http://booking.manatuscostarica.com/reservacion_en.aspx" class="active-trail">
+                    <li><a href="http://booking.manatuscostarica.com/reservacion_en_paso1.aspx" class="active-trail">
                         Reservations</a></li>
                     <li><a href="http://manatuscostarica.com/manatus-experience">Hotel Experience</a></li>
                     <li><a href="http://manatuscostarica.com/tortuguero-area">Tortuguero</a></li>
@@ -1666,7 +1668,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
             <div class="footer-info-box">
                 <div class="menu-top">
                     <ul>
-                        <li><a href="http://manatuscostarica.com/">Home</a></li>|<li><a href="http://booking.manatuscostarica.com/reservacion_en.aspx">
+                        <li><a href="http://manatuscostarica.com/">Home</a></li>|<li><a href="http://booking.manatuscostarica.com/reservacion_en_paso1.aspx">
                             Book Now</a></li>|<li><a href="http://manatuscostarica.com/gallery">Gallery</a></li>|<li>
                                 <a href="http://manatuscostarica.com/contact-us">Contact</a></li></ul>
                 </div>
@@ -1676,7 +1678,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                 </div>
                 <div class="menu-idioma">
                     <ul>
-                        <li><a href="reservacion_en.aspx" class="active">English</a></li>|<li><a href="reservacion_sp.aspx">
+                        <li><a href="reservacion_en_paso1.aspx" class="active">English</a></li>|<li><a href="reservacion_sp.aspx">
                             Español</a></li></ul>
                 </div>
             </div>

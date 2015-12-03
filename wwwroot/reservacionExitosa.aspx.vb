@@ -13,14 +13,14 @@ Partial Class reservacionExitosa
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         '*********** Originalmente el codigo para mostrar los datos de la reserva y del usuario deben de cargarse dinamicamente por medio de sesion ***********
-        If Session("id_reservacion") IsNot Nothing Then
-            Dim id_reservacion As Integer = Session("id_reservacion")
+        'If Session("id_reservacion") IsNot Nothing Then
+        '    Dim id_reservacion As Integer = Session("id_reservacion")
 
-            CargarCarrito(id_reservacion)
-        End If
+        '    CargarCarrito(id_reservacion)
+        'End If
 
-        'Dim id_reservacion As Integer = 10983
-        'CargarCarrito(id_reservacion)
+        Dim id_reservacion As Integer = 11000
+        CargarCarrito(id_reservacion)
 
 
     End Sub
@@ -118,7 +118,21 @@ Partial Class reservacionExitosa
 
                 'Booking information
                 ValueLblIngresoSalida.Text = fechaInicio + " - " + fechaFinal
-                ValueLblServicio.Text = CType(habitaciones, String) + " habitaciones para " + CType(personas, String) + " personas, " + CType(noches, String) + " noches, " + CType(nochesAdicionales, String) + " noches adicionales,<br /><br />" + taxesText + " . Transporte incluido."
+                Dim txt_habitaciones As String
+                If (habitaciones > 1) Then
+                    txt_habitaciones = CType(habitaciones, String) + " habitaciones"
+                Else
+                    txt_habitaciones = CType(habitaciones, String) + " habitación"
+                End If
+
+                Dim txt_personas As String
+                If (personas > 1) Then
+                    txt_personas = CType(personas, String) + " personas"
+                Else
+                    txt_personas = CType(personas, String) + " persona"
+                End If
+
+                ValueLblServicio.Text = txt_habitaciones + " para " + txt_personas + ", " + CType(noches, String) + " noches, " + CType(nochesAdicionales, String) + " noches adicionales,<br /><br />" + taxesText + " . Transporte incluido."
                 ValueLblPersonas.Text = CType(personas, String)
                 ValueLblHabitaciones.Text = CType(habitaciones, String)
                 ValueLblCostoSinTransporte.Text = String.Format("{0:$###,###,###.##}", precioUnitario)

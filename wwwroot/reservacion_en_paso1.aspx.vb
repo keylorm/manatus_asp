@@ -60,7 +60,27 @@ Partial Class reservacion_en_paso1
             Dim paquete As Integer = Request.QueryString("paquete")
 
             If paquete = 2 Then
-                terminosycondiciones()
+                linkTerminosCondiciones.Visible = True
+                linkTerminosCondiciones2.Visible = False
+
+                pnl_terminospaquete.Visible = True
+                Panel1.Visible = False
+
+                linkTerminosCondiciones.NavigateUrl = "Terms_and_Conditions_Manatus_may_and_june.pdf"
+                lbl_paquete.Text = "<br />Free extra Night at Manatus Hotel<br /><br />"
+                'trHabitaciones.Attributes.Add("style", "display:table-row")
+
+                lbl_paquete.Visible = True
+            Else
+                linkTerminosCondiciones2.Visible = True
+                linkTerminosCondiciones.Visible = False
+                pnl_terminospaquete.Visible = False
+                Panel1.Visible = True
+                'trHabitaciones.Attributes.Add("style", "display:table-row")
+
+                lbl_paquete.Visible = False
+
+
             End If
 
             Dim habitacionesDisponibles As Integer = selectHabitaciones(id_producto, 6)
@@ -765,9 +785,9 @@ Partial Class reservacion_en_paso1
                 lbl_exito.ForeColor = Drawing.Color.Red
                 If Request.QueryString("exito") = 0 Then
                     If Orbelink.DBHandler.LanguageHandler.CurrentLanguage = Orbelink.DBHandler.LanguageHandler.Language.INGLES Then
-                        lbl_exito.Text = "<br/><br/>Sorry, your transacction was cancelled. Please click <a href='reservacion_en.aspx'>HERE</a> to try again.<br/><br/>"
+                        lbl_exito.Text = "<br/><br/>Sorry, your transacction was cancelled. Please click <a href='reservacion_en_paso1.aspx'>HERE</a> to try again.<br/><br/>"
                     Else
-                        lbl_exito.Text = "<br/><br/>Lo sentimos, su transacción fue cancelada.  Por favor haga click <a href='reservacion_sp.aspx'>AQUÍ</a> para intentar de nuevo.<br/><br/>"
+                        lbl_exito.Text = "<br/><br/>Lo sentimos, su transacción fue cancelada.  Por favor haga click <a href='reservacion_es_paso1.aspx'>AQUÍ</a> para intentar de nuevo.<br/><br/>"
                     End If
                 End If
             End If
@@ -791,7 +811,26 @@ Partial Class reservacion_en_paso1
 
             'cargar los datos de la reserva almacenados en variables globales
             ValueLblIngresoSalida.Text = TxtCheckinCheckout.Text
-            ValueLblServicio.Text = CType(GlobalHabitaciones, String) + " rooms for " + CType(GlobalPersonas, String) + " people, " + CType(GlobalNoches, String) + " night(s), " + CType(GlobalNoches_adicionales, String) + " additional night(s). Taxes included. Transport included."
+            Dim txt_habitaciones As String
+            If (GlobalHabitaciones > 1) Then
+                txt_habitaciones = CType(GlobalHabitaciones, String) + " rooms"
+            Else
+                txt_habitaciones = CType(GlobalHabitaciones, String) + " room"
+            End If
+
+            Dim txt_personas As String
+            If (GlobalPersonas > 1) Then
+                txt_personas = CType(GlobalPersonas, String) + " people"
+            Else
+                txt_personas = CType(GlobalPersonas, String) + " person"
+            End If
+
+            Dim texto_servicio As String = txt_habitaciones + " for " + txt_personas + ", " + CType(GlobalNoches, String) + " night(s), " + CType(GlobalNoches_adicionales, String) + " additional night(s). Taxes included."
+
+            If rdbtnlist_transporte2014.SelectedValue <> 4 Then
+                texto_servicio += " Transport included."
+            End If
+            ValueLblServicio.Text = texto_servicio
             ValueLblPersonas.Text = CType(GlobalPersonas, String)
             ValueLblHabitaciones.Text = CType(GlobalHabitaciones, String)
             ValueLblCostoSinTransporte.Text = String.Format("{0:$###,###,###.##}", GlobalCosto_estadia)
@@ -1673,7 +1712,7 @@ Partial Class reservacion_en_paso1
                         For counter As Integer = 0 To gv_ResultadosDisponibles.Rows.Count - 1
                             Dim unItem As GridViewRow = gv_ResultadosDisponibles.Rows(counter)
                             Dim lbl_tipo_paquete As Label = unItem.FindControl("lbl_tipo_paquete")
-                            lbl_tipo_paquete.Text = "Custom Package"
+                            lbl_tipo_paquete.Text = "1 free extra night Package"
 
                             'mostrar descripciones de paquetes custom por default
                             cargarDescripcionCorrespondiente(3)

@@ -60,7 +60,34 @@ Partial Class reservacion_es_paso1
             Dim paquete As Integer = Request.QueryString("paquete")
 
             If paquete = 2 Then
-                terminosycondiciones()
+
+                linkTerminosCondiciones2.Visible = False
+                linkTerminosCondiciones.Visible = True
+
+                pnl_terminospaquete.Visible = True
+                Panel1.Visible = False
+                ' trHabitaciones.Attributes.Add("style", "display:none")
+                'trPersonas.Attributes.Add("style", "display:none")
+
+
+                linkTerminosCondiciones.NavigateUrl = "Terminos_y_condiciones_Manatus_mayo_y_junio.pdf"
+                lbl_paquete.Text = "<br />Noche Extra Gratis en Hotel Manatus.<br /><br />"
+
+
+                'calendarEntrada.EnabledDateExpression(New Date(2011, 5, 1), New Date(2011, 6, 30))
+                lbl_paquete.Visible = True
+                'txtDateEntrada.AutoPostBack = True
+
+            Else
+                linkTerminosCondiciones2.Visible = True
+                linkTerminosCondiciones.Visible = False
+                pnl_terminospaquete.Visible = False
+                Panel1.Visible = True
+                'trHabitaciones.Attributes.Add("style", "display:display:table-row")
+                'trPersonas.Attributes.Add("style", "display:block")
+                lbl_paquete.Visible = False
+                'txtDateEntrada.AutoPostBack = False
+
             End If
 
             Dim habitacionesDisponibles As Integer = selectHabitaciones(id_producto, 6)
@@ -793,7 +820,27 @@ Partial Class reservacion_es_paso1
 
             'cargar los datos de la reserva almacenados en variables globales
             ValueLblIngresoSalida.Text = TxtCheckinCheckout.Text
-            ValueLblServicio.Text = CType(GlobalHabitaciones, String) + " habitaciones para " + CType(GlobalPersonas, String) + " personas, " + CType(GlobalNoches, String) + " noches, " + CType(GlobalNoches_adicionales, String) + " noches adicionales Impuestos incluidos. Traslados incluidos."
+
+            Dim txt_habitaciones As String
+            If (GlobalHabitaciones > 1) Then
+                txt_habitaciones = CType(GlobalHabitaciones, String) + " habitaciones"
+            Else
+                txt_habitaciones = CType(GlobalHabitaciones, String) + " habitación"
+            End If
+
+            Dim txt_personas As String
+            If (GlobalPersonas > 1) Then
+                txt_personas = CType(GlobalPersonas, String) + " personas"
+            Else
+                txt_personas = CType(GlobalPersonas, String) + " persona"
+            End If
+
+            Dim texto_servicio As String = txt_habitaciones + " para " + txt_personas + ", " + CType(GlobalNoches, String) + " noches, " + CType(GlobalNoches_adicionales, String) + " noches adicionales Impuestos incluidos."
+
+            If rdbtnlist_transporte2014.SelectedValue <> 4 Then
+                texto_servicio += " Traslados Incluidos."
+            End If
+            ValueLblServicio.Text = texto_servicio
             ValueLblPersonas.Text = CType(GlobalPersonas, String)
             ValueLblHabitaciones.Text = CType(GlobalHabitaciones, String)
             ValueLblCostoSinTransporte.Text = String.Format("{0:$###,###,###.##}", GlobalCosto_estadia)
@@ -1224,106 +1271,109 @@ Partial Class reservacion_es_paso1
     End Sub
 
     Protected Sub TxtCheckinCheckout_TextChanged(sender As Object, e As System.EventArgs) Handles TxtCheckinCheckout.TextChanged
-        Dim entrada As Date
-        Dim salida As Date
+        If TxtCheckinCheckout.Text.Length > 0 And TxtCheckinCheckout.Text.Contains(" - ") Then
+            Dim entrada As Date
+            Dim salida As Date
 
 
 
-        'separador para el rango de fecha
-        Dim rango = TxtCheckinCheckout.Text
-        Dim delimiter As Char = " - "
-        Dim substrings() As String = rango.Split(delimiter)
-        Dim counter1 = 0
+            'separador para el rango de fecha
+            Dim rango = TxtCheckinCheckout.Text
+            Dim delimiter As Char = " - "
+            Dim substrings() As String = rango.Split(delimiter)
+            Dim counter1 = 0
 
-        For Each substring In substrings
-            If (substring <> "-") Then
-                'separador para el checkin
-                Dim delimiter2 As Char = "/"
-                Dim substrings2() As String = substring.Split(delimiter2)
-                Dim counter2 = 0
-                Dim d = 0
-                Dim m = 0
-                Dim y = 0
-                If counter1 = 0 Then
-                    For Each substring2 In substrings2
-                        If (substring2 <> "/") Then
-                            If counter2 = 0 Then
-                                d = substring2
+            For Each substring In substrings
+                If (substring <> "-") Then
+                    'separador para el checkin
+                    Dim delimiter2 As Char = "/"
+                    Dim substrings2() As String = substring.Split(delimiter2)
+                    Dim counter2 = 0
+                    Dim d = 0
+                    Dim m = 0
+                    Dim y = 0
+                    If counter1 = 0 Then
+                        For Each substring2 In substrings2
+                            If (substring2 <> "/") Then
+                                If counter2 = 0 Then
+                                    d = substring2
 
-                            ElseIf counter2 = 1 Then
-                                m = substring2
-                            Else
-                                y = substring2
+                                ElseIf counter2 = 1 Then
+                                    m = substring2
+                                Else
+                                    y = substring2
+                                End If
                             End If
-                        End If
-                        counter2 = counter2 + 1
-                    Next
-                    Dim date1 As New Date(y, m, d, 0, 0, 0)
-                    entrada = date1
-                Else
-                    For Each substring2 In substrings2
-                        If (substring2 <> "/") Then
-                            If counter2 = 0 Then
-                                d = substring2
+                            counter2 = counter2 + 1
+                        Next
+                        Dim date1 As New Date(y, m, d, 0, 0, 0)
+                        entrada = date1
+                    Else
+                        For Each substring2 In substrings2
+                            If (substring2 <> "/") Then
+                                If counter2 = 0 Then
+                                    d = substring2
 
-                            ElseIf counter2 = 1 Then
-                                m = substring2
-                            Else
-                                y = substring2
+                                ElseIf counter2 = 1 Then
+                                    m = substring2
+                                Else
+                                    y = substring2
+                                End If
                             End If
-                        End If
-                        counter2 = counter2 + 1
-                    Next
-                    Dim date1 As New Date(y, m, d, 0, 0, 0)
-                    salida = date1
+                            counter2 = counter2 + 1
+                        Next
+                        Dim date1 As New Date(y, m, d, 0, 0, 0)
+                        salida = date1
+                    End If
                 End If
+                counter1 = counter1 + 1
+            Next
+
+            Dim paquete As Integer = Request.QueryString("paquete")
+            Dim min, max As Date 'min2014, max2014 
+
+            'min2014 = DateValue("01/01/2014")
+            'max2014 = DateValue("12/31/2014")
+            'paquete = 0
+            If paquete = 2 Then
+                'lbl_noches.visible = False
+                ' Dim min, max As Date
+
+
+                'min = DateValue("5/01/2015") 'Arriba
+                'max = DateValue("6/27/2015") 'Arriba
+
+                min = DateValue("2015/12/01") ' Abajo
+                max = DateValue("2015/12/30") ' Abajo
+
+                If entrada >= min And entrada <= max Then
+                    salida = entrada.AddDays(3)
+                Else
+                    salida = entrada
+                End If
+
+                TxtCheckinCheckout.Text = Convert.ToString(entrada.Day) + "/" + Convert.ToString(entrada.Month) + "/" + Convert.ToString(entrada.Year) + " - " + Convert.ToString(salida.Day) + "/" + Convert.ToString(salida.Month) + "/" + Convert.ToString(salida.Year)
+
+                ' calendarSalida.SelectedDate = calendarEntrada.SelectedDate
             End If
-            counter1 = counter1 + 1
-        Next
-
-        Dim paquete As Integer = Request.QueryString("paquete")
-        Dim min, max As Date 'min2014, max2014 
-
-        'min2014 = DateValue("01/01/2014")
-        'max2014 = DateValue("12/31/2014")
-        'paquete = 0
-        If paquete = 2 Then
-            'lbl_noches.visible = False
-            ' Dim min, max As Date
 
 
-            'min = DateValue("5/01/2015") 'Arriba
-            'max = DateValue("6/27/2015") 'Arriba
+            'If calendarEntrada.SelectedDate.Year >= 2014 And calendarEntrada.SelectedDate.Year <= 2015 Then
+            '    trPaquetes2014.Visible = True
+            '    trPlacetoPickup.Visible = True
+            '    trPlacetoLeave.Visible = True
+            'Else
+            '    ' calendarSalida.SelectedDate = calendarEntrada.SelectedDate
+            '    trPaquetes2014.Visible = False
+            '    trPlacetoPickup.Visible = False
+            '    trPlacetoLeave.Visible = False
+            'End If
 
-            min = DateValue("2015/12/01") ' Abajo
-            max = DateValue("2015/12/30") ' Abajo
 
-            If entrada >= min And entrada <= max Then
-                salida = entrada.AddDays(3)
-            Else
-                salida = entrada
-            End If
 
-            TxtCheckinCheckout.Text = Convert.ToString(entrada.Day) + "/" + Convert.ToString(entrada.Month) + "/" + Convert.ToString(entrada.Year) + " - " + Convert.ToString(salida.Day) + "/" + Convert.ToString(salida.Month) + "/" + Convert.ToString(salida.Year)
-
-            ' calendarSalida.SelectedDate = calendarEntrada.SelectedDate
+            'terminosycondiciones()
         End If
-
-
-        'If calendarEntrada.SelectedDate.Year >= 2014 And calendarEntrada.SelectedDate.Year <= 2015 Then
-        '    trPaquetes2014.Visible = True
-        '    trPlacetoPickup.Visible = True
-        '    trPlacetoLeave.Visible = True
-        'Else
-        '    ' calendarSalida.SelectedDate = calendarEntrada.SelectedDate
-        '    trPaquetes2014.Visible = False
-        '    trPlacetoPickup.Visible = False
-        '    trPlacetoLeave.Visible = False
-        'End If
-
-
-
-        'terminosycondiciones()
+        
 
 
     End Sub
@@ -1658,7 +1708,7 @@ Partial Class reservacion_es_paso1
                         For counter As Integer = 0 To gv_ResultadosDisponibles.Rows.Count - 1
                             Dim unItem As GridViewRow = gv_ResultadosDisponibles.Rows(counter)
                             Dim lbl_tipo_paquete As Label = unItem.FindControl("lbl_tipo_paquete")
-                            lbl_tipo_paquete.Text = "Paquete Personalizado"
+                            lbl_tipo_paquete.Text = "Paquete de 1 noche extra gratis"
 
                             'mostrar descripciones de paquetes custom por default
                             cargarDescripcionCorrespondiente(3)

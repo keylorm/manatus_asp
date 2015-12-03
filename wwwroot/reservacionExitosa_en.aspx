@@ -188,12 +188,12 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                 <div class="menu-top-box">
                     <div class="menu-idioma">
                         <ul>
-                            <li><a href="reservacion_en.aspx" class="active">English</a></li>|<li><a href="reservacion_sp.aspx">
+                            <li><a href="reservacion_en_paso1.aspx" class="active">English</a></li>|<li><a href="reservacion_es_paso1.aspx">
                                 Español</a></li></ul>
                     </div>
                     <div class="menu-top">
                         <ul>
-                            <li><a href="http://manatuscostarica.com/">Home</a></li>|<li><a href="http://booking.manatuscostarica.com/reservacion_en.aspx">
+                            <li><a href="http://manatuscostarica.com/">Home</a></li>|<li><a href="http://booking.manatuscostarica.com/reservacion_en_paso1.aspx">
                                 Book Now</a></li>|<li><a href="http://manatuscostarica.com/gallery">Gallery</a></li>|<li>
                                     <a href="http://manatuscostarica.com/contact-us">Contact</a></li></ul>
                     </div>
@@ -229,7 +229,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                 </ul>
                             </li>
                             <li><a href="http://manatuscostarica.com/tortuguero-area">Tortuguero</a></li>
-                            <li class="active-trail"><a href="http://booking.manatuscostarica.com/reservacion_en.aspx">
+                            <li class="active-trail"><a href="http://booking.manatuscostarica.com/reservacion_en_paso1.aspx">
                                 Reservations</a></li>
                             <li><a href="http://manatuscostarica.com/blog">Blog</a></li></ul>
                         <ul class="mi-menu-responsivo">
@@ -239,7 +239,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                             <li><a href="http://manatuscostarica.com/package-and-rates">Packages &amp; Rates</a>
                             </li>
                             <li><a href="http://manatuscostarica.com/tortuguero-area">Tortuguero</a></li>
-                            <li class="active-trail"><a href="http://booking.manatuscostarica.com/reservacion_en.aspx">
+                            <li class="active-trail"><a href="http://booking.manatuscostarica.com/reservacion_en_paso1.aspx">
                                 Reservations</a></li>
                             <li><a href="http://manatuscostarica.com/blog">Blog</a></li></ul>
                     </div>
@@ -406,7 +406,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                             <li>
                                 <div class="blog-teaser">
                                     <div class="imagen-precio">
-                                        <img src="images/manatee.jpg" alt="" />
+                                        <img src="images/tour1-reservacionExitosa.jpg" alt="" />
                                         <div class="precio">
                                             $ 123
                                             <span>by person</span>
@@ -424,7 +424,43 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                             <li>
                                 <div class="blog-teaser">
                                     <div class="imagen-precio">
-                                        <img src="images/manatee.jpg" alt="" />
+                                        <img src="images/tour2-reservacionExitosa.jpg" alt="" />
+                                        <div class="precio">
+                                            $ 123
+                                            <span>by person</span>
+                                        </div>
+                                    </div>
+                                    <div class="detalle">
+                                        <h3>Tortuguero Channels</h3>
+                                        <p class="descripcion-corta">Ride in boat through amazing channels of Tortuguero National Park</p>
+                                        <div class="boton-contacto">
+                                            <a href="#">Contact us to reserve</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="blog-teaser">
+                                    <div class="imagen-precio">
+                                        <img src="images/tour3-reservacionExitosa.jpg" alt="" />
+                                        <div class="precio">
+                                            $ 123
+                                            <span>by person</span>
+                                        </div>
+                                    </div>
+                                    <div class="detalle">
+                                        <h3>Canopy</h3>
+                                        <p class="descripcion-corta">The adrenalin will be your companion while soaring through the treetops.</p>
+                                        <div class="boton-contacto">
+                                            <a href="#">Contact us to reserve</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="blog-teaser">
+                                    <div class="imagen-precio">
+                                        <img src="images/tour1-reservacionExitosa.jpg" alt="" />
                                         <div class="precio">
                                             $ 123
                                             <span>by person</span>
@@ -442,15 +478,15 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                             <li>
                                 <div class="blog-teaser">
                                     <div class="imagen-precio">
-                                        <img src="images/manatee.jpg" alt="" />
+                                        <img src="images/tour2-reservacionExitosa.jpg" alt="" />
                                         <div class="precio">
                                             $ 123
                                             <span>by person</span>
                                         </div>
                                     </div>
                                     <div class="detalle">
-                                        <h3>Turtle nesting</h3>
-                                        <p class="descripcion-corta">Enjoy live nesting of the Green Turtle (only in the months of July, August, September and October)</p>
+                                        <h3>Tortuguero Channels</h3>
+                                        <p class="descripcion-corta">Ride in boat through amazing channels of Tortuguero National Park</p>
                                         <div class="boton-contacto">
                                             <a href="#">Contact us to reserve</a>
                                         </div>
@@ -460,51 +496,15 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                             <li>
                                 <div class="blog-teaser">
                                     <div class="imagen-precio">
-                                        <img src="images/manatee.jpg" alt="" />
+                                        <img src="images/tour3-reservacionExitosa.jpg" alt="" />
                                         <div class="precio">
                                             $ 123
                                             <span>by person</span>
                                         </div>
                                     </div>
                                     <div class="detalle">
-                                        <h3>Turtle nesting</h3>
-                                        <p class="descripcion-corta">Enjoy live nesting of the Green Turtle (only in the months of July, August, September and October)</p>
-                                        <div class="boton-contacto">
-                                            <a href="#">Contact us to reserve</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="blog-teaser">
-                                    <div class="imagen-precio">
-                                        <img src="images/manatee.jpg" alt="" />
-                                        <div class="precio">
-                                            $ 123
-                                            <span>by person</span>
-                                        </div>
-                                    </div>
-                                    <div class="detalle">
-                                        <h3>Turtle nesting</h3>
-                                        <p class="descripcion-corta">Enjoy live nesting of the Green Turtle (only in the months of July, August, September and October)</p>
-                                        <div class="boton-contacto">
-                                            <a href="#">Contact us to reserve</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="blog-teaser">
-                                    <div class="imagen-precio">
-                                        <img src="images/manatee.jpg" alt="" />
-                                        <div class="precio">
-                                            $ 123
-                                            <span>by person</span>
-                                        </div>
-                                    </div>
-                                    <div class="detalle">
-                                        <h3>Turtle nesting</h3>
-                                        <p class="descripcion-corta">Enjoy live nesting of the Green Turtle (only in the months of July, August, September and October)</p>
+                                        <h3>Canopy</h3>
+                                        <p class="descripcion-corta">The adrenalin will be your companion while soaring through the treetops.</p>
                                         <div class="boton-contacto">
                                             <a href="#">Contact us to reserve</a>
                                         </div>
@@ -529,14 +529,14 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                         <li><a href="http://manatuscostarica.com/package-and-rates">Packages &amp; Rates</a>
                         </li>
                         <li><a href="http://manatuscostarica.com/tortuguero-area">Tortuguero</a></li>
-                        <li class="active-trail"><a href="http://booking.manatuscostarica.com/reservacion_en.aspx">
+                        <li class="active-trail"><a href="http://booking.manatuscostarica.com/reservacion_en_paso1.aspx">
                             Reservations</a></li>
                         <li><a href="http://manatuscostarica.com/blog">Blog</a></li>
                     </ul>
                 </div>
                 <div class="column1 column">
                     <ul>
-                        <li><a href="http://booking.manatuscostarica.com/reservacion_en.aspx" class="active-trail">
+                        <li><a href="http://booking.manatuscostarica.com/reservacion_en_paso1.aspx" class="active-trail">
                             Reservations</a></li>
                         <li><a href="http://manatuscostarica.com/manatus-experience">Hotel Experience</a></li>
                         <li><a href="http://manatuscostarica.com/tortuguero-area">Tortuguero</a></li>
@@ -571,7 +571,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                 <div class="footer-info-box">
                     <div class="menu-top">
                         <ul>
-                            <li><a href="http://manatuscostarica.com/">Home</a></li>|<li><a href="http://booking.manatuscostarica.com/reservacion_en.aspx">
+                            <li><a href="http://manatuscostarica.com/">Home</a></li>|<li><a href="http://booking.manatuscostarica.com/reservacion_en_paso1.aspx">
                                 Book Now</a></li>|<li><a href="http://manatuscostarica.com/gallery">Gallery</a></li>|<li>
                                     <a href="http://manatuscostarica.com/contact-us">Contact</a></li></ul>
                     </div>
@@ -581,7 +581,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                     </div>
                     <div class="menu-idioma">
                         <ul>
-                            <li><a href="reservacion_en.aspx" class="active">English</a></li>|<li><a href="reservacion_sp.aspx">
+                            <li><a href="reservacion_en_paso1.aspx" class="active">English</a></li>|<li><a href="reservacion_es_paso1.aspx">
                                 Español</a></li></ul>
                     </div>
                 </div>

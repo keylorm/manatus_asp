@@ -47,16 +47,16 @@ Partial Class respuestatransaccion
 
                 If resultado.result = True Then 'Exito
                     If resultado.language = "EN" Then
-                        Response.Redirect("http://booking.manatuscostarica.com/reservacion_en.aspx?exito=1")
+                        Response.Redirect("http://booking.manatuscostarica.com/reservacion_en_paso1.aspx?exito=1")
                     Else
-                        Response.Redirect("http://booking.manatuscostarica.com/reservacion_sp.aspx?exito=1")
+                        Response.Redirect("http://booking.manatuscostarica.com/reservacion_es_paso1.aspx?exito=1")
                     End If
                 Else 'Error
 
                     If resultado.language = "EN" Then
-                        Response.Redirect("http://booking.manatuscostarica.com/reservacion_en.aspx?exito=0")
+                        Response.Redirect("http://booking.manatuscostarica.com/reservacion_en_paso1.aspx?exito=0")
                     Else
-                        Response.Redirect("http://booking.manatuscostarica.com/reservacion_sp.aspx?exito=0")
+                        Response.Redirect("http://booking.manatuscostarica.com/reservacion_es_paso1.aspx?exito=0")
                     End If
                 End If
             Catch ex As Exception

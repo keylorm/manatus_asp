@@ -38,7 +38,7 @@ Partial Class IntermediaBNCR
 
     Protected Function ArmarQueryString() As String
         Dim query As String = ""
-        query = "~/reservacion_sp.aspx?return=IntermediaBNCR.aspx"
+        query = "~/reservacion_en_paso1.aspx?return=IntermediaBNCR.aspx"
         Return query
     End Function
 End Class

@@ -2791,3 +2791,11 @@ ul.mi-menu
 	font-family: "Open Sans", Sans-Serif;
 	
 	}
+	
+#lbl_paquete{
+    color: #594a42;
+    font-family: "Open Sans",sans-seif;
+    font-size: 15px;
+    font-weight: bold;
+    
+}
