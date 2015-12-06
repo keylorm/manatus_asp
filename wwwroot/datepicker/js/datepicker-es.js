@@ -100,7 +100,7 @@
 							'<td class="<%=weeks[5].days[6].classname%>"><a href="#"><span><%=weeks[5].days[6].text%></span></a></td>',
 						'</tr>',
 						'<tr class="ayuda">',
-							'<td colspan="7"><!--<span class="disponibles"></span> Disponibles <span class="no-disponibles"></span> No disponibles--> <span class="seleccionados"></span> Seleccionados</td>',
+							'<td colspan="7"><span class="disponibles"></span> Disponibles <span class="no-disponibles"></span> No disponibles <span class="seleccion"></span> Seleccionados</td>',
 						'</tr>',
 						'<tr>',
 							'<td colspan="7" ><span id="aplicar-seleccion-wrapper"></span></td>',
