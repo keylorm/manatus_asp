@@ -45,18 +45,24 @@ Partial Class respuestatransaccion
                 Dim factura As FacturaWebState = New FacturaWebState
                 factura.BorrarMyCarrito()
 
+                'Obliga a ver un resultado positivo para pruebas
+                'resultado.result = True
                 If resultado.result = True Then 'Exito
                     If resultado.language = "EN" Then
                         Response.Redirect("http://booking.manatuscostarica.com/reservacion_en_paso1.aspx?exito=1")
+                        'Response.Redirect("http://manatus.orbelink.com/reservacion_en_paso1.aspx?exito=1")
                     Else
                         Response.Redirect("http://booking.manatuscostarica.com/reservacion_es_paso1.aspx?exito=1")
+                        'Response.Redirect("http://manatus.orbelink.com/reservacion_es_paso1.aspx?exito=1")
                     End If
                 Else 'Error
 
                     If resultado.language = "EN" Then
                         Response.Redirect("http://booking.manatuscostarica.com/reservacion_en_paso1.aspx?exito=0")
+                        'Response.Redirect("http://manatus.orbelink.com/reservacion_en_paso1.aspx?exito=0")
                     Else
                         Response.Redirect("http://booking.manatuscostarica.com/reservacion_es_paso1.aspx?exito=0")
+                        'Response.Redirect("http://manatus.orbelink.com/reservacion_es_paso1.aspx?exito=0")
                     End If
                 End If
             Catch ex As Exception

@@ -281,9 +281,9 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                     </div>
                     <div class="form-title">
                         <h2 class="h2Celeste">We will be happy to receive you in Hotel Manatus!</h2>
-                        <div class="logo-ssl">
+                        <%--<div class="logo-ssl">
                             <img src="images/verisign.png" />
-                        </div>
+                        </div>--%>
                     </div>
                     <p class="comprobante-reserva">
                         Your reservation has been processed successfully. Very soon you will receive a confirmation in your email.

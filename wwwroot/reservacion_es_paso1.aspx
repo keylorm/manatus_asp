@@ -459,10 +459,10 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                                         Seleccione las opciones de traslado que requiere y agréguelas a su paquete:</p>
                                                                     <div class="bdbtnlist_transporte_box">
                                                                         <asp:RadioButtonList ID="rdbtnlist_transporte2014" runat="server" AutoPostBack="true">
-                                                                            <asp:ListItem Value="1">Transfer to Manatus</asp:ListItem>
-                                                                            <asp:ListItem Value="2">Transfer back to San Jose</asp:ListItem>
-                                                                            <asp:ListItem Value="3">Round Trip</asp:ListItem>
-                                                                            <asp:ListItem Value="4" Selected="True">None</asp:ListItem>
+                                                                            <asp:ListItem Value="1">Traslado a Manatus</asp:ListItem>
+                                                                            <asp:ListItem Value="2">Traslado de regreso a San Jose</asp:ListItem>
+                                                                            <asp:ListItem Value="3">Transporte Completo</asp:ListItem>
+                                                                            <asp:ListItem Value="4" Selected="True">Ninguno</asp:ListItem>
                                                                         </asp:RadioButtonList>
                                                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="rdbtnlist_transporte2014"
                                                                             Display="Dynamic" ErrorMessage="Campo Requerido" ValidationGroup="registrese"></asp:RequiredFieldValidator>
@@ -471,8 +471,8 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                                     <div class="box-precio-con-transporte">
                                                                         <div class="precio-con-transporte">
                                                                             <div class="precio-con-transporte-value">
-                                                                                <span>Total Cost of<br />
-                                                                                    hosting and transport</span>
+                                                                                <span>Costo Total de <br />
+                                                                                    hospedaje y transporte</span>
                                                                                 <div class="preciot">
                                                                                     $
                                                                                     <asp:Label ID="lbl_precioConTransporte" runat="server" Text="0"></asp:Label></div>
@@ -1019,7 +1019,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                 <h4>
                                                     2016</h4>
                                                 <p>
-                                                    Tarifas por persona, válidas del 01 de Enerohasta el 31 de Diciembre del 2016</p>
+                                                    Tarifas por persona, válidas del 01 de Enero hasta el 31 de Diciembre del 2016</p>
                                                 <div class="columna-tabla-rates first">
                                                     <table cellspacing="0" cellpadding="0" border="1" class="width325 aligncenter season-a encabezado">
                                                         <tbody>
@@ -1503,6 +1503,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             <div class="paddingReserva">
                                                 <asp:Panel ID="panel_2" runat="server" Visible="true">
                                                     <asp:Panel ID="pnl_contenido_form" runat="server" Visible="true">
+                                                        <asp:Label ID="lbl_error_registro" runat="server" Text="" Visible="false"></asp:Label>
                                                         <div class="wrapper-field">
                                                             <asp:Label ID="lbl_nombre" runat="server" Text="Nombre completo" CssClass="span-field"></asp:Label>
                                                             <asp:TextBox ID="txt_nombre" runat="server" CssClass="textBoxNuevo"></asp:TextBox>

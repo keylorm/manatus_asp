@@ -280,9 +280,9 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                     </div>
                     <div class="form-title">
                         <h2 class="h2Celeste">¡Será un placer recibirlo en el Hotel Manatus!</h2>
-                        <div class="logo-ssl">
+                        <%--<div class="logo-ssl">
                             <img src="images/verisign.png" />
-                        </div>                  
+                        </div>     --%>             
                     </div>
                     <p class="comprobante-reserva">
                         Su reserva se tramitó con éxito. Muy pronto llegará a su correo una confirmación.
