@@ -219,6 +219,7 @@ width: 598px;
     -o-transition: opacity .25s ease .1s;
     -ms-transition: opacity .25s ease .1s;
     transition: opacity .25s ease .1s;
+    z-index: 1;
     }
     
 /* son visibes al poner el cursor encima */
@@ -247,7 +248,7 @@ width: 598px;
     }
   
 #header .menu-principal-box .menu-principal ul.mi-menu li:hover > ul li {
-    height: 30px; /* los mostramos */
+    height:50px; /* los mostramos */
     width: 200px;
     text-align: left;
     line-height: 15px;
@@ -2648,6 +2649,20 @@ ul.mi-menu
     .step-process-box .inner{
         width: 97%;
     }
+    
+    .logos-premios
+    {
+    	display: none;
+    }
+    
+    .jcarousel ul li .detalle {
+		padding: 25px;
+	}
+	
+	.loader-error-wrapper
+	{
+		clear: both;
+	}
 
 }
 
@@ -2798,4 +2813,16 @@ ul.mi-menu
     font-size: 15px;
     font-weight: bold;
     
+}
+
+
+#lbl_error_registro,
+.loader-error-wrapper
+{
+    color: Red;
+    font-weight: bold;
+    display: block;
+    font-family: "Open Sans",sans-seif;
+    font-size: 15px;
+    margin: 12px 0 8px;
 }

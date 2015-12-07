@@ -174,7 +174,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
             <div class="menu-top-box">
                 <div class="menu-idioma">
                     <ul>
-                        <li><a href="reservacion_en_paso1.aspx" class="active">English</a></li>|<li><a href="reservacion_sp.aspx">
+                        <li><a href="reservacion_en_paso1.aspx" class="active">English</a></li>|<li><a href="reservacion_es_paso1.aspx">
                             Español</a></li></ul>
                 </div>
                 <div class="menu-top">
@@ -1461,6 +1461,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             <div class="paddingReserva">
                                                 <asp:Panel ID="panel_2" runat="server" Visible="true">
                                                     <asp:Panel ID="pnl_contenido_form" runat="server" Visible="true">
+                                                        <asp:Label ID="lbl_error_registro" runat="server" Text="" Visible="false"></asp:Label>
                                                         <div class="wrapper-field">
                                                             <asp:Label ID="lbl_nombre" runat="server" Text="Full name" class="span-field"></asp:Label>
                                                             <asp:TextBox ID="txt_nombre" runat="server" CssClass="textBoxNuevo"></asp:TextBox>
@@ -1678,7 +1679,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                 </div>
                 <div class="menu-idioma">
                     <ul>
-                        <li><a href="reservacion_en_paso1.aspx" class="active">English</a></li>|<li><a href="reservacion_sp.aspx">
+                        <li><a href="reservacion_en_paso1.aspx" class="active">English</a></li>|<li><a href="reservacion_es_paso1.aspx">
                             Español</a></li></ul>
                 </div>
             </div>

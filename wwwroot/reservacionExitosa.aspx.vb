@@ -13,14 +13,14 @@ Partial Class reservacionExitosa
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
         '*********** Originalmente el codigo para mostrar los datos de la reserva y del usuario deben de cargarse dinamicamente por medio de sesion ***********
-        'If Session("id_reservacion") IsNot Nothing Then
-        '    Dim id_reservacion As Integer = Session("id_reservacion")
+        If Session("id_reservacion") IsNot Nothing Then
+            Dim id_reservacion As Integer = Session("id_reservacion")
 
-        '    CargarCarrito(id_reservacion)
-        'End If
+            CargarCarrito(id_reservacion)
+        End If
 
-        Dim id_reservacion As Integer = 11000
-        CargarCarrito(id_reservacion)
+        'Dim id_reservacion As Integer = 11000
+        'CargarCarrito(id_reservacion)
 
 
     End Sub
@@ -132,7 +132,12 @@ Partial Class reservacionExitosa
                     txt_personas = CType(personas, String) + " persona"
                 End If
 
-                ValueLblServicio.Text = txt_habitaciones + " para " + txt_personas + ", " + CType(noches, String) + " noches, " + CType(nochesAdicionales, String) + " noches adicionales,<br /><br />" + taxesText + " . Transporte incluido."
+                Dim incluye_trans As String = "."
+                If (Session("incluye_transporte") = "true") Then
+                    incluye_trans = ". Traslado incluido."
+                End If
+
+                ValueLblServicio.Text = txt_habitaciones + " para " + txt_personas + ", " + CType(noches, String) + " noches, " + CType(nochesAdicionales, String) + " noches adicionales,<br /><br />" + taxesText + incluye_trans
                 ValueLblPersonas.Text = CType(personas, String)
                 ValueLblHabitaciones.Text = CType(habitaciones, String)
                 ValueLblCostoSinTransporte.Text = String.Format("{0:$###,###,###.##}", precioUnitario)
