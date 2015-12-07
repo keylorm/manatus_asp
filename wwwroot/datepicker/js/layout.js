@@ -83,10 +83,12 @@
 	    // returns the year (four digits)
 		var year = currentTime.getFullYear()
 
+		$("a#AplicarSeleccion").css("display", "none");
 		var datesDisabled = [];
 		$.post('FechasNoDisponibles.asmx/GetDates', { month: month, year: year, lang: 'es' })
             .done(function(data){
                 $("#loader-calendar").addClass("hidden");
+                $("a#AplicarSeleccion").css("display","block");
                 var string = $(data).find('string');
                 var fechasObj = string.text();
                 var fechas = fechasObj.split(":");
@@ -104,6 +106,13 @@
                     var disabledDate = new Date(ano, mes - 1, dia, 0, 0, 0, 0)
                     datesDisabled[i] = disabledDate;
                 }
+
+                /*Estilo*/
+                var styles_caledar = {
+                    'background-color': '#E0C2AD',
+                    opacity: '1',
+                }
+                $('#widgetCalendar').css(styles_caledar);
 
                 /* Extraer la fecha por metodo GET */
 

@@ -305,7 +305,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                 <div id='loader-calendar'><img src='images/ajax-loader.gif'/></div>
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Always">
                     <ContentTemplate>
-                        <asp:LinkButton ID="AplicarSeleccion" runat="server" Text="Apply selection"></asp:LinkButton>
+                        <asp:LinkButton ID="AplicarSeleccion" runat="server" Text="Apply selection" CssClass="hidden"></asp:LinkButton>
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>

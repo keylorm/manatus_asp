@@ -27,7 +27,7 @@
 							'</tr>',
 							'<tr class="checkin-row">',
 								'<th colspan="7">',
-									'Ingreso: <span class="checkin"></span>',
+									'Check in: <span class="checkin"></span>',
 								'</th>',
 							'</tr>',
 							'<tr class="datepickerDoW">',

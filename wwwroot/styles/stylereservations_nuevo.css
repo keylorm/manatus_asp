@@ -1354,7 +1354,8 @@ ul.mi-menu
 	
 
         	
-.loader
+.loader,
+#widgetCalendar
 {
     background-color: #000;
     position: fixed;
@@ -1556,7 +1557,8 @@ input#TxtCheckinCheckout {
     position: absolute;
     height: 478px;
     width: 346px;
-    background-color: #E0C2AD;
+    /*background-color: #E0C2AD;*/
+    background-image: none !important;
     z-index: 1;
 }
 
@@ -2140,6 +2142,7 @@ a#AplicarSeleccion{
     bottom: 0px;
     right: 0px;
     z-index: 70;
+    /*display: none;*/
 }
 
 #widget{
@@ -2802,6 +2805,6 @@ ul.mi-menu
 
 #loader-calendar{
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 48%;
+    left: 48%;
 }
