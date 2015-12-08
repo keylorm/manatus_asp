@@ -306,6 +306,8 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>
+            
+            <div id="TxtCheckinCheckout-selector"></div>
             <asp:UpdatePanel ID="up_paso1" runat="server" UpdateMode="Always">
                 <ContentTemplate>
                     <div id="paso1" runat="server" visible="true">
@@ -342,7 +344,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                                         <div id="widgetField">
                                                                             <asp:Label ID="lblIngresoSalida" runat="server" Text="Ingreso y Salida"></asp:Label>
                                                                             <asp:TextBox runat="server" ID="TxtCheckinCheckout" AutoPostBack="true" name="checkin-checkout"
-                                                                                value='Seleccionar un rango'></asp:TextBox>
+                                                                                value='Seleccionar un rango' ReadOnly="false"></asp:TextBox>
                                                                             <asp:LinkButton ID="book_now_1" CssClass="btn" runat="server">Reservar</asp:LinkButton>
                                                                         </div>
                                                                     </div>

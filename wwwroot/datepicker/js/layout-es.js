@@ -179,7 +179,7 @@
 					        }
 					        //obtener el ingreso (checkin)
 					        $("span.checkin").html(formated[0]);
-                            $('#widgetField input[id="TxtCheckinCheckout"]').val(formated.join(' - '));
+					        $('#widgetField input[id="TxtCheckinCheckout"]').val(formated.join(' - '));
                         }
                     });
                 }
@@ -207,7 +207,7 @@
          });
 
         var state = false;
-        $('#widgetField>input[id="TxtCheckinCheckout"]').live('click', function () {
+        $('#TxtCheckinCheckout-selector').live('click', function () {
             /*$('#widgetCalendar').stop().animate({height: state ? 0 : $('#widgetCalendar div.datepicker').get(0).offsetHeight}, 500);
 			state = !state;
 			return false;*/

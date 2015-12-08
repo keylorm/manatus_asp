@@ -2808,3 +2808,22 @@ ul.mi-menu
     top: 48%;
     left: 48%;
 }
+
+div#TxtCheckinCheckout-selector {
+    position: absolute;
+    height: 45px;
+    z-index: 0;
+    top: 103.2%;
+    left: 138px;
+    padding: 7px;
+    width: 268px;
+    font-family: "Open Sans",sans-seif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 37px;
+    -moz-box-sizing: border-box;
+    border: medium none;
+    color: #584942;
+    background-repeat: no-repeat;
+    background-position: 98% 41%;
+}

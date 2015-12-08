@@ -1,4 +1,6 @@
 ﻿@media (max-width: 991px) {
+
+   
 ul.mi-menu
 {
     display: none;
@@ -89,9 +91,12 @@ ul.mi-menu
     width: 310px;
     margin: 0 auto;
     }
-
-
      
+    .disponibles, .no-disponibles, .seleccionados {
+        padding: 1px 5px;
+        margin-right: 2px;
+    }
+
  /*#main-content, #header, #footer
  {
      width: 310px;
@@ -584,5 +589,11 @@ td.celda-valor-tabla-shoppingcart
 .logos-trip-advisor {
     display: none;
 }
+ div#TxtCheckinCheckout-selector {
+        top: 43.2%;
+        left: 7%;
+    
+    }
+
 
 }

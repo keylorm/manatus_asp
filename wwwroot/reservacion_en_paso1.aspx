@@ -309,6 +309,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>
+            <div id="TxtCheckinCheckout-selector"></div>
             <asp:UpdatePanel ID="up_paso1" runat="server" UpdateMode="Always">
                 <ContentTemplate>
                     <div id="paso1" runat="server" visible="true">
