@@ -1016,7 +1016,8 @@ Partial Class reservacion_en_paso1
         factura.id_TipoFactura.Value = FacturasHandler.Config_TipoFacturaBNCR
         If carrito.ActualizarFactura(factura, control.obtenerFactura(ReservacionActual)) Then
             control.Emails(ReservacionActual)
-            Response.Redirect("checkoutbncr.aspx")
+            Cargar_Pago_PopUp(ReservacionActual)
+            'Response.Redirect("checkoutbncr.aspx")
             'Response.Redirect("~/BNCR/IntermediaBNCR.aspx", False)
         End If
 
@@ -2558,7 +2559,44 @@ Partial Class reservacion_en_paso1
 
     End Sub
 
+    Protected Sub Cargar_Pago_PopUp(ByVal id_reservacion As Integer)
+        Dim carrito As New FacturasHandler(Configuration.Config_DefaultConnectionString)
+        'Dim id_reservacion As Integer
+        'If Session("id_reservacion") IsNot Nothing Then
+        '    id_reservacion = Session("id_reservacion")
+        'End If
 
+        If id_reservacion > 0 Then
+            Dim ControladorReservaciones As New ControladorReservaciones(connection, Resources.Reservaciones_Resources.ResourceManager)
+            Dim reservacion As Reservacion
+            reservacion = ControladorReservaciones.ConsultarReservacion(id_reservacion)
+            Dim factura As Factura
+            factura = carrito.ConsultarFactura(reservacion.Id_factura.Value)
+            If factura.Id_Factura.IsValid Then
+                'If factura.Id_Comprador.Value = securityHandler.EntidadAsociada Then
+                Dim EntidadHandler As New Orbelink.Control.Entidades.EntidadHandler(Configuration.Config_DefaultConnectionString)
+                Dim entidad As Orbelink.Entity.Entidades.Entidad = EntidadHandler.ConsultarEntidad(factura.Id_Comprador.Value)
+                Dim id_carrito As Integer = reservacion.Id_factura.Value
+                Dim total As Double = carrito.GetTotal(id_carrito)
+                Dim vpos As VPOS = New VPOS
+                ltr_values_pago.Text = vpos.EnviarInfo(carrito.GetItemsProductos(id_carrito), id_reservacion, total, entidad.NombreEntidad.Value, entidad.Apellido.Value, entidad.Email.Value, entidad.Descripcion.Value, "506", "San Jose", "San Jose", "CR", entidad.Telefono.Value)
+                'End If
+
+                'Dim script_pago As String = "<script type='text/javascript'>console.log('entro'); var inputsPago = document.getElementById('ltr_values_pago'); var myform = document.createElement('form'); myform.action = 'https://vpayment.verifika.com/VPOS/MM/transactionStart20.do'; myform.method = 'post'; myform.name = 'frmSolicitudPago'; myform.target = 'iframevpos'; myform.appendChild(inputsPago); document.body.appendChild(myform); var divOverlay = document.getElementById('overlayvpos'); var divImgLoad = document.getElementById('imgloadvpos'); var divModal = document.getElementById('modalvpos'); divOverlay.style.visibility='visible'; divImgLoad.style.visibility='visible'; divModal.style.visibility='visible'; document.frmSolicitudPago.target='iframevpos'; document.frmSolicitudPago.submit();</script>"
+                ScriptManager.RegisterStartupScript(Me, Page.GetType(), "pagoscript", "enviarvpos();", True)
+            Else
+                Response.Redirect(ArmarQueryString(), False)
+            End If
+        Else
+            Response.Redirect(ArmarQueryString(), False)
+        End If
+    End Sub
+
+    Protected Function ArmarQueryString() As String
+        Dim query As String = ""
+        query = "~/reservacion_en_paso1.aspx?return=IntermediaBNCR.aspx"
+        Return query
+    End Function
 
 
 End Class

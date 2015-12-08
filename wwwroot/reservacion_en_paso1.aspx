@@ -1,4 +1,4 @@
-<%@ Page Language="VB" AutoEventWireup="false" CodeFile="reservacion_en_paso1.aspx.vb"
+ï»¿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="reservacion_en_paso1.aspx.vb"
     Inherits="reservacion_en_paso1" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -139,7 +139,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
     <script>
         var urlactual = document.URL.replace(/#.*/, "");
         urlactual = urlactual.replace(/\?.*/, "");
-        _gaq.push(['_trackEvent', 'Reservación', 'Paso 1', urlactual]);
+        _gaq.push(['_trackEvent', 'Reservaciï¿½n', 'Paso 1', urlactual]);
     </script>
     <!-- client validations -->
     <script type="text/javascript">
@@ -152,6 +152,9 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
         }
     </script>
     <!-- end client validations -->
+
+    <!-- Estilo para Pop Up de Pago -->
+    <link type="text/css" rel="stylesheet" href="styles/style_payment_vpos.css" />
 </head>
 <body class="reservation-form en">
     <form id="form1" runat="server">
@@ -175,7 +178,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                 <div class="menu-idioma">
                     <ul>
                         <li><a href="reservacion_en_paso1.aspx" class="active">English</a></li>|<li><a href="reservacion_es_paso1.aspx">
-                            Español</a></li></ul>
+                            EspaÃ±ol</a></li></ul>
                 </div>
                 <div class="menu-top">
                     <ul>
@@ -425,7 +428,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                                 <div class="desc-paquete-inner">
                                                                     <div class="box-precio-sin-transporte">
                                                                         <asp:LinkButton ID="btn_reservar1" runat="server" ToolTip="Book now" ValidationGroup="registrese"
-                                                                            ForeColor="#FFFFFF" Visible="false">BOOK NOW »</asp:LinkButton>
+                                                                            ForeColor="#FFFFFF" Visible="false">BOOK NOW &raquo;</asp:LinkButton>
                                                                         <div class="precio-sin-transporte">
                                                                             <div class="precio-sin-transporte-value">
                                                                                 $
@@ -521,34 +524,34 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             Tortuguero by Boat:</h4>
                                         <p>
                                             <span class="titulo-dia">Day 1</span><br>
-                                            Pick up at different hotels located in San Jose´s Metropolitan Area<br>
-                                            8:00 a.m. Breakfast at Rancho Roberto’s Restaurant (located in Guapiles)<br>
-                                            11:00 a.m. Arrival to Caño Blanco, in order to take a boat transfer (Caño Blanco/
+                                            Pick up at different hotels located in San JoseÂ´s Metropolitan Area<br>
+                                            8:00 a.m. Breakfast at Rancho RobertoÂ’s Restaurant (located in Guapiles)<br>
+                                            11:00 a.m. Arrival to CaÃ±o Blanco, in order to take a boat transfer (CaÃ±o Blanco/
                                             Manatus Hotel)<br>
                                             12:30 p.m. Welcome Cocktail at the Manatus Hotel<br>
                                             Hotel Check-in<br>
-                                            Mid-day to 1:30 p.m. Lunch at the Manatus Hotel “Ara Macaw” Restaurant<br>
+                                            Mid-day to 1:30 p.m. Lunch at the Manatus Hotel Â“Ara MacawÂ” Restaurant<br>
                                             2:30 p.m. Tour to the Tortuguero Canals and then a Village Tour. This tour is included
                                             in the package on the first day in the afternoon<br>
-                                            6:30 p.m. to 8:30 pm Dinner at the Manatus Hotel “Ara Macaw” Restaurant</p>
+                                            6:30 p.m. to 8:30 pm Dinner at the Manatus Hotel Â“Ara MacawÂ” Restaurant</p>
                                         <p>
                                             <span class="titulo-dia">Day 2</span><br>
-                                            Between 7:00 a.m. to 8:30 a.m. Breakfast at Manatus Hotel “Ara Macaw” Restaurant<br>
+                                            Between 7:00 a.m. to 8:30 a.m. Breakfast at Manatus Hotel Â“Ara MacawÂ” Restaurant<br>
                                             9:00 a.m. Check out.<br>
                                             9:30 a.m. Leaving the Hotel.<br>
-                                            11:00 a.m. Arriving to Caño Blanco.<br>
-                                            1:00 p.m. Lunch at Rancho Roberto’s Restaurant (Located in Guapiles)<br>
+                                            11:00 a.m. Arriving to CaÃ±o Blanco.<br>
+                                            1:00 p.m. Lunch at Rancho RobertoÂ’s Restaurant (Located in Guapiles)<br>
                                             3:30 p.m. Arriving to San Jose</p>
                                         <h4>
                                             Tortuguero by Air</h4>
                                         <p>
                                             <span class="titulo-dia">Day 1</span><br>
                                             Pick up at Tortuguero Air Track at 7:00 a.m. or at the time that the guest set.<br>
-                                            7:00 a.m. to 8:30 a.m. Breakfast at the Manatus Hotel “Ara Macaw” Restaurant<br>
+                                            7:00 a.m. to 8:30 a.m. Breakfast at the Manatus Hotel Â“Ara MacawÂ” Restaurant<br>
                                             8:30 a.m Tortuguero Canals Tour<br>
-                                            Mid-day to 1:30 p.m. Lunch at the Manatus Hotel “Ara Macaw” Restaurant<br>
+                                            Mid-day to 1:30 p.m. Lunch at the Manatus Hotel Â“Ara MacawÂ” Restaurant<br>
                                             3:00 p.m. Downtown Tortuguero Tour.<br>
-                                            6:30 p.m. to 8:30 p.m. Dinner at the Manatus Hotel “Ara Macaw” Restaurant.</p>
+                                            6:30 p.m. to 8:30 p.m. Dinner at the Manatus Hotel Â“Ara MacawÂ” Restaurant.</p>
                                         <p>
                                             <span class="titulo-dia">Day 2</span><br>
                                             6:00 a.m. Light Breakfast.<br>
@@ -558,41 +561,41 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                     <div class="des_paq_3_2" id="des_paq_3_2" runat="server">
                                         <h4>
                                             Tortuguero by Boat:</h4>
-                                        <p>
+                                         <p>
                                             <span class="titulo-dia">Day 1</span><br>
                                             Pick up at San Jose Metropolitan Area at the hotel.<br>
-                                            7:45 a.m to 8:30 a.m Breakfast at Nava Café Restaurant (located in Guapiles)<br>
-                                            11:00 a.m Arriving to Caño Blanco, to take a boat transfer (Caño Blanco/ Manatus
+                                            7:45 a.m to 8:30 a.m Breakfast at Nava CafÃ© Restaurant (located in Guapiles)<br>
+                                            11:00 a.m Arriving to CaÃ±o Blanco, to take a boat transfer (CaÃ±o Blanco/ Manatus
                                             Hotel)<br>
                                             12:30 pm Welcome Cocktail at Manatus Hotel<br>
                                             Hotel Check-in<br>
-                                            Mid-day to 1:30 p.m. Lunch at the Manatus Hotel “Ara Macaw” Restaurant<br>
+                                            Mid-day to 1:30 p.m. Lunch at the Manatus Hotel Â“Ara MacawÂ” Restaurant<br>
                                             3:00 p.m. Visit to downtown Tortuguero.<br>
-                                            6:30 p.m. to 8:30 p.m. Dinner at the Manatus Hotel “Ara Macaw” Restaurant.</p>
+                                            6:30 p.m. to 8:30 p.m. Dinner at the Manatus Hotel Â“Ara MacawÂ” Restaurant.</p>
                                         <p>
                                             <span class="titulo-dia">Day 2</span><br>
-                                            7:00 a.m. to 8:30 a.m. Breakfast at the Manatus Hotel “Ara Macaw” Restaurant<br>
+                                            7:00 a.m. to 8:30 a.m. Breakfast at the Manatus Hotel Â“Ara MacawÂ” Restaurant<br>
                                             8:30 a.m. to 10:30 a.m. Tortuguero Canals Tour in Tortuguero National Park (We visit
                                             only one canal at this time)<br>
-                                            Mid-day to 1:30 p.m. Lunch at the Manatus Hotel “Ara Macaw” Restaurant<br>
+                                            Mid-day to 1:30 p.m. Lunch at the Manatus Hotel Â“Ara MacawÂ” Restaurant<br>
                                             2:30 p.m. to 4:30 p.m. Canals Tour in Tortuguero National Park (We visit only one
                                             canal at this time)<br>
-                                            6:30 p.m. to 8:30p.m. Dinner at the Manatus Hotel “Ara Macaw” Restaurant</p>
+                                            6:30 p.m. to 8:30p.m. Dinner at the Manatus Hotel Â“Ara MacawÂ” Restaurant</p>
                                         <p>
                                             <strong>Note:</strong><br>
                                             Only two tours are included in this day.<br>
                                             We visit different canals at the two tours offered.</p>
                                         <p>
                                             <span class="titulo-dia">Day 3</span><br>
-                                            7:45 a.m. to 8:30 am Breakfast at the Manatus Hotel “Ara Macaw” Restaurant<br>
+                                            7:45 a.m. to 8:30 am Breakfast at the Manatus Hotel Â“Ara MacawÂ” Restaurant<br>
                                             9:00 a.m Check out.<br>
                                             9:30 a.m Leaving the Hotel<br>
-                                            11:00 a.m Arriving to Caño Blanco<br>
-                                            1:00 pm Lunch at Nava Café Restaurant (located in Guapiles)<br>
+                                            11:00 a.m Arriving to CaÃ±o Blanco<br>
+                                            1:00 pm Lunch at Nava CafÃ© Restaurant (located in Guapiles)<br>
                                             3:30 pm Arriving to San Jose</p>
                                         <p>
                                             <strong>Note:</strong><br>
-                                            We can drop off in route to San José
+                                            We can drop off in route to San JosÃ©
                                         </p>
                                     </div>
                                     <div class="des_paq_custom" id="des_paq_custom" runat="server">
@@ -617,8 +620,8 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                         <p>
                                             Not included on the package:</p>
                                         <ul>
-                                            <li>Ground Transfer: San José - (Pavona / Caño Blanco) - San José</li>
-                                            <li>Boat transfer: (Pavona / Caño Blanco) - Tortuguero - (Pavona / Caño Blanco)</li>
+                                            <li>Ground Transfer: San JosÃ© - (Pavona / CaÃ±o Blanco) - San JosÃ©</li>
+                                            <li>Boat transfer: (Pavona / CaÃ±o Blanco) - Tortuguero - (Pavona / CaÃ±o Blanco)</li>
                                             <li>Breakfast and lunch on route.</li>
                                             <li>The transfer will cost $75 each way. In the way SJ-Tortuguero breakfast will be
                                                 provided on route. In the way Tortuguero-SJ lunch will be provided on route.</li>
@@ -632,7 +635,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             General Conditions</p>
                                         <ul>
                                             <li>Rates per person in US dollars.</li>
-                                            <li>Includes food and transportation taxes from San José.</li>
+                                            <li>Includes food and transportation taxes from San JosÃ©.</li>
                                             <li>10kg = 25 Lbs., maximum luggage weight per person.</li>
                                             <li>Check in at 12:00 MD - Check out: 09:00 am.</li>
                                             <li>Maximum room capacity is 4 people.</li>
@@ -657,8 +660,8 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                         <p>
                                             Not included on the package:</p>
                                         <ul>
-                                            <li>Ground Transfer: San José - (Pavona / Caño Blanco) - San José</li>
-                                            <li>Boat transfer: (Pavona / Caño Blanco) - Tortuguero - (Pavona / Caño Blanco)</li>
+                                            <li>Ground Transfer: San JosÃ© - (Pavona / CaÃ±o Blanco) - San JosÃ©</li>
+                                            <li>Boat transfer: (Pavona / CaÃ±o Blanco) - Tortuguero - (Pavona / CaÃ±o Blanco)</li>
                                             <li>Breakfast and lunch on route.</li>
                                             <li>The transfer will cost $75 each way. In the way SJ-Tortuguero breakfast will be
                                                 provided on route. In the way Tortuguero-SJ lunch will be provided on route.</li>
@@ -671,7 +674,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             General Conditions</p>
                                         <ul>
                                             <li>Rates per person in US dollars.</li>
-                                            <li>Includes food and transportation taxes from San José.</li>
+                                            <li>Includes food and transportation taxes from San JosÃ©.</li>
                                             <li>10kg = 25 Lbs., maximum luggage weight per person.</li>
                                             <li>Check in at 12:00 MD - Check out: 09:00 am.</li>
                                             <li>Maximum room capacity is 4 people.</li>
@@ -685,7 +688,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                     <div class="inc_paq_3_2" id="inc_paq_3_2" runat="server">
                                         <h4>
                                             2015</h4>
-                                        <p>
+                                       <p>
                                             The package Includes:</p>
                                         <ul>
                                             <li>Lodging, all meals. Beverages are not included.</li>
@@ -698,8 +701,8 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                         <p>
                                             Not included on the package:</p>
                                         <ul>
-                                            <li>Ground Transfer: San José - (Pavona / Caño Blanco) - San José</li>
-                                            <li>Boat transfer: (Pavona / Caño Blanco) - Tortuguero - (Pavona / Caño Blanco)</li>
+                                            <li>Ground Transfer: San JosÃ© - (Pavona / CaÃ±o Blanco) - San JosÃ©</li>
+                                            <li>Boat transfer: (Pavona / CaÃ±o Blanco) - Tortuguero - (Pavona / CaÃ±o Blanco)</li>
                                             <li>Breakfast and lunch on route.</li>
                                             <li>The transfer will cost $75 each way. In the way SJ-Tortuguero breakfast will be
                                                 provided on route. In the way Tortuguero-SJ lunch will be provided on route.</li>
@@ -713,7 +716,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             General Conditions</p>
                                         <ul>
                                             <li>Rates per person in US dollars.</li>
-                                            <li>Includes food and transportation taxes from San José.</li>
+                                            <li>Includes food and transportation taxes from San JosÃ©.</li>
                                             <li>10kg = 25 Lbs., maximum luggage weight per person.</li>
                                             <li>Check in at 12:00 MD - Check out: 09:00 am.</li>
                                             <li>Maximum room capacity is 4 people.</li>
@@ -738,8 +741,8 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                         <p>
                                             Not included on the package:</p>
                                         <ul>
-                                            <li>Ground Transfer: San José - (Pavona / Caño Blanco) - San José</li>
-                                            <li>Boat transfer: (Pavona / Caño Blanco) - Tortuguero - (Pavona / Caño Blanco)</li>
+                                            <li>Ground Transfer: San JosÃ© - (Pavona / CaÃ±o Blanco) - San JosÃ©</li>
+                                            <li>Boat transfer: (Pavona / CaÃ±o Blanco) - Tortuguero - (Pavona / CaÃ±o Blanco)</li>
                                             <li>Breakfast and lunch on route.</li>
                                             <li>The transfer will cost $75 each way. In the way SJ-Tortuguero breakfast will be
                                                 provided on route. In the way Tortuguero-SJ lunch will be provided on route.</li>
@@ -752,7 +755,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             General Conditions</p>
                                         <ul>
                                             <li>Rates per person in US dollars.</li>
-                                            <li>Includes food and transportation taxes from San José.</li>
+                                            <li>Includes food and transportation taxes from San JosÃ©.</li>
                                             <li>10kg = 25 Lbs., maximum luggage weight per person.</li>
                                             <li>Check in at 12:00 MD - Check out: 09:00 am.</li>
                                             <li>Maximum room capacity is 4 people.</li>
@@ -766,7 +769,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                     <div class="inc_paq_custom" id="inc_paq_custom" runat="server">
                                         <h4>
                                             2015</h4>
-                                        <p>
+                                       <p>
                                             The package Includes:</p>
                                         <ul>
                                             <li>Lodging, all meals. Beverages are not included.</li>
@@ -779,8 +782,8 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                         <p>
                                             Not included on the package:</p>
                                         <ul>
-                                            <li>Ground Transfer: San José - (Pavona / Caño Blanco) - San José</li>
-                                            <li>Boat transfer: (Pavona / Caño Blanco) - Tortuguero - (Pavona / Caño Blanco)</li>
+                                            <li>Ground Transfer: San JosÃ© - (Pavona / CaÃ±o Blanco) - San JosÃ©</li>
+                                            <li>Boat transfer: (Pavona / CaÃ±o Blanco) - Tortuguero - (Pavona / CaÃ±o Blanco)</li>
                                             <li>Breakfast and lunch on route.</li>
                                             <li>The transfer will cost $75 each way. In the way SJ-Tortuguero breakfast will be
                                                 provided on route. In the way Tortuguero-SJ lunch will be provided on route.</li>
@@ -794,7 +797,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             General Conditions</p>
                                         <ul>
                                             <li>Rates per person in US dollars.</li>
-                                            <li>Includes food and transportation taxes from San José.</li>
+                                            <li>Includes food and transportation taxes from San JosÃ©.</li>
                                             <li>10kg = 25 Lbs., maximum luggage weight per person.</li>
                                             <li>Check in at 12:00 MD - Check out: 09:00 am.</li>
                                             <li>Maximum room capacity is 4 people.</li>
@@ -819,8 +822,8 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                         <p>
                                             Not included on the package:</p>
                                         <ul>
-                                            <li>Ground Transfer: San José - (Pavona / Caño Blanco) - San José</li>
-                                            <li>Boat transfer: (Pavona / Caño Blanco) - Tortuguero - (Pavona / Caño Blanco)</li>
+                                            <li>Ground Transfer: San JosÃ© - (Pavona / CaÃ±o Blanco) - San JosÃ©</li>
+                                            <li>Boat transfer: (Pavona / CaÃ±o Blanco) - Tortuguero - (Pavona / CaÃ±o Blanco)</li>
                                             <li>Breakfast and lunch on route.</li>
                                             <li>The transfer will cost $75 each way. In the way SJ-Tortuguero breakfast will be
                                                 provided on route. In the way Tortuguero-SJ lunch will be provided on route.</li>
@@ -833,7 +836,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             General Conditions</p>
                                         <ul>
                                             <li>Rates per person in US dollars.</li>
-                                            <li>Includes food and transportation taxes from San José.</li>
+                                            <li>Includes food and transportation taxes from San JosÃ©.</li>
                                             <li>10kg = 25 Lbs., maximum luggage weight per person.</li>
                                             <li>Check in at 12:00 MD - Check out: 09:00 am.</li>
                                             <li>Maximum room capacity is 4 people.</li>
@@ -1482,7 +1485,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                             </asp:DropDownList>
                                                         </div>
                                                         <!--<div>
-                                                <asp:Label ID="lbl_codigo" runat="server" Text="Código Postal:"></asp:Label>
+                                                <asp:Label ID="lbl_codigo" runat="server" Text="Cï¿½digo Postal:"></asp:Label>
                                                 <asp:TextBox ID="txt_codPostal" runat="server" CssClass="textBoxNuevo"></asp:TextBox>
                                                 </div>-->
                                                         <div class="cod-telefono">
@@ -1514,7 +1517,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                                 Height="70px" Rows="5" TextMode="MultiLine"></asp:TextBox>
                                                         </div>
                                                         <div id="terminos-condiciones" class="wrapper-field">
-                                                            <asp:HyperLink NavigateUrl="javascript:void(0)" runat="server" Text="Ver Términos y Condiciones"
+                                                            <asp:HyperLink NavigateUrl="javascript:void(0)" runat="server" Text="Read our Terms and Conditions"
                                                                 ID="linkTerminosCondiciones" />
                                                             <asp:HyperLink NavigateUrl="#?w=620" runat="server" Text="Read our Terms and Conditions" ID="linkTerminosCondiciones2" rel="popup_code2" CssClass="poplight"/>
                                                         </div>
@@ -1547,7 +1550,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                             <!-- sidebar with the information previous step -->
                             <div id="su-reservacion">
                                 <h2 id="titulo-reservacion">
-                                    Su reservación</h2>
+                                    Your Reservation</h2>
                                 <div class="detalle">
                                     <div class="wrapper-field ingreso-salida">
                                         <div class="key">
@@ -1609,7 +1612,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                         </div>
                                     </div>
                                 </div>
-                                <asp:LinkButton ID="LinkEditarInformacion" runat="server">< Editar información</asp:LinkButton>
+                                <asp:LinkButton ID="LinkEditarInformacion" runat="server">< Edit Information</asp:LinkButton>
                             </div>
                             <!-- end sidebar with the information previous step -->
                         </div>
@@ -1682,12 +1685,55 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                 <div class="menu-idioma">
                     <ul>
                         <li><a href="reservacion_en_paso1.aspx" class="active">English</a></li>|<li><a href="reservacion_es_paso1.aspx">
-                            Español</a></li></ul>
+                            EspaÃ±ol</a></li></ul>
                 </div>
             </div>
         </div>
     </div>
+    
+
+    <div id="overlayvpos" class="overlayvpos"></div>
+    <div id="imgloadvpos" class="imgloadvpos"><img alt="Cargando VPOS" src="images/vpos/loading.gif" class="imgloadingvpos" /></div>
+    <div id="modalvpos" class="modalvpos"><iframe name="iframevpos" class="iframevpos" frameborder="0"></iframe></div>
+
+    
+    <asp:UpdatePanel ID="up_pago" runat="server">
+        <ContentTemplate>
+            
+                <div class="lbl_pago">
+                    <asp:Label ID="ltr_values_pago" runat="server" Text=""></asp:Label>
+                </div>
+                   <script type="text/javascript">
+
+                       function enviarvpos() {
+                                          
+
+                                           var inputsPago = document.getElementById("ltr_values_pago");
+
+                                           var myform = document.createElement("form");
+                                           myform.action = "https://vpayment.verifika.com/VPOS/MM/transactionStart20.do";
+                                           myform.method = "post";
+                                           myform.name = 'frmSolicitudPago';
+                                           myform.target = 'iframevpos';
+                                           myform.appendChild(inputsPago);
+                                           document.body.appendChild(myform);
+                                           var divOverlay = document.getElementById('overlayvpos');
+                                           var divImgLoad = document.getElementById('imgloadvpos');
+                                           var divModal = document.getElementById('modalvpos');
+                                           divOverlay.style.visibility = 'visible';
+                                           divImgLoad.style.visibility = 'visible';
+                                           divModal.style.visibility = 'visible';
+                                           document.frmSolicitudPago.submit();
+                                       }
+
+                    </script>
+            
+        </ContentTemplate>
+    </asp:UpdatePanel>
+
     </form>
+
+ 
     <script type="text/javascript">
 
         $('#tbar').live("click", function () {
@@ -1892,7 +1938,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                     <li>No refunds for "no shows"</li>
                 </ul>
                 <h2>
-                    Cancellation Policies for FIT´S
+                    Cancellation Policies for FIT'S
                 </h2>
                 <p>
                     Cancellations of FIT's or individual passengers will have the following penalties:
@@ -1960,8 +2006,8 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                 <h2>
                     Not included on the package:</h2>
                 <ul>
-                    <li>Ground Transfer: San José - (Pavona / Caño Blanco) - San José</li>
-                    <li>Boat transfer: (Pavona / Caño Blanco) - Tortuguero - (Pavona / Caño Blanco)</li>
+                    <li>Ground Transfer: San Josï¿½ - (Pavona / Caï¿½o Blanco) - San Josï¿½</li>
+                    <li>Boat transfer: (Pavona / Caï¿½o Blanco) - Tortuguero - (Pavona / Caï¿½o Blanco)</li>
                     <li>Breakfast and lunch on route.</li>
                     <li>The transfer will cost $ 70 each way. In the way SJ-Tortuguero breakfast will be
                         provided on route. In the way Tortuguero-SJ lunch will be provided on route.</li>
@@ -1974,7 +2020,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                     General Conditions</h2>
                 <ul>
                     <li>Rates per person in US dollars.</li>
-                    <li>Includes food and transportation taxes from San José.</li>
+                    <li>Includes food and transportation taxes from San Josï¿½.</li>
                     <li>10kg = 25 Lbs., maximum luggage weight per person.</li>
                     <li>Check in at 12:00 MD - Check out: 09:00 am.</li>
                     <li>Maximum room capacity is 4 people.</li>
@@ -2121,5 +2167,6 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
             </div>
         </asp:Panel>
     </div>
+    
 </body>
 </html>

@@ -1,0 +1,202 @@
+﻿.imgloadvpos
+{
+	background-color: #ffffff;
+    border-style: ridge;
+    border-width: 1px;
+    height: 80%;
+    left: 0;
+    margin: 0 auto;
+    position: fixed;
+    right: 0;
+    top: 10%;
+    visibility: hidden;
+    width: 1000px;
+    z-index: 1003;
+	}
+	
+.overlayvpos
+{
+	background: #000 none repeat scroll 0 0;
+    height: 100%;
+    left: 0;
+    opacity: 0.3;
+    position: fixed;
+    top: 0;
+    visibility: hidden;
+    width: 100%;
+    z-index: 1001;
+	}
+	
+.modalvpos
+{
+	border-style: ridge;
+    border-width: 1px;
+    height: 80%;
+    left: 0;
+    margin: 0 auto;
+    padding: 0;
+    position: fixed;
+    right: 0;
+    top: 10%;
+    visibility: hidden;
+    width: 1000px;
+    z-index: 1004;
+	}
+	
+.iframevpos
+{
+	padding: 0px;
+	clear: both;
+	width:100%;
+	height: 100%;
+	margin: 0px;
+	border: 0px;
+	}
+	
+.imgloadingvpos
+{
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	top: 42px;
+	}
+	
+@media (max-width: 991px) 
+{
+
+.imgloadvpos
+{
+	background-color: #ffffff;
+    border-style: ridge;
+    border-width: 1px;
+    height: 80%;
+    left: 0;
+    margin: 0 auto;
+    position: fixed;
+    right: 0;
+    top: 10%;
+    visibility: hidden;
+    width: 90%;
+    z-index: 1003;
+	}
+	
+.overlayvpos
+{
+	background: #000 none repeat scroll 0 0;
+    height: 100%;
+    left: 0;
+    opacity: 0.3;
+    position: fixed;
+    top: 0;
+    visibility: hidden;
+    width: 100%;
+    z-index: 1001;
+	}
+	
+.modalvpos
+{
+	border-style: ridge;
+    border-width: 1px;
+    height: 80%;
+    left: 0;
+    margin: 0 auto;
+    padding: 0;
+    position: fixed;
+    right: 0;
+    top: 10%;
+    visibility: hidden;
+    width: 90%;
+    z-index: 1004;
+    overflow-y: scroll;
+	}
+	
+.iframevpos
+{
+	padding: 0px;
+    clear: both;
+    width: 100%;
+    height: 875px;
+    margin: 0px;
+    border: 0px;
+    overflow-y: scroll;
+	}
+	
+.imgloadingvpos
+{
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	top: 42px;
+	}	
+	}
+	
+@media (max-width: 690px) 
+{
+	.imgloadvpos
+{
+	background-color: #ffffff;
+    border-style: ridge;
+    border-width: 1px;
+    height: 80%;
+    left: 0;
+    margin: 0 auto;
+    position: fixed;
+    right: 0;
+    top: 10%;
+    visibility: hidden;
+    width: 90%;
+    z-index: 1003;
+	}
+	
+.overlayvpos
+{
+	background: #000 none repeat scroll 0 0;
+    height: 100%;
+    left: 0;
+    opacity: 0.3;
+    position: fixed;
+    top: 0;
+    visibility: hidden;
+    width: 100%;
+    z-index: 1001;
+	}
+	
+.modalvpos
+{
+	border-style: ridge;
+    border-width: 1px;
+    height: 90%;
+    left: 0;
+    margin: 0 auto;
+    padding: 0;
+    position: fixed;
+    right: 0;
+    top: 5%;
+    visibility: hidden;
+    width: 90%;
+    z-index: 1004;
+    overflow-y: scroll;
+	}
+	
+.iframevpos
+{
+	padding: 0px;
+    clear: both;
+    width: 100%;
+    height: 880px;
+    margin: 0px;
+    border: 0px;
+    overflow-y: scroll;
+	}
+	
+.imgloadingvpos
+{
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	top: 42px;
+	}
+	}

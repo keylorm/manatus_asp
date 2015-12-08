@@ -16,6 +16,11 @@ Public Class VPOS
     Dim LlavePrivadaCifrado As String = "C:\domains\booking.manatuscostarica.com\wwwroot\App_Code\BNCR\LlaveCifradoComercioPrivada.txt"
     Dim LlavePublicaVerificacionFirma As String = "C:\domains\booking.manatuscostarica.com\wwwroot\App_Code\BNCR\LLAVE.VPOS.FIRMA.1024.txt"
 
+    'Dim LlavePrivadaFirmaRSA As String = "C:\Disco D\Repositorios\manatus_asp\wwwroot\App_Code\BNCR\LlaveFirmaComercioPrivada.txt"
+    'Dim LlavePublicaCifradoRSA As String = "C:\Disco D\Repositorios\manatus_asp\wwwroot\App_Code\BNCR\LLAVE.VPOS.CRYPTO.1024.txt"
+    'Dim LlavePrivadaCifrado As String = "C:\Disco D\Repositorios\manatus_asp\wwwroot\App_Code\BNCR\LlaveCifradoComercioPrivada.txt"
+    'Dim LlavePublicaVerificacionFirma As String = "C:\Disco D\Repositorios\manatus_asp\wwwroot\App_Code\BNCR\LLAVE.VPOS.FIRMA.1024.txt"
+
     'Const VectorInicializacion As String = "A0B5DD830ED25B29"
     Const VectorInicializacion As String = "A0B5DD830EDC8753"
     Const IDACQUIRER As String = "12"

@@ -149,6 +149,10 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
         }
     </script>
     <!-- end client validations -->
+
+    <!-- Estilo para Pop Up de Pago -->
+    <link type="text/css" rel="stylesheet" href="styles/style_payment_vpos.css" />
+
 </head>
 <body class="reservation-form es">
     <form id="form2" runat="server">
@@ -1729,6 +1733,48 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
             </div>
         </div>
     </div>
+
+    
+    <div id="overlayvpos" class="overlayvpos"></div>
+    <div id="imgloadvpos" class="imgloadvpos"><img alt="Cargando VPOS" src="images/vpos/loading.gif" class="imgloadingvpos" /></div>
+    <div id="modalvpos" class="modalvpos"><iframe name="iframevpos" class="iframevpos" frameborder="0"></iframe></div>
+
+    
+    <asp:UpdatePanel ID="up_pago" runat="server">
+        <ContentTemplate>
+            
+                <div class="lbl_pago">
+                    <asp:Label ID="ltr_values_pago" runat="server" Text=""></asp:Label>
+                </div>
+                   <script type="text/javascript">
+
+                       function enviarvpos() {
+
+                           
+                           var inputsPago = document.getElementById("ltr_values_pago");
+
+                           var myform = document.createElement("form");
+                           myform.action = "https://vpayment.verifika.com/VPOS/MM/transactionStart20.do";
+                           myform.method = "post";
+                           myform.name = 'frmSolicitudPago';
+                           myform.target = 'iframevpos';
+                           myform.appendChild(inputsPago);
+                           document.body.appendChild(myform);
+                           var divOverlay = document.getElementById('overlayvpos');
+                           var divImgLoad = document.getElementById('imgloadvpos');
+                           var divModal = document.getElementById('modalvpos');
+                           divOverlay.style.visibility = 'visible';
+                           divImgLoad.style.visibility = 'visible';
+                           divModal.style.visibility = 'visible';
+                           document.frmSolicitudPago.submit();
+                       }
+
+                    </script>
+            
+        </ContentTemplate>
+    </asp:UpdatePanel>
+
+
     <script type="text/javascript">
         
 
@@ -2225,5 +2271,6 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
             </div>
         </asp:Panel>
     </div>
+
 </body>
 </html>

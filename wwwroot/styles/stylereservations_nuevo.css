@@ -2809,6 +2809,17 @@ ul.mi-menu
     left: 48%;
 }
 
+
+#lbl_error_registro
+{
+	color: red;
+    display: block;
+    font-family: "Open Sans",sans-seif;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 12px 0 8px;
+	}
+
 div#TxtCheckinCheckout-selector {
     position: absolute;
     height: 45px;
@@ -2827,3 +2838,4 @@ div#TxtCheckinCheckout-selector {
     background-repeat: no-repeat;
     background-position: 98% 41%;
 }
+
