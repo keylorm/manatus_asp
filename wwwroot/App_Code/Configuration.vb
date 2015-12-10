@@ -8,7 +8,8 @@ Public Class Configuration
         Get
 
             'Return "http://booking.manatuscostarica.com/"
-            Return "http://localhost:8608/wwwroot/"
+            'Return "http://localhost:8608/wwwroot/"
+            Return "http://manatus.orbelink.com/"
 
         End Get
     End Property
@@ -18,7 +19,8 @@ Public Class Configuration
                 
 
             'Return "http://www.orbelinksafeserver.com/manatusHotel/"
-            Return "http://localhost:8608/wwwroot/"
+            'Return "http://localhost:8608/wwwroot/"
+            Return "http://manatus.orbelink.com/"
 
         End Get
     End Property

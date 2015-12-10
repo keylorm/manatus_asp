@@ -19,7 +19,7 @@ Partial Class reservacionExitosa
             CargarCarrito(id_reservacion)
         End If
 
-        'Dim id_reservacion As Integer = 10983
+        'Dim id_reservacion As Integer = 11000
         'CargarCarrito(id_reservacion)
 
 
@@ -118,7 +118,26 @@ Partial Class reservacionExitosa
 
                 'Booking information
                 ValueLblIngresoSalida.Text = fechaInicio + " - " + fechaFinal
-                ValueLblServicio.Text = CType(habitaciones, String) + " habitaciones para " + CType(personas, String) + " personas, " + CType(noches, String) + " noches, " + CType(nochesAdicionales, String) + " noches adicionales,<br /><br />" + taxesText + " . Transporte incluido."
+                Dim txt_habitaciones As String
+                If (habitaciones > 1) Then
+                    txt_habitaciones = CType(habitaciones, String) + " habitaciones"
+                Else
+                    txt_habitaciones = CType(habitaciones, String) + " habitación"
+                End If
+
+                Dim txt_personas As String
+                If (personas > 1) Then
+                    txt_personas = CType(personas, String) + " personas"
+                Else
+                    txt_personas = CType(personas, String) + " persona"
+                End If
+
+                Dim incluye_trans As String = "."
+                If (Session("incluye_transporte") = "true") Then
+                    incluye_trans = ". Traslado incluido."
+                End If
+
+                ValueLblServicio.Text = txt_habitaciones + " para " + txt_personas + ", " + CType(noches, String) + " noches, " + CType(nochesAdicionales, String) + " noches adicionales,<br /><br />" + taxesText + incluye_trans
                 ValueLblPersonas.Text = CType(personas, String)
                 ValueLblHabitaciones.Text = CType(habitaciones, String)
                 ValueLblCostoSinTransporte.Text = String.Format("{0:$###,###,###.##}", precioUnitario)

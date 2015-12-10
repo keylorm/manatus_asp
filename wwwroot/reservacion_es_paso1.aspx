@@ -149,6 +149,8 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
         }
     </script>
     <!-- end client validations -->
+    <!-- Estilo para Pop Up de Pago -->
+    <link type="text/css" rel="stylesheet" href="styles/style_payment_vpos.css" />
 </head>
 <body class="reservation-form es">
     <form id="form2" runat="server">
@@ -171,12 +173,12 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
             <div class="menu-top-box">
                 <div class="menu-idioma">
                     <ul>
-                        <li><a href="reservacion_en.aspx">English</a></li>|<li><a href="reservacion_sp.aspx"
+                        <li><a href="reservacion_en_paso1.aspx">English</a></li>|<li><a href="reservacion_es_paso1.aspx"
                             class="active">Español</a></li></ul>
                 </div>
                 <div class="menu-top">
                     <ul>
-                        <li><a href="http://manatuscostarica.com/es/">Inicio</a></li>|<li><a href="http://booking.manatuscostarica.com/reservacion_sp.aspx">
+                        <li><a href="http://manatuscostarica.com/es/">Inicio</a></li>|<li><a href="http://booking.manatuscostarica.com/reservacion_es_paso1.aspx">
                             Reservar</a></li>|<li><a href="http://manatuscostarica.com/es/gallery">Galeria</a></li>|<li>
                                 <a href="http://manatuscostarica.com/es/contacto">Contacto</a></li></ul>
                 </div>
@@ -213,7 +215,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                             </ul>
                         </li>
                         <li><a href="http://manatuscostarica.com/es/area-de-tortuguero">Tortuguero</a></li>
-                        <li class="active-trail"><a href="http://booking.manatuscostarica.com/reservacion_sp.aspx">
+                        <li class="active-trail"><a href="http://booking.manatuscostarica.com/reservacion_es_paso1.aspx">
                             Reservaciones</a></li>
                         <li><a href="http://manatuscostarica.com/es/blog">Blog</a></li></ul>
                     <ul class="mi-menu-responsivo">
@@ -223,7 +225,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                         <li><a href="http://manatuscostarica.com/es/paquetes-tarifas">Paquetes &amp; Tarifas</a>
                         </li>
                         <li><a href="http://manatuscostarica.com/es/area-de-tortuguero">Tortuguero</a></li>
-                        <li class="active-trail"><a href="http://booking.manatuscostarica.com/reservacion_sp.aspx">
+                        <li class="active-trail"><a href="http://booking.manatuscostarica.com/reservacion_es_paso1.aspx">
                             Reservaciones</a></li>
                         <li><a href="http://manatuscostarica.com/es/blog">Blog</a></li></ul>
                 </div>
@@ -299,11 +301,15 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                 </asp:UpdatePanel>
             </div>
             <div id="widgetCalendar" class="hidden">
+                <div id='loader-calendar'>
+                    <img src='images/ajax-loader.gif' /></div>
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Always">
                     <ContentTemplate>
                         <asp:LinkButton ID="AplicarSeleccion" runat="server" Text="Aplicar Selección"></asp:LinkButton>
                     </ContentTemplate>
                 </asp:UpdatePanel>
+            </div>
+            <div id="TxtCheckinCheckout-selector">
             </div>
             <asp:UpdatePanel ID="up_paso1" runat="server" UpdateMode="Always">
                 <ContentTemplate>
@@ -312,7 +318,6 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                             <h2 class="h2Celeste">
                                 Viva la experiencia Manatus</h2>
                             <div class="logo-ssl">
-                            
                                 <%--<img src="images/verisign.png" />--%></div>
                         </div>
                         <div class="content-box container-2-3">
@@ -341,7 +346,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                                         <div id="widgetField">
                                                                             <asp:Label ID="lblIngresoSalida" runat="server" Text="Ingreso y Salida"></asp:Label>
                                                                             <asp:TextBox runat="server" ID="TxtCheckinCheckout" AutoPostBack="true" name="checkin-checkout"
-                                                                                value='Seleccionar un rango'></asp:TextBox>
+                                                                                value='Seleccionar un rango' ReadOnly="false"></asp:TextBox>
                                                                             <asp:LinkButton ID="book_now_1" CssClass="btn" runat="server">Reservar</asp:LinkButton>
                                                                         </div>
                                                                     </div>
@@ -358,6 +363,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                         <asp:UpdatePanel ID="updatePane_habitaciones" runat="server" UpdateMode="Always">
                                                             <ContentTemplate>
                                                                 <asp:Panel ID="pnl_resultados" runat="server">
+                                                                    <asp:Label ID="costo_title_columna" CssClass="costo_title_columna" runat="server" Text="Costo"  Visible="False"></asp:Label>
                                                                     <asp:GridView ID="gv_ResultadosDisponibles" runat="server" ShowHeader="false" AutoGenerateColumns="false"
                                                                         GridLines="None" Width="246px">
                                                                         <RowStyle HorizontalAlign="Left" />
@@ -458,20 +464,31 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                                         Seleccione las opciones de traslado que requiere y agréguelas a su paquete:</p>
                                                                     <div class="bdbtnlist_transporte_box">
                                                                         <asp:RadioButtonList ID="rdbtnlist_transporte2014" runat="server" AutoPostBack="true">
-                                                                            <asp:ListItem Value="1">Transfer to Manatus</asp:ListItem>
-                                                                            <asp:ListItem Value="2">Transfer back to San Jose</asp:ListItem>
-                                                                            <asp:ListItem Value="3">Round Trip</asp:ListItem>
-                                                                            <asp:ListItem Value="4" Selected="True">None</asp:ListItem>
+                                                                            <asp:ListItem Value="1">Traslado a Manatus</asp:ListItem>
+                                                                            <asp:ListItem Value="2">Traslado de regreso a San Jose</asp:ListItem>
+                                                                            <asp:ListItem Value="3">Transporte Completo</asp:ListItem>
+                                                                            <asp:ListItem Value="4" Selected="True">Ninguno</asp:ListItem>
                                                                         </asp:RadioButtonList>
                                                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="rdbtnlist_transporte2014"
                                                                             Display="Dynamic" ErrorMessage="Campo Requerido" ValidationGroup="registrese"></asp:RequiredFieldValidator>
+
+                                                                        <div class="box-precio-transporte">
+                                                                            <div class="precio-transporte">
+                                                                                <div class="precio-transporte-value">
+                                                                                    $
+                                                                                    <asp:Label ID="lbl_preciotransporte" runat="server" Text="0"></asp:Label>
+                                                                                </div>
+                                                                            
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                     <hr />
                                                                     <div class="box-precio-con-transporte">
                                                                         <div class="precio-con-transporte">
                                                                             <div class="precio-con-transporte-value">
-                                                                                <span>Total Cost of<br />
-                                                                                    hosting and transport</span>
+                                                                                <span>Costo Total de
+                                                                                    <br />
+                                                                                    hospedaje y transporte</span>
                                                                                 <div class="preciot">
                                                                                     $
                                                                                     <asp:Label ID="lbl_precioConTransporte" runat="server" Text="0"></asp:Label></div>
@@ -1018,7 +1035,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                 <h4>
                                                     2016</h4>
                                                 <p>
-                                                    Tarifas por persona, válidas del 01 de Enerohasta el 31 de Diciembre del 2016</p>
+                                                    Tarifas por persona, válidas del 01 de Enero hasta el 31 de Diciembre del 2016</p>
                                                 <div class="columna-tabla-rates first">
                                                     <table cellspacing="0" cellpadding="0" border="1" class="width325 aligncenter season-a encabezado">
                                                         <tbody>
@@ -1458,7 +1475,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             </div>
                                             <div class="sidebar-paquete-popup-botones">
                                                 <div class="sidebar-paquete-popup-botones-form">
-                                                    <a href="http://manatus.net/es/contacto" class="boton-form-rojo">Formulario</a>
+                                                    <a href="http://manatuscostarica.com/es/contacto" class="boton-form-rojo">Formulario</a>
                                                 </div>
                                                 <div class="sidebar-paquete-popup-botones-chat">
                                                     <a href="javascript:%20$zopim.livechat.window.show();" class="boton-chat-cafe">Chat
@@ -1502,6 +1519,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             <div class="paddingReserva">
                                                 <asp:Panel ID="panel_2" runat="server" Visible="true">
                                                     <asp:Panel ID="pnl_contenido_form" runat="server" Visible="true">
+                                                        <asp:Label ID="lbl_error_registro" runat="server" Text="" Visible="false"></asp:Label>
                                                         <div class="wrapper-field">
                                                             <asp:Label ID="lbl_nombre" runat="server" Text="Nombre completo" CssClass="span-field"></asp:Label>
                                                             <asp:TextBox ID="txt_nombre" runat="server" CssClass="textBoxNuevo"></asp:TextBox>
@@ -1552,9 +1570,10 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                                 Height="70px" Rows="5" TextMode="MultiLine"></asp:TextBox>
                                                         </div>
                                                         <div id="terminos-condiciones">
-                                                            <!--<asp:HyperLink NavigateUrl="javascript:void(0)" runat="server" Text="Ver Términos y Condiciones"
-                                                                ID="linkTerminosCondiciones" />-->
-                                                            <asp:HyperLink NavigateUrl="#?w=620" runat="server" Text="Leer términos y condiciones" ID="linkTerminosCondiciones2" rel="popup_code2" CssClass="poplight"/>
+                                                            <asp:HyperLink NavigateUrl="javascript:void(0)" runat="server" Text="Ver Términos y Condiciones"
+                                                                ID="linkTerminosCondiciones" />
+                                                            <asp:HyperLink NavigateUrl="#?w=620" runat="server" Text="Leer términos y condiciones"
+                                                                ID="linkTerminosCondiciones2" rel="popup_code2" CssClass="poplight" />
                                                         </div>
                                                         <div class="wrapper-field">
                                                             <asp:CheckBox Text="He leído y acepto los Términos y Condiciones" runat="server"
@@ -1667,14 +1686,14 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                     <li><a href="http://manatuscostarica.com/es/paquetes-tarifas">Paquetes &amp; Tarifas</a>
                     </li>
                     <li><a href="http://manatuscostarica.com/es/area-de-tortuguero">Tortuguero</a></li>
-                    <li class="active-trail"><a href="http://booking.manatuscostarica.com/reservacion_sp.aspx">
+                    <li class="active-trail"><a href="http://booking.manatuscostarica.com/reservacion_es_paso1.aspx">
                         Reservaciones</a></li>
                     <li><a href="http://manatuscostarica.com/blog">Blog</a></li>
                 </ul>
             </div>
             <div class="column1 column">
                 <ul>
-                    <li><a href="http://booking.manatuscostarica.com/reservacion_sp.aspx" class="active-trail">
+                    <li><a href="http://booking.manatuscostarica.com/reservacion_es_paso1.aspx" class="active-trail">
                         Reservaciones</a></li>
                     <li><a href="http://manatuscostarica.com/es/experiencia-manatus">Experiencia Manatus</a></li>
                     <li><a href="http://manatuscostarica.com/es/area-de-tortuguero">Tortuguero</a></li>
@@ -1709,7 +1728,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
             <div class="footer-info-box">
                 <div class="menu-top">
                     <ul>
-                        <li><a href="http://manatuscostarica.com/es/">Inicio</a></li>|<li><a href="http://booking.manatuscostarica.com/reservacion_sp.aspx">
+                        <li><a href="http://manatuscostarica.com/es/">Inicio</a></li>|<li><a href="http://booking.manatuscostarica.com/reservacion_es_paso1.aspx">
                             Book Now</a></li>|<li><a href="http://manatuscostarica.com/es/gallery">Galeria</a></li>|<li>
                                 <a href="http://manatuscostarica.com/es/contacto">Contacto</a></li></ul>
                 </div>
@@ -1719,14 +1738,63 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                 </div>
                 <div class="menu-idioma">
                     <ul>
-                        <li><a href="reservacion_en.aspx">English</a></li>|<li><a href="reservacion_sp.aspx"
+                        <li><a href="reservacion_en_paso1.aspx">English</a></li>|<li><a href="reservacion_es_paso1.aspx"
                             class="active">Español</a></li></ul>
                 </div>
             </div>
         </div>
     </div>
+    <div id="overlayvpos" class="overlayvpos">
+    </div>
+    <div id="imgloadvpos" class="imgloadvpos">
+        <img alt="Cargando VPOS" src="images/vpos/loading.gif" class="imgloadingvpos" /></div>
+    <div id="modalvpos" class="modalvpos">
+        <iframe name="iframevpos" class="iframevpos" frameborder="0"></iframe>
+    </div>
+    <asp:UpdatePanel ID="up_pago" runat="server">
+        <ContentTemplate>
+            <div class="lbl_pago">
+                <asp:Label ID="ltr_values_pago" runat="server" Text=""></asp:Label>
+            </div>
+            <script type="text/javascript">
+
+                function enviarvpos() {
+
+
+                    var inputsPago = document.getElementById("ltr_values_pago");
+
+                    var myform = document.createElement("form");
+                    myform.action = "https://vpayment.verifika.com/VPOS/MM/transactionStart20.do";
+                    myform.method = "post";
+                    myform.name = 'frmSolicitudPago';
+                    myform.target = 'iframevpos';
+                    myform.appendChild(inputsPago);
+                    document.body.appendChild(myform);
+                    var divOverlay = document.getElementById('overlayvpos');
+                    var divImgLoad = document.getElementById('imgloadvpos');
+                    var divModal = document.getElementById('modalvpos');
+                    divOverlay.style.visibility = 'visible';
+                    divImgLoad.style.visibility = 'visible';
+                    divModal.style.visibility = 'visible';
+                    document.frmSolicitudPago.submit();
+                }
+
+                function ocultarCalendario() {
+                    $("#TxtCheckinCheckout-selector").css("visibility", "hidden");
+                    $("#widgetCalendar").css("visibility", "hidden");
+
+                }
+                function mostrarCalendario() {
+                    $("#TxtCheckinCheckout-selector").css("visibility", "visible");
+                    $("#widgetCalendar").css("visibility", "visible");
+                }
+
+
+            </script>
+        </ContentTemplate>
+    </asp:UpdatePanel>
     <script type="text/javascript">
-        
+
 
         $('#tbar').live("click", function () {
             if ($(this).hasClass('activ')) {
@@ -1736,7 +1804,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
             }
             $('#ct_tbar').toggle("slow");
 
-        }); 
+        });
 
 
 
@@ -1846,7 +1914,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
             $(function () {
                 $("#tabs").tabs();
             });
-            
+
         }
         
     </script>
@@ -1947,7 +2015,8 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                 <p>
                     <strong>Se deben de realizar:</strong><br />
                     A nombre de: La Casa del Manatí S.A.<br />
-                    Cedula Jurídica #: 3-101-130226<br /><br />
+                    Cedula Jurídica #: 3-101-130226<br />
+                    <br />
                     <strong>A las siguientes cuentas corrientes en dólares:</strong>
                 </p>
                 <ul>

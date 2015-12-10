@@ -1,4 +1,6 @@
 ﻿@media (max-width: 991px) {
+
+   
 ul.mi-menu
 {
     display: none;
@@ -79,6 +81,25 @@ ul.mi-menu
     position: relative;
     top: 0;
     }
+	
+	div#TxtCheckinCheckout-selector {
+    position: absolute;
+    height: 45px;
+    z-index: 0;
+    top: 520px;
+    left: 138px;
+    padding: 7px;
+    width: 268px;
+    font-family: "Open Sans",sans-seif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 37px;
+    -moz-box-sizing: border-box;
+    border: medium none;
+    color: #584942;
+    background-repeat: no-repeat;
+    background-position: 98% 41%;
+}
 
 
     
@@ -89,9 +110,12 @@ ul.mi-menu
     width: 310px;
     margin: 0 auto;
     }
-
-
      
+    .disponibles, .no-disponibles, .seleccionados {
+        padding: 1px 5px;
+        margin-right: 2px;
+    }
+
  /*#main-content, #header, #footer
  {
      width: 310px;
@@ -584,5 +608,11 @@ td.celda-valor-tabla-shoppingcart
 .logos-trip-advisor {
     display: none;
 }
+ div#TxtCheckinCheckout-selector {
+        top: 1075px;
+        left: 7%;
+    
+    }
+
 
 }
