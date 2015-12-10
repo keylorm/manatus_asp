@@ -149,10 +149,8 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
         }
     </script>
     <!-- end client validations -->
-
     <!-- Estilo para Pop Up de Pago -->
     <link type="text/css" rel="stylesheet" href="styles/style_payment_vpos.css" />
-
 </head>
 <body class="reservation-form es">
     <form id="form2" runat="server">
@@ -303,15 +301,16 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                 </asp:UpdatePanel>
             </div>
             <div id="widgetCalendar" class="hidden">
-                <div id='loader-calendar'><img src='images/ajax-loader.gif'/></div>
+                <div id='loader-calendar'>
+                    <img src='images/ajax-loader.gif' /></div>
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Always">
                     <ContentTemplate>
                         <asp:LinkButton ID="AplicarSeleccion" runat="server" Text="Aplicar Selección"></asp:LinkButton>
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>
-            
-            <div id="TxtCheckinCheckout-selector"></div>
+            <div id="TxtCheckinCheckout-selector">
+            </div>
             <asp:UpdatePanel ID="up_paso1" runat="server" UpdateMode="Always">
                 <ContentTemplate>
                     <div id="paso1" runat="server" visible="true">
@@ -319,7 +318,6 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                             <h2 class="h2Celeste">
                                 Viva la experiencia Manatus</h2>
                             <div class="logo-ssl">
-                            
                                 <%--<img src="images/verisign.png" />--%></div>
                         </div>
                         <div class="content-box container-2-3">
@@ -365,6 +363,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                         <asp:UpdatePanel ID="updatePane_habitaciones" runat="server" UpdateMode="Always">
                                                             <ContentTemplate>
                                                                 <asp:Panel ID="pnl_resultados" runat="server">
+                                                                    <asp:Label ID="costo_title_columna" CssClass="costo_title_columna" runat="server" Text="Costo"  Visible="False"></asp:Label>
                                                                     <asp:GridView ID="gv_ResultadosDisponibles" runat="server" ShowHeader="false" AutoGenerateColumns="false"
                                                                         GridLines="None" Width="246px">
                                                                         <RowStyle HorizontalAlign="Left" />
@@ -472,12 +471,23 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                                         </asp:RadioButtonList>
                                                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="rdbtnlist_transporte2014"
                                                                             Display="Dynamic" ErrorMessage="Campo Requerido" ValidationGroup="registrese"></asp:RequiredFieldValidator>
+
+                                                                        <div class="box-precio-transporte">
+                                                                            <div class="precio-transporte">
+                                                                                <div class="precio-transporte-value">
+                                                                                    $
+                                                                                    <asp:Label ID="lbl_preciotransporte" runat="server" Text="0"></asp:Label>
+                                                                                </div>
+                                                                            
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                     <hr />
                                                                     <div class="box-precio-con-transporte">
                                                                         <div class="precio-con-transporte">
                                                                             <div class="precio-con-transporte-value">
-                                                                                <span>Costo Total de <br />
+                                                                                <span>Costo Total de
+                                                                                    <br />
                                                                                     hospedaje y transporte</span>
                                                                                 <div class="preciot">
                                                                                     $
@@ -1465,7 +1475,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             </div>
                                             <div class="sidebar-paquete-popup-botones">
                                                 <div class="sidebar-paquete-popup-botones-form">
-                                                    <a href="http://manatus.net/es/contacto" class="boton-form-rojo">Formulario</a>
+                                                    <a href="http://manatuscostarica.com/es/contacto" class="boton-form-rojo">Formulario</a>
                                                 </div>
                                                 <div class="sidebar-paquete-popup-botones-chat">
                                                     <a href="javascript:%20$zopim.livechat.window.show();" class="boton-chat-cafe">Chat
@@ -1562,7 +1572,8 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                         <div id="terminos-condiciones">
                                                             <asp:HyperLink NavigateUrl="javascript:void(0)" runat="server" Text="Ver Términos y Condiciones"
                                                                 ID="linkTerminosCondiciones" />
-                                                            <asp:HyperLink NavigateUrl="#?w=620" runat="server" Text="Leer términos y condiciones" ID="linkTerminosCondiciones2" rel="popup_code2" CssClass="poplight"/>
+                                                            <asp:HyperLink NavigateUrl="#?w=620" runat="server" Text="Leer términos y condiciones"
+                                                                ID="linkTerminosCondiciones2" rel="popup_code2" CssClass="poplight" />
                                                         </div>
                                                         <div class="wrapper-field">
                                                             <asp:CheckBox Text="He leído y acepto los Términos y Condiciones" runat="server"
@@ -1733,50 +1744,57 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
             </div>
         </div>
     </div>
-
-    
-    <div id="overlayvpos" class="overlayvpos"></div>
-    <div id="imgloadvpos" class="imgloadvpos"><img alt="Cargando VPOS" src="images/vpos/loading.gif" class="imgloadingvpos" /></div>
-    <div id="modalvpos" class="modalvpos"><iframe name="iframevpos" class="iframevpos" frameborder="0"></iframe></div>
-
-    
+    <div id="overlayvpos" class="overlayvpos">
+    </div>
+    <div id="imgloadvpos" class="imgloadvpos">
+        <img alt="Cargando VPOS" src="images/vpos/loading.gif" class="imgloadingvpos" /></div>
+    <div id="modalvpos" class="modalvpos">
+        <iframe name="iframevpos" class="iframevpos" frameborder="0"></iframe>
+    </div>
     <asp:UpdatePanel ID="up_pago" runat="server">
         <ContentTemplate>
-            
-                <div class="lbl_pago">
-                    <asp:Label ID="ltr_values_pago" runat="server" Text=""></asp:Label>
-                </div>
-                   <script type="text/javascript">
+            <div class="lbl_pago">
+                <asp:Label ID="ltr_values_pago" runat="server" Text=""></asp:Label>
+            </div>
+            <script type="text/javascript">
 
-                       function enviarvpos() {
+                function enviarvpos() {
 
-                           
-                           var inputsPago = document.getElementById("ltr_values_pago");
 
-                           var myform = document.createElement("form");
-                           myform.action = "https://vpayment.verifika.com/VPOS/MM/transactionStart20.do";
-                           myform.method = "post";
-                           myform.name = 'frmSolicitudPago';
-                           myform.target = 'iframevpos';
-                           myform.appendChild(inputsPago);
-                           document.body.appendChild(myform);
-                           var divOverlay = document.getElementById('overlayvpos');
-                           var divImgLoad = document.getElementById('imgloadvpos');
-                           var divModal = document.getElementById('modalvpos');
-                           divOverlay.style.visibility = 'visible';
-                           divImgLoad.style.visibility = 'visible';
-                           divModal.style.visibility = 'visible';
-                           document.frmSolicitudPago.submit();
-                       }
+                    var inputsPago = document.getElementById("ltr_values_pago");
 
-                    </script>
-            
+                    var myform = document.createElement("form");
+                    myform.action = "https://vpayment.verifika.com/VPOS/MM/transactionStart20.do";
+                    myform.method = "post";
+                    myform.name = 'frmSolicitudPago';
+                    myform.target = 'iframevpos';
+                    myform.appendChild(inputsPago);
+                    document.body.appendChild(myform);
+                    var divOverlay = document.getElementById('overlayvpos');
+                    var divImgLoad = document.getElementById('imgloadvpos');
+                    var divModal = document.getElementById('modalvpos');
+                    divOverlay.style.visibility = 'visible';
+                    divImgLoad.style.visibility = 'visible';
+                    divModal.style.visibility = 'visible';
+                    document.frmSolicitudPago.submit();
+                }
+
+                function ocultarCalendario() {
+                    $("#TxtCheckinCheckout-selector").css("visibility", "hidden");
+                    $("#widgetCalendar").css("visibility", "hidden");
+
+                }
+                function mostrarCalendario() {
+                    $("#TxtCheckinCheckout-selector").css("visibility", "visible");
+                    $("#widgetCalendar").css("visibility", "visible");
+                }
+
+
+            </script>
         </ContentTemplate>
     </asp:UpdatePanel>
-
-
     <script type="text/javascript">
-        
+
 
         $('#tbar').live("click", function () {
             if ($(this).hasClass('activ')) {
@@ -1786,7 +1804,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
             }
             $('#ct_tbar').toggle("slow");
 
-        }); 
+        });
 
 
 
@@ -1896,7 +1914,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
             $(function () {
                 $("#tabs").tabs();
             });
-            
+
         }
         
     </script>
@@ -1997,7 +2015,8 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                 <p>
                     <strong>Se deben de realizar:</strong><br />
                     A nombre de: La Casa del Manatí S.A.<br />
-                    Cedula Jurídica #: 3-101-130226<br /><br />
+                    Cedula Jurídica #: 3-101-130226<br />
+                    <br />
                     <strong>A las siguientes cuentas corrientes en dólares:</strong>
                 </p>
                 <ul>
@@ -2271,6 +2290,5 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
             </div>
         </asp:Panel>
     </div>
-
 </body>
 </html>

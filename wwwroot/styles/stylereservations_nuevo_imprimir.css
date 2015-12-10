@@ -66,3 +66,41 @@ body, #main-content, #footer, #header {
 {
     font-weight: 700;
     }
+    
+.below-content.blog,
+.above-content
+{
+    display: none;
+    	
+    }
+    
+#header-inner.container-980
+{
+	height: 160px;
+	}
+	
+#header-inner .logos-premios
+{
+	float: left;
+    margin-left: 50px;
+    margin-top: 25px;
+	
+	}
+
+
+#header #logo-box
+{
+	float: left;
+    left: 0;
+    margin-bottom: 20px;
+    position: relative;
+	}
+	
+	
+#header-inner .logos-premios{
+	display: block !important;
+}
+
+#main-content .logos-premios{
+	display: none;
+}

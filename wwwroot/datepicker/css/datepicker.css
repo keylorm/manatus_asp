@@ -87,7 +87,7 @@ div.datepicker table {
 	border-collapse:collapse;
 }
 div.datepicker a {
-	color: #eee;
+	color: #fff;
 	text-decoration: none;
 	cursor: default;
 	outline: none;
@@ -231,15 +231,18 @@ table.datepickerViewYears tr.datepickerDoW {
 	display: none;
 }
 
-td.datepickerDisabled.datepickerNotInMonth a{
-	color: #333;
+td.datepickerDisabled a,
+td.datepickerDisabled a:hover{
+	color: #777;
 }
 
-td.datepickerDisabled a,
-td.datepickerDisabled a:hover,
 div.datepicker td.datepickerNotInMonth a {
-	color: #EBD9CD;
+	color: #ebd9cd
 }
+div.datepicker td.datepickerDisabled.datepickerNotInMonth a{
+	color: #777;
+}
+
 td.datepickerSpecial a {
 	background: #700;
 }

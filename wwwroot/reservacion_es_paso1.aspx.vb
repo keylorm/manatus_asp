@@ -735,6 +735,11 @@ Partial Class reservacion_es_paso1
         gv_ResultadosDisponibles.DataSource = dataTable
         gv_ResultadosDisponibles.DataBind()
 
+        If (habitaciones > 0) Then
+            costo_title_columna.Visible = True
+        Else
+            costo_title_columna.Visible = False
+        End If
         Dim resul_producto As ArrayList = TransformDataTable(dataTable, New Producto)
         Dim resul_Item As ArrayList = TransformDataTable(dataTable, New Item)
 
@@ -786,6 +791,28 @@ Partial Class reservacion_es_paso1
 
     End Function
 
+    Protected Sub calcularPrecioTransporteDetalle(ByVal total_personas As Integer)
+
+        If total_personas > 0 Then
+
+
+            Dim price_one_way As Integer = total_personas * 75
+            Dim prince_round_trip As Integer = total_personas * 75 * 2
+
+            For j As Integer = 1 To rdbtnlist_transporte2014.Items.Count
+                Dim Cadena_String As String
+                Cadena_String = rdbtnlist_transporte2014.Items.Item(j - 1).Text
+                If (j = 1 Or j = 2) Then
+                    rdbtnlist_transporte2014.Items.Item(j - 1).Text = Cadena_String.Split(":")(0) + ": $" + Convert.ToString(price_one_way)
+                ElseIf (j = 3) Then
+                    rdbtnlist_transporte2014.Items.Item(j - 1).Text = Cadena_String.Split(":")(0) + ": $" + Convert.ToString(prince_round_trip)
+                End If
+            Next
+
+        End If
+
+    End Sub
+
     Protected Sub cargarPanelExito(ByVal exito As Integer)
         If Request.QueryString("exito") IsNot Nothing Then
             lbl_ResultadoReservacion.Visible = True
@@ -821,6 +848,7 @@ Partial Class reservacion_es_paso1
         lbl_error_registro.Visible = False
         If (String.Equals(lbl_precioSinTransporte.Text, "0") = False And String.Equals(lbl_precioConTransporte.Text, "0") = False) Then
             paso1.Visible = False
+            ScriptManager.RegisterStartupScript(Me, Page.GetType(), "ocultarCalendario", "ocultarCalendario();", True)
             paso2.Visible = True
             Dim class1 As String = step_1.CssClass
             class1 = class1.Replace("active", "")
@@ -875,6 +903,7 @@ Partial Class reservacion_es_paso1
         lbl_ResultadoReservacion.Visible = False
         lbl_error_registro.Visible = False
         paso2.Visible = False
+        ScriptManager.RegisterStartupScript(Me, Page.GetType(), "mostrarCalendario", "mostrarCalendario();", True)
         paso1.Visible = True
 
         Dim class2 As String = step_2.CssClass
@@ -1525,20 +1554,16 @@ Partial Class reservacion_es_paso1
                         Dim precioNochesAdicionales As Double = consultarPreciosNochesAdicionales(id_producto, noches, nochesAdicionales, habitacionesDisponibles, gv_ResultadosDisponibles, fechaInicio, fechaFin)
                         GlobalCosto_estadia = precioNochesNormales
                         GlobalCosto_noche_adicional = precioNochesAdicionales
-                        If ((precioSintrasporte <> 0)) Then
 
+                        'Calcula el detalle de cada opción de transporte según la cantidad de personas.
+                        calcularPrecioTransporteDetalle(total_personas)
+
+                        If ((precioSintrasporte <> 0) And (precioContranporte <> 0)) Then
+                            lbl_preciotransporte.Text = precioContranporte - precioSintrasporte
                             lbl_precioSinTransporte.Text = precioSintrasporte
-
-                            'exito(ReservacionActual)
-                        Else
-                            mensajeErrorReservacion()
-                            ready = False
-
-                        End If
-                        If ((precioContranporte <> 0)) Then
-
                             lbl_precioConTransporte.Text = precioContranporte
                             'exito(ReservacionActual)
+
                         Else
                             mensajeErrorReservacion()
                             ready = False
@@ -1586,21 +1611,18 @@ Partial Class reservacion_es_paso1
                             GlobalCosto_estadia = precioNochesNormales
                             GlobalCosto_noche_adicional = precioNochesAdicionales
 
-                            If ((precioSintrasporte <> 0)) Then
+                            'Calcula el detalle de cada opción de transporte según la cantidad de personas.
+                            calcularPrecioTransporteDetalle(total_personas)
 
+
+
+
+                            If ((precioSintrasporte <> 0) And (precioContranporte <> 0)) Then
+                                lbl_preciotransporte.Text = precioContranporte - precioSintrasporte
                                 lbl_precioSinTransporte.Text = precioSintrasporte
-
-                                'exito(ReservacionActual)
-                            Else
-                                mensajeErrorReservacion()
-                                ready = False
-
-                            End If
-                            If ((precioContranporte <> 0)) Then
-
                                 lbl_precioConTransporte.Text = precioContranporte
-
                                 'exito(ReservacionActual)
+                            
                             Else
                                 mensajeErrorReservacion()
                                 ready = False
@@ -1768,20 +1790,17 @@ Partial Class reservacion_es_paso1
                         Dim precioNochesAdicionales As Double = consultarPreciosNochesAdicionales(id_producto, noches, nochesAdicionales, habitacionesDisponibles, gv_ResultadosDisponibles, fechaInicio, fechaFin)
                         GlobalCosto_estadia = precioNochesNormales
                         GlobalCosto_noche_adicional = precioNochesAdicionales
-                        If ((precioSintrasporte <> 0)) Then
 
+                        'Calcula el detalle de cada opción de transporte según la cantidad de personas.
+                        calcularPrecioTransporteDetalle(total_personas)
+
+
+                       If ((precioSintrasporte <> 0) And (precioContranporte <> 0)) Then
+                            lbl_preciotransporte.Text = precioContranporte - precioSintrasporte
                             lbl_precioSinTransporte.Text = precioSintrasporte
-
-                            'exito(ReservacionActual)
-                        Else
-                            mensajeErrorReservacion()
-                            ready = False
-
-                        End If
-                        If ((precioContranporte <> 0)) Then
-
                             lbl_precioConTransporte.Text = precioContranporte
                             'exito(ReservacionActual)
+
                         Else
                             mensajeErrorReservacion()
                             ready = False
@@ -1831,21 +1850,15 @@ Partial Class reservacion_es_paso1
                             GlobalCosto_estadia = precioNochesNormales
                             GlobalCosto_noche_adicional = precioNochesAdicionales
 
-                            If ((precioSintrasporte <> 0)) Then
+                            'Calcula el detalle de cada opción de transporte según la cantidad de personas.
+                            calcularPrecioTransporteDetalle(total_personas)
 
+                            If ((precioSintrasporte <> 0) And (precioContranporte <> 0)) Then
+                                lbl_preciotransporte.Text = precioContranporte - precioSintrasporte
                                 lbl_precioSinTransporte.Text = precioSintrasporte
-
-                                'exito(ReservacionActual)
-                            Else
-                                mensajeErrorReservacion()
-                                ready = False
-
-                            End If
-                            If ((precioContranporte <> 0)) Then
-
                                 lbl_precioConTransporte.Text = precioContranporte
-
                                 'exito(ReservacionActual)
+
                             Else
                                 mensajeErrorReservacion()
                                 ready = False
@@ -1970,7 +1983,8 @@ Partial Class reservacion_es_paso1
 
                         If ((precioContransporte <> 0)) Then
                             lbl_precioConTransporte.Text = precioContransporte
-
+                            Dim precioSintransporte As Integer = lbl_precioSinTransporte.Text
+                            lbl_preciotransporte.Text = precioContransporte - precioSintransporte
                             'exito(ReservacionActual)
                         Else
                             mensajeErrorReservacion()

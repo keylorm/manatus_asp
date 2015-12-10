@@ -152,7 +152,6 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
         }
     </script>
     <!-- end client validations -->
-
     <!-- Estilo para Pop Up de Pago -->
     <link type="text/css" rel="stylesheet" href="styles/style_payment_vpos.css" />
 </head>
@@ -305,14 +304,16 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                 </asp:UpdatePanel>
             </div>
             <div id="widgetCalendar" class="hidden">
-                <div id='loader-calendar'><img src='images/ajax-loader.gif'/></div>
+                <div id='loader-calendar'>
+                    <img src='images/ajax-loader.gif' /></div>
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Always">
                     <ContentTemplate>
                         <asp:LinkButton ID="AplicarSeleccion" runat="server" Text="Apply selection" CssClass="hidden"></asp:LinkButton>
                     </ContentTemplate>
                 </asp:UpdatePanel>
             </div>
-            <div id="TxtCheckinCheckout-selector"></div>
+            <div id="TxtCheckinCheckout-selector">
+            </div>
             <asp:UpdatePanel ID="up_paso1" runat="server" UpdateMode="Always">
                 <ContentTemplate>
                     <div id="paso1" runat="server" visible="true">
@@ -365,6 +366,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                         <asp:UpdatePanel ID="updatePane_habitaciones" runat="server" UpdateMode="Always">
                                                             <ContentTemplate>
                                                                 <asp:Panel ID="pnl_resultados" runat="server">
+                                                                    <asp:Label ID="costo_title_columna" CssClass="costo_title_columna" runat="server" Text="Cost" Visible="False"></asp:Label>
                                                                     <asp:GridView ID="gv_ResultadosDisponibles" runat="server" ShowHeader="False" AutoGenerateColumns="False"
                                                                         GridLines="None" Width="246px" EnableModelValidation="True">
                                                                         <RowStyle HorizontalAlign="Left" />
@@ -473,6 +475,16 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                                         </asp:RadioButtonList>
                                                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="rdbtnlist_transporte2014"
                                                                             Display="Dynamic" ErrorMessage="Campo Requerido" ValidationGroup="registrese"></asp:RequiredFieldValidator>
+                                                                        <div class="box-precio-transporte">
+                                                                            <div class="precio-transporte">
+                                                                                <div class="precio-transporte-value">
+                                                                                    $
+                                                                                    <asp:Label ID="lbl_preciotransporte" runat="server" Text="0"></asp:Label>
+                                                                                </div>
+                                                                            
+                                                                            </div>
+                                                                        </div>
+                                                                        
                                                                     </div>
                                                                     <hr />
                                                                     <div class="box-precio-con-transporte">
@@ -561,7 +573,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                     <div class="des_paq_3_2" id="des_paq_3_2" runat="server">
                                         <h4>
                                             Tortuguero by Boat:</h4>
-                                         <p>
+                                        <p>
                                             <span class="titulo-dia">Day 1</span><br>
                                             Pick up at San Jose Metropolitan Area at the hotel.<br>
                                             7:45 a.m to 8:30 a.m Breakfast at Nava Café Restaurant (located in Guapiles)<br>
@@ -688,7 +700,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                     <div class="inc_paq_3_2" id="inc_paq_3_2" runat="server">
                                         <h4>
                                             2015</h4>
-                                       <p>
+                                        <p>
                                             The package Includes:</p>
                                         <ul>
                                             <li>Lodging, all meals. Beverages are not included.</li>
@@ -769,7 +781,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                     <div class="inc_paq_custom" id="inc_paq_custom" runat="server">
                                         <h4>
                                             2015</h4>
-                                       <p>
+                                        <p>
                                             The package Includes:</p>
                                         <ul>
                                             <li>Lodging, all meals. Beverages are not included.</li>
@@ -1424,7 +1436,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                             </div>
                                             <div class="sidebar-paquete-popup-botones">
                                                 <div class="sidebar-paquete-popup-botones-form">
-                                                    <a href="http://manatus.net/contact-us" class="boton-form-rojo">Form</a>
+                                                    <a href="http://manatuscostarica.com/contact-us" class="boton-form-rojo">Form</a>
                                                 </div>
                                                 <div class="sidebar-paquete-popup-botones-chat">
                                                     <a href="javascript:%20$zopim.livechat.window.show();" class="boton-chat-cafe">Live
@@ -1519,10 +1531,12 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                         <div id="terminos-condiciones" class="wrapper-field">
                                                             <asp:HyperLink NavigateUrl="javascript:void(0)" runat="server" Text="Read our Terms and Conditions"
                                                                 ID="linkTerminosCondiciones" />
-                                                            <asp:HyperLink NavigateUrl="#?w=620" runat="server" Text="Read our Terms and Conditions" ID="linkTerminosCondiciones2" rel="popup_code2" CssClass="poplight"/>
+                                                            <asp:HyperLink NavigateUrl="#?w=620" runat="server" Text="Read our Terms and Conditions"
+                                                                ID="linkTerminosCondiciones2" rel="popup_code2" CssClass="poplight" />
                                                         </div>
                                                         <div class="wrapper-field">
-                                                            <asp:CheckBox Text="I have read and accept the Terms and Conditions" runat="server" ID="chkTerminosCondiciones" />
+                                                            <asp:CheckBox Text="I have read and accept the Terms and Conditions" runat="server"
+                                                                ID="chkTerminosCondiciones" />
                                                             <asp:CustomValidator ID="val_terminosCondiciones" runat="server" ErrorMessage="Please accept the terms..."
                                                                 ClientValidationFunction="CustomValidatorTerminosCondiciones" ValidationGroup="registrese"></asp:CustomValidator>
                                                             <%--<asp:RequiredFieldValidator ID="rev_terminosCondiciones" runat="server" ControlToValidate="chkTerminosCondiciones" Display="Dynamic" ErrorMessage="Required field" ValidationGroup="registrese"></asp:RequiredFieldValidator>--%>
@@ -1587,8 +1601,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                     </div>
                                     <div class="wrapper-field costo-sin-transporte">
                                         <div class="key">
-                                            <asp:Label ID="KeyLblCostoSinTransporte" CssClass="span-field" Text="Stay Cost"
-                                                runat="server"></asp:Label>
+                                            <asp:Label ID="KeyLblCostoSinTransporte" CssClass="span-field" Text="Stay Cost" runat="server"></asp:Label>
                                         </div>
                                         <div class="value">
                                             <asp:Label ID="ValueLblCostoSinTransporte" CssClass="span-field" Text="" runat="server"></asp:Label>
@@ -1690,50 +1703,55 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
             </div>
         </div>
     </div>
-    
-
-    <div id="overlayvpos" class="overlayvpos"></div>
-    <div id="imgloadvpos" class="imgloadvpos"><img alt="Cargando VPOS" src="images/vpos/loading.gif" class="imgloadingvpos" /></div>
-    <div id="modalvpos" class="modalvpos"><iframe name="iframevpos" class="iframevpos" frameborder="0"></iframe></div>
-
-    
+    <div id="overlayvpos" class="overlayvpos">
+    </div>
+    <div id="imgloadvpos" class="imgloadvpos">
+        <img alt="Cargando VPOS" src="images/vpos/loading.gif" class="imgloadingvpos" /></div>
+    <div id="modalvpos" class="modalvpos">
+        <iframe name="iframevpos" class="iframevpos" frameborder="0"></iframe>
+    </div>
     <asp:UpdatePanel ID="up_pago" runat="server">
         <ContentTemplate>
-            
-                <div class="lbl_pago">
-                    <asp:Label ID="ltr_values_pago" runat="server" Text=""></asp:Label>
-                </div>
-                   <script type="text/javascript">
+            <div class="lbl_pago">
+                <asp:Label ID="ltr_values_pago" runat="server" Text=""></asp:Label>
+            </div>
+            <script type="text/javascript">
 
-                       function enviarvpos() {
-                                          
+                function enviarvpos() {
 
-                                           var inputsPago = document.getElementById("ltr_values_pago");
 
-                                           var myform = document.createElement("form");
-                                           myform.action = "https://vpayment.verifika.com/VPOS/MM/transactionStart20.do";
-                                           myform.method = "post";
-                                           myform.name = 'frmSolicitudPago';
-                                           myform.target = 'iframevpos';
-                                           myform.appendChild(inputsPago);
-                                           document.body.appendChild(myform);
-                                           var divOverlay = document.getElementById('overlayvpos');
-                                           var divImgLoad = document.getElementById('imgloadvpos');
-                                           var divModal = document.getElementById('modalvpos');
-                                           divOverlay.style.visibility = 'visible';
-                                           divImgLoad.style.visibility = 'visible';
-                                           divModal.style.visibility = 'visible';
-                                           document.frmSolicitudPago.submit();
-                                       }
+                    var inputsPago = document.getElementById("ltr_values_pago");
 
-                    </script>
-            
+                    var myform = document.createElement("form");
+                    myform.action = "https://vpayment.verifika.com/VPOS/MM/transactionStart20.do";
+                    myform.method = "post";
+                    myform.name = 'frmSolicitudPago';
+                    myform.target = 'iframevpos';
+                    myform.appendChild(inputsPago);
+                    document.body.appendChild(myform);
+                    var divOverlay = document.getElementById('overlayvpos');
+                    var divImgLoad = document.getElementById('imgloadvpos');
+                    var divModal = document.getElementById('modalvpos');
+                    divOverlay.style.visibility = 'visible';
+                    divImgLoad.style.visibility = 'visible';
+                    divModal.style.visibility = 'visible';
+                    document.frmSolicitudPago.submit();
+                }
+
+                function ocultarCalendario() {
+                    $("#TxtCheckinCheckout-selector").css("visibility", "hidden");
+                    $("#widgetCalendar").css("visibility", "hidden");
+                    
+                }
+                function mostrarCalendario() {
+                    $("#TxtCheckinCheckout-selector").css("visibility", "visible");
+                    $("#widgetCalendar").css("visibility", "visible");
+                }
+
+            </script>
         </ContentTemplate>
     </asp:UpdatePanel>
-
     </form>
-
- 
     <script type="text/javascript">
 
         $('#tbar').live("click", function () {
@@ -1744,7 +1762,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
             }
             $('#ct_tbar').toggle("slow");
 
-        }); 
+        });
 
 
         $('a.poplight[href^=#]').live("click", function () {
@@ -1845,7 +1863,8 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
         <asp:Panel ID="Panel1" runat="server" ScrollBars="Vertical" Height="400px" Visible="true">
             <div class="textoTerminos">
                 <center>
-                    <h2 class="principal">Terms and Conditions</h2>
+                    <h2 class="principal">
+                        Terms and Conditions</h2>
                     <%--<span class="terminosNuevo"><a href="#terminos2014">(see below Terms and Conditions
                         2014)</a></span>--%>
                 </center>
@@ -1910,14 +1929,14 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                     Bank account in dollars U.S. $:<br />
                     <strong>Banco de San Jose (BAC) # 90 58 87 964</strong><br />
                     Under the name of: La Casa del Manat&iacute; S.A.<br />
-                    Please to send copy of deposit by fax to the number 00506 &#8211; 2239 4857, or by email
-                    <a href="mailto:info@manatuscostarica.com">info@manatuscostarica.com</a>
+                    Please to send copy of deposit by fax to the number 00506 &#8211; 2239 4857, or
+                    by email <a href="mailto:info@manatuscostarica.com">info@manatuscostarica.com</a>
                 </p>
                 <p>
                     <strong>Banco de Costa Rica (BCR) # 001-0252364-7</strong><br />
                     Under the name of: La Casa del Manat&iacute; S.A.<br />
-                    Please to send copy of deposit by fax to the number 00506 &#8211; 2239 4857, or by email
-                    <a href="mailto:info@manatuscostarica.com">info@manatuscostarica.com</a>
+                    Please to send copy of deposit by fax to the number 00506 &#8211; 2239 4857, or
+                    by email <a href="mailto:info@manatuscostarica.com">info@manatuscostarica.com</a>
                 </p>
                 <h2>
                     Cancellation Policies for Groups</h2>
@@ -1960,12 +1979,12 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                     that the customer wasn&#8217;t able to travel.</p>
                 <p>
                     If the reservation was made through a travel agency that charges a commission, the
-                    hotel will cancel the reservation but it won&#8217;t refund the money, it will issue a
-                    credit for either the customer or the travel agency staff.</p>
+                    hotel will cancel the reservation but it won&#8217;t refund the money, it will issue
+                    a credit for either the customer or the travel agency staff.</p>
                 <p>
-                    The Hotel&#8217;s booking and account department will send a memo via email or fax to
-                    the travel agency with the amount that will apply in favor of the agency. This credit
-                    is valid for a year.</p>
+                    The Hotel&#8217;s booking and account department will send a memo via email or fax
+                    to the travel agency with the amount that will apply in favor of the agency. This
+                    credit is valid for a year.</p>
                 </p>
                 <h2>
                     Terms of payment and reimbursement in case of cancellation of booking by the hotel:
@@ -1978,8 +1997,8 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                     THE HOTEL, reserves the right to return 70% of the reservation, the remaining 30%
                     serves to cover operating expenses.<br />
                     Returns to the agencies shall be made through letters of credit by the amount corresponding
-                    to 70% of the net amount of the booking, if it&#8217;s a direct booking the hotel cover
-                    70% of the reservation in cash within 24 hours.
+                    to 70% of the net amount of the booking, if it&#8217;s a direct booking the hotel
+                    cover 70% of the reservation in cash within 24 hours.
                 </p>
                 <p>
                     If for reasons attributable to the hotel, this will assume the cost of lodging,
@@ -2167,6 +2186,5 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
             </div>
         </asp:Panel>
     </div>
-    
 </body>
 </html>

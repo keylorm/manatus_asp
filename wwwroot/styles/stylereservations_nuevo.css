@@ -655,11 +655,27 @@ input#txtDateSalida
     line-height: 37px;
     }
     
+#pnl_resultados .lbl_precio_habitacion span
+{
+    margin-right: 0;
+    float: right;
+    }
+    
+#pnl_resultados span.costo_title_columna {
+    float: right;
+    margin-right: 0;
+    text-decoration: underline;
+    font-family: "Open Sans",sans-seif;
+    font-size: 11px;
+    color: #000;
+    font-weight: 400;
+    line-height: 15px;
+}
 .box-select-personas select
 {
     background-image: url("../images/2014/bg-select-contacto.png");
     background-repeat: no-repeat;
-    background-position: 95% 50%;
+    background-position: 65% 50%;
     width: 100%;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -1583,7 +1599,7 @@ tr.ayuda td {
 }
 
 .no-disponibles {
-    background-color: #EBD9CD;
+    background-color: #777;
     margin-left: 10px;
 }
 
@@ -1758,13 +1774,13 @@ h2.h2Celeste{
     border: none;
 
     
-    background-image: url('../images/+open.png');
+    background-image: url('../images/plus_open.png');
     background-repeat: no-repeat;
     background-position: 97% 50%;
     cursor: pointer;   
 }
 .sidebar h3.h3Sidebar.activ{
-    background-image: url('../images/+close.png');
+    background-image: url('../images/plus_close.png');
     margin-bottom: 0px;
 }
 .sidebar-block-content{
@@ -2722,7 +2738,7 @@ ul.mi-menu
     }
     h2.h2Celeste{
         line-height: 23px;
-        margin-bottom: 0px;
+        margin-bottom: 25px;
     }
     input#TxtCheckinCheckout{
         width: 100%;
@@ -2776,6 +2792,16 @@ ul.mi-menu
     #updtpanel_form input[type="text"].textBoxNuevo{
         width: 100%;
     }
+	
+	.loader-error-wrapper {
+		clear: both;
+	}
+	.box-select-personas select
+	{
+
+		background-position: 95% 50%;
+
+	}
 
 }
 
@@ -2824,7 +2850,7 @@ div#TxtCheckinCheckout-selector {
     position: absolute;
     height: 45px;
     z-index: 0;
-    top: 103.2%;
+    top: 466px;
     left: 138px;
     padding: 7px;
     width: 268px;
@@ -2839,3 +2865,8 @@ div#TxtCheckinCheckout-selector {
     background-position: 98% 41%;
 }
 
+
+.box-precio-transporte
+{
+	float: right;
+	}

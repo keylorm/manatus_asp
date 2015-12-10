@@ -18,7 +18,8 @@
     <!--<link href="styles/styles_new.css" rel="stylesheet" type="text/css" />
     <link href="styles/stylereservations.css" rel="stylesheet" type="text/css" />-->
     <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700|Open+Sans+Condensed:300,700|Raleway:400,300,600,700">
-    <link href="styles/stylereservations_nuevo.css" rel="stylesheet" type="text/css" />
+    <link href="styles/stylereservations_nuevo.css" rel="stylesheet" type="text/css"  />
+    <link href="styles/stylereservations_nuevo_imprimir.css" rel="stylesheet" type="text/css" media="print" />
     <!--[if gte IE 9]><!-->
     <link rel="stylesheet" href="styles/stylereservation_nuevo_responsivo.css" type="text/css" />
     <!--<![endif]-->
@@ -185,6 +186,13 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                     <a href="http://manatuscostarica.com">
                         <img src="images/2014/logo.png" /></a>
                 </div>
+				<div class="logos-premios" style="display: none;">
+					<a href="http://www.tripadvisor.com.mx/Hotel_Review-g309268-d308651-Reviews-Manatus_Hotel-Tortuguero_Province_of_Limon.html">
+						<img src="images/logo-trip-1.jpg" /></a> <a href="http://www.tripadvisor.com.mx/Hotel_Review-g309268-d308651-Reviews-Manatus_Hotel-Tortuguero_Province_of_Limon.html">
+							<img src="images/logo-trip-2.jpg" /></a>
+					<img src="images/logo-rainforest.png" />
+					
+				</div>
                 <div class="menu-top-box">
                     <div class="menu-idioma">
                         <ul>
@@ -287,7 +295,9 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                     </div>
                     <p class="comprobante-reserva">
                         Your reservation has been processed successfully. Very soon you will receive a confirmation in your email.
-                        <a href="#" class="downloadVoucher"">Download voucher.</a>
+                        
+						<!--<a href="#" class="downloadVoucher"">Download voucher.</a></a>-->
+                        <a href='javascript:window.print(); void 0;'>Download voucher.</a> 
                     </p>
                 </div>
 
@@ -416,7 +426,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                         <h3>Turtle nesting</h3>
                                         <p class="descripcion-corta">Enjoy live nesting of the Green Turtle (only in the months of July, August, September and October)</p>
                                         <div class="boton-contacto">
-                                            <a href="#">Contact us to reserve</a>
+                                            <a href="http://manatuscostarica.com/contact-us">Contact us to reserve</a>
                                         </div>
                                     </div>
                                 </div>
@@ -434,7 +444,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                         <h3>Tortuguero Channels</h3>
                                         <p class="descripcion-corta">Ride in boat through amazing channels of Tortuguero National Park</p>
                                         <div class="boton-contacto">
-                                            <a href="#">Contact us to reserve</a>
+                                            <a href="http://manatuscostarica.com/contact-us">Contact us to reserve</a>
                                         </div>
                                     </div>
                                 </div>
@@ -452,7 +462,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                         <h3>Canopy</h3>
                                         <p class="descripcion-corta">The adrenalin will be your companion while soaring through the treetops.</p>
                                         <div class="boton-contacto">
-                                            <a href="#">Contact us to reserve</a>
+                                            <a href="http://manatuscostarica.com/contact-us">Contact us to reserve</a>
                                         </div>
                                     </div>
                                 </div>
@@ -470,7 +480,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                         <h3>Turtle nesting</h3>
                                         <p class="descripcion-corta">Enjoy live nesting of the Green Turtle (only in the months of July, August, September and October)</p>
                                         <div class="boton-contacto">
-                                            <a href="#">Contact us to reserve</a>
+                                            <a href="http://manatuscostarica.com/contact-us">Contact us to reserve</a>
                                         </div>
                                     </div>
                                 </div>
@@ -488,7 +498,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                         <h3>Tortuguero Channels</h3>
                                         <p class="descripcion-corta">Ride in boat through amazing channels of Tortuguero National Park</p>
                                         <div class="boton-contacto">
-                                            <a href="#">Contact us to reserve</a>
+                                            <a href="http://manatuscostarica.com/contact-us">Contact us to reserve</a>
                                         </div>
                                     </div>
                                 </div>
@@ -506,7 +516,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                         <h3>Canopy</h3>
                                         <p class="descripcion-corta">The adrenalin will be your companion while soaring through the treetops.</p>
                                         <div class="boton-contacto">
-                                            <a href="#">Contact us to reserve</a>
+                                            <a href="http://manatuscostarica.com/contact-us">Contact us to reserve</a>
                                         </div>
                                     </div>
                                 </div>
