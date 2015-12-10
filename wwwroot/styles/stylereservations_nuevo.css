@@ -675,8 +675,12 @@ input#txtDateSalida
 {
     background-image: url("../images/2014/bg-select-contacto.png");
     background-repeat: no-repeat;
-    background-position: 65% 50%;
-    width: 100%;
+    /*background-position: 65% 50%;
+    width: 100%;*/
+    background-position: 100% 50%;
+    width: auto;
+    padding-right: 25px;
+
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -1736,6 +1740,10 @@ h2.h2Celeste{
 }
 .reservation-form #updtpanel_reservacion #pnl_resultados #gv_ResultadosDisponibles td{
     margin: 0px;
+    width: 90px;
+}
+.reservation-form #updtpanel_reservacion #pnl_resultados #gv_ResultadosDisponibles td:first-child{
+    width: 50px;
 }
 .reservation-form #updtpanel_reservacion #pnl_resultados #gv_ResultadosDisponibles td span,
 .reservation-form #updtpanel_reservacion #pnl_resultados #gv_ResultadosDisponibles td select{
@@ -1753,7 +1761,7 @@ h2.h2Celeste{
     float: left;
 
     color: #7E9B67;
-    font-size: 11px;
+    font-size: 17px;
     font-weight: normal;
     font-family: "Open Sans",sans-seif;    
 }
@@ -2682,6 +2690,12 @@ ul.mi-menu
 
 }*/
 @media (max-width: 690px) {
+    .reservation-form #updtpanel_reservacion #pnl_resultados #gv_ResultadosDisponibles td{
+        width: auto;
+    }
+    .reservation-form #updtpanel_reservacion #pnl_resultados #gv_ResultadosDisponibles td:last-child{
+        min-width: 20px;
+    }    
     .below-content.blog .jcarousel-control-next,
     .below-content.blog .jcarousel-control-prev{
         top: 60%;
@@ -2706,7 +2720,7 @@ ul.mi-menu
         overflow: hidden;
     }
     #tabs > ul > li{
-        width: 100%;
+        width: 100% !important;
         border-right: none;
     }
     .columna-tabla-rates{
@@ -2783,7 +2797,7 @@ ul.mi-menu
         text-align: left;
     }
     .reservation-form #updtpanel_reservacion #pnl_resultados #gv_ResultadosDisponibles td select{
-        background-size: 5px;
+        background-size: 11px;
         padding-right: 10px;
     }
     .popup_block{

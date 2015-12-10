@@ -1609,7 +1609,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                     </div>
                                     <div class="wrapper-field costo-adicional">
                                         <div class="key">
-                                            <asp:Label ID="KeyLblCostoAdicional" CssClass="span-field" Text="Additional cost night"
+                                            <asp:Label ID="KeyLblCostoAdicional" CssClass="span-field" Text="Additional night cost"
                                                 runat="server"></asp:Label>
                                         </div>
                                         <div class="value">
