@@ -429,7 +429,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                                         <asp:LinkButton ID="btn_reservar1" runat="server" ToolTip="Reservar" ValidationGroup="registrese"
                                                                             ForeColor="#FFFFFF" Visible="false">RESERVAR »</asp:LinkButton>
                                                                         <div class="precio-sin-transporte">
-                                                                            <div class="precio-sin-transporte-value">
+                                                                            <div class="preciovalue precio-sin-transporte-value">
                                                                                 $
                                                                                 <asp:Label ID="lbl_precioSinTransporte" runat="server" Text="0"></asp:Label>
                                                                             </div>
@@ -474,7 +474,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
 
                                                                         <div class="box-precio-transporte">
                                                                             <div class="precio-transporte">
-                                                                                <div class="precio-transporte-value">
+                                                                                <div class="preciovalue precio-transporte-value">
                                                                                     $
                                                                                     <asp:Label ID="lbl_preciotransporte" runat="server" Text="0"></asp:Label>
                                                                                 </div>
@@ -528,9 +528,9 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                             </div>
                             <div id="tabs" runat="server">
                                 <ul>
-                                    <li><a href="#descripcion">Descripción del paquete</a></li>
-                                    <li><a href="#incluye">Lo que incluye</a></li>
-                                    <li><a href="#tarifas">Tarifas</a></li>
+                                    <li style="width:45%;"><a href="#descripcion">Descripción del paquete</a></li>
+                                    <li style="width:35%;"><a href="#incluye">Lo que incluye</a></li>
+                                    <li style="width:20%;"><a href="#tarifas">Tarifas</a></li>
                                 </ul>
                                 <div id="descripcion" class="tbcontent">
                                     <div class="des_paq_2_1" id="des_paq_2_1" runat="server">

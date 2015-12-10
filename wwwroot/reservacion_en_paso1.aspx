@@ -432,7 +432,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                                         <asp:LinkButton ID="btn_reservar1" runat="server" ToolTip="Book now" ValidationGroup="registrese"
                                                                             ForeColor="#FFFFFF" Visible="false">BOOK NOW &raquo;</asp:LinkButton>
                                                                         <div class="precio-sin-transporte">
-                                                                            <div class="precio-sin-transporte-value">
+                                                                            <div class="preciovalue precio-sin-transporte-value">
                                                                                 $
                                                                                 <asp:Label ID="lbl_precioSinTransporte" runat="server" Text="0"></asp:Label>
                                                                             </div>
@@ -477,7 +477,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                                                             Display="Dynamic" ErrorMessage="Campo Requerido" ValidationGroup="registrese"></asp:RequiredFieldValidator>
                                                                         <div class="box-precio-transporte">
                                                                             <div class="precio-transporte">
-                                                                                <div class="precio-transporte-value">
+                                                                                <div class="preciovalue precio-transporte-value">
                                                                                     $
                                                                                     <asp:Label ID="lbl_preciotransporte" runat="server" Text="0"></asp:Label>
                                                                                 </div>
@@ -526,9 +526,9 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                             </div>
                             <div id="tabs" runat="server">
                                 <ul>
-                                    <li><a href="#description">Package description</a></li>
-                                    <li><a href="#included">Included</a></li>
-                                    <li><a href="#rates">Rates</a></li>
+                                    <li style="width:50%;"><a href="#description">Package description</a></li>
+                                    <li style="width:30%;"><a href="#included">Included</a></li>
+                                    <li style="width:20%;"><a href="#rates">Rates</a></li>
                                 </ul>
                                 <div id="description" class="tbcontent">
                                     <div class="des_paq_2_1" id="des_paq_2_1" runat="server">
@@ -1609,7 +1609,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                     </div>
                                     <div class="wrapper-field costo-adicional">
                                         <div class="key">
-                                            <asp:Label ID="KeyLblCostoAdicional" CssClass="span-field" Text="Additiona cost night"
+                                            <asp:Label ID="KeyLblCostoAdicional" CssClass="span-field" Text="Additional cost night"
                                                 runat="server"></asp:Label>
                                         </div>
                                         <div class="value">

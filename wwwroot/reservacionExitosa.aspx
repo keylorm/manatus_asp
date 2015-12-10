@@ -341,7 +341,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                 </div>
                                 <div class="wrapper-field costo-sin-transporte">
                                     <div class="key">
-                                        <asp:Label ID="KeyLblCostoSinTransporte" CssClass="span-field" Text="Costo estadia" runat="server"></asp:Label>
+                                        <asp:Label ID="KeyLblCostoSinTransporte" CssClass="span-field" Text="Costo estadía" runat="server"></asp:Label>
                                     </div>
                                     <div class="value">
                                         <asp:Label ID="ValueLblCostoSinTransporte" CssClass="span-field" Text="" runat="server"></asp:Label>
@@ -357,7 +357,7 @@ type = 'text/javascript'; e.parentNode.insertBefore($, e)
                                 </div>
                                 <div class="wrapper-field total">
                                     <div class="key">
-                                        <asp:Label ID="KeyLblCostoTotal" CssClass="span-field" Text="Total" runat="server"></asp:Label>
+                                        <asp:Label ID="KeyLblCostoTotal" CssClass="span-field" Text="Total cancelado" runat="server"></asp:Label>
                                     </div>
                                     <div class="value">
                                         <asp:Label ID="ValueLblCostoTotal" CssClass="span-field" Text="" runat="server"></asp:Label>

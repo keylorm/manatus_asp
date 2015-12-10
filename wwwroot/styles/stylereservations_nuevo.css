@@ -1555,11 +1555,13 @@ input#TxtCheckinCheckout {
 
 .content-box hr{
     display: block;
-    height: 2px;
+    height: 1px;
+    margin: 15px 0px;
     border: none;
     border-bottom: 1px solid #594A42;
     clear: both;
     overflow: hidden;
+
 }
 
 /*.contenedor-desc-reserva > div.contenedor-fechas-hab {
@@ -1644,7 +1646,11 @@ h2.h2Celeste{
 {
     margin-right: 0px;
 }
-.desc-paquete .precio-sin-transporte-value
+.bdbtnlist_transporte_box{
+    overflow: hidden;
+}
+/*.desc-paquete .precio-sin-transporte-value,*/
+.preciovalue
 {
     float: right;
     border: 1px solid #7E9B67; 
@@ -1654,7 +1660,8 @@ h2.h2Celeste{
     font-size: 24px; line-height: 32px; font-weight: bold;    
     border-radius: 10px; padding: 0px 12px; 
 }
-.desc-paquete .precio-sin-transporte-value span{
+/*.desc-paquete .precio-sin-transporte-value span,*/
+.preciovalue span{
     color: #7E9B67;
     font-family: "Raleway", sans-serif;
     font-weight: normal;
@@ -1973,7 +1980,7 @@ h2.h2Celeste{
 #tabs ul li a{
     display: block;
     width: auto;
-    line-height: 60px;
+    line-height: 59px;
     color: #594A42;
     text-decoration: none;
     font-family: "Raleway", sans-serif;
@@ -1981,7 +1988,7 @@ h2.h2Celeste{
     font-size: 15px;
     text-transform: uppercase;      
     outline: none;
-    padding: 0 15px; padding-right: 20px;
+    /*padding: 0 15px;*/ padding-right: 20px;
     background-image: url('../images/tab_off.png');
     background-repeat: no-repeat;
     background-position: 100% 50%;
@@ -2406,7 +2413,8 @@ have a fixed width and height (but it's not required).
     font-family: "Open Sans",sans-seif;
     font-size: 15px; 
     font-weight: 600;
-    font-style: italic;    
+    font-style: italic;
+    padding-right: 5px;    
 }
 
 p.comprobante-reserva{
@@ -2867,4 +2875,7 @@ div#TxtCheckinCheckout-selector {
 
 
 .box-precio-transporte
-{float: right;}
+{
+    float: right;
+    margin-top: -34px;
+}
